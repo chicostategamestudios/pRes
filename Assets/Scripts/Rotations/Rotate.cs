@@ -8,7 +8,8 @@ public class Rotate: MonoBehaviour {
 
 	 
 		private bool happy;
-	 
+		private bool sad;
+		
 		public float turnSpeed = 50f;
         public Vector3 rotate;
 		void FixedUpdate ()
