@@ -34,6 +34,7 @@ public enum dodge_direction //these are the states to determine whether the ai d
 
 public class BasicAI : MonoBehaviour 
 {
+    [Header("Timers for actions")]
     public float performing_time = 0.5f; //this is how long the action takes to perform.
 
     public float dodge_time = 1f; //the amount of time it takes to dodge.
@@ -50,6 +51,7 @@ public class BasicAI : MonoBehaviour
                                       //seeing how far the AI is from the player before deciding
                                       //to chase the player or when to attack/dodge.
 
+    [Header("Attributes")]
     public bool check_to_damage = false; //used for testing, check this to apply damage to the enemy.
 
     private bool first_alert = false; //used to keep track if the AI has been alerted the first time.
@@ -62,6 +64,7 @@ public class BasicAI : MonoBehaviour
 
     public int enemy_health = 100; //the health of the enemy.
 
+    [HideInInspector]
     public int incoming_damage = 0; //the damage that will be applied to the enemy.
 
     private dodge_direction dodge = dodge_direction.not_dodging; //AI will decide to move left or right in the dodge.
@@ -70,14 +73,19 @@ public class BasicAI : MonoBehaviour
 
     private Vector3 direction; //also used for the rotation of where the AI is looking at when the player is nearby.
 
-    public GameObject left_dodge, right_dodge; //used to move to these game objects when left or right dodging.
+
+    [Header("Don't touch!")]
+    public GameObject left_dodge;
+    public GameObject right_dodge; //used to move to the game object when left or right dodging.
+
+    public Transform knockback_dir; //used for knockback when the AI gets hit.
 
     private BasicAI_Attack attack_script; //to access its attack script.
 
     private PlayerAttack player_attack; //for the AI to receive damage from the player's attacks.
 
     private Transform target; //the target the AI will be chasing
-
+    [HideInInspector]
     public GameObject basic_ai; //the weapon spawner that is in charge of the weapon swinging.
 
     ai_state current_state = ai_state.idle; //instantiates the ai with an idle state.
@@ -137,7 +145,7 @@ public class BasicAI : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider col) //if the player lands an attack on the enemy, then it will apply the damage.
+    /*private void OnTriggerEnter(Collider col) //if the player lands an attack on the enemy, then it will apply the damage.
     {
          if(col.gameObject.tag == "PlayerAttack")
         {
@@ -145,19 +153,20 @@ public class BasicAI : MonoBehaviour
             incoming_damage = player_attack.damage;  //incomplete code for the moment until we get the player combat done.
             check_to_damage = true;
         }
-    }
+    }*/
 
-    public IEnumerator DamageEnemy() //first will apply damage, and then stagger the enemy for a certain duration
+	public IEnumerator DamageEnemy(int incoming_damage) //first will apply damage, and then stagger the enemy for a certain duration
     {
         
         //apply damage and checks if the enemy dies from the damage.
         enemy_health -= incoming_damage;
         attack_script.staggered = true;
+        current_state = ai_state.staggered;
+        alerted = false;
+		staggering = true;
         //if they aren't dead, then stagger the basic enemy
-        if(enemy_health > 0)
+        if (enemy_health > 0)
         {
-            current_state = ai_state.staggered;
-            staggering = true;
             yield return new WaitForSeconds(stagger_duration);
             //after the duration is over, set the enemy back up for attacking again.
             staggering = false;
@@ -179,11 +188,11 @@ public class BasicAI : MonoBehaviour
 	{
         distance_to_player = Vector3.Distance(target.position, transform.position); //calculate distance to player
 
-        if (check_to_damage) //used for checking purposes. if the enemy is damaged then it must get stunned
+        /*if (check_to_damage) //used for checking purposes. if the enemy is damaged then it must get stunned
         {
             StartCoroutine("DamageEnemy");
             check_to_damage = false;
-        }
+        }*/
         
         if (distance_to_player < 50 && !first_alert) //if the player is close enough, this will set the AI to be alerted. 
                                                      //if the enemy is alerted then it will chase the player. AKA aggro range
@@ -192,13 +201,16 @@ public class BasicAI : MonoBehaviour
             first_alert = true;
         }
 
-        //if the ai is staggered, then dont do anything for this frame.
+        //if the ai is staggered, then dont do anything for this frame and get knocked back.
         if (staggering)
         {
+            //move the ai state to staggered, and set alerted to false to stop their movement.
             current_state = ai_state.staggered;
             alerted = false;
-			//Debug.Log ("staggering");
-            return;
+            //get knocked backwards.
+            transform.position = Vector3.MoveTowards(transform.position, knockback_dir.position, 1f * Time.deltaTime);
+
+            
         }
 
         if (enemy_health <= 0)

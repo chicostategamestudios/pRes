@@ -120,9 +120,9 @@ GameObject:
   - component: {fileID: 65929332141177322}
   - component: {fileID: 23859618520811158}
   - component: {fileID: 195164776829402788}
+  - component: {fileID: 54427944596356446}
   - component: {fileID: 114051644220634046}
   - component: {fileID: 65402032615000178}
-  - component: {fileID: 54290933322658324}
   m_Layer: 0
   m_Name: BasicAI
   m_TagString: Enemy
@@ -499,7 +499,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355846319094206}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54290933322658324
+--- !u!54 &54427944596356446
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
