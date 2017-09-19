@@ -1,4 +1,4 @@
-//This script was written by Tony Alessio | Last edited by Tony Alessio | Modified on Mar 2, 2017
+//This script was written by Tony Alessio | Last edited by Tony Alessio | Modified on Sep 14, 2017
 /*
 SCRIPT DESCRIPTION
 	The functionality of this script is to get the UI representation of the button linked with
@@ -36,6 +36,8 @@ public class Play_Game_UI_Functionality : MonoBehaviour {
     [Tooltip("Drag and drop the 'BACK' UI element into this field")]
     public Button backButton;				//This will be used by the inspector to dictate which button is the "Back" button
 
+
+
     void Start () {
 		Button StoryButton = storyButton.GetComponent<Button>();				//Assigns the UI element to its script counterpart
 		Button SpeedRunModeButton = speedRunModeButton.GetComponent<Button>();	//Assigns the UI element to its script counterpart
@@ -53,19 +55,23 @@ public class Play_Game_UI_Functionality : MonoBehaviour {
 	/* This function will allow the player to click on the Story button and move to the "story_mode" scene */
 	void StoryOnClick()
 	{
-		SceneManager.LoadScene("Level1_Englavictra");		//Change this to what ever scene is the "Story Mode" scene
+		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.play_menu_obj.SetActive(false);			//Sets Play_Menu to become invisible
+		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.level_select_menu_obj.SetActive(true);	//Sets level_select_menu to become visible
+		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.Level1Button.Select();					//Sets the Level1 button as the active cursor
+
+		/* This is where we will need to set a variable to dictate that it is Story Mode, as opposed to Speed Run Mode */
 	}
 
 	/* This function will allow the player to click on the Speed Run Mode button and move to the "speed_run_mode" scene */
 	void SpeedRunModeOnClick()
 	{
-		SceneManager.LoadScene("Level1_Englavictra");		//Change this to what ever scene is the "Speed Run Mode" scene
+		//DO NOTHING YET
 	}
 
 	/* This function will allow the player to click on the Extra button and move to the "extra_mode" scene */
 	void ExtrasOnClick()
 	{
-		SceneManager.LoadScene("Tutorial");		//Change this to what ever scene is the "Extras Mode" scene
+		//DO NOTHING YET
 	}
 
 
@@ -73,12 +79,12 @@ public class Play_Game_UI_Functionality : MonoBehaviour {
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	Back - Back Button Functionality (BEGIN)
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /* This function will allow the player to click on the BACK button and move to the "main_menu" scene */
+    /* This function will allow the player to click on the BACK button and move to the "play_menu" scene */
     void BackOnClick()
     {
-		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.play_menu_obj.SetActive(false);			//Sets Options_Menu to become ingvisible
-		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.start_menu_obj.SetActive(true);			//Sets start_menu to become visible
-		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.PLAYButton.Select();						//Sets the PLAY button as the active cursor
+		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.play_menu_obj.SetActive(false);			//Sets Play_Menu to become invisible
+		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.save_select_menu_obj.SetActive(true);		//Sets Save_Select_Menu to become visible
+		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.Save1Button.Select();						//Sets the Save1 button as the active cursor
     }
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	Back - Back Button Functionality (END)

@@ -28,15 +28,15 @@ public class PlayerAttack : MonoBehaviour {
     {
 		if (col.tag == "Enemy" && my_combat.is_attacking)//checks if target is an enemy and player is attacking
         {
-            Debug.Log("Hit Enemy");
+            //Debug.Log("Hit Enemy");
 
 			attack_type = my_combat.GetAttackType();//calls function in Combat to determine light or heavy attack
 			if (attack_type) {
 				damage = 10;
-				Debug.Log ("Deal light damage " + damage);
+				//Debug.Log ("Deal light damage " + damage);
 			} else {
 				damage = 15;
-				Debug.Log ("Deal strong damage " + damage);
+				//Debug.Log ("Deal strong damage " + damage);
 			}
         }
 		my_combat.is_attacking = false;
