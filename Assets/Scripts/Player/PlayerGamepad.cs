@@ -29,6 +29,7 @@ public class PlayerGamepad : MonoBehaviour
     private float player_rotation_speed;
     private Rigidbody player_rigidbody;
     private bool grounded;
+    public bool PlayerDied = false;
 
     //RAIL
     private bool grinding;
@@ -665,13 +666,14 @@ public class PlayerGamepad : MonoBehaviour
         //If collided with death zone, 
         if (col.gameObject.name == "Death Zone")
         {
+            PlayerDied = true;
             if (last_checkpoint_used != 0)
             {
-                transform.position = checkpoints[last_checkpoint_used - 1].position;
-                transform.rotation = checkpoints[last_checkpoint_used - 1].rotation;
+             //   transform.position = checkpoints[last_checkpoint_used - 1].position;
+             //   transform.rotation = checkpoints[last_checkpoint_used - 1].rotation;
             }
-            else
-                transform.position = GameObject.Find("Spawn Point").transform.position;
+           // else
+            //    transform.position = GameObject.Find("Spawn Point").transform.position;
         }
     }
 
