@@ -59,7 +59,6 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 
 		// On right bumper pressed, find a target.
 		if (Input.GetButtonDown ("Controller_RB")) {
-			Debug.Log ("poo");
 			// If targetting already active, end it.
 			if (target_locked == true) {
 				target_locked = false;
