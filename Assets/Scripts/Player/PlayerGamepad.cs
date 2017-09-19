@@ -11,16 +11,12 @@ using UnityEngine.SceneManagement;
 public class PlayerGamepad : MonoBehaviour
 {
 
-
-
     //MOVEMENT
-    [Tooltip("How fast the player moves")]
-    public float speed;
     [Tooltip("How fast the player gets to max speed. Value between 0 and 1.")]
     public float acceleration;
     [Tooltip("How fast the player slows down. Value between 0 and 1.")]
     public float deacceleration;
-    private float current_speed, speed_smooth_velocity, current_speed_multiplier;
+    private float current_speed, max_running_speed, speed_smooth_velocity, current_speed_multiplier;
     private bool disable_left_joystick, disable_right_joystick; //left stick is movement, right stick is camera
     Vector3 move_direction;
 
@@ -86,9 +82,8 @@ public class PlayerGamepad : MonoBehaviour
     private float dash_timer;
     [Tooltip("The speed of the dash. Enter value between 10 - 150")]
     public float dash_speed;
-    public bool dashing;
-    private float last_captured_y_pos; //Used to cancel out y movement
-    private Vector3 last_captured_player_direction;//to commit a player to a direction, can't change directions when dashing
+    public bool dashing, exiting_dash;
+    private Vector3 last_captured_player_direction;
     private TrailRenderer dash_trail_renderer;
     private int dash_counter;
 
@@ -131,10 +126,10 @@ public class PlayerGamepad : MonoBehaviour
 
         //Dash
         if (dash_speed == 0)
-            dash_speed = 80f;
+            dash_speed = 100f;
 
         if (dash_duration == 0)
-            dash_duration = 0.3f;
+            dash_duration = 1.5f;
 
         if (dash_trail_renderer == false)
             dash_trail_renderer = GetComponent<TrailRenderer>();
@@ -174,12 +169,8 @@ public class PlayerGamepad : MonoBehaviour
         if (turn_smooth_time == 0)
             turn_smooth_time = 0.4f;
 
-        if (speed == 0)
-            speed = 0.5f;
-
-        //Change this to control player desired speed
-        if (current_speed_multiplier == 0)
-            current_speed_multiplier = 48;
+        if(max_running_speed == 0)
+            max_running_speed = 48f;
 
         if (jump_limit == 0)
         {
@@ -297,11 +288,16 @@ public class PlayerGamepad : MonoBehaviour
             if (!grinding )
             {
                 //Slowly rotate from the initial rotation to the player rotation, adding camera_anchor.eulerAngles to make it so the axis is based of the camera rotation
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), player_rotation_speed * Time.deltaTime);
+                if(!dashing)
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), player_rotation_speed * Time.deltaTime);
+
             }
 
             //Getting sensitivity of the left joystic, squaring it will make negatives into positives
-            if (current_speed < 40f)
+            if (current_speed < 40f && !dashing)
+                current_speed += input_joystick_left.sqrMagnitude;
+
+            if (current_speed < dash_speed && dashing)
                 current_speed += input_joystick_left.sqrMagnitude;
         }
         else
@@ -337,12 +333,12 @@ public class PlayerGamepad : MonoBehaviour
             move_direction = Vector3.zero;
 
         //Speed limit when running
-        if (current_speed > 48f && !dashing && !grinding)
-            current_speed = 48f;
+        if (current_speed > max_running_speed && !dashing && !grinding)
+            current_speed = max_running_speed;
 
         //Speed limit when dashing
-        if (current_speed > 300f && dashing)
-            current_speed = 300f;
+        if (current_speed > 100f && dashing)
+            current_speed = 100f;
 
 
         //Prevents player from drifting backwards
@@ -404,12 +400,12 @@ public class PlayerGamepad : MonoBehaviour
 
             if (DetectCollision(4f, transform.forward))
             {
-                current_speed -= dash_speed * 200f * Time.fixedDeltaTime;
+                current_speed -= dash_speed * Time.fixedDeltaTime;
             }
 
             if (DetectCollision(8f, transform.forward))
             {
-                current_speed -= dash_speed * 100f * Time.fixedDeltaTime;
+                current_speed -= dash_speed * Time.fixedDeltaTime;
             }
 
         }
@@ -500,6 +496,8 @@ public class PlayerGamepad : MonoBehaviour
             }
         }
 
+        //print(current_speed);
+
     } // <- end of FixedUpdate
 
     private void LateUpdate()
@@ -529,22 +527,51 @@ public class PlayerGamepad : MonoBehaviour
 
     IEnumerator Dash()
     {
+        dashing = true;
+
+        player_rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+
+        disable_left_joystick = true;
+
+        current_speed = Mathf.Lerp(current_speed, dash_speed, 0.7f);
 
         SetTrailRender(true);
 
-        if (current_speed < 1000f)
-            current_speed += dash_speed * 200f * Time.fixedDeltaTime;
-
         dash_counter += 1;
-        dashing = true;
 
-        yield return new WaitForSeconds(.10f);
+        print(current_speed);
+
+        move_direction = transform.forward;
+
+        yield return new WaitForSeconds(.5f);
+
+        player_rigidbody.constraints = RigidbodyConstraints.None;
+        player_rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        current_speed = Mathf.Lerp(dash_speed, max_running_speed, 0.25f);
+
+        print(current_speed);
+
+        move_direction = transform.forward;
+
+        yield return new WaitForSeconds(.5f);
+
+        print(current_speed);
+
+        disable_left_joystick = false;
 
         SetTrailRender(false);
 
-        current_speed = 40f;
-
         dashing = false;
+
+    }
+
+    IEnumerator ExitDash()
+    {
+
+        current_speed = 40f;
+        move_direction = transform.forward;
+        yield return new WaitForSeconds(5f);
     }
 
 
