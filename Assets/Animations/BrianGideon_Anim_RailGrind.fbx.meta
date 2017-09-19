@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b462972ff5cbd594abbab20db8da1559
-timeCreated: 1505857182
+guid: 99b3fa1891bfd3544b2e08247f4111d7
+timeCreated: 1505863112
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -257,7 +257,7 @@ ModelImporter:
     400248: Gideon_RigV3_Chavez:world_CTRL
     4300000: Gideon_RigV3_Chavez:Gideon_geo
     4300002: Gideon_RigV3_Chavez:cape_geo
-    7400000: Idle
+    7400000: RailGrind
     9500000: //RootNode
     13700000: Gideon_RigV3_Chavez:cape_geo
     13700002: Gideon_RigV3_Chavez:Gideon_geo 1
@@ -283,7 +283,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: RailGrind
       takeName: Idle
       firstFrame: 0
       lastFrame: 119

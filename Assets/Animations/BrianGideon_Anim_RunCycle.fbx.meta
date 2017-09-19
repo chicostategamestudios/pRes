@@ -281,7 +281,285 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: RunCycle
+      takeName: RunCycle
+      firstFrame: 0
+      lastFrame: 27
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:L_hip_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:L_hip_CTRL/Gideon_RigV3_Chavez:L_knee_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:L_hip_CTRL/Gideon_RigV3_Chavez:L_knee_CTRL/Gideon_RigV3_Chavez:L_ankle_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:L_hip_CTRL/Gideon_RigV3_Chavez:L_knee_CTRL/Gideon_RigV3_Chavez:L_ankle_CTRL/Gideon_RigV3_Chavez:L_toe_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:R_hip_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:R_hip_CTRL/Gideon_RigV3_Chavez:R_knee_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:R_hip_CTRL/Gideon_RigV3_Chavez:R_knee_CTRL/Gideon_RigV3_Chavez:R_ankle_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:R_hip_CTRL/Gideon_RigV3_Chavez:R_knee_CTRL/Gideon_RigV3_Chavez:R_ankle_CTRL/Gideon_RigV3_Chavez:R_toe_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2/Gideon_RigV3_Chavez:spine_CTRL3
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2/Gideon_RigV3_Chavez:spine_CTRL3/Gideon_RigV3_Chavez:L_clavivle_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2/Gideon_RigV3_Chavez:spine_CTRL3/Gideon_RigV3_Chavez:L_clavivle_CTRL/Gideon_RigV3_Chavez:L_shoulder_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2/Gideon_RigV3_Chavez:spine_CTRL3/Gideon_RigV3_Chavez:L_clavivle_CTRL/Gideon_RigV3_Chavez:L_shoulder_CTRL/Gideon_RigV3_Chavez:L_elbow_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2/Gideon_RigV3_Chavez:spine_CTRL3/Gideon_RigV3_Chavez:L_clavivle_CTRL/Gideon_RigV3_Chavez:L_shoulder_CTRL/Gideon_RigV3_Chavez:L_elbow_CTRL/Gideon_RigV3_Chavez:L_wrist_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2/Gideon_RigV3_Chavez:spine_CTRL3/Gideon_RigV3_Chavez:neck_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2/Gideon_RigV3_Chavez:spine_CTRL3/Gideon_RigV3_Chavez:neck_CTRL/Gideon_RigV3_Chavez:head_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2/Gideon_RigV3_Chavez:spine_CTRL3/Gideon_RigV3_Chavez:R_clavivle_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2/Gideon_RigV3_Chavez:spine_CTRL3/Gideon_RigV3_Chavez:R_clavivle_CTRL/Gideon_RigV3_Chavez:R_shoulder_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2/Gideon_RigV3_Chavez:spine_CTRL3/Gideon_RigV3_Chavez:R_clavivle_CTRL/Gideon_RigV3_Chavez:R_shoulder_CTRL/Gideon_RigV3_Chavez:R_elbow_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:COG_CTRL/Gideon_RigV3_Chavez:spine_CTRL1/Gideon_RigV3_Chavez:spine_CTRL2/Gideon_RigV3_Chavez:spine_CTRL3/Gideon_RigV3_Chavez:R_clavivle_CTRL/Gideon_RigV3_Chavez:R_shoulder_CTRL/Gideon_RigV3_Chavez:R_elbow_CTRL/Gideon_RigV3_Chavez:R_wrist_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_arm_IK_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_arm_IK_CTRL/Gideon_RigV3_Chavez:L_arm_IK
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_elbow_PV_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_hand_finger_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_knee_PV_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_leg_IK_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_leg_IK_CTRL/Gideon_RigV3_Chavez:L_ankle_pivot_GRP
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_leg_IK_CTRL/Gideon_RigV3_Chavez:L_ankle_pivot_GRP/Gideon_RigV3_Chavez:L_toe_tip_pivot_GRP
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_leg_IK_CTRL/Gideon_RigV3_Chavez:L_ankle_pivot_GRP/Gideon_RigV3_Chavez:L_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:L_swivel_pivot_GRP
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_leg_IK_CTRL/Gideon_RigV3_Chavez:L_ankle_pivot_GRP/Gideon_RigV3_Chavez:L_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:L_swivel_pivot_GRP/Gideon_RigV3_Chavez:L_heel_lift_pivot_GRP
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_leg_IK_CTRL/Gideon_RigV3_Chavez:L_ankle_pivot_GRP/Gideon_RigV3_Chavez:L_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:L_swivel_pivot_GRP/Gideon_RigV3_Chavez:L_heel_lift_pivot_GRP/Gideon_RigV3_Chavez:L_ankle_IK
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_leg_IK_CTRL/Gideon_RigV3_Chavez:L_ankle_pivot_GRP/Gideon_RigV3_Chavez:L_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:L_swivel_pivot_GRP/Gideon_RigV3_Chavez:L_toe_tap_pivot_GRP
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_leg_IK_CTRL/Gideon_RigV3_Chavez:L_ankle_pivot_GRP/Gideon_RigV3_Chavez:L_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:L_swivel_pivot_GRP/Gideon_RigV3_Chavez:L_toe_tap_pivot_GRP/Gideon_RigV3_Chavez:L_foot_IK
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:L_leg_IK_CTRL/Gideon_RigV3_Chavez:L_ankle_pivot_GRP/Gideon_RigV3_Chavez:L_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:L_swivel_pivot_GRP/Gideon_RigV3_Chavez:L_toe_tap_pivot_GRP/Gideon_RigV3_Chavez:L_toe_IK
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_arm_IK_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_arm_IK_CTRL/Gideon_RigV3_Chavez:R_arm_IK
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_elbow_PV_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_hand_finger_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_knee_PV_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_leg_IK_CTRL
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_leg_IK_CTRL/Gideon_RigV3_Chavez:R_ankle_pivot_GRP
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_leg_IK_CTRL/Gideon_RigV3_Chavez:R_ankle_pivot_GRP/Gideon_RigV3_Chavez:R_toe_tip_pivot_GRP
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_leg_IK_CTRL/Gideon_RigV3_Chavez:R_ankle_pivot_GRP/Gideon_RigV3_Chavez:R_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:R_swivel_GRP
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_leg_IK_CTRL/Gideon_RigV3_Chavez:R_ankle_pivot_GRP/Gideon_RigV3_Chavez:R_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:R_swivel_GRP/Gideon_RigV3_Chavez:R_heel_lift_pivot_GRP
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_leg_IK_CTRL/Gideon_RigV3_Chavez:R_ankle_pivot_GRP/Gideon_RigV3_Chavez:R_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:R_swivel_GRP/Gideon_RigV3_Chavez:R_heel_lift_pivot_GRP/Gideon_RigV3_Chavez:R_ankle_IK
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_leg_IK_CTRL/Gideon_RigV3_Chavez:R_ankle_pivot_GRP/Gideon_RigV3_Chavez:R_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:R_swivel_GRP/Gideon_RigV3_Chavez:R_toe_tap_pivot_GRP
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_leg_IK_CTRL/Gideon_RigV3_Chavez:R_ankle_pivot_GRP/Gideon_RigV3_Chavez:R_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:R_swivel_GRP/Gideon_RigV3_Chavez:R_toe_tap_pivot_GRP/Gideon_RigV3_Chavez:R_foot_IK
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:R_leg_IK_CTRL/Gideon_RigV3_Chavez:R_ankle_pivot_GRP/Gideon_RigV3_Chavez:R_toe_tip_pivot_GRP/Gideon_RigV3_Chavez:R_swivel_GRP/Gideon_RigV3_Chavez:R_toe_tap_pivot_GRP/Gideon_RigV3_Chavez:R_toe_IK
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:L_hip_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:L_hip_joint_bn/Gideon_RigV3_Chavez:L_knee_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:L_hip_joint_bn/Gideon_RigV3_Chavez:L_knee_joint_bn/Gideon_RigV3_Chavez:L_ankle_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:L_hip_joint_bn/Gideon_RigV3_Chavez:L_knee_joint_bn/Gideon_RigV3_Chavez:L_ankle_joint_bn/Gideon_RigV3_Chavez:L_foot_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:L_hip_joint_bn/Gideon_RigV3_Chavez:L_knee_joint_bn/Gideon_RigV3_Chavez:L_ankle_joint_bn/Gideon_RigV3_Chavez:L_foot_joint_bn/Gideon_RigV3_Chavez:L_toe_joint_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:R_hip_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:R_hip_joint_bn/Gideon_RigV3_Chavez:R_knee_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:R_hip_joint_bn/Gideon_RigV3_Chavez:R_knee_joint_bn/Gideon_RigV3_Chavez:R_ankle_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:R_hip_joint_bn/Gideon_RigV3_Chavez:R_knee_joint_bn/Gideon_RigV3_Chavez:R_ankle_joint_bn/Gideon_RigV3_Chavez:R_foot_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:R_hip_joint_bn/Gideon_RigV3_Chavez:R_knee_joint_bn/Gideon_RigV3_Chavez:R_ankle_joint_bn/Gideon_RigV3_Chavez:R_foot_joint_bn/Gideon_RigV3_Chavez:R_toe_joint_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_index_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_index_joint1_bn/Gideon_RigV3_Chavez:L_index_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_index_joint1_bn/Gideon_RigV3_Chavez:L_index_joint2_bn/Gideon_RigV3_Chavez:L_index_joint3_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_index_joint1_bn/Gideon_RigV3_Chavez:L_index_joint2_bn/Gideon_RigV3_Chavez:L_index_joint3_bn/Gideon_RigV3_Chavez:L_index_joint4_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_middle_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_middle_joint1_bn/Gideon_RigV3_Chavez:L_middle_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_middle_joint1_bn/Gideon_RigV3_Chavez:L_middle_joint2_bn/Gideon_RigV3_Chavez:L_middle_joint3_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_middle_joint1_bn/Gideon_RigV3_Chavez:L_middle_joint2_bn/Gideon_RigV3_Chavez:L_middle_joint3_bn/Gideon_RigV3_Chavez:L_middle_joint4_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_pinky_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_pinky_joint1_bn/Gideon_RigV3_Chavez:L_pinky_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_pinky_joint1_bn/Gideon_RigV3_Chavez:L_pinky_joint2_bn/Gideon_RigV3_Chavez:L_pinky_joint3_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_pinky_joint1_bn/Gideon_RigV3_Chavez:L_pinky_joint2_bn/Gideon_RigV3_Chavez:L_pinky_joint3_bn/Gideon_RigV3_Chavez:L_pinky_joint4_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_ring_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_ring_joint1_bn/Gideon_RigV3_Chavez:L_ring_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_ring_joint1_bn/Gideon_RigV3_Chavez:L_ring_joint2_bn/Gideon_RigV3_Chavez:L_ring_joint3_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_ring_joint1_bn/Gideon_RigV3_Chavez:L_ring_joint2_bn/Gideon_RigV3_Chavez:L_ring_joint3_bn/Gideon_RigV3_Chavez:L_ring_joint4_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_thumb_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_thumb_joint1_bn/Gideon_RigV3_Chavez:L_thumb_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_thumb_joint1_bn/Gideon_RigV3_Chavez:L_thumb_joint2_bn/Gideon_RigV3_Chavez:L_thumb_joint3_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:L_clavicle_joint1_bn/Gideon_RigV3_Chavez:L_clavicle_joint2_bn/Gideon_RigV3_Chavez:L_shoulder_joint_bn/Gideon_RigV3_Chavez:L_elbow_joint_bn/Gideon_RigV3_Chavez:L_wrist_joint_bn/Gideon_RigV3_Chavez:L_thumb_joint1_bn/Gideon_RigV3_Chavez:L_thumb_joint2_bn/Gideon_RigV3_Chavez:L_thumb_joint3_bn/Gideon_RigV3_Chavez:L_thumb_joint4_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:neck_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:neck_joint_bn/Gideon_RigV3_Chavez:head_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:neck_joint_bn/Gideon_RigV3_Chavez:head_joint1_bn/Gideon_RigV3_Chavez:head_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:neck_joint_bn/Gideon_RigV3_Chavez:head_joint1_bn/Gideon_RigV3_Chavez:head_joint2_bn/Gideon_RigV3_Chavez:head_joint3_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_index_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_index_joint1_bn/Gideon_RigV3_Chavez:R_index_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_index_joint1_bn/Gideon_RigV3_Chavez:R_index_joint2_bn/Gideon_RigV3_Chavez:R_index_joint3_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_index_joint1_bn/Gideon_RigV3_Chavez:R_index_joint2_bn/Gideon_RigV3_Chavez:R_index_joint3_bn/Gideon_RigV3_Chavez:R_index_joint4_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_middle_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_middle_joint1_bn/Gideon_RigV3_Chavez:R_middle_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_middle_joint1_bn/Gideon_RigV3_Chavez:R_middle_joint2_bn/Gideon_RigV3_Chavez:R_middle_joint3_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_middle_joint1_bn/Gideon_RigV3_Chavez:R_middle_joint2_bn/Gideon_RigV3_Chavez:R_middle_joint3_bn/Gideon_RigV3_Chavez:R_middle_joint4_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_pinky_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_pinky_joint1_bn/Gideon_RigV3_Chavez:R_pinky_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_pinky_joint1_bn/Gideon_RigV3_Chavez:R_pinky_joint2_bn/Gideon_RigV3_Chavez:R_pinky_joint3_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_pinky_joint1_bn/Gideon_RigV3_Chavez:R_pinky_joint2_bn/Gideon_RigV3_Chavez:R_pinky_joint3_bn/Gideon_RigV3_Chavez:R_pinky_joint4_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_ring_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_ring_joint1_bn/Gideon_RigV3_Chavez:R_ring_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_ring_joint1_bn/Gideon_RigV3_Chavez:R_ring_joint2_bn/Gideon_RigV3_Chavez:R_ring_joint3_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_ring_joint1_bn/Gideon_RigV3_Chavez:R_ring_joint2_bn/Gideon_RigV3_Chavez:R_ring_joint3_bn/Gideon_RigV3_Chavez:R_ring_joint4_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_thumb_joint1_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_thumb_joint1_bn/Gideon_RigV3_Chavez:R_thumb_joint2_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_thumb_joint1_bn/Gideon_RigV3_Chavez:R_thumb_joint2_bn/Gideon_RigV3_Chavez:R_thumb_joint3_bn
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_CTRL/Gideon_RigV3_Chavez:world_CTRL/Gideon_RigV3_Chavez:spine_root_bn/Gideon_RigV3_Chavez:spine_joint1_bn/Gideon_RigV3_Chavez:spine_joint2_bn/Gideon_RigV3_Chavez:spine_joint3_bn/Gideon_RigV3_Chavez:spine_joint4_bn/Gideon_RigV3_Chavez:R_clavicle_joint1_bn/Gideon_RigV3_Chavez:R_clavicle_joint2_bn/Gideon_RigV3_Chavez:R_shoulder_joint_bn/Gideon_RigV3_Chavez:R_elbow_joint_bn/Gideon_RigV3_Chavez:R_wrist_joint_bn/Gideon_RigV3_Chavez:R_thumb_joint1_bn/Gideon_RigV3_Chavez:R_thumb_joint2_bn/Gideon_RigV3_Chavez:R_thumb_joint3_bn/Gideon_RigV3_Chavez:R_thumb_joint4_be
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_geo
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_geo/Gideon_RigV3_Chavez:Gideon_geo 1
+        weight: 1
+      - path: Gideon_RigV3_Chavez:Gideon_geo/Gideon_RigV3_Chavez:Gideon_geo 1/Gideon_RigV3_Chavez:cape_geo
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
