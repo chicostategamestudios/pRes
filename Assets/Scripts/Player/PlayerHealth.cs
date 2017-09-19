@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
         StartCoroutine("StaggerPlayer");
         if(health > 0) //this is to display the health of the player in console.
         { 
-            print("Player health is now: " + health);
+            //print("Player health is now: " + health);
         }
 
         if (health <= 0 && is_alive)

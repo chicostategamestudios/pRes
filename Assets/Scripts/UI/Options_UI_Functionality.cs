@@ -1,4 +1,4 @@
-//This script was written by Tony Alessio | Last edited by Tony Alessio | Modified on Mar 2, 2017
+//This script was written by Tony Alessio | Last edited by Tony Alessio | Modified on Sep 14, 2017
 /*
 SCRIPT DESCRIPTION
 	The functionality of this script is to get the UI representation of the button linked with

@@ -137,7 +137,7 @@ public class Combat : MonoBehaviour {
 		if (Input.GetButtonDown("Controller_B") && !is_strong_attacking)
         {
 			forward = transform.TransformDirection(Vector3.forward);
-            Debug.Log("Heavy Attack");
+            //Debug.Log("Heavy Attack");
 			is_attacking = true;
             // Disable Player movement
             GetComponent<PlayerGamepad>().GamepadAllowed = false;
@@ -153,7 +153,7 @@ public class Combat : MonoBehaviour {
 
             // Set Player rotation to Camera Anchor rotation
             //transform.eulerAngles = new Vector3(transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
-            Debug.Log("Rotation = " + transform.rotation);
+            //Debug.Log("Rotation = " + transform.rotation);
 
             // check to see if something is in the way
 			if (Physics.Raycast(transform.position, forward, out hit, (strong_attack_distance)))
