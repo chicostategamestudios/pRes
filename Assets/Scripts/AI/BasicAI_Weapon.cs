@@ -20,7 +20,7 @@ public class BasicAI_Weapon : MonoBehaviour {
         {
             player_hp_script = other.GetComponentInParent<PlayerHealth>();
             player_hp_script.DamageReceived(damage);
-			//print("ai hit the player.");
+			print("ai hit the player.");
         }
        // print("ai hit: " + other.gameObject.name);
     }

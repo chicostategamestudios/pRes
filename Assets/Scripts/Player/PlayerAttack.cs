@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour {
 
 	private GameObject my_player;
 	private Combat my_combat;
+	private BasicAI my_ai;
 	private bool attack_type;
 	[HideInInspector]public int damage;//used by enemy script to reduce health
 	//private float light_damage = 10;
@@ -28,18 +29,41 @@ public class PlayerAttack : MonoBehaviour {
     {
 		if (col.tag == "Enemy" && my_combat.is_attacking)//checks if target is an enemy and player is attacking
         {
-            //Debug.Log("Hit Enemy");
+            Debug.Log("Hit Enemy");
+			my_ai = col.GetComponent<BasicAI> ();
 
 			attack_type = my_combat.GetAttackType();//calls function in Combat to determine light or heavy attack
 			if (attack_type) {
 				damage = 10;
-				//Debug.Log ("Deal light damage " + damage);
+				my_ai.StartCoroutine ("DamageEnemy", damage);
+				Debug.Log ("Deal light damage " + damage);
 			} else {
 				damage = 15;
-				//Debug.Log ("Deal strong damage " + damage);
+				my_ai.StartCoroutine ("DamageEnemy", damage);
+				Debug.Log ("Deal strong damage " + damage);
 			}
         }
 		my_combat.is_attacking = false;
     }
 
+	public void OnTriggerStay(Collider col)
+	{
+		if (col.tag == "Enemy" && my_combat.is_attacking)//checks if target is an enemy and player is attacking
+		{
+			Debug.Log("Hit Enemy");
+			my_ai = col.GetComponent<BasicAI> ();
+
+			attack_type = my_combat.GetAttackType();//calls function in Combat to determine light or heavy attack
+			if (attack_type) {
+				damage = 10;
+				my_ai.StartCoroutine ("DamageEnemy", damage);
+				Debug.Log ("Deal light damage " + damage);
+			} else {
+				damage = 15;
+				my_ai.StartCoroutine ("DamageEnemy", damage);
+				Debug.Log ("Deal strong damage " + damage);
+			}
+		}
+		my_combat.is_attacking = false;
+	}
 }
