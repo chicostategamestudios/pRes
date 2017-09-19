@@ -1,4 +1,4 @@
-//This script was written by Tony Alessio | Last edited by Tony Alessio | Modified on Sep 14, 2017
+//This script was written by Tony Alessio | Last edited by Tony Alessio | Modified on Mar 2, 2017
 /*
 SCRIPT DESCRIPTION
 	The functionality of this script is to get the UI representation of the button linked with
@@ -15,11 +15,6 @@ elements to their respective fields:
 - Quit_menu_obj -> [Quit_BG]
 - Quit_yes_Button -> [Quit_Yes (Button)]
 - Quit_no_button -> [Quit_No (Button)]
-- Level_select_menu_obj -> [Level_Select_Menu]
-- Story Button -> [Story (Button)]
-- Level 1 Button -> [Level1_Button (Button)]
-- Save_select_menu_obj -> [Save_Select_Menu]
-- Save 1 Button -> [Save1 (Button)]
 
 	Once the editor knows which button is associated with its UI element, the player will be 
 able to click the button to activate the function call. Most function calls simply change the 
@@ -57,6 +52,7 @@ public class Main_Menu_Functionality : MonoBehaviour {
 												//Holding this gameobject variable is necessary in order to hide the "Options_Menu" until the Options Button is selected
 			public GameObject Options_Menu_Obj{ get{ return options_menu_obj;} }		//Getter/Setter for options_menu_obj
 
+
     [Tooltip("Drag and drop the 'Exit' UI element into this field")]
 	public Button exitButton;		//This will be used by the inspector to dictate which button is the "Exit" button
 		[Tooltip("Drag and drop the 'Quit_Menu' UI element into this field")]
@@ -67,20 +63,6 @@ public class Main_Menu_Functionality : MonoBehaviour {
 		[Tooltip("Drag and drop the 'Quit_No' UI element into this field")]
 		public Button quit_no_Button;		//This will be used by the inspector to dictate which button is the "No" button, under the Quit parent
 
-	[Tooltip("Drag and drop the 'Level_Select_Menu' UI element into this field")]
-	public GameObject level_select_menu_obj;			//This will be used by the inspector to dictate which UI element is the "Level_Select_Menu" parent
-		[Tooltip("Drag and drop the 'Story' UI element into this field")]
-		public Button StoryButton;       //This will be used by the inspector to dictate which button is the "Story" button
-		[Tooltip("Drag and drop the 'Level1' UI element into this field")]
-		public Button Level1Button;       //This will be used by the inspector to dictate which button is the "Level 1" button
-
-	[Tooltip("Drag and drop the 'Level_Select_Menu' UI element into this field")]
-	public GameObject save_select_menu_obj;			//This will be used by the inspector to dictate which UI element is the "Save_Select_Menu" parent
-		[Tooltip("Drag and drop the 'Save #1' UI element into this field")]
-		public Button Save1Button;       //This will be used by the inspector to dictate which button is the "Save1" button
-
-
-
 	static public Main_Menu_Functionality Singleton_Main_Menu_Functionality;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -88,6 +70,20 @@ public class Main_Menu_Functionality : MonoBehaviour {
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	void Awake(){
 		Singleton_Main_Menu_Functionality = this;
+	
+		if (quit_menu_obj == null) {	//Checks to see if quit_menu_obj was correctly attached in the inspector
+			Debug.LogError ("The gameobject for 'quit_menu_obj' was not assigned before the game was started.");
+			/* This would be for assigning the game object to the inspector in case it wasn't assigned correctly during edit mode */
+			/*
+			 * Currently this does not work, because the object starts out as inactive. 
+			 * If you want to use the next line of code, then...
+			 * You will need to set it to active in the inspector, 
+			 * this code will assign it correctly in awake, 
+			 * and then turn it off in start once the connection has been made.
+			 */
+			//quit_menu_obj = GameObject.Find("Quit_Menu");
+			//GameObject.Find ("Play_Menu_Functionality");
+		}
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	Awake() (END)
@@ -102,6 +98,8 @@ public class Main_Menu_Functionality : MonoBehaviour {
 
 		Button QuitYesButton = quit_yes_Button.GetComponent<Button>();          //Assigns the UI element to its script counterpart
 		Button QuitNoButton = quit_no_Button.GetComponent<Button>();            //Assigns the UI element to its script counterpart
+
+//		Toggle Camera_AutoRotate = options_menu_obj.GetComponentInChildren<Toggle>();
 
 		PlayButton.onClick.AddListener(PlayOnClick);                    //Play Script
 		OptionsButton.onClick.AddListener(OptionsOnClick);              //Options Script
@@ -119,9 +117,14 @@ public class Main_Menu_Functionality : MonoBehaviour {
 	/* This function will allow the player to click on the Play button and trigger the "Play_Menu" object */
 	void PlayOnClick()
     {
-		start_menu_obj.SetActive(false);			//Sets Start_Menu to become invisible
-		save_select_menu_obj.SetActive(true);		//Sets Save_Select_Menu to become visible
-		Save1Button.Select();						//Sets the focus of the cursor to Save1Button
+		//SceneManager.LoadScene("play_game");		//DEPRICATED: Use to use seperate scenes to load UI menus. Feel free to delete
+		play_menu_obj.SetActive(true);			//Sets play_menu to become visible
+		start_menu_obj.SetActive(false);		//Sets start_menu to become invisible
+		play_menu_obj.transform.parent.GetComponent<Play_Game_UI_Functionality>().storyButton.Select();			//The "Story" button will be highlighted
+		/* This allows the parent of play_menu_obj, which is Play_Menu_Functionality, 
+		 * to be called and then the component that is the storyButton within the 
+		 * Play_Game_UI_Functionality script can be accessed.
+		 */
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	PLAY - Play Button Functionality (END)
@@ -135,10 +138,12 @@ public class Main_Menu_Functionality : MonoBehaviour {
 	/* This function will allow the player to click on the Options button and move to the "options_menu" scene */
 	void OptionsOnClick()
     {
+		//SceneManager.LoadScene("options_menu");		//DEPRICATED: Use to use seperate scenes to load UI menus. Feel free to delete
+
 		/* This will make the Options_Menu appear */
-		start_menu_obj.SetActive(false);																//Sets start_menu to become invisible
-		options_menu_obj.SetActive(true);																//Sets Options_Menu to become visible
-		options_menu_obj.transform.parent.GetComponent<Options_UI_Functionality>().BACKButton.Select();	//Sets the focus of the cursor to the BackButton
+		options_menu_obj.SetActive(true);			//Sets Options_Menu to become visible
+		start_menu_obj.SetActive(false);			//Sets start_menu to become invisible
+		options_menu_obj.transform.parent.GetComponent<Options_UI_Functionality>().BACKButton.Select();
 		/*
 		 * This allows the parent of options_menu_obj, which is Options_Menu_Functionality, 
 		 * to be called and then the component that is the BACKButton within the 
@@ -166,7 +171,7 @@ public class Main_Menu_Functionality : MonoBehaviour {
 	void QuitYesOnClick()
     {
 		/* This will make the game Quit out */
-		Application.Quit ();		/* WARNING: Does NOT work while in Unity Editor */
+		Application.Quit ();
 	}
 
 	void QuitNoOnClick()
