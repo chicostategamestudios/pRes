@@ -1,0 +1,231 @@
+fileFormatVersion: 2
+guid: 425c3c0016930354db2f5bca0e912904
+timeCreated: 1505427771
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: cape_geo
+    100004: Gideon_CTRL
+    100006: Gideon_geo
+    100008: Gideon_geo 1
+    100010: head_joint1_bn
+    100012: head_joint2_bn
+    100014: head_joint3_be
+    100016: L_ankle_joint_bn
+    100018: L_clavicle_joint1_bn
+    100020: L_clavicle_joint2_bn
+    100022: L_elbow_joint_bn
+    100024: L_foot_joint_bn
+    100026: L_hip_joint_bn
+    100028: L_index_joint1_bn
+    100030: L_index_joint2_bn
+    100032: L_index_joint3_bn
+    100034: L_index_joint4_be
+    100036: L_knee_joint_bn
+    100038: L_middle_joint1_bn
+    100040: L_middle_joint2_bn
+    100042: L_middle_joint3_bn
+    100044: L_middle_joint4_be
+    100046: L_pinky_joint1_bn
+    100048: L_pinky_joint2_bn
+    100050: L_pinky_joint3_bn
+    100052: L_pinky_joint4_be
+    100054: L_ring_joint1_bn
+    100056: L_ring_joint2_bn
+    100058: L_ring_joint3_bn
+    100060: L_ring_joint4_be
+    100062: L_shoulder_joint_bn
+    100064: L_thumb_joint1_bn
+    100066: L_thumb_joint2_bn
+    100068: L_thumb_joint3_bn
+    100070: L_thumb_joint4_be
+    100072: L_toe_joint_be
+    100074: L_wrist_joint_bn
+    100076: neck_joint_bn
+    100078: R_ankle_joint_bn
+    100080: R_clavicle_joint1_bn
+    100082: R_clavicle_joint2_bn
+    100084: R_elbow_joint_bn
+    100086: R_foot_joint_bn
+    100088: R_hip_joint_bn
+    100090: R_index_joint1_bn
+    100092: R_index_joint2_bn
+    100094: R_index_joint3_bn
+    100096: R_index_joint4_be
+    100098: R_knee_joint_bn
+    100100: R_middle_joint1_bn
+    100102: R_middle_joint2_bn
+    100104: R_middle_joint3_bn
+    100106: R_middle_joint4_be
+    100108: R_pinky_joint1_bn
+    100110: R_pinky_joint2_bn
+    100112: R_pinky_joint3_bn
+    100114: R_pinky_joint4_be
+    100116: R_ring_joint1_bn
+    100118: R_ring_joint2_bn
+    100120: R_ring_joint3_bn
+    100122: R_ring_joint4_be
+    100124: R_shoulder_joint_bn
+    100126: R_thumb_joint1_bn
+    100128: R_thumb_joint2_bn
+    100130: R_thumb_joint3_bn
+    100132: R_thumb_joint4_be
+    100134: R_toe_joint_be
+    100136: R_wrist_joint_bn
+    100138: spine_joint1_bn
+    100140: spine_joint2_bn
+    100142: spine_joint3_bn
+    100144: spine_joint4_bn
+    100146: spine_root_bn
+    100148: world_CTRL
+    400000: //RootNode
+    400002: cape_geo
+    400004: Gideon_CTRL
+    400006: Gideon_geo
+    400008: Gideon_geo 1
+    400010: head_joint1_bn
+    400012: head_joint2_bn
+    400014: head_joint3_be
+    400016: L_ankle_joint_bn
+    400018: L_clavicle_joint1_bn
+    400020: L_clavicle_joint2_bn
+    400022: L_elbow_joint_bn
+    400024: L_foot_joint_bn
+    400026: L_hip_joint_bn
+    400028: L_index_joint1_bn
+    400030: L_index_joint2_bn
+    400032: L_index_joint3_bn
+    400034: L_index_joint4_be
+    400036: L_knee_joint_bn
+    400038: L_middle_joint1_bn
+    400040: L_middle_joint2_bn
+    400042: L_middle_joint3_bn
+    400044: L_middle_joint4_be
+    400046: L_pinky_joint1_bn
+    400048: L_pinky_joint2_bn
+    400050: L_pinky_joint3_bn
+    400052: L_pinky_joint4_be
+    400054: L_ring_joint1_bn
+    400056: L_ring_joint2_bn
+    400058: L_ring_joint3_bn
+    400060: L_ring_joint4_be
+    400062: L_shoulder_joint_bn
+    400064: L_thumb_joint1_bn
+    400066: L_thumb_joint2_bn
+    400068: L_thumb_joint3_bn
+    400070: L_thumb_joint4_be
+    400072: L_toe_joint_be
+    400074: L_wrist_joint_bn
+    400076: neck_joint_bn
+    400078: R_ankle_joint_bn
+    400080: R_clavicle_joint1_bn
+    400082: R_clavicle_joint2_bn
+    400084: R_elbow_joint_bn
+    400086: R_foot_joint_bn
+    400088: R_hip_joint_bn
+    400090: R_index_joint1_bn
+    400092: R_index_joint2_bn
+    400094: R_index_joint3_bn
+    400096: R_index_joint4_be
+    400098: R_knee_joint_bn
+    400100: R_middle_joint1_bn
+    400102: R_middle_joint2_bn
+    400104: R_middle_joint3_bn
+    400106: R_middle_joint4_be
+    400108: R_pinky_joint1_bn
+    400110: R_pinky_joint2_bn
+    400112: R_pinky_joint3_bn
+    400114: R_pinky_joint4_be
+    400116: R_ring_joint1_bn
+    400118: R_ring_joint2_bn
+    400120: R_ring_joint3_bn
+    400122: R_ring_joint4_be
+    400124: R_shoulder_joint_bn
+    400126: R_thumb_joint1_bn
+    400128: R_thumb_joint2_bn
+    400130: R_thumb_joint3_bn
+    400132: R_thumb_joint4_be
+    400134: R_toe_joint_be
+    400136: R_wrist_joint_bn
+    400138: spine_joint1_bn
+    400140: spine_joint2_bn
+    400142: spine_joint3_bn
+    400144: spine_joint4_bn
+    400146: spine_root_bn
+    400148: world_CTRL
+    4300000: Gideon_geo
+    4300002: cape_geo
+    7400000: T_Pose
+    9500000: //RootNode
+    13700000: cape_geo
+    13700002: Gideon_geo 1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
