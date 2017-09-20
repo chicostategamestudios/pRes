@@ -122,7 +122,6 @@ GameObject:
   - component: {fileID: 195164776829402788}
   - component: {fileID: 114051644220634046}
   - component: {fileID: 65402032615000178}
-  - component: {fileID: 54290933322658324}
   m_Layer: 0
   m_Name: BasicAI
   m_TagString: Enemy
@@ -189,6 +188,21 @@ GameObject:
   - component: {fileID: 114167609125584060}
   m_Layer: 0
   m_Name: WeaponSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1837820606731842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4771985099239308}
+  m_Layer: 0
+  m_Name: back direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -266,6 +280,7 @@ Transform:
   - {fileID: 4053496814769846}
   - {fileID: 4789091665286730}
   - {fileID: 4684078936075216}
+  - {fileID: 4771985099239308}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -334,6 +349,19 @@ Transform:
   m_Father: {fileID: 4203180848653186}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -35.708}
+--- !u!4 &4771985099239308
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1837820606731842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -4.563}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4203180848653186}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4789091665286730
 Transform:
   m_ObjectHideFlags: 1
@@ -499,21 +527,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355846319094206}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54290933322658324
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1355846319094206}
-  serializedVersion: 2
-  m_Mass: 1000
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!65 &65238528877009090
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -598,8 +611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   performing_time: 0.5
-  dodge_time: 2
-  cooldown_action: 0.5
+  dodge_time: 0.5
+  cooldown_action: 5
   turn_speed: 5
   stagger_duration: 1
   death_duration: 0.0001
@@ -608,6 +621,7 @@ MonoBehaviour:
   incoming_damage: 0
   left_dodge: {fileID: 1214778016935796}
   right_dodge: {fileID: 1433471019743904}
+  knockback_dir: {fileID: 4771985099239308}
   basic_ai: {fileID: 0}
 --- !u!114 &114167609125584060
 MonoBehaviour:
@@ -644,7 +658,7 @@ NavMeshAgent:
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 3600
-  m_StoppingDistance: 5
+  m_StoppingDistance: 6
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
