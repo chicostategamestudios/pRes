@@ -24,7 +24,7 @@ public class PlayerGamepad : MonoBehaviour
     private float player_direction;
     private float player_rotation_speed;
     private Rigidbody player_rigidbody;
-    private bool grounded;
+    public bool grounded;
 
     //RAIL
     private bool grinding;
@@ -86,6 +86,7 @@ public class PlayerGamepad : MonoBehaviour
     private Vector3 last_captured_player_direction;
     private TrailRenderer dash_trail_renderer;
     private int dash_counter;
+    private float dash_lerp_start_time;
 
     //BOOSTER
     public float booster_force;
@@ -225,6 +226,7 @@ public class PlayerGamepad : MonoBehaviour
             transform.eulerAngles = new Vector3(0, ring_rotation.eulerAngles.y, 0);
             camera_anchor.transform.rotation = Quaternion.Slerp(camera_anchor.transform.rotation, Quaternion.Euler(camera_anchor.transform.eulerAngles.x, ring_rotation.eulerAngles.y, 0), 5 * Time.deltaTime);
         }
+
     }
 
     void FixedUpdate()
@@ -302,15 +304,18 @@ public class PlayerGamepad : MonoBehaviour
         }
         else
         {
-            //This slows down the player, when they let go of the movement joystick
-            if (current_speed > 0)
+            if (!dashing)
             {
-                current_speed -= deacceleration;
-            }
-            else if (current_speed < 0)
-            {
-                //this just clamps the speed to zero if its less than zero
-                current_speed = 0;
+                //This slows down the player, when they let go of the movement joystick
+                if (current_speed > 0)
+                {
+                    current_speed -= deacceleration;
+                }
+                else if (current_speed < 0)
+                {
+                    //this just clamps the speed to zero if its less than zero
+                    current_speed = 0;
+                }
             }
         }
 
@@ -318,7 +323,7 @@ public class PlayerGamepad : MonoBehaviour
         current_speed -= difference_in_degrees / 50f;
 
         //Slow down the player while on air
-        current_speed_multiplier = grounded ? 33.0f : 48.0f;
+        current_speed_multiplier = grounded && !dashing ? 33.0f : 48.0f;
 
         if (grinding)
         {
@@ -327,7 +332,10 @@ public class PlayerGamepad : MonoBehaviour
         else
             move_direction = transform.forward;
 
-        move_direction *= current_speed * Time.deltaTime;
+        if (dashing)
+            move_direction = transform.forward;
+
+        move_direction *= current_speed * Time.fixedDeltaTime;
 
         if (!allow_gamepad_player_movement)
             move_direction = Vector3.zero;
@@ -391,24 +399,25 @@ public class PlayerGamepad : MonoBehaviour
         //Activate dash
         if ((Input.GetButtonDown("Controller_X")) && dash_counter < 1 && !grounded)
         {
+            dash_lerp_start_time = Time.time;
             StartCoroutine(Dash());
         }
 
-        //Slows down the player, to prevent taleporting through objects
-        if (current_speed > 48f && dash_counter > 0)
-        {
+        ////Slows down the player, to prevent taleporting through objects
+        //if (current_speed > 48f && dash_counter > 0)
+        //{
 
-            if (DetectCollision(4f, transform.forward))
-            {
-                current_speed -= dash_speed * Time.fixedDeltaTime;
-            }
+        //    if (DetectCollision(4f, transform.forward))
+        //    {
+        //        current_speed -= dash_speed * Time.fixedDeltaTime;
+        //    }
 
-            if (DetectCollision(8f, transform.forward))
-            {
-                current_speed -= dash_speed * Time.fixedDeltaTime;
-            }
+        //    if (DetectCollision(8f, transform.forward))
+        //    {
+        //        current_speed -= dash_speed * Time.fixedDeltaTime;
+        //    }
 
-        }
+        //}
 
         //print(dash_counter);
 
@@ -496,7 +505,6 @@ public class PlayerGamepad : MonoBehaviour
             }
         }
 
-        //print(current_speed);
 
     } // <- end of FixedUpdate
 
@@ -527,36 +535,34 @@ public class PlayerGamepad : MonoBehaviour
 
     IEnumerator Dash()
     {
+
         dashing = true;
-
-        player_rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
-
-        disable_left_joystick = true;
-
-        current_speed = Mathf.Lerp(current_speed, dash_speed, 0.7f);
-
-        SetTrailRender(true);
 
         dash_counter += 1;
 
-        print(current_speed);
+        //Restrict y-axis transformation
+        player_rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        disable_left_joystick = true;
+
+        SetTrailRender(true);
 
         move_direction = transform.forward;
 
-        yield return new WaitForSeconds(.5f);
+        transform.Translate(transform.forward * 5 * Time.time, Space.World);
 
+
+        yield return new WaitForSeconds(5f);
+
+        //Unrestrict y-axis transformation
         player_rigidbody.constraints = RigidbodyConstraints.None;
         player_rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
-        current_speed = Mathf.Lerp(dash_speed, max_running_speed, 0.25f);
-
-        print(current_speed);
+        current_speed = Mathf.Lerp(current_speed, max_running_speed, 5f + Time.fixedDeltaTime);
 
         move_direction = transform.forward;
 
-        yield return new WaitForSeconds(.5f);
-
-        print(current_speed);
+        yield return new WaitUntil(() => current_speed <= max_running_speed);
 
         disable_left_joystick = false;
 
@@ -572,6 +578,7 @@ public class PlayerGamepad : MonoBehaviour
         current_speed = 40f;
         move_direction = transform.forward;
         yield return new WaitForSeconds(5f);
+
     }
 
 
