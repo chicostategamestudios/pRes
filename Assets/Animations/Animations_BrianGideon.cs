@@ -23,20 +23,38 @@ public class Animations_BrianGideon : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-
+        // isStationary
+        if (player.grounded == true && player.current_speed == 0)
+        {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", false);
+        }
+        // isWalking
+        else if (player.grounded == true && player.current_speed > 0 && player.current_speed <= 10)
+        {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", true);
+        }
+        // isRunning
+        else if (player.grounded == true && player.current_speed > 10)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", true);
+        }
         // isJumping
-        if ((Input.GetButton("Controller_A")) && player.jump_counter < player.jump_limit)
+        if ((Input.GetButton("Controller_A")))
         {
             animator.SetBool("isJumping", true);
         }
-        // inTheAir
+        // Landed!
         if (player.grounded == true)
         {
+            animator.SetBool("isJumping", false);
             animator.SetBool("inTheAir", false);
         }
+        // inTheAir
         else if (player.grounded == false)
         {
-            animator.SetBool("isJumping", false);
             animator.SetBool("inTheAir", true);
         }
     }
