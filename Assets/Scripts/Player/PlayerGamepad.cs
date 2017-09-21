@@ -20,7 +20,7 @@ public class PlayerGamepad : MonoBehaviour
     public float acceleration;
     [Tooltip("How fast the player slows down. Value between 0 and 1.")]
     public float deacceleration;
-    public float current_speed, speed_smooth_velocity, current_speed_multiplier;  // Neil: Making these public to use with animator.
+    private float current_speed, speed_smooth_velocity, current_speed_multiplier;
     private bool disable_left_joystick, disable_right_joystick; //left stick is movement, right stick is camera
     Vector3 move_direction;
 
