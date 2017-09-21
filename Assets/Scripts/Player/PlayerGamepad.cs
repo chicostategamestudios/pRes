@@ -28,10 +28,10 @@ public class PlayerGamepad : MonoBehaviour
     private float player_direction;
     private float player_rotation_speed;
     private Rigidbody player_rigidbody;
-    private bool grounded;
+    public bool grounded;  // Neil: I made this public so my animation script can detect if player is grounded. 
 
     //RAIL
-    private bool grinding;
+    public bool grinding;   // Neil: Also made public so my animation script can detect grinding.
     private Vector3 grinding_direction;
 
     //JUMP

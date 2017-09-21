@@ -2351,6 +2351,8 @@ MonoBehaviour:
   speed: 0
   acceleration: 0
   deacceleration: 0
+  grounded: 0
+  grinding: 0
   jump_counter: 0
   jump_limit: 0
   jump_force: 0
@@ -6483,6 +6485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf80ae99044c5f14fb9be61697f68e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject: {fileID: 512072922}
+  player: {fileID: 0}
 --- !u!4 &1507869340
 Transform:
   m_ObjectHideFlags: 0
