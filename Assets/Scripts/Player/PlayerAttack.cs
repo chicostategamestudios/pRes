@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Created by Unknown - Last Modified by Thaddeus Thompson - 9/19/17
+//This script interacts with the Combat and BasicAI scripts and manages hit detection and weapon damage.
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,10 +30,10 @@ public class PlayerAttack : MonoBehaviour {
     //Detect if hitting an Enemy
     public void OnTriggerEnter(Collider col)
     {
-		if (col.tag == "Enemy" && my_combat.is_attacking)//checks if target is an enemy and player is attacking
+		if (col.tag == "Enemy Hitbox" && my_combat.is_attacking)//checks if target is an enemy and player is attacking
         {
             Debug.Log("Hit Enemy");
-			my_ai = col.GetComponent<BasicAI> ();
+			my_ai = col.GetComponentInParent<BasicAI> ();
 
 			attack_type = my_combat.GetAttackType();//calls function in Combat to determine light or heavy attack
 			if (attack_type) {
@@ -44,9 +47,10 @@ public class PlayerAttack : MonoBehaviour {
 			}
         }
 		my_combat.is_attacking = false;
+		//my_combat.weapon_collider.enabled = false;
     }
 
-	public void OnTriggerStay(Collider col)
+	/*public void OnTriggerStay(Collider col)
 	{
 		if (col.tag == "Enemy" && my_combat.is_attacking)//checks if target is an enemy and player is attacking
 		{
@@ -65,5 +69,5 @@ public class PlayerAttack : MonoBehaviour {
 			}
 		}
 		my_combat.is_attacking = false;
-	}
+	}*/
 }

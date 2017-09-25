@@ -1,4 +1,4 @@
-﻿//Created by Unknown - Last Modified by Thaddeus Thompson - 9/14/17
+﻿//Created by Unknown - Last Modified by Thaddeus Thompson - 9/21/17
 //This script controls the combat abilities of the player character.
 
 using System.Collections;
@@ -25,10 +25,10 @@ public class Combat : MonoBehaviour {
     private bool is_light_attacking; // check to see if player is light attacking
     private bool is_strong_attacking; // check to see if player is strong attacking
 	public bool is_comboing;
-    private bool is_invunerable; // check to see if player is invunerable from dodging
+    public bool is_invunerable; // check to see if player is invunerable from dodging
     private bool something_too_close; // an object is too close to move forward
 
-    private float controller_drift = 0.3f;
+    private float controller_drift = 0.1f;
 
     // Placeholder value till animations are implemented
     private float next_attack;
@@ -40,10 +40,15 @@ public class Combat : MonoBehaviour {
 	private Vector3 forward;
 	private GameObject weapon;
 	private bool attack;//used by PlayerAttack to determine attack type
-	[HideInInspector] public bool is_attacking = false;//used to control collision window
+	 public bool is_attacking = false;//used to control collision window
 	public int light_attack_number;
 	public int strong_attack_number;
 	public float attack_timer;
+	[HideInInspector] public BoxCollider weapon_collider;
+	private float dodge_dir_x;
+	private float dodge_dir_z;
+	private bool trigger_press;
+	private bool is_dodging;
 
     private void Start()
     {
@@ -52,8 +57,12 @@ public class Combat : MonoBehaviour {
         camera_anchor = GameObject.Find("Camera Anchor");
         player_weapon = GameObject.Find("PlayerWeapon").transform;
 		weapon = GameObject.Find ("WeaponPivot");
+		weapon_collider = GameObject.Find ("WeaponPlaceHolder").GetComponent<BoxCollider> ();//need to change object name at some point
 		forward = transform.TransformDirection(Vector3.forward);
         something_too_close = false;
+		weapon_collider.enabled = false;
+		trigger_press = false;
+		is_dodging = false;
     }
 
    /* void Update () {
@@ -133,6 +142,7 @@ public class Combat : MonoBehaviour {
             //Instantiate(target_prefab, transform.position + (transform.forward * light_attack_distance), transform.rotation); // create target marker
             //target_prefab.GetComponent<DestroyMove>().set_life = light_attack_time;
 
+			weapon_collider.enabled = true;
 			is_light_attacking = true;
 			// Start Animation Coroutine
             StartCoroutine(WaitForFastAttackAnimation());
@@ -196,11 +206,13 @@ public class Combat : MonoBehaviour {
         {
 			//Checks in PlayerGamepad if the player is on the ground
 			if (my_gamepad.CheckGrounded ()) {
+				dodge_dir_x = Input.GetAxis ("LeftJoystickX");
+				dodge_dir_z = Input.GetAxis ("LeftJoystickY");
 				forward = transform.TransformDirection (Vector3.forward);
 				//Debug.Log("Dodging");
 				//Debug.Log(Input.GetAxis("LeftJoystickY"));
 				// if game controller is disabled
-				GetComponent<PlayerGamepad> ().GamepadAllowed = true;
+				//GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 
 				// check to see if something is in the way
 				if (Physics.Raycast (transform.position, forward, out hit, (dodge_distance))) {
@@ -220,16 +232,23 @@ public class Combat : MonoBehaviour {
 				StartCoroutine (Invunerable ());
 			}
         }
+
+		if (Input.GetAxis ("Controller_" + dodge_button) == 0) {
+			trigger_press = false;
+		}
+
 		//button check for trigger
-		if (Input.GetAxis("Controller_"+dodge_button) == 1 && (Input.GetAxis("LeftJoystickX") > controller_drift || Input.GetAxis("LeftJoystickX") < -controller_drift || Input.GetAxis("LeftJoystickY") > controller_drift || Input.GetAxis("LeftJoystickY") < -controller_drift) && !is_invunerable)
+		if (Input.GetAxis("Controller_"+dodge_button) == 1 && (Input.GetAxis("LeftJoystickX") > controller_drift || Input.GetAxis("LeftJoystickX") < -controller_drift || Input.GetAxis("LeftJoystickY") > controller_drift || Input.GetAxis("LeftJoystickY") < -controller_drift) && !is_dodging && !trigger_press)
 		{
 			//Checks in PlayerGamepad if the player is on the ground
 			if (my_gamepad.CheckGrounded ()) {
+				dodge_dir_x = Input.GetAxis ("LeftJoystickX");
+				dodge_dir_z = Input.GetAxis ("LeftJoystickY");
 				forward = transform.TransformDirection (Vector3.forward);
 				//Debug.Log("Dodging");
 				//Debug.Log(Input.GetAxis("LeftJoystickY"));
 				// if game controller is disabled
-				GetComponent<PlayerGamepad> ().GamepadAllowed = true;
+				//GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 
 				// check to see if something is in the way
 				if (Physics.Raycast (transform.position, forward, out hit, (dodge_distance))) {
@@ -239,24 +258,38 @@ public class Combat : MonoBehaviour {
 						something_too_close = true;
 					}
 				}
-
+				GetComponent<PlayerGamepad> ().GamepadAllowed = false;
+				trigger_press = true;
+				is_dodging = true;
 				//Instantiate (target_prefab, transform.position + (transform.forward * dodge_distance), transform.rotation); // create target marker
 				is_invunerable = true; // make player invunerable
 				//target_prefab.GetComponent<DestroyMove> ().set_life = .5f;
 
 				//GetComponent<Rigidbody>().AddForce(transform.forward * 500000 * dodge_time * Time.deltaTime, ForceMode.Impulse);
-				GetComponent<PlayerGamepad> ().GamepadAllowed = false;
+
 				StartCoroutine (Invunerable ());
 			}
 		}
 
 		// Dodge movement///////////////////////////////////////////////////////////////////////////////////////////////////
 		if (is_invunerable && !something_too_close) {
+			if (dodge_dir_x > 0) {
+				dodge_dir_x = 1;
+			} else if (dodge_dir_x < 0) {
+				dodge_dir_x = -1;
+			}
+			if (dodge_dir_z > 0) {
+				dodge_dir_z = 1;
+			} else if (dodge_dir_z < 0) {
+				dodge_dir_z = -1;
+			}
+
 			forward = transform.TransformDirection(Vector3.forward);
 			//GameObject target_move = GameObject.FindGameObjectWithTag("Player Move Target"); // find the location of target_prefab
 
 			// move player ~ 10 units in direction joystick is pointing
-			transform.Translate(forward * dodge_distance * Time.smoothDeltaTime, Space.World);
+			//transform.Translate(forward * dodge_distance * Time.smoothDeltaTime, Space.World);
+			transform.Translate(dodge_dir_x, 0, dodge_dir_z /* dodge_distance * Time.smoothDeltaTime*/, Space.World);
 			//Debug.Log (transform.forward * dodge_distance);
 		}
 
@@ -283,6 +316,7 @@ public class Combat : MonoBehaviour {
 		//GetComponent<PlayerGamepad>().GamepadAllowed = true;
 		//is_light_attacking = false;//use to send hit damage to attack prefab
         something_too_close = false;
+		weapon_collider.enabled = false;
         StartCoroutine(ComboTimerLight());
     }
 
@@ -337,7 +371,8 @@ public class Combat : MonoBehaviour {
         is_invunerable = false;
         something_too_close = false;
 		yield return new WaitForSeconds (.5f);
-        GetComponent<PlayerGamepad>().GamepadAllowed = true;
+        is_dodging = false;
+		GetComponent<PlayerGamepad> ().GamepadAllowed = true;
     }
 
 	public bool GetAttackType(){

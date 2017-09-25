@@ -13,6 +13,8 @@ TagManager:
   - AI Attack
   - Player Move Target
   - Death Zone
+  - PlayerAttack
+  - Enemy Hitbox
   layers:
   - Default
   - TransparentFX
