@@ -170,7 +170,7 @@ public class PlayerGamepad : MonoBehaviour
         if (turn_smooth_time == 0)
             turn_smooth_time = 0.4f;
 
-        if(max_running_speed == 0)
+        if (max_running_speed == 0)
             max_running_speed = 48f;
 
         if (jump_limit == 0)
@@ -247,7 +247,10 @@ public class PlayerGamepad : MonoBehaviour
 
         //Sometimes touching the ground doesnt reset the counter, raycast is more reliable
         if (grounded)
+        {
             dash_counter = 0;
+            ExitDash();
+        }
 
         //---------------------------------------------------------------------------
         //	JUMP                         
@@ -287,10 +290,10 @@ public class PlayerGamepad : MonoBehaviour
             //Calculate joystick rotation sensitivity, this will calculate the difference between GetDelayedDirection() and GetCurrentDirection()
             difference_in_degrees = Mathf.Abs(player_direction - delayed_player_direction);
 
-            if (!grinding )
+            if (!grinding)
             {
                 //Slowly rotate from the initial rotation to the player rotation, adding camera_anchor.eulerAngles to make it so the axis is based of the camera rotation
-                if(!dashing)
+                if (!dashing)
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), player_rotation_speed * Time.deltaTime);
 
             }
@@ -333,20 +336,27 @@ public class PlayerGamepad : MonoBehaviour
             move_direction = transform.forward;
 
         if (dashing)
+        { 
             move_direction = transform.forward;
+            SetCurrentSpeed(dash_unary, dash_unary_max_speed);
+        }
+
 
         move_direction *= current_speed * Time.fixedDeltaTime;
 
         if (!allow_gamepad_player_movement)
             move_direction = Vector3.zero;
 
-        //Speed limit when running
-        if (current_speed > max_running_speed && !dashing && !grinding)
-            current_speed = max_running_speed;
 
         //Speed limit when dashing
         if (current_speed > 100f && dashing)
+        {
             current_speed = 100f;
+        } else if (current_speed > max_running_speed && !dashing && !grinding)
+        {
+            //Speed limit when running
+            current_speed = max_running_speed;
+        }
 
 
         //Prevents player from drifting backwards
@@ -397,8 +407,9 @@ public class PlayerGamepad : MonoBehaviour
         //-------------------------------------------------
 
         //Activate dash
-        if ((Input.GetButtonDown("Controller_X")) && dash_counter < 1 && !grounded)
+        if ((Input.GetButtonDown("Controller_X")) && dash_counter < 1 && !grounded && current_speed > 1f)
         {
+         
             dash_lerp_start_time = Time.time;
             StartCoroutine(Dash());
         }
@@ -486,9 +497,10 @@ public class PlayerGamepad : MonoBehaviour
         }
         */
 
-		if (Input.GetButtonDown("Controller_LB")){
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-		}
+        if (Input.GetButtonDown("Controller_LB"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
         if (exiting_ring)
         {
@@ -533,8 +545,29 @@ public class PlayerGamepad : MonoBehaviour
         }
     }
 
+    int dash_unary, dash_unary_max_speed;
+
+    void SetCurrentSpeed(int unary, float max_speed)
+    {
+        if (unary == 1)
+        {
+            if (current_speed < max_speed)
+            {
+                current_speed += 100f * Time.deltaTime;
+            }
+        } else if (unary == -1)
+        {
+            if (current_speed > max_speed)
+            {
+                current_speed -= (current_speed * 10) * Time.deltaTime;
+            }
+        }
+
+    }
+
     IEnumerator Dash()
     {
+        move_direction = transform.forward;
 
         dashing = true;
 
@@ -547,22 +580,21 @@ public class PlayerGamepad : MonoBehaviour
 
         SetTrailRender(true);
 
-        move_direction = transform.forward;
+        dash_unary = 1;
+        dash_unary_max_speed = (int)dash_speed;
 
-        transform.Translate(transform.forward * 5 * Time.time, Space.World);
-
-
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(.75f);
 
         //Unrestrict y-axis transformation
         player_rigidbody.constraints = RigidbodyConstraints.None;
         player_rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
-        current_speed = Mathf.Lerp(current_speed, max_running_speed, 5f + Time.fixedDeltaTime);
+        dash_unary = -1;
+        dash_unary_max_speed = (int)max_running_speed;
+
+        yield return new WaitForSeconds(.25f);
 
         move_direction = transform.forward;
-
-        yield return new WaitUntil(() => current_speed <= max_running_speed);
 
         disable_left_joystick = false;
 
@@ -572,12 +604,16 @@ public class PlayerGamepad : MonoBehaviour
 
     }
 
-    IEnumerator ExitDash()
+    void ExitDash()
     {
 
-        current_speed = 40f;
         move_direction = transform.forward;
-        yield return new WaitForSeconds(5f);
+
+        disable_left_joystick = false;
+
+        SetTrailRender(false);
+
+        dashing = false;
 
     }
 
@@ -676,12 +712,13 @@ public class PlayerGamepad : MonoBehaviour
         return _difference_of_angles > 90f && _difference_of_angles < 270f ? "forward" : "backward";
     }
 
-	//-----------
-	// Added by TJ & Tru
-	//-----------
-	public bool CheckGrounded(){
-		return grounded;
-	}
+    //-----------
+    // Added by TJ & Tru
+    //-----------
+    public bool CheckGrounded()
+    {
+        return grounded;
+    }
 
     //--------------------------------------------------------------------------
     //	COLLIDERS               
