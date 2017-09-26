@@ -37,6 +37,13 @@ public class End_Level : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+
+		if (Input.GetKeyUp ("space")) {
+			Scene currentScene = SceneManager.GetActiveScene ();
+
+			SceneManager.LoadScene (currentScene.name);
+		}
+
 		if (finished) {
 			if (Input.GetButtonUp ("Controller_A")) {
 				Scene currentScene = SceneManager.GetActiveScene ();

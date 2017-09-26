@@ -52,7 +52,7 @@ public class Start_Level_Timer : MonoBehaviour {
 	public float millisec_timer = 0;
 	public bool count_end = false;
 
-    float startTime;
+    public float startTime;
 
 	//once brought into scene
 	void Awake()
@@ -95,7 +95,7 @@ public class Start_Level_Timer : MonoBehaviour {
         //count_end = true;
 
 		player.GetComponent<PlayerGamepad> ().enabled = true;
-        startTime = Time.time;
+		startTime = 4;
         count_end = true;
         yield return Timer();
         
