@@ -507,7 +507,7 @@ Transform:
   - {fileID: 535476742}
   - {fileID: 778597596}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &106302877
 GameObject:
@@ -638,7 +638,7 @@ Transform:
   m_Children:
   - {fileID: 1346923009}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -10.435, y: 0, z: 0}
 --- !u!114 &130093527
 MonoBehaviour:
@@ -1446,7 +1446,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4784600497420886, guid: 2e9c2e592143fab449b718121a854846, type: 2}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e9c2e592143fab449b718121a854846, type: 2}
@@ -1779,7 +1779,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &375162367
 MonoBehaviour:
@@ -2351,6 +2351,9 @@ MonoBehaviour:
   speed: 0
   acceleration: 0
   deacceleration: 0
+  current_speed: 0
+  speed_smooth_velocity: 0
+  current_speed_multiplier: 0
   grounded: 0
   grinding: 0
   jump_counter: 0
@@ -5712,7 +5715,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4203180848653186, guid: 5cc16b981a3510142a0e1d9211aea786, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1355846319094206, guid: 5cc16b981a3510142a0e1d9211aea786, type: 2}
       propertyPath: m_IsActive
@@ -6465,9 +6468,9 @@ Animator:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1507869337}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: f676cfc1d980df14c8c060a75c6a041a, type: 3}
   m_Controller: {fileID: 9100000, guid: f56224865cd8dcd47822a02eb1113a19, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -6485,6 +6488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf80ae99044c5f14fb9be61697f68e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1507869338}
   playerObject: {fileID: 512072922}
   player: {fileID: 0}
 --- !u!4 &1507869340
@@ -6493,9 +6497,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1507869337}
-  m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.175257, y: 1.05, z: -43.484253}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.76, y: -0.52, z: -31.81}
+  m_LocalScale: {x: 21.069838, y: 21.069841, z: 21.069841}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 21
@@ -9018,7 +9022,7 @@ Prefab:
     - target: {fileID: 224281368870652070, guid: 741e04800d51e854f88c02fe045062ba,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224281368870652070, guid: 741e04800d51e854f88c02fe045062ba,
         type: 2}
