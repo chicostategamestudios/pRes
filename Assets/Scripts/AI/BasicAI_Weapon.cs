@@ -20,9 +20,11 @@ public class BasicAI_Weapon : MonoBehaviour {
         {
             player_hp_script = other.GetComponentInParent<PlayerHealth>();
             player_hp_script.DamageReceived(damage);
+<<<<<<< HEAD
 			print("ai hit the player.");
+=======
+>>>>>>> 5b70c901e5a37c294734bcbb7b2373195ff69fe9
         }
-       // print("ai hit: " + other.gameObject.name);
     }
 
     private void DestroySelf() //this is to turn off the weapon after it is done with attacking.

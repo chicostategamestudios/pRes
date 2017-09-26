@@ -41,7 +41,7 @@ public class BasicAI_Attack : MonoBehaviour {
     public bool staggered = false; //if the player hits the AI in the middle of the AI's attack, this will be set to true.
 
 
-    public GameObject sword;
+    public GameObject sword; //the weapon that is instantiated, used when the ai gets hit to destroy the weapon.
 
     public GameObject weapon_left_prefab; // the prefab for the hit box on left arm.
 
@@ -100,6 +100,7 @@ public class BasicAI_Attack : MonoBehaviour {
             if (staggered)
             {
                 Destroy(sword);
+                sword = null;
             }
 
             if (current_timer > duration)

@@ -233,7 +233,6 @@ public class Combat : MonoBehaviour {
 				StartCoroutine (Invunerable ());
 			}
         }
-
 		if (Input.GetAxis ("Controller_" + dodge_button) == 0) {
 			trigger_press = false;
 		}
@@ -284,7 +283,6 @@ public class Combat : MonoBehaviour {
 			} else if (dodge_dir_z < 0) {
 				dodge_dir_z = -1;
 			}
-
 			forward = transform.TransformDirection(Vector3.forward);
 			//GameObject target_move = GameObject.FindGameObjectWithTag("Player Move Target"); // find the location of target_prefab
 
