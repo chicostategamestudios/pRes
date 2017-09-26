@@ -151,7 +151,7 @@ public class BasicAI : MonoBehaviour
         target = GameObject.Find("Player").transform; //sets the target of this AI as the player
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().acceleration = acceleration; //applies the acceleration variable of this to the nav mesh agent.
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = movement_speed; //applies the speed variable to the nav mesh agent.
-    }*/
+    }
 
 	public IEnumerator DamageEnemy(int incoming_damage) //first will apply damage, and then stagger the enemy for a certain duration
     {
