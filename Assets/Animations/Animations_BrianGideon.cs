@@ -57,5 +57,15 @@ public class Animations_BrianGideon : MonoBehaviour
         {
             animator.SetBool("inTheAir", true);
         }
+
+        //
+        if(player.grinding == true)
+        {
+            animator.SetBool("isGrinding", true);
+        }
+        else if (player.grinding == false)
+        {
+            animator.SetBool("isGrinding", false);
+        }
     }
 }
