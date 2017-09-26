@@ -35,7 +35,6 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0 && is_alive)
         {
             is_alive = false;
-            Debug.Log("You died...");
             //this.gameObject.SetActive(false);
         }
     }
