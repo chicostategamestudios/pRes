@@ -180,6 +180,13 @@ public class BasicAI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+	public void reset()
+	{
+		Debug.Log (transform.name);
+		enemy_health = 100;
+		first_alert = false;
+
+	}
 
     void FixedUpdate () 
 	{

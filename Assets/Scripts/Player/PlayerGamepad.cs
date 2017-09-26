@@ -45,7 +45,7 @@ public class PlayerGamepad : MonoBehaviour
     public bool use_camera_type_1;
 
     //CHECKPOINT SYSTEM
-    public Transform[] checkpoints;
+   // public Transform[] checkpoints;
     private int last_checkpoint_used;
 
     //GAMEPAD
@@ -137,20 +137,7 @@ public class PlayerGamepad : MonoBehaviour
             dash_trail_renderer = GetComponent<TrailRenderer>();
 
         //Create array in heap with 4 memory spaces of transform type
-        checkpoints = new Transform[4];
-
-        //For each checkpoint index check if there is something in it, else remind in the console that all of those indexes are not assigned
-        for (int i = 1; i < 5; i++)
-        {
-            if (checkpoints[i - 1] == null)
-            {
-                checkpoints[i - 1] = GameObject.Find("checkpoint_" + i).transform;
-            }
-            else
-            {
-                Debug.LogError("please assign gameobject to " + checkpoints[i - 1]);
-            }
-        }
+       // checkpoints = new Transform[4];
     }
 
     void Start()
@@ -436,7 +423,7 @@ public class PlayerGamepad : MonoBehaviour
         //---------------------------------------------------------------------------
         //	CHECKPOINTS                        
         //---------------------------------------------------------------------------
-
+		/*
         //D-PADS
         float d_pad_vertical = Input.GetAxis("DPadVertical");
         float d_pad_horizontal = Input.GetAxis("DPadHorizontal");
@@ -568,6 +555,8 @@ public class PlayerGamepad : MonoBehaviour
 
     IEnumerator Dash()
     {
+		SetTrailRender(true);
+
         move_direction = transform.forward;
 
         dashing = true;
@@ -579,7 +568,7 @@ public class PlayerGamepad : MonoBehaviour
 
         disable_left_joystick = true;
 
-        SetTrailRender(true);
+
 
         dash_unary = 1;
         dash_unary_max_speed = (int)dash_speed;
@@ -588,7 +577,7 @@ public class PlayerGamepad : MonoBehaviour
 
         //Unrestrict y-axis transformation
         player_rigidbody.constraints = RigidbodyConstraints.None;
-        player_rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+		player_rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
         dash_unary = -1;
         dash_unary_max_speed = (int)max_running_speed;
@@ -738,6 +727,7 @@ public class PlayerGamepad : MonoBehaviour
         if (col.gameObject.name == "Death Zone")
         {
             PlayerDied = true;
+			/*
             if (last_checkpoint_used != 0)
             {
              //   transform.position = checkpoints[last_checkpoint_used - 1].position;
@@ -745,6 +735,7 @@ public class PlayerGamepad : MonoBehaviour
             }
            // else
             //    transform.position = GameObject.Find("Spawn Point").transform.position;
+            */
         }
     }
 

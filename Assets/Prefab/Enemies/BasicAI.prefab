@@ -70,11 +70,11 @@ GameObject:
   - component: {fileID: 65308150129249830}
   m_Layer: 0
   m_Name: Trigger Collider
-  m_TagString: Enemy
+  m_TagString: Enemy Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1298181691560234
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +120,6 @@ GameObject:
   - component: {fileID: 65929332141177322}
   - component: {fileID: 23859618520811158}
   - component: {fileID: 195164776829402788}
-  - component: {fileID: 54427944596356446}
   - component: {fileID: 114051644220634046}
   - component: {fileID: 65402032615000178}
   m_Layer: 0
@@ -590,13 +589,14 @@ MonoBehaviour:
   current_stagger_dur: 0
   death_duration: 0.0001
   movement_speed: 15
-  acceleration: 100
+  acceleration: 50
   check_to_damage: 0
   alerted: 0
-  enemy_health: 100
+  enemy_health: 50
   incoming_damage: 0
   left_dodge: {fileID: 1214778016935796}
   right_dodge: {fileID: 1433471019743904}
+  knockback_dir: {fileID: 0}
   basic_ai: {fileID: 0}
   knockback_force: 3
 --- !u!114 &114167609125584060

@@ -36,6 +36,14 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+
+		if (target_locked) {
+			if (!target.activeInHierarchy) {
+				Debug.Log ("hes dead bitch");
+				target_locked = false;
+			}
+		}
+
 		// Note whether the joystick has been recentered since last time searching for 'NEXT' target.
 		if (next_target_joystick_x_centered == false) {
 			if (Mathf.Abs(Input.GetAxisRaw ("RightJoystickX")) < 0.1f) {

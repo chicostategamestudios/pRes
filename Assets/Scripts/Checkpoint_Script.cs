@@ -11,7 +11,7 @@ public class Checkpoint_Script : MonoBehaviour
     public float pos1;
     public float pos2;
     private Vector3[] EnemySpawnLoc = new Vector3[10];
-    private GameObject[] allEnemies;
+    public GameObject[] allEnemies;
     public GameObject ThePlayer;
 
     private void Awake()
@@ -20,8 +20,8 @@ public class Checkpoint_Script : MonoBehaviour
         for (int i = 0; i < allEnemies.Length; i++) //go through all enemies currently on the map at the start of the game
         {
             EnemySpawnLoc[i] = allEnemies[i].transform.position; //Set a list of Vectors "EnemySpawnLoc" to a list of the enemy's positions at the start of the map so it can be saved for respawning the enemy
-            print(EnemySpawnLoc[i]);
-            print(allEnemies[i]);
+            //print(EnemySpawnLoc[i]);
+            //print(allEnemies[i]);
         }
         ThePlayer = GameObject.FindGameObjectWithTag("Player"); //Set ThePlayer to the Player asset within the scene
     }
@@ -33,7 +33,8 @@ public class Checkpoint_Script : MonoBehaviour
     void FixedUpdate()
     {    
         pos1 = ThePlayer.transform.position.y; //gets the current y position of the player
-        if (ThePlayer.GetComponentInParent<PlayerGamepad>().PlayerDied == true) // checks to see if PlayerDied is ever set to true within playergamepad
+        /*
+		if (ThePlayer.GetComponentInParent<PlayerGamepad>().PlayerDied == true) // checks to see if PlayerDied is ever set to true within playergamepad
         {
             ThePlayer.transform.parent.position = SaveLoc; //Make the player respawn at the active checkpoint
             if (pos1 >= pos2) //Checks to see if the player is over a certain height
@@ -49,7 +50,8 @@ public class Checkpoint_Script : MonoBehaviour
             }
             print("Death Detected");
         }
-        if (ThePlayer.GetComponent<PlayerHealth>().health <= 0)
+		*/
+		if (ThePlayer.GetComponent<PlayerHealth>().health <= 0 || ThePlayer.GetComponentInParent<PlayerGamepad>().PlayerDied == true)
         {
             ThePlayer.transform.parent.position = SaveLoc; //Make the player respawn at the active checkpoint
             if (pos1 >= pos2) //Checks to see if the player is over a certain height
@@ -59,7 +61,9 @@ public class Checkpoint_Script : MonoBehaviour
                     for (int i = 0; i < allEnemies.Length; i++)
                     {             
                         allEnemies[i].transform.position = EnemySpawnLoc[i]; //sets all enemies positions back to their originol positions for when the player is killed
-                        print("Enemies Back home");
+					allEnemies[i].SetActive(true);
+					allEnemies [i].GetComponent<BasicAI> ().reset ();
+						print("Enemies Back home");
                         print(allEnemies[i]);
                     }
             }
