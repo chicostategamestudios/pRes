@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour {
 
-    public GameObject attack_prefab;
+    //public GameObject attack_prefab;
 	public GameObject target_prefab;
     private GameObject camera_anchor;
     private Transform player_weapon;
@@ -184,7 +184,8 @@ public class Combat : MonoBehaviour {
             // Instantiate Move Target
             //Instantiate(target_prefab, transform.position + (transform.forward * strong_attack_distance), transform.rotation); // create target marker
             //target_prefab.GetComponent<DestroyMove>().set_life = strong_attack_time;
-           
+
+			weapon_collider.enabled = true;
             is_strong_attacking = true;
             // Start Animation Coroutine
             StartCoroutine(WaitForStrongAttackAnimation());
@@ -330,6 +331,7 @@ public class Combat : MonoBehaviour {
         //GetComponent<PlayerGamepad>().GamepadAllowed = true;
         is_strong_attacking = false;
         something_too_close = false;
+		weapon_collider.enabled = false;
         StartCoroutine(ComboTimerStrong());
     }
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Needs to deferintiate between light and strong so there is a delay if changed mid combo
