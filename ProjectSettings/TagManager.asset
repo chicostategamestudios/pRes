@@ -13,6 +13,9 @@ TagManager:
   - AI Attack
   - Player Move Target
   - Death Zone
+  - PlayerAttack
+  - Checkpoint
+  - Camera
   layers:
   - Default
   - TransparentFX

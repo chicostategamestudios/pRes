@@ -4,15 +4,19 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int health = 100; //the health of the player.
+    public int originalHealth; // Tracks orginal health of player
     private bool is_alive = true; //this is to keep track if the player is alive.
     public float stagger_duration = 0.5f; //the duration of the stagger when the player is hit by an attack.
     //[HideInInspector]
     public PlayerGamepad player_pad; //needed to access the player's movement script.
+    public bool isBleeding = false; //Needed to tell when the player is bleeding and when they aren't
+    public Camera mCamera;
 
     public IEnumerator StaggerPlayer()
     {
@@ -43,6 +47,32 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         player_pad = GameObject.Find("Player").GetComponent<PlayerGamepad>();
+        originalHealth = health;
+        mCamera = GameObject.FindGameObjectWithTag("Camera").GetComponent<Camera>();
+    }
+    private void OnGUI()
+    {
+        if (health <= originalHealth*0.8f && health > 0){
+            isBleeding = true;
+        }
+        if (health <= 0 || health > originalHealth*0.8f)
+        {
+            isBleeding = false;
+        }
+        if (isBleeding == true){
+            for (int x = 0; x <= mCamera.rect.width; x++) {
+                for (int y = 0; y <= mCamera.rect.height; y++) {
+
+                    var bleedTexture = new Texture2D(1, 1);
+                    
+                    float redFade = 255;
+                    Color blood = new Color(redFade, 0, 0); ;
+                    bleedTexture.SetPixels(x, y, blood);
+                    bleedTexture.Apply();
+                    GUI.Box(new Rect(0, 0, mCamera.rect.width, mCamera.rect.height), bleedTexture);
+                }
+            }
+        }
     }
 
 }
