@@ -38,6 +38,9 @@ public class Combat : MonoBehaviour {
 	public string dodge_button = "LT";
 	private PlayerGamepad my_gamepad;
 	private Vector3 forward;
+	public Vector3 dodge_dir;
+	private Vector3 dodge_dir_rotated;
+	private GameObject my_camera;
 	private GameObject weapon;
 	private bool attack;//used by PlayerAttack to determine attack type
 	 public bool is_attacking = false;//used to control collision window
@@ -58,6 +61,7 @@ public class Combat : MonoBehaviour {
         player_weapon = GameObject.Find("PlayerWeapon").transform;
 		weapon = GameObject.Find ("WeaponPivot");
 		weapon_collider = GameObject.Find ("WeaponPlaceHolder").GetComponent<BoxCollider> ();//need to change object name at some point
+		my_camera = GameObject.Find("Camera Anchor");
 		forward = transform.TransformDirection(Vector3.forward);
         something_too_close = false;
 		weapon_collider.enabled = false;
@@ -286,11 +290,15 @@ public class Combat : MonoBehaviour {
 
 			forward = transform.TransformDirection(Vector3.forward);
 			//GameObject target_move = GameObject.FindGameObjectWithTag("Player Move Target"); // find the location of target_prefab
-
+				//dodge_dir = new Vector3(dodge_dir_x,0,dodge_dir_z);
+			//dodge_dir_rotated = Quaternion.AngleAxis (my_camera.transform.rotation.y, Vector3.up) * dodge_dir;
+				//dodge_dir_rotated = new Vector3(0, Camera.main.transform.rotation.y, 0);
+				//dodge_dir = dodge_dir_rotated * dodge_dir;
+				//dodge_dir.y = 0;
 			// move player ~ 10 units in direction joystick is pointing
-			//transform.Translate(forward * dodge_distance * Time.smoothDeltaTime, Space.World);
-			transform.Translate(dodge_dir_x, 0, dodge_dir_z /* dodge_distance * Time.smoothDeltaTime*/, Space.World);
-			//Debug.Log (transform.forward * dodge_distance);
+			transform.Translate(forward * dodge_distance * Time.smoothDeltaTime, Space.World);
+				//transform.Translate(dodge_dir * dodge_distance * Time.smoothDeltaTime, Space.World);
+			Debug.Log (dodge_dir_rotated);
 		}
 
         // Counter//////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -2219,6 +2219,7 @@ MonoBehaviour:
   is_invunerable: 0
   dodge_length: 0.25
   dodge_button: LT
+  dodge_dir: {x: 0, y: 0, z: 0}
   is_attacking: 0
   light_attack_number: 0
   strong_attack_number: 0
@@ -2348,6 +2349,7 @@ MonoBehaviour:
   dash_speed: 0
   dashing: 0
   booster_force: 0
+  smoothed_rotation: 0
 --- !u!54 &512072926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3846,7 +3848,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 672865373}
-  m_LocalRotation: {x: 0.57044744, y: -0.20886327, z: 0.1528509, w: 0.7794885}
+  m_LocalRotation: {x: 0.5704475, y: -0.2088633, z: 0.15285091, w: 0.7794886}
   m_LocalPosition: {x: -1.3664284, y: 21.07298, z: 55.073376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

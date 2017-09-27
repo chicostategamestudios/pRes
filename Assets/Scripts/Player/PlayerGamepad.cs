@@ -95,6 +95,8 @@ public class PlayerGamepad : MonoBehaviour
     //BOOSTER
     public float booster_force;
 
+	public bool smoothed_rotation;
+
     void Awake()
     {
 
@@ -192,6 +194,8 @@ public class PlayerGamepad : MonoBehaviour
             jump_force = 35;
             jump_force *= 100000f;
         }
+
+		smoothed_rotation = true;
 
     }
 
@@ -294,11 +298,13 @@ public class PlayerGamepad : MonoBehaviour
             //Calculate joystick rotation sensitivity, this will calculate the difference between GetDelayedDirection() and GetCurrentDirection()
             difference_in_degrees = Mathf.Abs(player_direction - delayed_player_direction);
 
-            if (!grinding )
+            if (!grinding && smoothed_rotation)
             {
                 //Slowly rotate from the initial rotation to the player rotation, adding camera_anchor.eulerAngles to make it so the axis is based of the camera rotation
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), player_rotation_speed * Time.deltaTime);
-            }
+			} else{
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), 1f);
+			}
 
             //Getting sensitivity of the left joystic, squaring it will make negatives into positives
             if (current_speed < 40f)
@@ -547,6 +553,11 @@ public class PlayerGamepad : MonoBehaviour
         dashing = false;
     }
 
+	//Public function to disable/enable gamepad controller
+	public void SetSmoothedRotation(bool _enable)
+	{
+		smoothed_rotation = _enable;
+	}
 
     //Public function to disable/enable gamepad controller
     public void SetGamepadEnable(bool _enable)
