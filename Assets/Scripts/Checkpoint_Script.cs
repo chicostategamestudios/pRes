@@ -51,7 +51,7 @@ public class Checkpoint_Script : MonoBehaviour
             print("Death Detected");
         }
 		*/
-		if (ThePlayer.GetComponent<PlayerHealth>().health <= 0 || ThePlayer.GetComponentInParent<PlayerGamepad>().PlayerDied == true)
+		if (ThePlayer.GetComponentInChildren<PlayerHealth>().health <= 0 || ThePlayer.GetComponentInParent<PlayerGamepad>().PlayerDied == true)
         {
             ThePlayer.transform.parent.position = SaveLoc; //Make the player respawn at the active checkpoint
             if (pos1 >= pos2) //Checks to see if the player is over a certain height
