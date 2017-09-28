@@ -1,6 +1,10 @@
 ﻿//Original Author: Alexander Stamatis || Last Edited: Alexander Stamatis | Modified on May 9, 2017
 //This script deals with player movement, camera, collisions and trigger interactions
 
+
+//bug - got stuck on rail, when colliding with something, and couldnt jump
+//wall jump should be kinda like a grappling hook, where it latches the player for 2 seconds and just resets the jump counter
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +20,8 @@ public class PlayerGamepad : MonoBehaviour
     public float acceleration;
     [Tooltip("How fast the player slows down. Value between 0 and 1.")]
     public float deacceleration;
-    private float current_speed, max_running_speed, speed_smooth_velocity, current_speed_multiplier;
+    private float current_speed, speed_smooth_velocity, current_speed_multiplier;
+    public float max_running_speed;
     private bool disable_left_joystick, disable_right_joystick; //left stick is movement, right stick is camera
     Vector3 move_direction;
 
@@ -25,7 +30,8 @@ public class PlayerGamepad : MonoBehaviour
     private float player_rotation_speed;
     private Rigidbody player_rigidbody;
     public bool grounded;
-    public bool PlayerDied = false;
+    private bool PlayerDied = false;
+    public float running_acceleration_multiplier;
 
     //RAIL
     private bool grinding;
@@ -77,16 +83,18 @@ public class PlayerGamepad : MonoBehaviour
     [Tooltip("How long will thedashinglast. Recommend values under 5 seconds")]
     public float dash_duration, percentage_of_dash_duration_on_accelerate, percentage_of_dash_duration_on_deaccelerate;
     private float dash_timer;
-    [Tooltip("The speed of the dash. Enter value between 10 - 150")]
-    public bool dashing, exiting_dash;
+    private bool dashing;
     private Vector3 last_captured_player_direction;
     private TrailRenderer dash_trail_renderer;
     private int dash_counter;
-    private float dash_lerp_start_time;
-    private float dash_acceleration, dash_deacceleration;
+    [Tooltip("The speed of the dash acceleration")]
+    public float dash_acceleration, dash_deacceleration;
+    public float grinding_speed;
 
     //BOOSTER
     public float booster_force;
+
+    public float turning_speed;
 
     void Awake()
     {
@@ -105,7 +113,7 @@ public class PlayerGamepad : MonoBehaviour
             use_camera_type_1 = true;
 
         if (booster_force == 0)
-            booster_force = 10f;
+            booster_force = 11f;
 
         //Get camera
         if (camera_anchor == null)
@@ -124,7 +132,7 @@ public class PlayerGamepad : MonoBehaviour
 
         //Dash duraton
         if (dash_duration == 0)
-            dash_duration = .5f;
+            dash_duration = .4f;
 
         //25% of dash duration will be deacceleration
         percentage_of_dash_duration_on_deaccelerate = 15;
@@ -176,6 +184,13 @@ public class PlayerGamepad : MonoBehaviour
             jump_force *= 100000f;
         }
 
+        if (running_acceleration_multiplier == 0)
+            running_acceleration_multiplier = .6f;
+        if (grinding_speed == 0)
+            grinding_speed = 125f;
+
+        if (turning_speed == 0)
+            turning_speed = 57.5f;
     }
 
     void Update()
@@ -224,12 +239,15 @@ public class PlayerGamepad : MonoBehaviour
         if (!gamepad_allowed)
             return;
 
+        print(current_speed);
+
         //---------------------------------------------------------
         //  AIR
         //---------------------------------------------------------
 
         //Check to see if the player is grounded
-        grounded = Physics.Raycast(transform.position, -transform.up, out hit_down, 1.5f);
+        if(!grinding)
+            grounded = Physics.Raycast(transform.position, -transform.up, out hit_down, 1.5f);
 
         //Slow down rotation speed of player while on air
         player_rotation_speed = grounded ? 10f : 18f;
@@ -294,7 +312,7 @@ public class PlayerGamepad : MonoBehaviour
 
             }
 
-            current_speed += input_joystick_left.sqrMagnitude;
+            current_speed += input_joystick_left.sqrMagnitude * running_acceleration_multiplier;
 
         } else {
             if (!dashing)
@@ -313,7 +331,7 @@ public class PlayerGamepad : MonoBehaviour
         }
 
         //The higher the difference of GetCurrentDirection from GetDelayedDirection, the slower the player
-        current_speed -= difference_in_degrees / 50f;
+        current_speed -= difference_in_degrees / turning_speed;
 
         //Slow down the player while on air
         current_speed_multiplier = grounded && !dashing ? 33.0f : 48.0f;
@@ -330,6 +348,7 @@ public class PlayerGamepad : MonoBehaviour
         {
             //Speed limit when running
             current_speed = max_running_speed;
+
         }
 
         if (dashing)
@@ -386,7 +405,7 @@ public class PlayerGamepad : MonoBehaviour
         //-------------------------------------------------
 
         if (grinding)
-            current_speed = 200f;
+            current_speed = grinding_speed;
         else
             SetPlayerKinematic(false);
 
@@ -606,7 +625,8 @@ public class PlayerGamepad : MonoBehaviour
         delayed_player_direction = player_direction;
     }
 
-    //This will move the player for a little bit forward after the player has exited the rings or rails
+    //This will move the player for a little bit forward after the player has exited the rings or 
+    
     IEnumerator MoveFor(float seconds)
     {
         current_speed = 40f;
@@ -680,6 +700,10 @@ public class PlayerGamepad : MonoBehaviour
             SetPlayerKinematic(true);
 
             ResetDashValues();
+
+            jump_counter = 0;
+
+            grounded = true;
 
             //Will determine what direction the player will go towards
             if (Mathf.Abs(col.transform.eulerAngles.y - transform.eulerAngles.y) < 90f)
