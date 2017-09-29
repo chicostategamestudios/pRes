@@ -1,4 +1,4 @@
-﻿//Created by Unknown - Last Modified by Thaddeus Thompson - 9/21/17
+﻿//Created by Unknown - Last Modified by Thaddeus Thompson - 9/28/17
 //This script controls the combat abilities of the player character.
 
 using System.Collections;
@@ -18,7 +18,7 @@ public class Combat : MonoBehaviour {
     public float light_attack_time = .33f; // time it takes to move distance of light attack
     public float strong_attack_distance = 10f; // distance travelled by strong attack
     public float strong_attack_time = .33f; // time it takes to move distance of strong attack
-    public float dodge_distance = 10f; // distance travelled while dodging
+    public float dodge_distance = 50f; // distance travelled while dodging
     public float dodge_time = .75f; // time it take to move distance of dodge
     private float distance_length;
     private int combo_counter;
@@ -42,6 +42,7 @@ public class Combat : MonoBehaviour {
 	private Vector3 dodge_dir_rotated;
 	private GameObject my_camera;
 	private GameObject weapon;
+	private GameObject my_collider;
 	private bool attack;//used by PlayerAttack to determine attack type
 	 public bool is_attacking = false;//used to control collision window
 	public int light_attack_number;
@@ -62,6 +63,7 @@ public class Combat : MonoBehaviour {
 		weapon = GameObject.Find ("WeaponPivot");
 		weapon_collider = GameObject.Find ("WeaponPlaceHolder").GetComponent<BoxCollider> ();//need to change object name at some point
 		my_camera = GameObject.Find("Camera Anchor");
+		my_collider = GameObject.Find ("Player_Capsule");
 		forward = transform.TransformDirection(Vector3.forward);
         something_too_close = false;
 		weapon_collider.enabled = false;
@@ -221,7 +223,7 @@ public class Combat : MonoBehaviour {
 				// check to see if something is in the way
 				if (Physics.Raycast (transform.position, forward, out hit, (dodge_distance))) {
 					//Debug.Log (hit);
-					if (hit.collider.tag == "Wall" || hit.collider.tag == "Enemy") {
+					if (hit.collider.tag == "Wall" /*|| hit.collider.tag == "Enemy"*/) {
 						//Debug.Log (hit.collider.tag);
 						something_too_close = true;
 					}
@@ -257,21 +259,12 @@ public class Combat : MonoBehaviour {
 				// check to see if something is in the way
 				if (Physics.Raycast (transform.position, forward, out hit, (dodge_distance))) {
 					//Debug.Log (hit);
-					if (hit.collider.tag == "Wall" || hit.collider.tag == "Enemy") {
+					if (hit.collider.tag == "Wall" /*|| hit.collider.tag == "Enemy"*/) {
 						//Debug.Log (hit.collider.tag);
 						something_too_close = true;
 					}
 				}
-				GetComponent<PlayerGamepad> ().GamepadAllowed = false;
-				trigger_press = true;
-				is_dodging = true;
-				//Instantiate (target_prefab, transform.position + (transform.forward * dodge_distance), transform.rotation); // create target marker
-				is_invunerable = true; // make player invunerable
-				//target_prefab.GetComponent<DestroyMove> ().set_life = .5f;
-
-				//GetComponent<Rigidbody>().AddForce(transform.forward * 500000 * dodge_time * Time.deltaTime, ForceMode.Impulse);
-
-				StartCoroutine (Invunerable ());
+				StartCoroutine ("DodgeMovement");
 			}
 		}
 
@@ -313,6 +306,26 @@ public class Combat : MonoBehaviour {
 			strong_attack_number = 0;
 		}
     }
+
+	IEnumerator DodgeMovement ()
+	{
+		
+		Physics.IgnoreLayerCollision( 9, 10, ignore: true);//Allows phasing through enemies
+
+		my_gamepad.SetSmoothedRotation(false);//Makes rotation instant to smooth out dodge
+		yield return new WaitForSeconds (.1f);
+
+		GetComponent<PlayerGamepad> ().GamepadAllowed = false;
+		trigger_press = true;
+		is_dodging = true;
+		//Instantiate (target_prefab, transform.position + (transform.forward * dodge_distance), transform.rotation); // create target marker
+		is_invunerable = true; // make player invunerable
+		//target_prefab.GetComponent<DestroyMove> ().set_life = .5f;
+
+		//GetComponent<Rigidbody>().AddForce(transform.forward * 500000 * dodge_time * Time.deltaTime, ForceMode.Impulse);
+		//GetComponent<PlayerGamepad> ().GamepadAllowed = false;
+		StartCoroutine (Invunerable ());
+	}
 
     IEnumerator WaitForFastAttackAnimation ()
     {
@@ -373,17 +386,23 @@ public class Combat : MonoBehaviour {
 		}
 	}
 
-    IEnumerator Invunerable()
+    IEnumerator Invunerable()//Dodge Recovery
 	{
         yield return new WaitForSeconds(dodge_length);
         is_invunerable = false;
         something_too_close = false;
-		yield return new WaitForSeconds (.5f);
+		yield return new WaitForSeconds (.25f);
         is_dodging = false;
+
+		Physics.IgnoreLayerCollision( 9, 10, ignore: false);
+
 		GetComponent<PlayerGamepad> ().GamepadAllowed = true;
+		my_gamepad.SetSmoothedRotation(true);
     }
 
 	public bool GetAttackType(){
 		return attack;
 	}
 }
+//KEEP THIS FOR FUTURE USE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//this.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None; RAGDOLL

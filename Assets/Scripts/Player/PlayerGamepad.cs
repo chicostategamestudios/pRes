@@ -605,7 +605,7 @@ public class PlayerGamepad : MonoBehaviour
     }
 
     //Enables or disables rigidbody.gravity
-    void SetPlayerGravity(bool _enable)
+    public void SetPlayerGravity(bool _enable)
     {
         player_rigidbody.useGravity = _enable;
     }
