@@ -101,13 +101,17 @@ public class PlayerGamepad : MonoBehaviour
     public float booster_force;
     public float turning_speed;
 
-    //SURGE
-    private float surge_timer, surge_speed;
-    private bool can_surge, disable_surge;
-    private float surge_meter_max_x;
+    //Booster
+    private float booster_timer ;
+    private bool can_boost, boosting;
+    private float booster_meter_max_x;
+    public float booster_rotation_speed, booster_speed;
+    private GameObject booster_meter_obj;
 
     void Awake()
     {
+
+        if (GameObject.Find("SurgeMeter")) booster_meter_obj = GameObject.Find("SurgeMeter");
 
         if (Physics.gravity.y > -80f)
             Physics.gravity = new Vector3(0, -100f, 0);
@@ -166,9 +170,10 @@ public class PlayerGamepad : MonoBehaviour
     void Start()
     {
 
-        surge_meter_max_x = GameObject.Find("SurgeMeter").transform.localScale.x;
-        surge_timer = 3f;
-        surge_speed = 150f;
+        if (GameObject.Find("SurgeMeter")) booster_meter_max_x = GameObject.Find("SurgeMeter").transform.localScale.x;
+        booster_timer = 3f;
+        booster_speed = 100f;
+        booster_rotation_speed = 1.5f;
 
         //This will enable player control, for example gamepad_allowed is set to false when the player is in the sonic rings
         gamepad_allowed = true;
@@ -190,7 +195,7 @@ public class PlayerGamepad : MonoBehaviour
 
         original_max_speed = max_running_speed;
 
-        can_surge = true;
+        can_boost = true;
 
         if (jump_limit == 0)
         {
@@ -325,22 +330,25 @@ public class PlayerGamepad : MonoBehaviour
             //Used by multiple events
             player_direction = GetCurrentDirection();
 
-
             //Calculate joystick rotation sensitivity, this will calculate the difference between GetDelayedDirection() and GetCurrentDirection()
             difference_in_degrees = Mathf.Abs(player_direction - delayed_player_direction);
 
             if (!grinding)
             {
                 //Slowly rotate from the initial rotation to the player rotation, adding camera_anchor.eulerAngles to make it so the axis is based of the camera rotation
-                if (!dashing)
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), player_rotation_speed * Time.deltaTime);
-
                 if (dashing)
                 {
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), dash_rotation_speed * Time.deltaTime);
+                } else if (boosting)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), booster_rotation_speed * Time.deltaTime);
                 }
-            }
+                else
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), player_rotation_speed * Time.deltaTime);
+                }
 
+            }
             current_speed += input_joystick_left.sqrMagnitude * running_acceleration_multiplier;
 
         } else {
@@ -369,17 +377,20 @@ public class PlayerGamepad : MonoBehaviour
         //SURGE
         //---------------------------------------------------------
 
-        if (Input.GetButton("Controller_RB") && can_surge && !grinding && !in_ring && current_speed >= original_max_speed && grounded)
+        if (Input.GetButton("Controller_RB") && can_boost && !grinding && !in_ring && current_speed >= original_max_speed && grounded)
         {
-            if (surge_timer > 0f)
+            if (booster_timer > 0f)
             {
-                surge_timer -= Time.fixedDeltaTime;
-                max_running_speed = surge_speed;
+                boosting = true;
+                booster_timer -= Time.fixedDeltaTime;
+                max_running_speed = booster_speed;
             }
-            else if(surge_timer <= 0f)
+            else if(booster_timer <= 0f)
             {
                 max_running_speed = original_max_speed;
-                can_surge = false;
+                can_boost = false;
+                boosting = false;
+
             }
 
         }
@@ -390,31 +401,35 @@ public class PlayerGamepad : MonoBehaviour
         }
 
 
-        if (Input.GetButtonUp("Controller_RB") || !can_surge || !grounded)
+        if (Input.GetButtonUp("Controller_RB") || !can_boost || !grounded)
         {
             max_running_speed = original_max_speed;
+            boosting = false;
+
         }
 
 
-        if (!Input.GetButton("Controller_RB") || !can_surge)
+        if (!Input.GetButton("Controller_RB") || !can_boost)
         {
 
             max_running_speed = original_max_speed;
 
-            if (surge_timer < 3f)
+            if (booster_timer < 3f)
             {
-                surge_timer += Time.deltaTime;
+                booster_timer += Time.deltaTime;
             }
-            else if(surge_timer >= 3f && !can_surge )
+            else if(booster_timer >= 3f && !can_boost )
             {
-                can_surge = true;
-                surge_timer = 3f;
+                can_boost = true;
+                booster_timer = 3f;
             }
         }
        
-        Vector3 new_surge_meter_scale = GameObject.Find("SurgeMeter").transform.localScale;
-        new_surge_meter_scale.x = (surge_timer / 3f) * surge_meter_max_x;
-        GameObject.Find("SurgeMeter").transform.localScale = new_surge_meter_scale;
+	    if (GameObject.Find("SurgeMeter")){
+			Vector3 new_booster_meter_scale = GameObject.Find("SurgeMeter").transform.localScale;
+			new_booster_meter_scale.x = (booster_timer / 3f) * booster_meter_max_x;
+			GameObject.Find("SurgeMeter").transform.localScale = new_booster_meter_scale;
+	    }
       
 
         if (current_speed > max_running_speed && !dashing && !grinding)
@@ -427,6 +442,7 @@ public class PlayerGamepad : MonoBehaviour
         if (grinding)
         {
             move_direction = grinding_direction;
+            grounded = true;
         }
         else
             move_direction = transform.forward;
@@ -666,17 +682,6 @@ public class PlayerGamepad : MonoBehaviour
     }
 
 
-    IEnumerator DisableSurge()
-    {
-        disable_surge = true;
-        print(disable_surge);
-        yield return new WaitForSeconds(3f);
-        disable_surge = false;
-        surge_timer = 0f;
-        print(disable_surge);
-
-    }
-
     //Public function to disable/enable gamepad controller
     public void SetGamepadEnable(bool _enable)
     {
@@ -790,11 +795,6 @@ public class PlayerGamepad : MonoBehaviour
 
         if (col.gameObject.tag == "Wall")
         {
-            ////RestrictVerticalMovement(true);
-            //SetPlayerKinematic(true);
-            //SetPlayerGravity(false);
-            //print("wall");
-
             wall_contact_position = transform.position;
 
             on_wall = true;
@@ -844,7 +844,7 @@ public class PlayerGamepad : MonoBehaviour
             grounded = true;
 
             //Will determine what direction the player will go towards
-            if (Mathf.Abs(col.transform.eulerAngles.y - transform.eulerAngles.y) < 90f)
+            if (Mathf.Abs(col.transform.eulerAngles.y - transform.eulerAngles.y) < 90f || Mathf.Abs(col.transform.eulerAngles.y - transform.eulerAngles.y) > 270f)
             {
                 transform.rotation = Quaternion.Euler(new Vector3(0, col.transform.eulerAngles.y, 0));
                 grinding_direction = col.transform.forward;
@@ -854,6 +854,7 @@ public class PlayerGamepad : MonoBehaviour
                 transform.rotation = Quaternion.Euler(new Vector3(0, col.transform.eulerAngles.y + 180f, 0));
                 grinding_direction = -col.transform.forward;
             }
+
         }
 
         if (col.gameObject.tag == "Launch Ring")
