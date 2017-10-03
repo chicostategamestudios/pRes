@@ -21,7 +21,7 @@ public class PlayerGamepad : MonoBehaviour
     [Tooltip("How fast the player slows down. Value between 0 and 1.")]
     public float deacceleration;
     private float current_speed, speed_smooth_velocity, current_speed_multiplier;
-    public float max_running_speed;
+    public float max_running_speed, original_max_speed;
     private bool disable_left_joystick, disable_right_joystick; //left stick is movement, right stick is camera
     Vector3 move_direction;
 
@@ -36,6 +36,11 @@ public class PlayerGamepad : MonoBehaviour
     //RAIL
     private bool grinding;
     private Vector3 grinding_direction;
+
+    //Wall
+    public bool on_wall;
+    private Vector3 wall_contact_position;
+    private float wall_timer;
 
     //JUMP
     public int jump_counter, jump_limit;
@@ -90,11 +95,16 @@ public class PlayerGamepad : MonoBehaviour
     [Tooltip("The speed of the dash acceleration")]
     public float dash_acceleration, dash_deacceleration;
     public float grinding_speed;
+    public float dash_rotation_speed;
 
     //BOOSTER
     public float booster_force;
-
     public float turning_speed;
+
+    //SURGE
+    private float surge_timer, surge_speed;
+    private bool can_surge, disable_surge;
+    private float surge_meter_max_x;
 
     void Awake()
     {
@@ -146,6 +156,8 @@ public class PlayerGamepad : MonoBehaviour
         //slowing down the player from dash speed
         dash_deacceleration = 20f;
 
+        dash_rotation_speed = 1.25f;
+
         if (dash_trail_renderer == false)
             dash_trail_renderer = GetComponent<TrailRenderer>();
 
@@ -153,6 +165,10 @@ public class PlayerGamepad : MonoBehaviour
 
     void Start()
     {
+
+        surge_meter_max_x = GameObject.Find("SurgeMeter").transform.localScale.x;
+        surge_timer = 3f;
+        surge_speed = 150f;
 
         //This will enable player control, for example gamepad_allowed is set to false when the player is in the sonic rings
         gamepad_allowed = true;
@@ -172,6 +188,10 @@ public class PlayerGamepad : MonoBehaviour
         if (max_running_speed == 0)
             max_running_speed = 48f;
 
+        original_max_speed = max_running_speed;
+
+        can_surge = true;
+
         if (jump_limit == 0)
         {
             jump_counter = 0;
@@ -186,6 +206,7 @@ public class PlayerGamepad : MonoBehaviour
 
         if (running_acceleration_multiplier == 0)
             running_acceleration_multiplier = .6f;
+
         if (grinding_speed == 0)
             grinding_speed = 125f;
 
@@ -200,7 +221,10 @@ public class PlayerGamepad : MonoBehaviour
         {
             //Make the rigidbody of the player y set to zero, in order for the velocity.y to not affect player height transformation
             player_rigidbody.velocity = new Vector3(player_rigidbody.velocity.x, 0, player_rigidbody.velocity.z);
+
+
         }
+
 
         //---------------------------------------------------------------------------
         //	PAUSE                         
@@ -239,7 +263,6 @@ public class PlayerGamepad : MonoBehaviour
         if (!gamepad_allowed)
             return;
 
-        print(current_speed);
 
         //---------------------------------------------------------
         //  AIR
@@ -266,14 +289,16 @@ public class PlayerGamepad : MonoBehaviour
         //---------------------------------------------------------------------------
 
         //Resets the jump counter if grounded and not touching jump button
-        if(grounded && !Input.GetButton("Controller_A"))
+        if((grounded || on_wall) && !Input.GetButton("Controller_A"))
         {
             jump_counter = 0;
         }
 
         //Check if you can jump
-        if ((Input.GetButton("Controller_A")) && jump_counter < jump_limit && grounded)
+        if ((Input.GetButton("Controller_A")) && jump_counter < jump_limit && (grounded || on_wall))
         {
+            on_wall = false;
+
             SetPlayerKinematic(false);
 
             //Limit jump 
@@ -310,6 +335,10 @@ public class PlayerGamepad : MonoBehaviour
                 if (!dashing)
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), player_rotation_speed * Time.deltaTime);
 
+                if (dashing)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), dash_rotation_speed * Time.deltaTime);
+                }
             }
 
             current_speed += input_joystick_left.sqrMagnitude * running_acceleration_multiplier;
@@ -336,13 +365,57 @@ public class PlayerGamepad : MonoBehaviour
         //Slow down the player while on air
         current_speed_multiplier = grounded && !dashing ? 33.0f : 48.0f;
 
-        if (grinding)
-        {
-            move_direction = grinding_direction;
-        }
-        else
-            move_direction = transform.forward;
+        //---------------------------------------------------------
+        //SURGE
+        //---------------------------------------------------------
 
+        if (Input.GetButton("Controller_RB") && can_surge && !grinding && !in_ring && current_speed >= original_max_speed && grounded)
+        {
+            if (surge_timer > 0f)
+            {
+                surge_timer -= Time.fixedDeltaTime;
+                max_running_speed = surge_speed;
+            }
+            else if(surge_timer <= 0f)
+            {
+                max_running_speed = original_max_speed;
+                can_surge = false;
+            }
+
+        }
+
+        if (in_ring || grinding)
+        {
+            max_running_speed = original_max_speed;
+        }
+
+
+        if (Input.GetButtonUp("Controller_RB") || !can_surge || !grounded)
+        {
+            max_running_speed = original_max_speed;
+        }
+
+
+        if (!Input.GetButton("Controller_RB") || !can_surge)
+        {
+
+            max_running_speed = original_max_speed;
+
+            if (surge_timer < 3f)
+            {
+                surge_timer += Time.deltaTime;
+            }
+            else if(surge_timer >= 3f && !can_surge )
+            {
+                can_surge = true;
+                surge_timer = 3f;
+            }
+        }
+       
+        Vector3 new_surge_meter_scale = GameObject.Find("SurgeMeter").transform.localScale;
+        new_surge_meter_scale.x = (surge_timer / 3f) * surge_meter_max_x;
+        GameObject.Find("SurgeMeter").transform.localScale = new_surge_meter_scale;
+      
 
         if (current_speed > max_running_speed && !dashing && !grinding)
         {
@@ -350,6 +423,13 @@ public class PlayerGamepad : MonoBehaviour
             current_speed = max_running_speed;
 
         }
+
+        if (grinding)
+        {
+            move_direction = grinding_direction;
+        }
+        else
+            move_direction = transform.forward;
 
         if (dashing)
         { 
@@ -369,7 +449,7 @@ public class PlayerGamepad : MonoBehaviour
 
         //Prevents player from drifting backwards
         //Checking for collision, prevents taleporting through objects when dashing 
-        if (DetectCollision(2f, transform.forward))
+        if (DetectCollision(.25f, transform.forward))
             if (hit.transform != null && (hit.transform.GetComponent<Collider>().isTrigger != true)) //Essentially imitating a layer mask to ignore certain colliders 
                 move_direction = Vector3.zero;
 
@@ -408,6 +488,29 @@ public class PlayerGamepad : MonoBehaviour
             current_speed = grinding_speed;
         else
             SetPlayerKinematic(false);
+
+
+        //-------------------------------------------------
+        //	WALL                   
+        //-------------------------------------------------
+
+        if (on_wall)
+        {
+            grounded = true;
+            transform.position = wall_contact_position;
+            player_rigidbody.velocity = Vector3.zero;
+
+            wall_timer += Time.fixedDeltaTime;
+
+            ResetDashValues();
+
+            if(wall_timer > 2f)
+            {
+                on_wall = false;
+                grounded = false;
+            }
+            
+        }
 
         //-------------------------------------------------
         //	DASH                      
@@ -466,7 +569,7 @@ public class PlayerGamepad : MonoBehaviour
     //As the title of the function intends, to reset dashing values for reuse of dash
     private void ResetDashValues()
     {
-        if (grounded)
+        if (grounded || on_wall)
         {
             dash_counter = 0;
             dashing = false;
@@ -514,7 +617,7 @@ public class PlayerGamepad : MonoBehaviour
     {
 		SetTrailRender(true);
 
-        move_direction = transform.forward;
+        //move_direction = transform.forward;
 
         dashing = true;
 
@@ -523,7 +626,7 @@ public class PlayerGamepad : MonoBehaviour
         //Restrict y-axis transformation
         RestrictVerticalMovement(true);
 
-        disable_left_joystick = true;
+        //disable_left_joystick = true;
 
         dash_unary = 1;
         dash_unary_max_speed = (int)dash_acceleration;
@@ -538,9 +641,9 @@ public class PlayerGamepad : MonoBehaviour
 
         yield return new WaitForSeconds(dash_duration * ((float)percent_duration_accelerate / 100f));
 
-        move_direction = transform.forward;
+        //move_direction = transform.forward;
 
-        disable_left_joystick = false;
+        //disable_left_joystick = false;
 
         SetTrailRender(false);
 
@@ -562,6 +665,17 @@ public class PlayerGamepad : MonoBehaviour
         StopAllCoroutines();
     }
 
+
+    IEnumerator DisableSurge()
+    {
+        disable_surge = true;
+        print(disable_surge);
+        yield return new WaitForSeconds(3f);
+        disable_surge = false;
+        surge_timer = 0f;
+        print(disable_surge);
+
+    }
 
     //Public function to disable/enable gamepad controller
     public void SetGamepadEnable(bool _enable)
@@ -673,6 +787,20 @@ public class PlayerGamepad : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
 
+
+        if (col.gameObject.tag == "Wall")
+        {
+            ////RestrictVerticalMovement(true);
+            //SetPlayerKinematic(true);
+            //SetPlayerGravity(false);
+            //print("wall");
+
+            wall_contact_position = transform.position;
+
+            on_wall = true;
+            wall_timer = 0f;
+        }
+
         //Player candashingagain
         ResetDashValues();
 
@@ -686,9 +814,19 @@ public class PlayerGamepad : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit(Collision col)
+    {
+        if (col.gameObject.tag == "Wall")
+        {
+            on_wall = false;
+        }
+
+    }
+
     void OnTriggerEnter(Collider col)
     {
 
+        
         if (col.gameObject.tag == "Rail")
         {
             player_rigidbody.velocity = Vector3.zero;
@@ -777,6 +915,11 @@ public class PlayerGamepad : MonoBehaviour
 
     private void OnTriggerExit(Collider col)
     {
+        if (col.gameObject.tag == "Wall")
+        {
+            RestrictVerticalMovement(true);
+        }
+
         if (col.gameObject.tag == "Rail")
             grinding = false;
     }
