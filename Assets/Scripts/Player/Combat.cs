@@ -23,7 +23,7 @@ public class Combat : MonoBehaviour {
     private float distance_length;
     private int combo_counter;
     private bool is_light_attacking; // check to see if player is light attacking
-    private bool is_strong_attacking; // check to see if player is strong attacking
+    public bool is_strong_attacking; // check to see if player is strong attacking
 	public bool is_comboing;
     public bool is_invunerable; // check to see if player is invunerable from dodging
     private bool something_too_close; // an object is too close to move forward
@@ -40,7 +40,7 @@ public class Combat : MonoBehaviour {
 	private Vector3 forward;
 	public Vector3 dodge_dir;
 	private Vector3 dodge_dir_rotated;
-	private GameObject my_camera;
+	private NewDynamicCameraBehavior my_camera;
 	private GameObject weapon;
 	private GameObject my_collider;
 	private bool attack;//used by PlayerAttack to determine attack type
@@ -53,6 +53,10 @@ public class Combat : MonoBehaviour {
 	private float dodge_dir_z;
 	private bool trigger_press;
 	private bool is_dodging;
+	private bool targeted_enemy;
+	private bool back_dodge = false;
+
+	public float test_variable;
 
     private void Start()
     {
@@ -62,7 +66,7 @@ public class Combat : MonoBehaviour {
         player_weapon = GameObject.Find("PlayerWeapon").transform;
 		weapon = GameObject.Find ("WeaponPivot");
 		weapon_collider = GameObject.Find ("WeaponPlaceHolder").GetComponent<BoxCollider> ();//need to change object name at some point
-		my_camera = GameObject.Find("Camera Anchor");
+		my_camera = camera_anchor.GetComponent<NewDynamicCameraBehavior>();
 		my_collider = GameObject.Find ("Player_Capsule");
 		forward = transform.TransformDirection(Vector3.forward);
         something_too_close = false;
@@ -117,7 +121,8 @@ public class Combat : MonoBehaviour {
 			is_attacking = true;
 			light_attack_number++;
 			attack_timer = 1f;
-            // Disable Player movement
+			targeted_enemy = my_camera.GetLockOn ();
+			// Disable Player movement
             GetComponent<PlayerGamepad>().GamepadAllowed = false;
             // Check for Combo
             if (is_comboing)
@@ -162,6 +167,7 @@ public class Combat : MonoBehaviour {
 			is_attacking = true;
 			strong_attack_number++;
 			attack_timer = 1f;
+			targeted_enemy = my_camera.GetLockOn ();
             // Disable Player movement
             GetComponent<PlayerGamepad>().GamepadAllowed = false;
             // Check for Combo
@@ -176,7 +182,7 @@ public class Combat : MonoBehaviour {
 
             // Set Player rotation to Camera Anchor rotation
             //transform.eulerAngles = new Vector3(transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
-            Debug.Log("Rotation = " + transform.rotation);
+           // Debug.Log("Rotation = " + transform.rotation);
 
             // check to see if something is in the way
 			if (Physics.Raycast(transform.position, forward, out hit, (strong_attack_distance)))
@@ -199,6 +205,12 @@ public class Combat : MonoBehaviour {
 		// Attack movement///////////////////////////////////////////////////////////////////////////////////////////////////
 		if (is_light_attacking || is_strong_attacking && !something_too_close) {
 			forward = transform.TransformDirection(Vector3.forward);
+
+			//targeted_enemy = my_camera.GetTargetedEnemy ();
+			if (targeted_enemy) {
+				transform.eulerAngles = new Vector3 (transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
+			}
+
 			//GameObject target_move = GameObject.FindGameObjectWithTag("Player Move Target"); // find the location of target_prefab
 			// move player x units in direction joystick is pointing if not in front of something
 			if (!Physics.Raycast (transform.position, forward, out hit, 1.5f)) {
@@ -206,6 +218,14 @@ public class Combat : MonoBehaviour {
 			}
 			//Debug.Log (transform.forward * light_attack_distance);
 		}
+		/*if (is_strong_attacking) {
+			//Transform from;
+			//Transform to;
+			weapon.transform.Rotate (Vector3.right, test_variable * Time.deltaTime); //new Vector3 (test_variable+Time.deltaTime, 0, 0);
+
+		} else {
+			weapon.transform.eulerAngles = new Vector3 (0, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z); 
+		}*/
 
         // Dodge///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		if (Input.GetButtonDown("Controller_"+dodge_button) && (Input.GetAxis("LeftJoystickX") > controller_drift || Input.GetAxis("LeftJoystickX") < -controller_drift || Input.GetAxis("LeftJoystickY") > controller_drift || Input.GetAxis("LeftJoystickY") < -controller_drift) && !is_invunerable)
@@ -244,8 +264,7 @@ public class Combat : MonoBehaviour {
 		}
 
 		//button check for trigger
-		if (Input.GetAxis("Controller_"+dodge_button) == 1 && (Input.GetAxis("LeftJoystickX") > controller_drift || Input.GetAxis("LeftJoystickX") < -controller_drift || Input.GetAxis("LeftJoystickY") > controller_drift || Input.GetAxis("LeftJoystickY") < -controller_drift) && !is_dodging && !trigger_press)
-		{
+		if (Input.GetAxis ("Controller_" + dodge_button) == 1 && (Input.GetAxis ("LeftJoystickX") > controller_drift || Input.GetAxis ("LeftJoystickX") < -controller_drift || Input.GetAxis ("LeftJoystickY") > controller_drift || Input.GetAxis ("LeftJoystickY") < -controller_drift) && !is_dodging && !trigger_press) {
 			//Checks in PlayerGamepad if the player is on the ground
 			if (my_gamepad.CheckGrounded ()) {
 				dodge_dir_x = Input.GetAxis ("LeftJoystickX");
@@ -266,6 +285,9 @@ public class Combat : MonoBehaviour {
 				}
 				StartCoroutine ("DodgeMovement");
 			}
+		} else if (Input.GetAxis ("Controller_" + dodge_button) == 1 && !is_dodging && !trigger_press) {
+			back_dodge = true;
+			StartCoroutine ("DodgeMovement");
 		}
 
 		// Dodge movement///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -281,7 +303,11 @@ public class Combat : MonoBehaviour {
 				dodge_dir_z = -1;
 			}
 
-			forward = transform.TransformDirection(Vector3.forward);
+			if (back_dodge) {
+				forward = transform.TransformDirection (Vector3.back);
+			} else {
+				forward = transform.TransformDirection (Vector3.forward);
+			}
 			//GameObject target_move = GameObject.FindGameObjectWithTag("Player Move Target"); // find the location of target_prefab
 				//dodge_dir = new Vector3(dodge_dir_x,0,dodge_dir_z);
 			//dodge_dir_rotated = Quaternion.AngleAxis (my_camera.transform.rotation.y, Vector3.up) * dodge_dir;
@@ -335,7 +361,7 @@ public class Combat : MonoBehaviour {
         yield return new WaitForSeconds(.3f);
 		weapon.transform.eulerAngles = new Vector3 (0, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
 		//GetComponent<PlayerGamepad>().GamepadAllowed = true;
-		//is_light_attacking = false;//use to send hit damage to attack prefab
+		is_light_attacking = false;//use to send hit damage to attack prefab
         something_too_close = false;
 		weapon_collider.enabled = false;
         StartCoroutine(ComboTimerLight());
@@ -345,11 +371,15 @@ public class Combat : MonoBehaviour {
     {
 		attack = false;
 		//rotate weapon
+		//weapon.transform.eulerAngles = new Vector3 (80, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
+        yield return new WaitForSeconds(strong_attack_time);
 		weapon.transform.eulerAngles = new Vector3 (80, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
-        yield return new WaitForSeconds(.3f);
+		weapon_collider.enabled = true;
+		is_strong_attacking = false;
+		yield return new WaitForSeconds (.1f);
 		weapon.transform.eulerAngles = new Vector3 (0, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
-        //GetComponent<PlayerGamepad>().GamepadAllowed = true;
-        is_strong_attacking = false;
+		weapon_collider.enabled = false;
+		//GetComponent<PlayerGamepad>().GamepadAllowed = true;
         something_too_close = false;
         StartCoroutine(ComboTimerStrong());
     }
@@ -398,6 +428,7 @@ public class Combat : MonoBehaviour {
 
 		GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 		my_gamepad.SetSmoothedRotation(true);
+		back_dodge = false;
     }
 
 	public bool GetAttackType(){

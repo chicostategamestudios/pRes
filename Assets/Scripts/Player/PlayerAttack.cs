@@ -39,14 +39,16 @@ public class PlayerAttack : MonoBehaviour {
 			if (attack_type) {
 				damage = 10;
 				my_ai.StartCoroutine ("DamageEnemy", damage);
+				my_combat.is_attacking = false;
 				Debug.Log ("Deal light damage " + damage);
 			} else {
 				damage = 15;
 				my_ai.StartCoroutine ("DamageEnemy", damage);
+				my_combat.is_attacking = false;
 				Debug.Log ("Deal strong damage " + damage);
 			}
         }
-		my_combat.is_attacking = false;
+
 		//my_combat.weapon_collider.enabled = false;
     }
 

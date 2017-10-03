@@ -2209,12 +2209,13 @@ MonoBehaviour:
   attack_prefab: {fileID: 0}
   target_prefab: {fileID: 1325763714736156, guid: e290bc5b8a671ce49839af7efe01fd76,
     type: 2}
-  light_attack_distance: 10
+  light_attack_distance: 20
   light_attack_time: 0.33
-  strong_attack_distance: 10
+  strong_attack_distance: 20
   strong_attack_time: 0.33
   dodge_distance: 50
   dodge_time: 2
+  is_strong_attacking: 0
   is_comboing: 0
   is_invunerable: 0
   dodge_length: 0.25
@@ -2225,6 +2226,7 @@ MonoBehaviour:
   strong_attack_number: 0
   attack_timer: 0
   weapon_collider: {fileID: 0}
+  test_variable: 100
 --- !u!96 &512072924
 TrailRenderer:
   serializedVersion: 2
@@ -2374,7 +2376,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 512072922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.175257, y: 1.05, z: -42.12}
+  m_LocalPosition: {x: -9.175257, y: 1.05, z: -51.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2127393993}
@@ -3892,7 +3894,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 672865373}
-  m_LocalRotation: {x: 0.57044744, y: -0.20886327, z: 0.1528509, w: 0.7794885}
+  m_LocalRotation: {x: 0.5704475, y: -0.2088633, z: 0.15285091, w: 0.7794886}
   m_LocalPosition: {x: -1.3664284, y: 21.07298, z: 55.073376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
