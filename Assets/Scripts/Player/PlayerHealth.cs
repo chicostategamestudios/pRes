@@ -16,7 +16,8 @@ public class PlayerHealth : MonoBehaviour
     //[HideInInspector]
     public PlayerGamepad player_pad; //needed to access the player's movement script.
     public bool isBleeding = false; //Needed to tell when the player is bleeding and when they aren't
-    public Camera mCamera;
+    public BleedScreenScript bScreen;
+
 
     public IEnumerator StaggerPlayer()
     {
@@ -25,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(stagger_duration);
         //turn on the player movement to end the stun.
         player_pad.SetPlayerMovement(true);
+       
     }
     
     public void DamageReceived(int damage) //function to apply the damage to the player's health.
@@ -48,7 +50,7 @@ public class PlayerHealth : MonoBehaviour
     {
         player_pad = GameObject.Find("Player").GetComponent<PlayerGamepad>();
         originalHealth = health;
-        mCamera = GameObject.FindGameObjectWithTag("Camera").GetComponent<Camera>();
+        bScreen = GameObject.Find("BleedScreen").GetComponent<BleedScreenScript>();  
     }
     private void OnGUI()
     {
@@ -60,18 +62,12 @@ public class PlayerHealth : MonoBehaviour
             isBleeding = false;
         }
         if (isBleeding == true){
-            for (int x = 0; x <= mCamera.rect.width; x++) {
-                for (int y = 0; y <= mCamera.rect.height; y++) {
 
-                    var bleedTexture = new Texture2D(1, 1);
-                    
-                    float redFade = 255;
-                    Color blood = new Color(redFade, 0, 0); ;
-                    bleedTexture.SetPixels(x, y, blood);
-                    bleedTexture.Apply();
-                    GUI.Box(new Rect(0, 0, mCamera.rect.width, mCamera.rect.height), bleedTexture);
-                }
-            }
+            bScreen.screenBleed = true;
+        }
+        if (isBleeding == false)
+        {
+            bScreen.screenBleed = false;
         }
     }
 

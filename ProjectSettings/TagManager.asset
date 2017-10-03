@@ -16,6 +16,8 @@ TagManager:
   - PlayerAttack
   - Checkpoint
   - Camera
+  - BleedScreen
+  - Reticle
   layers:
   - Default
   - TransparentFX
