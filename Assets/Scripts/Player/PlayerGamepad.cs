@@ -21,7 +21,7 @@ public class PlayerGamepad : MonoBehaviour
     [Tooltip("How fast the player slows down. Value between 0 and 1.")]
     public float deacceleration;
     public float current_speed, speed_smooth_velocity, current_speed_multiplier;    // Neil: Also made this public for animation controller.
-    private bool disable_left_joystick, disable_right_joystick; //left stick is movement, right stick is camera
+    private bool disable_left_joystick, disable_right_joystick; // left stick is movement, right stick is camera
     Vector3 move_direction;
 
     //PLAYER
@@ -247,7 +247,7 @@ public class PlayerGamepad : MonoBehaviour
         //---------------------------------------------------------
 
         //Check to see if the player is grounded
-        grounded = Physics.Raycast(transform.position, -transform.up, out hit_down, 1.5f);
+        grounded = Physics.Raycast(transform.position, -transform.up, out hit_down, 5f);
 
         //Slow down rotation speed of player while on air
         player_rotation_speed = grounded ? 10f : 18f;
