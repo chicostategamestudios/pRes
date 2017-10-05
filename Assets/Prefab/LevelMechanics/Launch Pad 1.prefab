@@ -70,9 +70,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4130268230322028}
   - component: {fileID: 33216117429284852}
-  - component: {fileID: 65645117891794204}
   - component: {fileID: 23702663760126022}
   - component: {fileID: 114149553927765660}
+  - component: {fileID: 65705836233253828}
   m_Layer: 0
   m_Name: Booster
   m_TagString: Launch Pad
@@ -197,8 +197,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1365168717269894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.22, z: 0.13}
-  m_LocalScale: {x: 3.2945266, y: 3.2945275, z: 0.7393417}
+  m_LocalPosition: {x: 0, y: -0.36, z: 0.2}
+  m_LocalScale: {x: 3.320883, y: 5.2712436, z: 1.0731692}
   m_Children: []
   m_Father: {fileID: 4784322000264138}
   m_RootOrder: 1
@@ -209,7 +209,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1897990078748536}
-  m_LocalRotation: {x: -0.7071058, y: -0, z: -0, w: 0.70710784}
+  m_LocalRotation: {x: -0.52134, y: -0.47770628, z: -0.47770736, w: 0.52134156}
   m_LocalPosition: {x: 0.014, y: 0.11999992, z: 0.006674419}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -280,8 +280,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1413938861173878}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -18, z: 402.3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 216, y: 44, z: 2069}
+  m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
   m_Children:
   - {fileID: 4255317652876016}
   - {fileID: 4130268230322028}
@@ -403,7 +403,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052190581908856}
   m_Mesh: {fileID: 4300000, guid: ddb0a622e03f09547a5ef36ff8a11586, type: 3}
---- !u!65 &65645117891794204
+--- !u!65 &65705836233253828
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -413,7 +413,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65933421975900374
 BoxCollider:
@@ -507,6 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 50
+  rotate: {x: 0, y: 0, z: 0}
 --- !u!114 &114149553927765660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -518,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1987d776e3378488f54db81020d05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 0
+  force: 405000
 --- !u!198 &198325597146039246
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -574,7 +575,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1897468902
+  randomSeed: 319303092
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3211,7 +3212,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1200441061
+  randomSeed: -1356136440
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5848,7 +5849,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1999499847
+  randomSeed: -327643934
   InitialModule:
     serializedVersion: 3
     enabled: 1

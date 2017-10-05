@@ -73,7 +73,7 @@ public class Level_Select_Menu_Functionality : MonoBehaviour {
 	/* This function will allow the player to click on the "Level 1" button and move to the "Level_1" scene */
 	void Level1OnClick()
 	{
-		SceneManager.LoadScene("Level1_Englavictra");		//Change this to whatever scene is the "Level1" scene
+		SceneManager.LoadScene("Level1");		//Change this to whatever scene is the "Level1" scene
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	Level 1 - Loads Level 1 (END)
