@@ -252,7 +252,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355846319094206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.130579, y: 2.2, z: -30.02}
+  m_LocalPosition: {x: -6.18, y: 2.2, z: -19.87}
   m_LocalScale: {x: 2.7711785, y: 2.7711768, z: 2.7711768}
   m_Children:
   - {fileID: 4311719255884542}
@@ -584,6 +584,8 @@ MonoBehaviour:
   performing_time: 0.5
   dodge_time: 0.5
   cooldown_action: 1
+  cooldown_action_max: 3
+  cooldown_action_min: 1
   turn_speed: 5
   knockback_duration: 0.2
   stagger_after_knockback_dur: 0.3
@@ -629,11 +631,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 1355846319094206}
   m_Enabled: 1
   m_Radius: 0.8
-  m_Speed: 15
+  m_Speed: 14
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 3600
-  m_StoppingDistance: 5
+  m_StoppingDistance: 8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

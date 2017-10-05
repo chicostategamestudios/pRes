@@ -25,6 +25,7 @@ public class AdvancedAI : BasicAI
     {
         alerted = false; //set alert to false to make the AI stop chasing the player to allow dodging.
         current_attack_chain = 0;
+        cooldown_action = Random.Range(cooldown_action_min, cooldown_action_max);
         dodge = (dodge_direction)Random.Range(0, 2); //randomly picks a direction to dodge. 0 is left, 1 is right.
         yield return new WaitForSeconds(dodge_time);
         alerted = true; //set alert back to true to make the AI chase the player again.
@@ -35,10 +36,14 @@ public class AdvancedAI : BasicAI
     protected IEnumerator Attack_1() //this is the right swing attack. starts from the left arm position
     {
         attack_script.check_attack_left = true; //this will turn on the attack script swinging to the left.
+        transform.GetComponent<UnityEngine.AI.NavMeshAgent>().stoppingDistance = 5f;
+        //move for half a second, then attack
+        yield return new WaitForSeconds(0.5f);
+        attack_script.check_attack_left = true;
         current_attack_chain += 1;
         if(current_attack_chain >= 3)
         {
-            cooldown_action = attack_chain_cooldown_time;
+            cooldown_action = Random.Range(cooldown_action_min, cooldown_action_max);
             current_attack_chain = 0;
             reset_time = true;
         }
@@ -56,14 +61,19 @@ public class AdvancedAI : BasicAI
 
     protected IEnumerator Attack_2() //this is the left swing attack. starts from the right arm position
     {
+        transform.GetComponent<UnityEngine.AI.NavMeshAgent>().stoppingDistance = 5f;
+        
+        //move for half a second, then attack
+        yield return new WaitForSeconds(0.5f);
         attack_script.check_attack_right = true; //this will turn on the attack script swinging to the right.
         current_attack_chain += 1;
         if (current_attack_chain >= 3)
         {
-            cooldown_action = attack_chain_cooldown_time;
+            cooldown_action = Random.Range(cooldown_action_min, cooldown_action_max);
             current_attack_chain = 0;
             reset_time = true;
         }
+        transform.GetComponent<UnityEngine.AI.NavMeshAgent>().stoppingDistance = 8f;
         yield return new WaitForSeconds(performing_time);
         //waits for performing time to be done... then add more things here if needed for after action
         yield return new WaitForSeconds(cooldown_action);
@@ -78,16 +88,21 @@ public class AdvancedAI : BasicAI
 
     protected IEnumerator Attack_3() //this is the diagonal swing attack. stops from the top right arm position 
     {
-        attack_script.check_attack_top = true; //this will turn on the attack script swinging diagonally.
+        transform.GetComponent<UnityEngine.AI.NavMeshAgent>().stoppingDistance = 5f;
+        //move for half a second, then attack
+        yield return new WaitForSeconds(0.5f);
+        attack_script.check_attack_top = true;
         current_attack_chain += 1;
         if (current_attack_chain >= 3)
         {
-            cooldown_action = attack_chain_cooldown_time;
+            cooldown_action = Random.Range(cooldown_action_min, cooldown_action_max);
             current_attack_chain = 0;
             reset_time = true;
         }
+        transform.GetComponent<UnityEngine.AI.NavMeshAgent>().stoppingDistance = 8f;
         yield return new WaitForSeconds(performing_time);
         //waits for performing time to be done... then add more things here if needed for after action
+
         yield return new WaitForSeconds(cooldown_action);
         if (current_attack_chain == 0 && reset_time)
         {
@@ -95,6 +110,27 @@ public class AdvancedAI : BasicAI
             cooldown_action = original_attack_chain_cd_time;
         }
         //this is the time to wait for the next action to be performed.
+        performing_action = false;  //the AI is done with the action
+    }
+
+    protected IEnumerator MoveBack()
+    {
+        //set alert to false to make the AI stop chasing the player to allow moving backwards and set nav mesh speed/acceleration to 0 to stop the AI completely.
+        alerted = false;
+        current_attack_chain = 0;
+        transform.GetComponent<UnityEngine.AI.NavMeshAgent>().acceleration = 0;
+        transform.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = 0;
+        transform.GetComponent<UnityEngine.AI.NavMeshAgent>().velocity = Vector3.zero;
+        cooldown_action = Random.Range(cooldown_action_min, cooldown_action_max);
+        //start moving backwards
+        getting_knockback = true;
+        yield return new WaitForSeconds(.3f);
+        getting_knockback = false;
+        transform.GetComponent<UnityEngine.AI.NavMeshAgent>().stoppingDistance = 8f;
+        alerted = true; //set alert back to true to make the AI chase the player again.
+        transform.GetComponent<UnityEngine.AI.NavMeshAgent>().acceleration = acceleration;
+        transform.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = movement_speed;
+        yield return new WaitForSeconds(cooldown_action);
         performing_action = false;  //the AI is done with the action
     }
 
