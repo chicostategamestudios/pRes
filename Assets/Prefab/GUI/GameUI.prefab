@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222776151440419216}
   - component: {fileID: 114119372925298096}
   - component: {fileID: 114230967712344338}
+  - component: {fileID: 114376557598129636}
   m_Layer: 5
   m_Name: HeatlhBar
   m_TagString: healthBar
@@ -240,11 +241,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1402b622de87a5b47b359e8e6ccbab9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpspeed: 2
+  fillAmount: 0
+  lerpspeed: 1
   content: {fileID: 114506614139366330}
   Fullcolor: {r: 0, g: 1, b: 0, a: 1}
   Lowcolor: {r: 1, g: 0, b: 0, a: 1}
   lerpColors: 1
+--- !u!114 &114376557598129636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1294101776341816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdb064dda223634b8eac77c62128663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 114230967712344338}
+  maxVal: 0
+  currentVal: 0
 --- !u!114 &114441370649255824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -360,7 +376,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6f32942e4b388104f8f195053ce04974, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
@@ -372,7 +388,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press the LB to restart the level, be patient it takes a long time
+  m_Text: 'Use the d-pad to taleport
+
+    to your chosen checkpoints.
+
+
+    Press B to restart scene [temporary]'
 --- !u!222 &222297733722274032
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -466,7 +487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -626, y: -6.899994}
+  m_AnchoredPosition: {x: -113.4, y: 30.7}
   m_SizeDelta: {x: 300, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224389379904323292

@@ -15,6 +15,13 @@ public class HealthStat : MonoBehaviour{
     [SerializeField]
     private float currentVal;
 
+	public static HealthStat S;
+
+	void Awake()
+	{
+		S = this;
+	}
+
     public float CurrentVal
     {
         get
