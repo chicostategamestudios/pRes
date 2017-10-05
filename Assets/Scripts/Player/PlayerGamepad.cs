@@ -1,9 +1,5 @@
-﻿//Original Author: Alexander Stamatis || Last Edited: Alexander Stamatis | Modified on May 9, 2017
+﻿//Original Author: Alexander Stamatis || Last Edited: Alexander Stamatis | Modified on Oct 5, 2017
 //This script deals with player movement, camera, collisions and trigger interactions
-
-
-//bug - got stuck on rail, when colliding with something, and couldnt jump
-//wall jump should be kinda like a grappling hook, where it latches the player for 2 seconds and just resets the jump counter
 
 using System.Collections;
 using System.Collections.Generic;
