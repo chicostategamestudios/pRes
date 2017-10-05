@@ -14,7 +14,8 @@ public class PlayerHealth : MonoBehaviour
     //[HideInInspector]
     public PlayerGamepad player_pad; //needed to access the player's movement script.
 
-	//public HealthStat Health;
+	[SerializeField]
+	private HealthStat Health;
 
     public IEnumerator StaggerPlayer()
     {
@@ -28,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
     public void DamageReceived(int damage) //function to apply the damage to the player's health.
     {
         health -= damage;
-		HealthStat.S.CurrentVal -= damage;
+		Health.CurrentVal -= damage;
         StartCoroutine("StaggerPlayer");
         if(health > 0) //this is to display the health of the player in console.
         { 
@@ -50,6 +51,6 @@ public class PlayerHealth : MonoBehaviour
 
 	void Start(){
 		//HealthStat.s = GameObject.FindGameObjectWithTag ("healthBar").GetComponent<HealthStat> ();
-		HealthStat.S.Initialize();
+		Health.Initialize();
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class HealthStat : MonoBehaviour{
+public class HealthStat{
 
     [SerializeField]
     private HealthBar bar;
@@ -14,13 +14,6 @@ public class HealthStat : MonoBehaviour{
 
     [SerializeField]
     private float currentVal;
-
-	public static HealthStat S;
-
-	void Awake()
-	{
-		S = this;
-	}
 
     public float CurrentVal
     {
@@ -52,8 +45,8 @@ public class HealthStat : MonoBehaviour{
 
     public void Initialize()
     {
-        MaxVal = 100;
-        CurrentVal = 100;
+        MaxVal = maxVal;
+		CurrentVal = currentVal;
     }
 
 }
