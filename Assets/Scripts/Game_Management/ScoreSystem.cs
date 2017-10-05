@@ -11,11 +11,13 @@ public class ScoreSystem : MonoBehaviour
 {
     // Declare variables here!
     public int score_totalScore;        // This is the total score that the player has throughout a level.
-    public int score_totalComboScore;   // This shows the score earn from all the combos in the current game.
+	public float[] completionTime;
+	public int score_totalComboScore;   // This shows the score earn from all the combos in the current game.
+	public int hitNumber;
+	public int deathNumber;
 
-    float completionTime;
 
-    public int comboScore_hits;         // Counts the hits landed during a combo.  This also displays on the game UI.\
+    int comboScore_hits;         // Counts the hits landed during a combo.  This also displays on the game UI.\
     int comboScore_hitsTracker;  // This helps count if we reached increments of 10 hits to increase the combo multiplier.
     public int comboScore_multiplier;   // Keeps track of the combo multiplier.  This displays on the game UI too.
     int comboScore_subtotal;     // This variable is where everything in the combo is added together before multiplied by the multiplier.                         
@@ -48,7 +50,14 @@ public class ScoreSystem : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-		
+		if (Input.GetKeyDown ("p")) {
+			saveScores ();
+		}
+	}
+
+	public void getCompletionTime(float[] time)
+	{
+		completionTime = time;
 	}
 
     /////////////////////
@@ -65,13 +74,7 @@ public class ScoreSystem : MonoBehaviour
     
     void score_addTimeCompletion(float timing_absolutePerfection, float timing_divine, float timing_godlike, float timing_devoted, float timing_apprentice)
     {
-        //completionTime = levelClear();  // THIS IS A FUNCTION PLACEHOLDER!!  Just sayin'.
-
-        //completionTime = minutes_timer * 60;  // First we assign minutes coverted to seconds.
-       // completionTime += seconds_timer;      // ... and add seconds.
-       // completionTime += millisec_timer; // and of cours eadd the milliseconds
-
-
+        float completionTime = levelClear();  // THIS IS A FUNCTION PLACEHOLDER!!  Just sayin'.
 
         if (completionTime <= timing_absolutePerfection)
         {
@@ -99,6 +102,11 @@ public class ScoreSystem : MonoBehaviour
         }
     }
     
+    float levelClear()
+    {
+        return 2;   //This is a placeholder. change later!. compelte din 2 secs.
+    }
+
     /////////////////
     // Combo Score //
     /////////////////
@@ -226,4 +234,8 @@ public class ScoreSystem : MonoBehaviour
     {
         return score_totalScore;
     }
+
+	void saveScores(){
+		SaveLoad.S.SaveDataOfObject (this);
+	}
 }
