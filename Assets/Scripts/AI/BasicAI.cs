@@ -51,6 +51,8 @@ public class BasicAI : MonoBehaviour
     public float knockback_duration = 0.2f;
     [Tooltip("The duration of staggering once the knockback is done.")]
     public float stagger_after_knockback_dur = 0.3f;
+    [Tooltip("The duration of the AI when it chooses to move backwards.")]
+    public float moveback_duration = 0.3f;
     [Tooltip("The amount of time after the ai reaches 0 hp to be destroyed.")]
     public float death_duration = 0.001f;
     private float current_stagger_dur = 0f; //the current time of being staggered.
@@ -183,7 +185,7 @@ public class BasicAI : MonoBehaviour
         cooldown_action = Random.Range(cooldown_action_min, cooldown_action_max);
         //start moving backwards
         getting_knockback = true;
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(moveback_duration);
         getting_knockback = false;
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().stoppingDistance = 8f;
         alerted = true; //set alert back to true to make the AI chase the player again.
@@ -333,8 +335,10 @@ public class BasicAI : MonoBehaviour
             //and then perform the selected action.
             if (distance_to_player <= 8f && !performing_action)
             {
+                Debug.Log("Deciding to attack or move.");
                 performing_action = true;  //the AI is now doing an action, used to make sure it is only doing one action.
                 //randomly choose between an movement or attack behavior, there is a 35% chance of being a movement behavior and 65% chance of an attack.
+                //comment the line below to "control" the AI.
                 action_selection = Random.Range(0, 100);
 
                 if(action_selection <= 35)
