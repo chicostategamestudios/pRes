@@ -32,8 +32,9 @@ public class Checkpoint_Script : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {    
-        pos1 = ThePlayer.transform.position.y; //gets the current y position of the player
-        /*
+		if (ActiveCheckPoint) {
+			pos1 = ThePlayer.transform.position.y; //gets the current y position of the player
+			/*
 		if (ThePlayer.GetComponentInParent<PlayerGamepad>().PlayerDied == true) // checks to see if PlayerDied is ever set to true within playergamepad
         {
             ThePlayer.transform.parent.position = SaveLoc; //Make the player respawn at the active checkpoint
@@ -51,29 +52,29 @@ public class Checkpoint_Script : MonoBehaviour
             print("Death Detected");
         }
 		*/
-		if (ThePlayer.GetComponentInChildren<PlayerHealth>().health <= 0 || ThePlayer.GetComponentInParent<PlayerGamepad>().PlayerDied == true)
-        {
-            ThePlayer.transform.parent.position = SaveLoc; //Make the player respawn at the active checkpoint
-            if (pos1 >= pos2) //Checks to see if the player is over a certain height
-            {
-                ThePlayer.GetComponent<PlayerHealth>().health = 100; // Resets player health for when they die
-                ThePlayer.GetComponentInParent<PlayerGamepad>().PlayerDied = false; //Sets PlayerDied to false when the player has respawned
-                    for (int i = 0; i < allEnemies.Length; i++)
-                    {             
-                        allEnemies[i].transform.position = EnemySpawnLoc[i]; //sets all enemies positions back to their originol positions for when the player is killed
-					allEnemies[i].SetActive(true);
-					allEnemies [i].GetComponent<BasicAI> ().reset ();
-						print("Enemies Back home");
-                        print(allEnemies[i]);
-                    }
-            }
-            print("Death Detected");
-        }
+			if (ThePlayer.GetComponentInChildren<PlayerHealth> ().health <= 0 || ThePlayer.GetComponentInParent<PlayerGamepad> ().isPlayerDead () == true) {
+				ThePlayer.transform.parent.position = SaveLoc; //Make the player respawn at the active checkpoint
+				if (pos1 >= pos2) { //Checks to see if the player is over a certain height
+					Debug.Log("fuckkceakc");
+					ThePlayer.GetComponent<PlayerHealth> ().health = 100; // Resets player health for when they die
+					ThePlayer.GetComponentInParent<PlayerGamepad> ().setPlayerDeath (false);//Sets PlayerDied to false when the player has respawned
+					for (int i = 0; i < allEnemies.Length; i++) {             
+						allEnemies [i].transform.position = EnemySpawnLoc [i]; //sets all enemies positions back to their originol positions for when the player is killed
+						allEnemies [i].SetActive (true);
+						allEnemies [i].GetComponent<BasicAI> ().reset ();
+						print ("Enemies Back home");
+						print (allEnemies [i]);
+					}
+				}
+				print ("Death Detected");
+			}
+		}
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") //Checks to see if the player has collided with the checkpoint
         {
+			Debug.Log ("poo");
             CheckpointPrefab = GameObject.FindGameObjectsWithTag("Checkpoint"); // Finds all checkpoints within the map
             for (int i = 0; i < CheckpointPrefab.Length; i++)
             {
