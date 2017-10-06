@@ -295,4 +295,9 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 
 		return return_target;
 	}
+
+	//ADDED BY TJ
+	public bool GetLockOn(){
+		return target_locked;
+	}
 }
