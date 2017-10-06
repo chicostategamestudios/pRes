@@ -3,85 +3,97 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Animations;
 
-// This script works with the animation controller for the player character Brian Gideon.
+// This script works with the animation controller for the player character Brian Gideon, and his sword animations.
 public class Animations_BrianGideon : MonoBehaviour
 {
-    public Animator animator;
+    public Animator playerAnimator;
+    public Animator swordAnimator;
     public GameObject playerObject;
+    public GameObject sword;
     public PlayerGamepad player;
 
-    float maxWalkSpeed;
+    int lightAttackCombo;     // Max move speed is 48.
+
 
 	// Use this for initialization
 	void Start ()
     {
-        animator = GetComponent<Animator>();    // Here we can refer to the animator controller we need to use.
         player = playerObject.GetComponent<PlayerGamepad>();    // We will also need certain variables from the gamepad script.
+        sword = GetComponent<GameObject>();
 
-        maxWalkSpeed = 10F;
+        playerAnimator = GetComponent<Animator>();    // Here we can refer to the playerAnimator controller we need to use.
+        swordAnimator = GetComponent<Animator>();       // Including his sword animator.
+
+        lightAttackCombo = 0;
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         // Most of these animation conditions use the boolean parameters set up in the animation controller.
-
-        // Idle (neither walking nor running, not there is no Idle parameter in the animation controller)
-        if (player.grounded == true && player.current_speed == 0)
+        if (player.current_speed > 0)
         {
-            animator.SetBool("isRunning", false);
-            animator.SetBool("isWalking", false);
+            playerAnimator.SetFloat("MoveBlend", ((player.current_speed / 48f) * 0.025f));
         }
-        // isWalking
-        else if (player.grounded == true && player.current_speed > 0 && player.current_speed <= maxWalkSpeed)
+        else if (player.current_speed == 0)
         {
-            animator.SetBool("isRunning", false);
-            animator.SetBool("isWalking", true);
-        }
-        // isRunning
-        else if (player.grounded == true && player.current_speed > maxWalkSpeed)
-        {
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isRunning", true);
+            playerAnimator.SetFloat("MoveBlend", 0);
         }
 
-        // isJumping
-        if ((Input.GetButton("Controller_A") && player.grounded == true))
+        // inTheAir
+        if (player.grounded == false)
         {
-            animator.SetBool("isJumping", true); 
+            playerAnimator.SetBool("inTheAir", true);
         }
-
         // Landed!
-        if (player.grounded == true)
+        else if (player.grounded == true)
         {
-            animator.SetBool("inTheAir", false);
-        }
-        // inTheAir (not grounded)
-        else if (player.grounded == false)
-        {
-            animator.SetBool("inTheAir", true);
-            animator.SetBool("isJumping", false);   // The player is done jumping the moment his feet leaves the ground. 
+            playerAnimator.SetBool("inTheAir", false);
         }
 
         // Air Dashing!
-        if(player.dashing == true)
+        if (player.dashing == true)
         {
-            animator.SetBool("isAirDashing", true);
-        }
-        // (not) Air Dashing!
-        else if (player.dashing == false)
-        {
-            animator.SetBool("isAirDashing", false);
+            playerAnimator.Play("Start Air Dash");
         }
 
         // Rail Grinding
         if (player.grinding == true)
         {
-            animator.SetBool("isGrinding", true);
+            playerAnimator.SetBool("isGrinding", true);
         }
         else if (player.grinding == false)
         {
-            animator.SetBool("isGrinding", false);
+            playerAnimator.SetBool("isGrinding", false);
+        }
+
+        if (Input.GetButtonDown("Controller_Y"))
+        {
+            switch (lightAttackCombo)
+            {
+                case 0:
+
+                    playerAnimator.Play("Swing1 V1");
+                    playerAnimator.Play("Sword1 V1");
+                    lightAttackCombo = 1;
+                    break;
+                case 1:
+                    playerAnimator.Play("Swing2 V1");
+                    playerAnimator.Play("Sword2 V1");
+                    lightAttackCombo = 2;
+                    break;
+                case 2:
+                    playerAnimator.Play("Swing3 V1");
+                    playerAnimator.Play("Sword3 V1");
+                    lightAttackCombo = 0;
+                    break;
+            }
+
+        }
+        if (Input.GetButtonDown("Controller_B"))
+        {
+            playerAnimator.Play("Swing4 V1");
+            playerAnimator.Play("Sword4 V1");
         }
     }
 }
