@@ -30,7 +30,7 @@ public class PlayerAttack : MonoBehaviour {
     //Detect if hitting an Enemy
     public void OnTriggerEnter(Collider col)
     {
-		if (col.tag == "Enemy Hitbox" && my_combat.is_attacking)//checks if target is an enemy and player is attacking
+		if (col.tag == "Enemy Hitbox"/* && my_combat.is_attacking*/)//checks if target is an enemy and player is attacking
         {
            // Debug.Log("Hit Enemy");
 			my_ai = col.GetComponentInParent<BasicAI> ();
