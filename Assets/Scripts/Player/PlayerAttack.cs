@@ -1,4 +1,4 @@
-﻿//Created by Unknown - Last Modified by Thaddeus Thompson - 9/19/17
+﻿//Created by Unknown - Last Modified by Thaddeus Thompson - 10/06/17
 //This script interacts with the Combat and BasicAI scripts and manages hit detection and weapon damage.
 
 using System.Collections;
@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour {
     {
 		if (col.tag == "Enemy Hitbox" && my_combat.is_attacking)//checks if target is an enemy and player is attacking
         {
-            Debug.Log("Hit Enemy");
+           // Debug.Log("Hit Enemy");
 			my_ai = col.GetComponentInParent<BasicAI> ();
 
 			attack_type = my_combat.GetAttackType();//calls function in Combat to determine light or heavy attack
@@ -40,12 +40,12 @@ public class PlayerAttack : MonoBehaviour {
 				damage = 10;
 				my_ai.StartCoroutine ("DamageEnemy", damage);
 				my_combat.is_attacking = false;
-				Debug.Log ("Deal light damage " + damage);
+			//	Debug.Log ("Deal light damage " + damage);
 			} else {
 				damage = 15;
 				my_ai.StartCoroutine ("DamageEnemy", damage);
 				my_combat.is_attacking = false;
-				Debug.Log ("Deal strong damage " + damage);
+			//	Debug.Log ("Deal strong damage " + damage);
 			}
         }
 

@@ -1,4 +1,4 @@
-﻿//Created by Unknown - Last Modified by Thaddeus Thompson - 9/28/17
+﻿//Created by Unknown - Last Modified by Thaddeus Thompson - 10/06/17
 //This script controls the combat abilities of the player character.
 
 using System.Collections;
@@ -45,8 +45,9 @@ public class Combat : MonoBehaviour {
 	private GameObject my_collider;
 	private bool attack;//used by PlayerAttack to determine attack type
 	 public bool is_attacking = false;//used to control collision window
-	public int light_attack_number;
-	public int strong_attack_number;
+	//public int light_attack_number;
+	//public int strong_attack_number;
+	private int attack_number;
 	public float attack_timer;
 	[HideInInspector] public BoxCollider weapon_collider;
 	private float dodge_dir_x;
@@ -117,9 +118,9 @@ public class Combat : MonoBehaviour {
 		if (Input.GetButtonDown("Controller_Y") && !is_light_attacking && GetComponent<PlayerGamepad>().GamepadAllowed == true)
         {
 			forward = transform.TransformDirection(Vector3.forward);
-            Debug.Log("Light Attack");
+            //Debug.Log("Light Attack");
 			is_attacking = true;
-			light_attack_number++;
+			attack_number++;
 			attack_timer = 1f;
 			targeted_enemy = my_camera.GetLockOn ();
 			// Disable Player movement
@@ -163,9 +164,9 @@ public class Combat : MonoBehaviour {
 		if (Input.GetButtonDown("Controller_B") && !is_strong_attacking && GetComponent<PlayerGamepad>().GamepadAllowed == true)
         {
 			forward = transform.TransformDirection(Vector3.forward);
-            Debug.Log("Heavy Attack");
+            //Debug.Log("Heavy Attack");
 			is_attacking = true;
-			strong_attack_number++;
+			attack_number++;
 			attack_timer = 1f;
 			targeted_enemy = my_camera.GetLockOn ();
             // Disable Player movement
@@ -317,7 +318,7 @@ public class Combat : MonoBehaviour {
 			// move player ~ 10 units in direction joystick is pointing
 			transform.Translate(forward * dodge_distance * Time.smoothDeltaTime, Space.World);
 				//transform.Translate(dodge_dir * dodge_distance * Time.smoothDeltaTime, Space.World);
-			Debug.Log (dodge_dir_rotated);
+			//Debug.Log (dodge_dir_rotated);
 		}
 
         // Counter//////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -328,8 +329,9 @@ public class Combat : MonoBehaviour {
 
 		attack_timer -= Time.deltaTime;
 		if (attack_timer <= 0f) {
-			light_attack_number = 0;
-			strong_attack_number = 0;
+			//light_attack_number = 0;
+			//strong_attack_number = 0;
+			attack_number = 0;
 		}
     }
 
@@ -386,7 +388,7 @@ public class Combat : MonoBehaviour {
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Needs to deferintiate between light and strong so there is a delay if changed mid combo
     IEnumerator ComboTimerLight()
     {
-		if (light_attack_number <= 4) {
+		if (attack_number <= 4) {
 			is_light_attacking = false;
 			is_comboing = true;
 			GetComponent<PlayerGamepad>().GamepadAllowed = true;
@@ -395,14 +397,14 @@ public class Combat : MonoBehaviour {
 			GetComponent<PlayerGamepad> ().GamepadAllowed = false;
 			yield return new WaitForSeconds (.5f);
 			is_comboing = false;
-			light_attack_number = 0;
+			attack_number = 0;
 			GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 		}
     }
 
 	IEnumerator ComboTimerStrong()
 	{
-		if (strong_attack_number <= 4) {
+		if (attack_number <= 4) {
 			is_strong_attacking = false;
 			is_comboing = true;
 			GetComponent<PlayerGamepad>().GamepadAllowed = true;
@@ -411,7 +413,7 @@ public class Combat : MonoBehaviour {
 			GetComponent<PlayerGamepad> ().GamepadAllowed = false;
 			yield return new WaitForSeconds (.5f);
 			is_comboing = false;
-			strong_attack_number = 0;
+			attack_number = 0;
 			GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 		}
 	}
