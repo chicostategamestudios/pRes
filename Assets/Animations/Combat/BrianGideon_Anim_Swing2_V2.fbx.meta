@@ -276,7 +276,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: 
+    motionNodeName: Gideon_Rig/Gideon_geo
     animationImportErrors: 
     animationImportWarnings: "\nClip 'V2' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve

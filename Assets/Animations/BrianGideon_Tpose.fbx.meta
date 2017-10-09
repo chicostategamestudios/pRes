@@ -170,7 +170,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: 
+    motionNodeName: Gideon_geo
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 

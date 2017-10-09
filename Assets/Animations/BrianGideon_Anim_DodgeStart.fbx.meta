@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 167e3a50ea212ba469a781609f46fe37
-timeCreated: 1505427832
+guid: a602691313c398041a9d9445acfd8c81
+timeCreated: 1507449824
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -257,7 +257,7 @@ ModelImporter:
     400248: Gideon_RigV3_Chavez:world_CTRL
     4300000: Gideon_RigV3_Chavez:Gideon_geo
     4300002: Gideon_RigV3_Chavez:cape_geo
-    7400000: Jump
+    7400000: DodgeStart
     9500000: //RootNode
     13700000: Gideon_RigV3_Chavez:cape_geo
     13700002: Gideon_RigV3_Chavez:Gideon_geo 1
@@ -272,10 +272,10 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: Gideon_RigV3_Chavez:Gideon_geo
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Jump' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Gideon_RigV3_Chavez:spine_joint3_bn' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n"
+    animationImportWarnings: "\nClip 'DodgeStart' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'Gideon_RigV3_Chavez:spine_joint3_bn' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -729,13 +729,13 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: BrianGideon_Anim_RegularJump(Clone)
+    - name: BrianGideon_Anim_DodgeStart(Clone)
       parentName: 
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:Gideon_CTRL
-      parentName: BrianGideon_Anim_RegularJump(Clone)
+      parentName: BrianGideon_Anim_DodgeStart(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -746,8 +746,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:COG_CTRL
       parentName: Gideon_RigV3_Chavez:world_CTRL
-      position: {x: -0, y: 0.7864956, z: -0.02216593}
-      rotation: {x: 0.0036750727, y: 0.36478612, z: 0.00937982, w: 0.93103683}
+      position: {x: -0, y: 0.6053555, z: -0.02216593}
+      rotation: {x: 0.30242544, y: 0.18573795, z: 0.019873587, w: 0.93469}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_hip_CTRL
       parentName: Gideon_RigV3_Chavez:COG_CTRL
@@ -791,18 +791,18 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:spine_CTRL1
       parentName: Gideon_RigV3_Chavez:COG_CTRL
-      position: {x: 4.338735e-32, y: 0.10236145, z: 0.013429243}
-      rotation: {x: 0.000050730043, y: 0.005035442, z: 0.010073958, w: 0.9999366}
+      position: {x: -0, y: 0.10236145, z: 0.013429243}
+      rotation: {x: 0.12298134, y: -0, z: -0, w: 0.992409}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:spine_CTRL2
       parentName: Gideon_RigV3_Chavez:spine_CTRL1
-      position: {x: 3.9884485e-17, y: 0.08572861, z: -0.004090665}
-      rotation: {x: 0.000050730043, y: 0.005035442, z: 0.010073958, w: 0.9999366}
+      position: {x: -0, y: 0.08572861, z: -0.004090665}
+      rotation: {x: 0.28187054, y: -0, z: -0, w: 0.9594525}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:spine_CTRL3
       parentName: Gideon_RigV3_Chavez:spine_CTRL2
-      position: {x: 2.3018585e-17, y: 0.10918999, z: -0.012299368}
-      rotation: {x: -0.05361823, y: 0.059075154, z: 0.013224983, w: 0.9967248}
+      position: {x: -0, y: 0.10918999, z: -0.012299368}
+      rotation: {x: 0.12298134, y: -0, z: -0, w: 0.992409}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_clavivle_CTRL
       parentName: Gideon_RigV3_Chavez:spine_CTRL3
@@ -812,27 +812,27 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:L_shoulder_CTRL
       parentName: Gideon_RigV3_Chavez:L_clavivle_CTRL
       position: {x: -0.19580603, y: 0.014133911, z: -0.0000000023841857}
-      rotation: {x: -0.28645745, y: -0.19424762, z: 0.4438744, w: 0.82655036}
+      rotation: {x: -0.44444227, y: 0.16422208, z: 0.47119302, w: 0.74396193}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_elbow_CTRL
       parentName: Gideon_RigV3_Chavez:L_shoulder_CTRL
       position: {x: -0.2483806, y: -0.03919418, z: -0.06255933}
-      rotation: {x: 0, y: 0.42600942, z: -0, w: 0.90471876}
+      rotation: {x: 0, y: 0.6036452, z: -0, w: 0.7972531}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_wrist_CTRL
       parentName: Gideon_RigV3_Chavez:L_elbow_CTRL
       position: {x: -0.24239959, y: -0.011375427, z: 0.040228}
-      rotation: {x: 0.10782147, y: 0.104365006, z: -0.052005444, w: 0.98730844}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:neck_CTRL
       parentName: Gideon_RigV3_Chavez:spine_CTRL3
-      position: {x: 4.4848624e-17, y: 0.20880416, z: 0.015481158}
-      rotation: {x: 0.13803385, y: 0.103001416, z: -0.014434908, w: 0.9849513}
+      position: {x: -0, y: 0.20880416, z: 0.015481158}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:head_CTRL
       parentName: Gideon_RigV3_Chavez:neck_CTRL
-      position: {x: -1.4504997e-10, y: 0.06428924, z: 0.023450954}
-      rotation: {x: 0, y: -0.46098825, z: -0, w: 0.88740623}
+      position: {x: -1.4504986e-10, y: 0.06428924, z: 0.023450954}
+      rotation: {x: -0.35463557, y: -0.14750585, z: 0.014593957, w: 0.92318076}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:R_clavivle_CTRL
       parentName: Gideon_RigV3_Chavez:spine_CTRL3
@@ -842,17 +842,17 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:R_shoulder_CTRL
       parentName: Gideon_RigV3_Chavez:R_clavivle_CTRL
       position: {x: 0.195806, y: 0.014135437, z: 0}
-      rotation: {x: 0.05048202, y: 0.061878126, z: -0.58997345, w: 0.80346376}
+      rotation: {x: -0.25048858, y: -0.32773015, z: -0.5531836, w: 0.7237654}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:R_elbow_CTRL
       parentName: Gideon_RigV3_Chavez:R_shoulder_CTRL
       position: {x: 0.248381, y: -0.03919998, z: -0.0625593}
-      rotation: {x: 0, y: -0.31899098, z: -0, w: 0.9477578}
+      rotation: {x: 0, y: -0.4306754, z: -0, w: 0.9025069}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:R_wrist_CTRL
       parentName: Gideon_RigV3_Chavez:R_elbow_CTRL
       position: {x: 0.24239898, y: -0.011370086, z: 0.040227998}
-      rotation: {x: 0.047006715, y: -0, z: -0, w: 0.9988946}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_arm_IK_CTRL
       parentName: Gideon_RigV3_Chavez:world_CTRL
@@ -861,7 +861,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_arm_IK
       parentName: Gideon_RigV3_Chavez:L_arm_IK_CTRL
-      position: {x: 0.28044182, y: -0.3603679, z: 0.26775762}
+      position: {x: 0.52313733, y: -0.99235684, z: 0.47094285}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_elbow_PV_CTRL
@@ -871,18 +871,18 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_hand_finger_CTRL
       parentName: Gideon_RigV3_Chavez:world_CTRL
-      position: {x: -0.24723999, y: 0.8753004, z: 0.76424116}
-      rotation: {x: -0.32885396, y: 0.591625, z: 0.3605729, w: 0.6417337}
+      position: {x: -0.23843025, y: 0.16240487, z: 0.59284383}
+      rotation: {x: 0.009698684, y: 0.43249014, z: 0.5668481, w: 0.70110023}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_knee_PV_CTRL
       parentName: Gideon_RigV3_Chavez:world_CTRL
-      position: {x: -0.16813497, y: 0.463864, z: 0.48652384}
+      position: {x: -0.12644488, y: 0.463864, z: 0.48652384}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_leg_IK_CTRL
       parentName: Gideon_RigV3_Chavez:world_CTRL
-      position: {x: -0.2504142, y: 0.018674744, z: 0.19299488}
-      rotation: {x: 0, y: -0.021481007, z: -0, w: 0.9997693}
+      position: {x: -0.13642012, y: 0.018674744, z: 0.23613974}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_ankle_pivot_GRP
       parentName: Gideon_RigV3_Chavez:L_leg_IK_CTRL
@@ -892,7 +892,7 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:L_toe_tip_pivot_GRP
       parentName: Gideon_RigV3_Chavez:L_ankle_pivot_GRP
       position: {x: -0.018238612, y: -0.06336635, z: 0.25021586}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0.032282982, y: -0, z: -0, w: 0.99947876}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_swivel_pivot_GRP
       parentName: Gideon_RigV3_Chavez:L_toe_tip_pivot_GRP
@@ -902,7 +902,7 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:L_heel_lift_pivot_GRP
       parentName: Gideon_RigV3_Chavez:L_swivel_pivot_GRP
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0.2647147, y: -0, z: -0, w: 0.9643268}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:L_ankle_IK
       parentName: Gideon_RigV3_Chavez:L_heel_lift_pivot_GRP
@@ -931,7 +931,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:R_arm_IK
       parentName: Gideon_RigV3_Chavez:R_arm_IK_CTRL
-      position: {x: -0.51767534, y: -0.46990806, z: 0.30742642}
+      position: {x: -0.42900616, y: -0.949494, z: 0.12122915}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:R_elbow_PV_CTRL
@@ -941,18 +941,18 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:R_hand_finger_CTRL
       parentName: Gideon_RigV3_Chavez:world_CTRL
-      position: {x: 0.47593978, y: 0.59838605, z: -0.23040727}
-      rotation: {x: -0.34828302, y: 0.106324136, z: -0.4099126, w: 0.83628094}
+      position: {x: 0.3744107, y: 0.14864907, z: 0.07374704}
+      rotation: {x: -0.039763868, y: 0.014584738, z: -0.6621197, w: 0.7482003}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:R_knee_PV_CTRL
       parentName: Gideon_RigV3_Chavez:world_CTRL
-      position: {x: 0.8093447, y: 0.68279135, z: 0.4865239}
+      position: {x: 0.126445, y: 0.46386397, z: 0.4865239}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:R_leg_IK_CTRL
       parentName: Gideon_RigV3_Chavez:world_CTRL
-      position: {x: 0.27471054, y: 0.0186747, z: -0.28095233}
-      rotation: {x: 0, y: 0.2780961, z: -0, w: 0.9605533}
+      position: {x: 0.13642, y: 0.0186747, z: -0.40037045}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:R_ankle_pivot_GRP
       parentName: Gideon_RigV3_Chavez:R_leg_IK_CTRL
@@ -962,7 +962,7 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:R_toe_tip_pivot_GRP
       parentName: Gideon_RigV3_Chavez:R_ankle_pivot_GRP
       position: {x: 0.018238, y: -0.063366406, z: 0.25021598}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0.05582151, y: -0, z: -0, w: 0.9984408}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:R_swivel_GRP
       parentName: Gideon_RigV3_Chavez:R_toe_tip_pivot_GRP
@@ -972,7 +972,7 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:R_heel_lift_pivot_GRP
       parentName: Gideon_RigV3_Chavez:R_swivel_GRP
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.022687335, y: 0, z: -0, w: 0.9997426}
+      rotation: {x: 0.23344538, y: -0, z: -0, w: 0.9723699}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:R_ankle_IK
       parentName: Gideon_RigV3_Chavez:R_heel_lift_pivot_GRP
@@ -996,29 +996,29 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:spine_root_bn
       parentName: Gideon_RigV3_Chavez:world_CTRL
-      position: {x: 3.4089837e-10, y: 1.0258595, z: -0.02216593}
-      rotation: {x: -0.46634763, y: 0.531526, z: -0.46634766, w: 0.531526}
-      scale: {x: 1.0000005, y: 1.0000002, z: 1}
+      position: {x: -0.0000000014249574, y: 1.02586, z: -0.022165941}
+      rotation: {x: -0.46634763, y: 0.5315261, z: -0.46634763, w: 0.531526}
+      scale: {x: 1.0000007, y: 1.0000002, z: 1.000001}
     - name: Gideon_RigV3_Chavez:L_hip_joint_bn
       parentName: Gideon_RigV3_Chavez:spine_root_bn
       position: {x: 0.051580757, y: -0.0067671034, z: -0.110347584}
-      rotation: {x: -0.02608201, y: -0.4681504, z: 0.88047105, w: 0.07018296}
-      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+      rotation: {x: -0.026082005, y: -0.46815044, z: 0.880471, w: 0.070183046}
+      scale: {x: 1.0000005, y: 1.0000001, z: 1.0000005}
     - name: Gideon_RigV3_Chavez:L_knee_joint_bn
       parentName: Gideon_RigV3_Chavez:L_hip_joint_bn
       position: {x: -0.5006167, y: -9.8684824e-17, z: -6.901509e-17}
-      rotation: {x: -0.8492422, y: -0.1276882, z: -0.057611782, w: 0.5090819}
-      scale: {x: 1.0000004, y: 1.0000006, z: 1.0000007}
+      rotation: {x: -0.84924215, y: -0.12768826, z: -0.057611726, w: 0.5090819}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000004}
     - name: Gideon_RigV3_Chavez:L_ankle_joint_bn
       parentName: Gideon_RigV3_Chavez:L_knee_joint_bn
       position: {x: -0.39530557, y: 3.8665072e-17, z: 5.485967e-17}
-      rotation: {x: 0.80358803, y: 0.58658135, z: -0.04106769, w: 0.092098534}
-      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000006}
+      rotation: {x: 0.8035879, y: 0.5865814, z: -0.041067686, w: 0.092098586}
+      scale: {x: 1.0000001, y: 0.9999998, z: 1.0000001}
     - name: Gideon_RigV3_Chavez:L_foot_joint_bn
       parentName: Gideon_RigV3_Chavez:L_ankle_joint_bn
       position: {x: -0.11669814, y: 1.1687461e-17, z: -1.1433335e-16}
-      rotation: {x: 0.0067814104, y: 0.022976317, z: -0.2829941, w: 0.9588225}
-      scale: {x: 1.0000005, y: 0.99999976, z: 1.0000004}
+      rotation: {x: 0.0067814477, y: 0.022976365, z: -0.28299397, w: 0.9588225}
+      scale: {x: 1.0000005, y: 1.0000001, z: 1.0000006}
     - name: Gideon_RigV3_Chavez:L_toe_joint_be
       parentName: Gideon_RigV3_Chavez:L_foot_joint_bn
       position: {x: -0.15295254, y: 4.0337585e-17, z: -1.11022296e-17}
@@ -1027,23 +1027,23 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:R_hip_joint_bn
       parentName: Gideon_RigV3_Chavez:spine_root_bn
       position: {x: 0.051581167, y: -0.006767188, z: 0.11034799}
-      rotation: {x: 0.46815112, y: -0.02608193, z: 0.07018312, w: -0.88047063}
-      scale: {x: 1, y: 1.0000008, z: 1.000001}
+      rotation: {x: 0.46815112, y: -0.026081976, z: 0.07018312, w: -0.88047063}
+      scale: {x: 1.0000004, y: 1.0000008, z: 1.000001}
     - name: Gideon_RigV3_Chavez:R_knee_joint_bn
       parentName: Gideon_RigV3_Chavez:R_hip_joint_bn
       position: {x: 0.5006163, y: 0.0000002467137, z: -0.00000013650127}
-      rotation: {x: -0.8492422, y: -0.12768836, z: -0.05761168, w: 0.5090817}
-      scale: {x: 1.0000013, y: 1.0000002, z: 1.0000004}
+      rotation: {x: -0.84924215, y: -0.12768833, z: -0.057611734, w: 0.5090818}
+      scale: {x: 1.0000006, y: 1.0000002, z: 1}
     - name: Gideon_RigV3_Chavez:R_ankle_joint_bn
       parentName: Gideon_RigV3_Chavez:R_knee_joint_bn
       position: {x: 0.39530554, y: 0.0000001282377, z: 1.9184653e-15}
-      rotation: {x: 0.8035881, y: 0.5865814, z: -0.041067317, w: 0.09209783}
-      scale: {x: 0.99999994, y: 1.0000004, z: 1.0000007}
+      rotation: {x: 0.8035881, y: 0.5865814, z: -0.041067347, w: 0.09209784}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000004}
     - name: Gideon_RigV3_Chavez:R_foot_joint_bn
       parentName: Gideon_RigV3_Chavez:R_ankle_joint_bn
       position: {x: 0.116697975, y: 0.00000015876802, z: -0.00000021263155}
-      rotation: {x: 0.006781417, y: 0.022976404, z: -0.28299403, w: 0.9588225}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000004}
+      rotation: {x: 0.0067814207, y: 0.022976408, z: -0.28299403, w: 0.9588225}
+      scale: {x: 1.0000004, y: 1.0000007, z: 1.0000004}
     - name: Gideon_RigV3_Chavez:R_toe_joint_be
       parentName: Gideon_RigV3_Chavez:R_foot_joint_bn
       position: {x: 0.15295286, y: -1.4210854e-16, z: -0.00000039479514}
@@ -1051,64 +1051,64 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:spine_joint1_bn
       parentName: Gideon_RigV3_Chavez:spine_root_bn
-      position: {x: -0.10323861, y: 3.9914205e-12, z: 3.532759e-10}
-      rotation: {x: 0.9960364, y: -0.088947, z: -0, w: 0.000000059604645}
-      scale: {x: 1.0000004, y: 1.0000006, z: 1.0000002}
+      position: {x: -0.10323861, y: 0.000000004314023, z: -5.3290704e-17}
+      rotation: {x: 0.9960364, y: -0.08894712, z: 0.000000029802322, w: -0.000000029802322}
+      scale: {x: 1, y: 1.0000007, z: 1.0000002}
     - name: Gideon_RigV3_Chavez:spine_joint2_bn
       parentName: Gideon_RigV3_Chavez:spine_joint1_bn
-      position: {x: -0.08582619, y: 4.9633717e-12, z: 5.1876853e-10}
-      rotation: {x: 0.00000003345866, y: 0.000000039964252, z: 0.032238837, w: 0.99948025}
-      scale: {x: 1.0000007, y: 1.0000006, z: 1.0000008}
+      position: {x: -0.08582619, y: 0.000000013705434, z: -3.5527136e-17}
+      rotation: {x: -0.000000054921443, y: 0.00000006572654, z: 0.032238815, w: 0.9994802}
+      scale: {x: 1.0000005, y: 1.0000007, z: 1.0000004}
     - name: Gideon_RigV3_Chavez:spine_joint3_bn
       parentName: Gideon_RigV3_Chavez:spine_joint2_bn
-      position: {x: -0.10988052, y: -0.0000000034296026, z: 0.0000000011781458}
-      rotation: {x: 0.000000026229877, y: -0.00000003306143, z: -0.005280053, w: 0.9999861}
-      scale: {x: 1.0000015, y: 1.0000019, z: 1.0000007}
+      position: {x: -0.10988052, y: 0.000000007843776, z: -1.7763568e-17}
+      rotation: {x: 0.00000005244113, y: -0.00000006627911, z: -0.0052801217, w: 0.99998605}
+      scale: {x: 1.0000012, y: 1.0000018, z: 1.0000018}
     - name: Gideon_RigV3_Chavez:spine_joint4_bn
       parentName: Gideon_RigV3_Chavez:spine_joint3_bn
       position: {x: -0.09142648, y: 8.8817837e-17, z: -3.30562e-17}
-      rotation: {x: -0.9881152, y: 0.15371552, z: -0.00000004104199, w: -0.00000003248157}
-      scale: {x: 0.9999995, y: 1.0000005, z: 1.0000007}
+      rotation: {x: -0.98811513, y: 0.1537155, z: -0.000000004769816, w: 0.0000000044127515}
+      scale: {x: 1.0000002, y: 0.99999976, z: 1.0000004}
     - name: Gideon_RigV3_Chavez:R_clavicle_joint1_bn
       parentName: Gideon_RigV3_Chavez:spine_joint4_bn
       position: {x: -0.02716746, y: 0.005706697, z: 0.08}
-      rotation: {x: 0.572399, y: 0.41516182, z: 0.52396303, w: -0.4748293}
-      scale: {x: 0.99999964, y: 0.9999994, z: 0.99999905}
+      rotation: {x: 0.572399, y: 0.41516185, z: 0.523963, w: -0.47482932}
+      scale: {x: 0.9999994, y: 1.0000004, z: 1}
     - name: Gideon_RigV3_Chavez:R_clavicle_joint2_bn
       parentName: Gideon_RigV3_Chavez:R_clavicle_joint1_bn
       position: {x: 0.05422747, y: -0.035298944, z: -8.983256e-10}
-      rotation: {x: 0.000000059604645, y: -0.000000029802322, z: -0, w: 1}
-      scale: {x: 1, y: 1.0000002, z: 1}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000004, z: 1}
     - name: Gideon_RigV3_Chavez:R_shoulder_joint_bn
       parentName: Gideon_RigV3_Chavez:R_clavicle_joint2_bn
       position: {x: 0.138888, y: -0.0000028119277, z: -0.0000000021481539}
-      rotation: {x: -0.011096652, y: -0.030429902, z: -0.035330918, w: 0.9988507}
-      scale: {x: 1.0000007, y: 0.9999995, z: 1.0000005}
+      rotation: {x: -0.011096683, y: -0.03043013, z: -0.035330914, w: 0.9988507}
+      scale: {x: 1.000001, y: 0.9999992, z: 1.0000005}
     - name: Gideon_RigV3_Chavez:R_elbow_joint_bn
       parentName: Gideon_RigV3_Chavez:R_shoulder_joint_bn
       position: {x: 0.25912046, y: 0.000005688128, z: -0.00000013016643}
-      rotation: {x: 0.018682228, y: 0.06486479, z: -0.025696082, w: 0.99738824}
-      scale: {x: 0.9999998, y: 1.0000006, z: 1.0000001}
+      rotation: {x: 0.01868207, y: 0.06486516, z: -0.025695998, w: 0.99738824}
+      scale: {x: 1, y: 1.0000006, z: 1.0000006}
     - name: Gideon_RigV3_Chavez:R_wrist_joint_bn
       parentName: Gideon_RigV3_Chavez:R_elbow_joint_bn
       position: {x: 0.24597733, y: -0.0000054103484, z: -0.00000008344354}
-      rotation: {x: 0.0043876446, y: 0.1896556, z: -0.022709055, w: 0.98157823}
-      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+      rotation: {x: 0.0043876856, y: 0.18965553, z: -0.022709066, w: 0.98157823}
+      scale: {x: 1.0000004, y: 0.9999998, z: 1.0000004}
     - name: Gideon_RigV3_Chavez:R_index_joint1_bn
       parentName: Gideon_RigV3_Chavez:R_wrist_joint_bn
       position: {x: 0.07445745, y: 8.5265126e-16, z: 0.00000033397495}
-      rotation: {x: -0.002207816, y: -0.09887918, z: 0.06948855, w: 0.99266785}
-      scale: {x: 1.0000001, y: 0.99999994, z: 1}
+      rotation: {x: -0.0022077376, y: -0.09887865, z: 0.06948936, w: 0.9926678}
+      scale: {x: 0.99999917, y: 1, z: 0.99999994}
     - name: Gideon_RigV3_Chavez:R_index_joint2_bn
       parentName: Gideon_RigV3_Chavez:R_index_joint1_bn
       position: {x: 0.031613316, y: 0.0000053882463, z: -0.00000016930065}
-      rotation: {x: -0.00804328, y: -0.029623235, z: 0.029162664, w: 0.9991033}
-      scale: {x: 1.0000001, y: 1.0000002, z: 1.000001}
+      rotation: {x: -0.008043394, y: -0.029623998, z: 0.029162833, w: 0.9991033}
+      scale: {x: 1.0000006, y: 0.9999997, z: 1.0000004}
     - name: Gideon_RigV3_Chavez:R_index_joint3_bn
       parentName: Gideon_RigV3_Chavez:R_index_joint2_bn
       position: {x: 0.032315213, y: -0.0000049461555, z: -0.0000000025753728}
-      rotation: {x: -0.00025174278, y: -0.00010591363, z: 0.03489443, w: 0.99939096}
-      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000002}
+      rotation: {x: -0.00025165812, y: -0.0001048296, z: 0.034896377, w: 0.99939096}
+      scale: {x: 1, y: 1.0000014, z: 1.0000011}
     - name: Gideon_RigV3_Chavez:R_index_joint4_be
       parentName: Gideon_RigV3_Chavez:R_index_joint3_bn
       position: {x: 0.041766897, y: 0.0000016705789, z: -0.00000011755939}
@@ -1117,18 +1117,18 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:R_middle_joint1_bn
       parentName: Gideon_RigV3_Chavez:R_wrist_joint_bn
       position: {x: 0.070382215, y: 8.5265126e-16, z: 0.02037136}
-      rotation: {x: -0.021058917, y: -0.15766813, z: 0.072006546, w: 0.98463815}
-      scale: {x: 0.99999976, y: 1.0000002, z: 0.9999999}
+      rotation: {x: -0.021059, y: -0.15766765, z: 0.072007254, w: 0.9846383}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1.0000005}
     - name: Gideon_RigV3_Chavez:R_middle_joint2_bn
       parentName: Gideon_RigV3_Chavez:R_middle_joint1_bn
       position: {x: 0.032953292, y: 0.00000013532375, z: 0.000000044184585}
-      rotation: {x: -0.022946654, y: -0.03279772, z: -0.023111079, w: 0.9989312}
-      scale: {x: 0.99999994, y: 0.9999999, z: 1}
+      rotation: {x: -0.022946488, y: -0.032798823, z: -0.023111483, w: 0.9989313}
+      scale: {x: 0.99999964, y: 1.0000002, z: 1.0000001}
     - name: Gideon_RigV3_Chavez:R_middle_joint3_bn
       parentName: Gideon_RigV3_Chavez:R_middle_joint2_bn
       position: {x: 0.037150074, y: 0.000005541642, z: -0.000000035417507}
-      rotation: {x: -0.005520275, y: -0.0030082855, z: 0.036891952, w: 0.9992996}
-      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000007}
+      rotation: {x: -0.005520219, y: -0.0030075887, z: 0.03689459, w: 0.9992994}
+      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000004}
     - name: Gideon_RigV3_Chavez:R_middle_joint4_be
       parentName: Gideon_RigV3_Chavez:R_middle_joint3_bn
       position: {x: 0.039283164, y: -0.0000013403536, z: -0.00000007396566}
@@ -1137,18 +1137,18 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:R_pinky_joint1_bn
       parentName: Gideon_RigV3_Chavez:R_wrist_joint_bn
       position: {x: 0.042999666, y: 0.0117, z: 0.05773098}
-      rotation: {x: -0.09452417, y: -0.18968129, z: 0.031170744, w: 0.97678787}
-      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000007}
+      rotation: {x: -0.09452469, y: -0.18968253, z: 0.031172127, w: 0.9767876}
+      scale: {x: 1.000001, y: 1.0000007, z: 1.0000019}
     - name: Gideon_RigV3_Chavez:R_pinky_joint2_bn
       parentName: Gideon_RigV3_Chavez:R_pinky_joint1_bn
       position: {x: 0.037108626, y: -0.0000035571345, z: 0.00000027128223}
-      rotation: {x: 0.03606627, y: 0.029906943, z: -0.025347518, w: 0.99858016}
-      scale: {x: 1.0000001, y: 0.9999997, z: 1.0000001}
+      rotation: {x: 0.03606625, y: 0.02990447, z: -0.025346437, w: 0.9985803}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000007}
     - name: Gideon_RigV3_Chavez:R_pinky_joint3_bn
       parentName: Gideon_RigV3_Chavez:R_pinky_joint2_bn
       position: {x: 0.03140232, y: 0.00000028580303, z: 0.00000000777275}
-      rotation: {x: -0.001988536, y: -0.0010474483, z: 0.037731733, w: 0.9992854}
-      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000007}
+      rotation: {x: -0.0019884764, y: -0.0010452039, z: 0.03773423, w: 0.99928534}
+      scale: {x: 1, y: 1.0000015, z: 1.0000008}
     - name: Gideon_RigV3_Chavez:R_pinky_joint4_be
       parentName: Gideon_RigV3_Chavez:R_pinky_joint3_bn
       position: {x: 0.032271355, y: 0.000000325407, z: 0.00000020952908}
@@ -1157,18 +1157,18 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:R_ring_joint1_bn
       parentName: Gideon_RigV3_Chavez:R_wrist_joint_bn
       position: {x: 0.06082062, y: 0.00827, z: 0.04208071}
-      rotation: {x: -0.036816817, y: -0.18476509, z: 0.05528699, w: 0.98053545}
-      scale: {x: 1.0000005, y: 1.0000007, z: 1.0000008}
+      rotation: {x: -0.03681689, y: -0.18476446, z: 0.055286333, w: 0.98053557}
+      scale: {x: 0.99999964, y: 1.0000002, z: 1.0000005}
     - name: Gideon_RigV3_Chavez:R_ring_joint2_bn
       parentName: Gideon_RigV3_Chavez:R_ring_joint1_bn
       position: {x: 0.033531077, y: -0.00000532471, z: 0.00000004283966}
-      rotation: {x: -0.0020642576, y: -0.004760504, z: 0.023766786, w: 0.9997042}
-      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000007}
+      rotation: {x: -0.0020642914, y: -0.004760534, z: 0.023766775, w: 0.9997041}
+      scale: {x: 1.0000008, y: 1.0000001, z: 1.0000008}
     - name: Gideon_RigV3_Chavez:R_ring_joint3_bn
       parentName: Gideon_RigV3_Chavez:R_ring_joint2_bn
       position: {x: 0.0376711, y: 0.000006500968, z: -0.00000008175615}
-      rotation: {x: 0.009768808, y: 0.0071568363, z: 0.038521156, w: 0.9991844}
-      scale: {x: 1.0000006, y: 1.0000006, z: 1.0000001}
+      rotation: {x: 0.009768722, y: 0.0071573355, z: 0.038519386, w: 0.99918455}
+      scale: {x: 1, y: 1.0000012, z: 1.000001}
     - name: Gideon_RigV3_Chavez:R_ring_joint4_be
       parentName: Gideon_RigV3_Chavez:R_ring_joint3_bn
       position: {x: 0.038005207, y: -0.000005960576, z: 1.4210854e-16}
@@ -1177,18 +1177,18 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:R_thumb_joint1_bn
       parentName: Gideon_RigV3_Chavez:R_wrist_joint_bn
       position: {x: 0.039669283, y: 8.5265126e-16, z: -0.029347321}
-      rotation: {x: 0.013049109, y: 0.2486668, z: 0.05293579, w: 0.9670535}
-      scale: {x: 1, y: 1, z: 0.99999994}
+      rotation: {x: 0.013050459, y: 0.24866821, z: 0.052937075, w: 0.96705306}
+      scale: {x: 0.99999934, y: 1.0000006, z: 1}
     - name: Gideon_RigV3_Chavez:R_thumb_joint2_bn
       parentName: Gideon_RigV3_Chavez:R_thumb_joint1_bn
       position: {x: 0.025340782, y: 0.000002697626, z: 0.00000035620974}
-      rotation: {x: 0.05044652, y: 0.018032817, z: -0.03519411, w: 0.9979435}
-      scale: {x: 1.0000001, y: 1.0000008, z: 1.0000007}
+      rotation: {x: 0.050446473, y: 0.018030733, z: -0.035194512, w: 0.9979436}
+      scale: {x: 0.9999999, y: 0.99999964, z: 0.99999964}
     - name: Gideon_RigV3_Chavez:R_thumb_joint3_bn
       parentName: Gideon_RigV3_Chavez:R_thumb_joint2_bn
       position: {x: 0.02850795, y: -0.000005408896, z: 0.00000008244872}
-      rotation: {x: -0.12114883, y: -0.035880715, z: -0.012484265, w: 0.99190706}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000004}
+      rotation: {x: -0.12114893, y: -0.035874065, z: -0.012482324, w: 0.9919073}
+      scale: {x: 1.0000013, y: 1.0000002, z: 1.0000007}
     - name: Gideon_RigV3_Chavez:R_thumb_joint4_be
       parentName: Gideon_RigV3_Chavez:R_thumb_joint3_bn
       position: {x: 0.027430173, y: 0.0000024482085, z: -0.00000023694983}
@@ -1196,19 +1196,19 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:neck_joint_bn
       parentName: Gideon_RigV3_Chavez:spine_joint4_bn
-      position: {x: -0.12042104, y: 0.000000018339403, z: -0.000000003860419}
-      rotation: {x: 0.00000005960465, y: -0.00000005960465, z: 0.07130317, w: 0.9974547}
-      scale: {x: 0.9999986, y: 0.9999991, z: 0.9999994}
+      position: {x: -0.12042104, y: 5.684342e-16, z: -7.105427e-17}
+      rotation: {x: 0.000000029802322, y: -0.000000029802322, z: 0.07130325, w: 0.99745476}
+      scale: {x: 1.0000002, y: 0.9999997, z: 1.0000001}
     - name: Gideon_RigV3_Chavez:head_joint1_bn
       parentName: Gideon_RigV3_Chavez:neck_joint_bn
-      position: {x: -0.06843297, y: -1.727696e-10, z: 2.0896822e-10}
+      position: {x: -0.06843294, y: 0.0000000375372, z: 0.000000005480878}
       rotation: {x: -0.000000029802319, y: 0.000000029802319, z: -0.17399657, w: 0.9847462}
-      scale: {x: 1.0000011, y: 1.0000005, z: 1.0000005}
+      scale: {x: 1, y: 1, z: 0.9999998}
     - name: Gideon_RigV3_Chavez:head_joint2_bn
       parentName: Gideon_RigV3_Chavez:head_joint1_bn
       position: {x: -0.061228994, y: 6.7617555e-17, z: 1.8755848e-10}
-      rotation: {x: 0.9999919, y: -0.0040321653, z: 0.000000026670712, w: 0.00000023727742}
-      scale: {x: 1.0000004, y: 1.0000007, z: 1.0000002}
+      rotation: {x: 0.9999919, y: -0.0040322095, z: 0.000000036159072, w: 0.00000020533693}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000002}
     - name: Gideon_RigV3_Chavez:head_joint3_be
       parentName: Gideon_RigV3_Chavez:head_joint2_bn
       position: {x: -0.1116565, y: 1.3654226e-15, z: -3.5514922e-10}
@@ -1217,43 +1217,43 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:L_clavicle_joint1_bn
       parentName: Gideon_RigV3_Chavez:spine_joint4_bn
       position: {x: -0.027167462, y: 0.0057066916, z: -0.08}
-      rotation: {x: 0.41516182, y: -0.5723991, z: 0.4748293, w: 0.5239629}
-      scale: {x: 0.99999803, y: 0.9999977, z: 0.9999975}
+      rotation: {x: 0.41516182, y: -0.57239896, z: 0.47482926, w: 0.5239629}
+      scale: {x: 0.9999983, y: 0.99999917, z: 0.999999}
     - name: Gideon_RigV3_Chavez:L_clavicle_joint2_bn
       parentName: Gideon_RigV3_Chavez:L_clavicle_joint1_bn
       position: {x: -0.054227572, y: 0.035300262, z: 8.9833013e-10}
-      rotation: {x: 0.000000014901161, y: -0, z: 0.000000014901161, w: 1}
-      scale: {x: 1.0000002, y: 0.9999998, z: 0.99999994}
+      rotation: {x: 0.000000014901161, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000008}
     - name: Gideon_RigV3_Chavez:L_shoulder_joint_bn
       parentName: Gideon_RigV3_Chavez:L_clavicle_joint2_bn
       position: {x: -0.1388881, y: 2.1210704e-16, z: 2.3119174e-17}
-      rotation: {x: -0.011095682, y: -0.030431256, z: -0.035321902, w: 0.99885094}
-      scale: {x: 1.0000001, y: 1, z: 0.99999994}
+      rotation: {x: -0.011095583, y: -0.030431211, z: -0.035321876, w: 0.99885094}
+      scale: {x: 1.0000015, y: 0.99999964, z: 1.0000006}
     - name: Gideon_RigV3_Chavez:L_elbow_joint_bn
       parentName: Gideon_RigV3_Chavez:L_shoulder_joint_bn
       position: {x: -0.25911924, y: -3.6158156e-16, z: -3.883256e-17}
-      rotation: {x: 0.01868212, y: 0.06486734, z: -0.02571262, w: 0.99738765}
-      scale: {x: 1, y: 1, z: 1.0000002}
+      rotation: {x: 0.018681929, y: 0.06486724, z: -0.025712108, w: 0.9973877}
+      scale: {x: 1.0000004, y: 0.99999976, z: 0.99999946}
     - name: Gideon_RigV3_Chavez:L_wrist_joint_bn
       parentName: Gideon_RigV3_Chavez:L_elbow_joint_bn
       position: {x: -0.24597812, y: 2.399386e-17, z: 5.3667753e-17}
-      rotation: {x: 0.004387705, y: 0.18965568, z: -0.02270906, w: 0.98157823}
-      scale: {x: 0.9999999, y: 1.0000002, z: 0.99999994}
+      rotation: {x: 0.0043877307, y: 0.18965562, z: -0.022709072, w: 0.98157823}
+      scale: {x: 1.0000002, y: 1, z: 0.9999999}
     - name: Gideon_RigV3_Chavez:L_index_joint1_bn
       parentName: Gideon_RigV3_Chavez:L_wrist_joint_bn
       position: {x: -0.074456856, y: -2.8161884e-16, z: 3.416331e-17}
-      rotation: {x: -0.002220353, y: -0.098852195, z: 0.0695621, w: 0.99266535}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+      rotation: {x: -0.0022201336, y: -0.098853946, z: 0.06956031, w: 0.99266523}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000002}
     - name: Gideon_RigV3_Chavez:L_index_joint2_bn
       parentName: Gideon_RigV3_Chavez:L_index_joint1_bn
       position: {x: -0.031612627, y: 3.8968828e-16, z: -1.0338464e-16}
-      rotation: {x: -0.008043442, y: -0.029543074, z: 0.029076252, w: 0.9991082}
-      scale: {x: 1.0000002, y: 0.9999998, z: 1.0000002}
+      rotation: {x: -0.008043425, y: -0.029545628, z: 0.029079234, w: 0.999108}
+      scale: {x: 1.0000007, y: 1.0000004, z: 1.0000002}
     - name: Gideon_RigV3_Chavez:L_index_joint3_bn
       parentName: Gideon_RigV3_Chavez:L_index_joint2_bn
       position: {x: -0.032316666, y: 3.663736e-16, z: -9.9868586e-17}
-      rotation: {x: -0.00025150433, y: -0.00010421675, z: 0.03499379, w: 0.99938756}
-      scale: {x: 1, y: 1.0000001, z: 1.0000005}
+      rotation: {x: -0.00025155852, y: -0.00010455584, z: 0.034989115, w: 0.99938774}
+      scale: {x: 1.0000002, y: 0.9999998, z: 0.9999998}
     - name: Gideon_RigV3_Chavez:L_index_joint4_be
       parentName: Gideon_RigV3_Chavez:L_index_joint3_bn
       position: {x: -0.041766115, y: 1.6653345e-16, z: -5.4012254e-17}
@@ -1262,18 +1262,18 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:L_middle_joint1_bn
       parentName: Gideon_RigV3_Chavez:L_wrist_joint_bn
       position: {x: -0.070382215, y: -2.663793e-16, z: -0.020371277}
-      rotation: {x: -0.021059355, y: -0.15766865, z: 0.07200825, w: 0.984638}
-      scale: {x: 1.0000005, y: 1, z: 1.0000002}
+      rotation: {x: -0.021059332, y: -0.15766849, z: 0.072007254, w: 0.98463804}
+      scale: {x: 0.99999976, y: 0.99999976, z: 0.99999964}
     - name: Gideon_RigV3_Chavez:L_middle_joint2_bn
       parentName: Gideon_RigV3_Chavez:L_middle_joint1_bn
       position: {x: -0.032952946, y: 2.7089442e-16, z: -1.2541977e-17}
-      rotation: {x: -0.022944842, y: -0.03277499, z: -0.023063779, w: 0.9989332}
-      scale: {x: 1.000001, y: 1.0000007, z: 1.0000005}
+      rotation: {x: -0.022944678, y: -0.03277408, z: -0.023063568, w: 0.9989332}
+      scale: {x: 0.9999997, y: 0.99999994, z: 0.99999976}
     - name: Gideon_RigV3_Chavez:L_middle_joint3_bn
       parentName: Gideon_RigV3_Chavez:L_middle_joint2_bn
       position: {x: -0.03714863, y: 1.2434498e-16, z: 1.8840276e-17}
-      rotation: {x: -0.0055198227, y: -0.003004061, z: 0.036797002, w: 0.99930304}
-      scale: {x: 1.000001, y: 1.0000007, z: 1.0000005}
+      rotation: {x: -0.005519634, y: -0.0030042008, z: 0.036796406, w: 0.9993031}
+      scale: {x: 1.0000002, y: 0.9999996, z: 1}
     - name: Gideon_RigV3_Chavez:L_middle_joint4_be
       parentName: Gideon_RigV3_Chavez:L_middle_joint3_bn
       position: {x: -0.0392842, y: 3.7969626e-16, z: 1.1821281e-17}
@@ -1282,18 +1282,18 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:L_pinky_joint1_bn
       parentName: Gideon_RigV3_Chavez:L_wrist_joint_bn
       position: {x: -0.042999174, y: -0.011697833, z: -0.057730645}
-      rotation: {x: -0.09453291, y: -0.18968336, z: 0.031125424, w: 0.9767881}
-      scale: {x: 1.0000005, y: 1.0000005, z: 1.0000004}
+      rotation: {x: -0.094533026, y: -0.18968424, z: 0.031126423, w: 0.9767879}
+      scale: {x: 1.0000008, y: 1.0000005, z: 1}
     - name: Gideon_RigV3_Chavez:L_pinky_joint2_bn
       parentName: Gideon_RigV3_Chavez:L_pinky_joint1_bn
       position: {x: -0.03711158, y: 3.1530333e-16, z: 5.410642e-18}
-      rotation: {x: 0.036068335, y: 0.029898476, z: -0.025311578, w: 0.9985813}
-      scale: {x: 1.0000012, y: 1.0000004, z: 1.0000002}
+      rotation: {x: 0.03606828, y: 0.029899139, z: -0.025310617, w: 0.99858123}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000001}
     - name: Gideon_RigV3_Chavez:L_pinky_joint3_bn
       parentName: Gideon_RigV3_Chavez:L_pinky_joint2_bn
       position: {x: -0.031401988, y: 2.6423307e-16, z: -1.0730758e-16}
-      rotation: {x: -0.001988767, y: -0.0010494152, z: 0.037734725, w: 0.9992853}
-      scale: {x: 1.0000006, y: 1.0000013, z: 1.0000002}
+      rotation: {x: -0.0019887309, y: -0.0010481549, z: 0.037735045, w: 0.9992852}
+      scale: {x: 1.0000006, y: 1.0000005, z: 0.9999998}
     - name: Gideon_RigV3_Chavez:L_pinky_joint4_be
       parentName: Gideon_RigV3_Chavez:L_pinky_joint3_bn
       position: {x: -0.032270696, y: 1.11022296e-17, z: 3.2008792e-18}
@@ -1302,18 +1302,18 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:L_ring_joint1_bn
       parentName: Gideon_RigV3_Chavez:L_wrist_joint_bn
       position: {x: -0.06082067, y: -0.008266374, z: -0.042080715}
-      rotation: {x: -0.036815032, y: -0.18475306, z: 0.05521155, w: 0.980542}
-      scale: {x: 1.0000007, y: 1.0000005, z: 1.0000007}
+      rotation: {x: -0.036815308, y: -0.18475474, z: 0.055214025, w: 0.9805415}
+      scale: {x: 1.0000002, y: 0.9999999, z: 0.99999964}
     - name: Gideon_RigV3_Chavez:L_ring_joint2_bn
       parentName: Gideon_RigV3_Chavez:L_ring_joint1_bn
       position: {x: -0.033533145, y: 3.1086244e-16, z: 2.9310675e-17}
-      rotation: {x: -0.002064295, y: -0.004760534, z: 0.023766754, w: 0.9997041}
-      scale: {x: 1.0000008, y: 1.0000005, z: 1.0000006}
+      rotation: {x: -0.0020643396, y: -0.004760533, z: 0.02376684, w: 0.99970406}
+      scale: {x: 1.0000006, y: 1.0000002, z: 1.0000002}
     - name: Gideon_RigV3_Chavez:L_ring_joint3_bn
       parentName: Gideon_RigV3_Chavez:L_ring_joint2_bn
       position: {x: -0.037668105, y: -3.1308289e-16, z: -3.214491e-18}
-      rotation: {x: 0.009768782, y: 0.007141888, z: 0.03834875, w: 0.99919116}
-      scale: {x: 1.0000013, y: 1.0000012, z: 1.000001}
+      rotation: {x: 0.009768815, y: 0.0071416204, z: 0.03834698, w: 0.9991912}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1.0000001}
     - name: Gideon_RigV3_Chavez:L_ring_joint4_be
       parentName: Gideon_RigV3_Chavez:L_ring_joint3_bn
       position: {x: -0.038009305, y: 1.5765166e-16, z: -1.672159e-17}
@@ -1322,25 +1322,25 @@ ModelImporter:
     - name: Gideon_RigV3_Chavez:L_thumb_joint1_bn
       parentName: Gideon_RigV3_Chavez:L_wrist_joint_bn
       position: {x: -0.03966931, y: -9.4444604e-17, z: 0.029347317}
-      rotation: {x: 0.013058016, y: 0.248659, z: 0.0529892, w: 0.96705234}
-      scale: {x: 1.0000004, y: 1, z: 1.0000006}
+      rotation: {x: 0.013058975, y: 0.24866012, z: 0.05299051, w: 0.967052}
+      scale: {x: 0.99999994, y: 0.99999976, z: 1.0000002}
     - name: Gideon_RigV3_Chavez:L_thumb_joint2_bn
       parentName: Gideon_RigV3_Chavez:L_thumb_joint1_bn
       position: {x: -0.025336001, y: 1.6098233e-16, z: -2.5535128e-17}
-      rotation: {x: 0.050447162, y: 0.018070672, z: -0.03533461, w: 0.99793786}
-      scale: {x: 1.0000013, y: 1.0000004, z: 1.0000012}
+      rotation: {x: 0.050447196, y: 0.018065823, z: -0.035332154, w: 0.9979381}
+      scale: {x: 1.0000008, y: 1.0000007, z: 1.0000004}
     - name: Gideon_RigV3_Chavez:L_thumb_joint3_bn
       parentName: Gideon_RigV3_Chavez:L_thumb_joint2_bn
       position: {x: -0.028514465, y: -1.7097434e-16, z: -2.2204459e-17}
-      rotation: {x: -0.12115328, y: -0.035857763, z: -0.01238698, w: 0.99190867}
-      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+      rotation: {x: -0.121153, y: -0.0358528, z: -0.012385265, w: 0.99190885}
+      scale: {x: 1.0000007, y: 1.0000002, z: 1.0000001}
     - name: Gideon_RigV3_Chavez:L_thumb_joint4_be
       parentName: Gideon_RigV3_Chavez:L_thumb_joint3_bn
       position: {x: -0.027427843, y: 1.2989609e-16, z: 2.220446e-16}
       rotation: {x: -0.05901957, y: -0.13816462, z: -0.38837013, w: 0.9091732}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_RigV3_Chavez:Gideon_geo
-      parentName: BrianGideon_Anim_RegularJump(Clone)
+      parentName: BrianGideon_Anim_DodgeStart(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}

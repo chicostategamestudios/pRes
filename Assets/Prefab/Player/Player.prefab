@@ -3827,9 +3827,9 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: cdc3cbb2e1c0a5c47b0627877e71a9b2, type: 3}
   m_Controller: {fileID: 9100000, guid: 8a8594cf2944dfa409fbfdeacc7cea0a, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -3846,7 +3846,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: f56224865cd8dcd47822a02eb1113a19, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -3977,7 +3977,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 0}
   swordAnimator: {fileID: 0}
   playerObject: {fileID: 1545288336584910}
-  sword: {fileID: 1336271319415064}
+  swordObject: {fileID: 0}
   player: {fileID: 0}
 --- !u!114 &114497113818521822
 MonoBehaviour:

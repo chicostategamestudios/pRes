@@ -9,7 +9,7 @@ public class Animations_BrianGideon : MonoBehaviour
     public Animator playerAnimator;
     public Animator swordAnimator;
     public GameObject playerObject;
-    public GameObject sword;
+    public GameObject swordObject;
     public PlayerGamepad player;
 
     int lightAttackCombo;     // Max move speed is 48.
@@ -19,7 +19,7 @@ public class Animations_BrianGideon : MonoBehaviour
 	void Start ()
     {
         player = playerObject.GetComponent<PlayerGamepad>();    // We will also need certain variables from the gamepad script.
-        sword = GetComponent<GameObject>();
+        swordObject = GetComponent<GameObject>();
 
         playerAnimator = GetComponent<Animator>();    // Here we can refer to the playerAnimator controller we need to use.
         swordAnimator = GetComponent<Animator>();       // Including his sword animator.
@@ -74,17 +74,17 @@ public class Animations_BrianGideon : MonoBehaviour
                 case 0:
 
                     playerAnimator.Play("Swing1 V1");
-                    playerAnimator.Play("Sword1 V1");
+                   // playerAnimator.Play("Sword1 V1");
                     lightAttackCombo = 1;
                     break;
                 case 1:
                     playerAnimator.Play("Swing2 V1");
-                    playerAnimator.Play("Sword2 V1");
+                    //playerAnimator.Play("Sword2 V1");
                     lightAttackCombo = 2;
                     break;
                 case 2:
                     playerAnimator.Play("Swing3 V1");
-                    playerAnimator.Play("Sword3 V1");
+                    //playerAnimator.Play("Sword3 V1");
                     lightAttackCombo = 0;
                     break;
             }
@@ -93,7 +93,7 @@ public class Animations_BrianGideon : MonoBehaviour
         if (Input.GetButtonDown("Controller_B"))
         {
             playerAnimator.Play("Swing4 V1");
-            playerAnimator.Play("Sword4 V1");
+           // playerAnimator.Play("Sword4 V1");
         }
     }
 }

@@ -270,7 +270,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: 
+    motionNodeName: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:Gideon_geo
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Idle' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
