@@ -7,7 +7,6 @@ using UnityEditor.Animations;
 public class Animations_BrianGideon : MonoBehaviour
 {
     public Animator playerAnimator;
-    public Animator swordAnimator;
     public GameObject playerObject;
     public GameObject swordObject;
     public PlayerGamepad player;
@@ -22,7 +21,6 @@ public class Animations_BrianGideon : MonoBehaviour
         swordObject = GetComponent<GameObject>();
 
         playerAnimator = GetComponent<Animator>();    // Here we can refer to the playerAnimator controller we need to use.
-        swordAnimator = GetComponent<Animator>();       // Including his sword animator.
 
         lightAttackCombo = 0;
 	}
@@ -55,6 +53,11 @@ public class Animations_BrianGideon : MonoBehaviour
         if (player.dashing == true)
         {
             playerAnimator.Play("Start Air Dash");
+        } 
+        // Dodge
+        if (Input.GetButtonDown("Controller_X") && player.grounded == true)
+        {
+            playerAnimator.Play("DodgeStart");
         }
 
         // Rail Grinding
@@ -92,6 +95,7 @@ public class Animations_BrianGideon : MonoBehaviour
         }
         if (Input.GetButtonDown("Controller_B"))
         {
+            playerAnimator.SetBool("isAttacking", true);
             playerAnimator.Play("Swing4 V1");
            // playerAnimator.Play("Sword4 V1");
         }
