@@ -95,9 +95,7 @@ public class Animations_BrianGideon : MonoBehaviour
         }
         if (Input.GetButtonDown("Controller_B"))
         {
-            playerAnimator.SetBool("isAttacking", true);
             playerAnimator.Play("Swing4 V1");
-           // playerAnimator.Play("Sword4 V1");
         }
     }
 }
