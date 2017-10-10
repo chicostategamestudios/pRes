@@ -21,6 +21,7 @@ public class Animations_Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		//Going to make these into coroutines that will be called from Combat
         // Light Attack!
         if (Input.GetButtonDown("Controller_Y"))
         {
@@ -48,6 +49,11 @@ public class Animations_Sword : MonoBehaviour
         // Heavy Attack!
         if (Input.GetButtonDown("Controller_B"))
         {
+			if(swordAnimator.GetBool("isAttacking") == false)
+			{
+				swordAnimator.SetBool("isAttacking", true);
+			}
+
             swordAnimator.Play("Swing4 V1");
         }
     }

@@ -45,7 +45,7 @@ public class Sword_Collision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy" && swordRenderer.enabled == true)
+        if(other.tag == "Enemy Hitbox" && swordRenderer.enabled == true)
         {
 			//Debug.Log ("triggered");
 			other.GetComponent<BasicAI> ().StartCoroutine("DamageEnemy", damage); //.enemy_health -= damage;   // Placeholder variable!

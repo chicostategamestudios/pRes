@@ -131,6 +131,7 @@ public class Combat : MonoBehaviour {
         // Fast Attack//////////////////////////////////////////////////////////////////////////////////////////////////////
 		if (Input.GetButtonDown("Controller_Y") && !is_light_attacking && GetComponent<PlayerGamepad>().GamepadAllowed == true)
         {
+			//!!!!!!!!!!!!!!!!!!!!!!!!!Call out to Animations_Sword
 			forward = transform.TransformDirection(Vector3.forward);
             //Debug.Log("Light Attack");
 			is_attacking = true;
