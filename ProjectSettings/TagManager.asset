@@ -17,6 +17,7 @@ TagManager:
   - Enemy Hitbox
   - Checkpoint
   - healthBar
+  - wallJump
   layers:
   - Default
   - TransparentFX

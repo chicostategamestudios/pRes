@@ -54,7 +54,7 @@ public class End_Level : MonoBehaviour {
 	}
 
 	//used to see when the player enters the exit gate
-	void OnCollisionEnter(Collision col)
+	void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.tag == "Player") 
 		{
@@ -66,7 +66,7 @@ public class End_Level : MonoBehaviour {
 			finishTime[0] = end_minutes;
 			finishTime[1] = end_seconds;
 			finishTime[2] = end_millisecs;
-			ScoreSystem.Singleton_ScoreSystem.getCompletionTime (finishTime);
+			//ScoreSystem.Singleton_ScoreSystem.getCompletionTime (finishTime);
 			finished = true;
 		}
 	}

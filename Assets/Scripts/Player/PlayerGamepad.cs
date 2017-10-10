@@ -332,22 +332,19 @@ public class PlayerGamepad : MonoBehaviour
             //Calculate joystick rotation sensitivity, this will calculate the difference between GetDelayedDirection() and GetCurrentDirection()
             difference_in_degrees = Mathf.Abs(player_direction - delayed_player_direction);
 
-            if (!grinding && smoothed_rotation)
-            {
-                //Slowly rotate from the initial rotation to the player rotation, adding camera_anchor.eulerAngles to make it so the axis is based of the camera rotation
-                if (dashing)
-                {
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), dash_rotation_speed * Time.deltaTime);
-                } else if (boosting)
-                {
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), booster_rotation_speed * Time.deltaTime);
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), player_rotation_speed * Time.deltaTime);
-                }
+			if (!grinding && smoothed_rotation) {
+				//Slowly rotate from the initial rotation to the player rotation, adding camera_anchor.eulerAngles to make it so the axis is based of the camera rotation
+				if (dashing) {
+					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, player_direction + camera_anchor.transform.eulerAngles.y, 0), dash_rotation_speed * Time.deltaTime);
+				} else if (boosting) {
+					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, player_direction + camera_anchor.transform.eulerAngles.y, 0), booster_rotation_speed * Time.deltaTime);
+				} else {
+					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, player_direction + camera_anchor.transform.eulerAngles.y, 0), player_rotation_speed * Time.deltaTime);
+				}
 
-            }
+			} else {
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), 1);
+			}
             current_speed += input_joystick_left.sqrMagnitude * running_acceleration_multiplier;
 
         } else {
@@ -376,7 +373,8 @@ public class PlayerGamepad : MonoBehaviour
         //SURGE
         //---------------------------------------------------------
 
-        if (Input.GetButton("Controller_RB") && can_boost && !grinding && !in_ring && current_speed >= original_max_speed && grounded)
+        //if (Input.GetButton("Controller_RB") && can_boost && !grinding && !in_ring && current_speed >= original_max_speed && grounded)
+		if (Input.GetAxis ("Controller_RT") == 1 && can_boost && !grinding && !in_ring && current_speed >= original_max_speed && grounded)
         {
             if (booster_timer > 0f)
             {
@@ -400,7 +398,8 @@ public class PlayerGamepad : MonoBehaviour
         }
 
 
-        if (Input.GetButtonUp("Controller_RB") || !can_boost || !grounded)
+        //if (Input.GetButtonUp("Controller_RB") || !can_boost || !grounded)
+		if (Input.GetAxis ("Controller_RT") == 0 || !can_boost || !grounded)
         {
             max_running_speed = original_max_speed;
             boosting = false;
@@ -408,7 +407,8 @@ public class PlayerGamepad : MonoBehaviour
         }
 
 
-        if (!Input.GetButton("Controller_RB") || !can_boost)
+        //if (!Input.GetButton("Controller_RB") || !can_boost)
+		if (Input.GetAxis ("Controller_RT") != 1 || !can_boost)
         {
 
             max_running_speed = original_max_speed;
@@ -797,7 +797,7 @@ public class PlayerGamepad : MonoBehaviour
     {
 
 
-        if (col.gameObject.tag == "Wall")
+        if (col.gameObject.tag == "wallJump")
         {
 			if (!grounded) {
 				wall_contact_position = transform.position;
@@ -822,7 +822,7 @@ public class PlayerGamepad : MonoBehaviour
 
     private void OnCollisionExit(Collision col)
     {
-        if (col.gameObject.tag == "Wall")
+        if (col.gameObject.tag == "wallJump")
         {
             on_wall = false;
         }
@@ -922,7 +922,7 @@ public class PlayerGamepad : MonoBehaviour
 
     private void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag == "Wall")
+        if (col.gameObject.tag == "wallJump")
         {
             RestrictVerticalMovement(true);
         }
