@@ -74,7 +74,7 @@ public class Save_Select_UI_Functionality : MonoBehaviour {
 		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.save_select_menu_obj.SetActive(false);	//Sets Save_Menu to become invisible
 		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.play_menu_obj.SetActive(true);			//Sets Play_Menu to become visible
 		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.StoryButton.Select();						//Sets the Story button as the active cursor
-
+		Debug.Log(SaveLoad.S.GetFileName (SaveSlotNumber));
 		SaveLoad.S.LoadSaveFile (SaveLoad.S.GetFileName (SaveSlotNumber));
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
