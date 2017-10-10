@@ -70,11 +70,11 @@ GameObject:
   - component: {fileID: 65308150129249830}
   m_Layer: 0
   m_Name: Trigger Collider
-  m_TagString: Enemy
+  m_TagString: Enemy Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1298181691560234
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +122,6 @@ GameObject:
   - component: {fileID: 195164776829402788}
   - component: {fileID: 114051644220634046}
   - component: {fileID: 65402032615000178}
-  - component: {fileID: 54290933322658324}
   m_Layer: 0
   m_Name: BasicAI
   m_TagString: Enemy
@@ -253,7 +252,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355846319094206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.130579, y: 2.2, z: -28.446796}
+  m_LocalPosition: {x: 0.48711085, y: 11.896537, z: 307.1464}
   m_LocalScale: {x: 2.7711785, y: 2.7711768, z: 2.7711768}
   m_Children:
   - {fileID: 4311719255884542}
@@ -499,21 +498,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355846319094206}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54290933322658324
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1355846319094206}
-  serializedVersion: 2
-  m_Mass: 1000
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!65 &65238528877009090
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -598,16 +582,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   performing_time: 0.5
-  dodge_time: 2
-  cooldown_action: 0.5
-  turn_speed: 5
-  stagger_duration: 1
+  dodge_time: 0.1
+  cooldown_action: 0.1
+  cooldown_action_max: 0.7
+  cooldown_action_min: 0.3
+  knockback_duration: 0.2
+  stagger_after_knockback_dur: 0.3
+  moveback_duration: 0.3
   death_duration: 0.0001
+  getting_knockback: 0
+  movement_speed: 20
+  acceleration: 50
+  moveback_speed: 5
+  dodge_speed: 4
+  turn_speed: 10
+  enemy_health: 50
+  knockback_force: 50
   check_to_damage: 0
-  enemy_health: 100
-  incoming_damage: 0
   left_dodge: {fileID: 1214778016935796}
   right_dodge: {fileID: 1433471019743904}
+  action_selection: 0
+  alerted: 0
+  incoming_damage: 0
   basic_ai: {fileID: 0}
 --- !u!114 &114167609125584060
 MonoBehaviour:
@@ -620,7 +616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553868b1f42fcce48886f0585134abb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.5
+  attackSpeed: 300
+  duration: 0.4
   check_attack_left: 0
   check_attack_right: 0
   check_attack_top: 0
@@ -640,11 +637,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 1355846319094206}
   m_Enabled: 1
   m_Radius: 0.8
-  m_Speed: 15
+  m_Speed: 14
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 3600
-  m_StoppingDistance: 5
+  m_StoppingDistance: 8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
