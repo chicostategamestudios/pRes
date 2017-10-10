@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 
 // This script works with the animation controller for the player character Brian Gideon, and his sword animations.
 public class Animations_BrianGideon : MonoBehaviour
@@ -28,6 +28,7 @@ public class Animations_BrianGideon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Most of these animation conditions use the boolean parameters set up in the animation controller.
         if (player.current_speed > 0)
         {
@@ -57,7 +58,7 @@ public class Animations_BrianGideon : MonoBehaviour
         // Dodge
         if (Input.GetButtonDown("Controller_X") && player.grounded == true)
         {
-            playerAnimator.Play("DodgeStart");
+            //playerAnimator.Play("DodgeStart");
         }
 
         // Rail Grinding

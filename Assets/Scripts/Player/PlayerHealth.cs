@@ -53,4 +53,9 @@ public class PlayerHealth : MonoBehaviour
 		//HealthStat.s = GameObject.FindGameObjectWithTag ("healthBar").GetComponent<HealthStat> ();
 		Health.Initialize();
 	}
+
+	public void Heal(){
+		health = 100;
+		Health.CurrentVal = 100;
+	}
 }

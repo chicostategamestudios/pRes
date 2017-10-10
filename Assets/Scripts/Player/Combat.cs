@@ -58,19 +58,34 @@ public class Combat : MonoBehaviour {
 
 	public float test_variable;
 
+	public Animator swordAnimator;
+	public GameObject swordObject;
+	public int lightAttackCombo;
+	public Sword_Collision myBlade;
+	public Animator playerAnimator;
+
+	public int light_damage = 10;
+	public int heavy_damage = 15;
+
     private void Start()
     {
         next_attack = 0;
 		my_gamepad = GetComponent<PlayerGamepad> ();
         camera_anchor = GameObject.Find("Camera Anchor");
-        player_weapon = GameObject.Find("PlayerWeapon").transform;
-		weapon = GameObject.Find ("WeaponPivot");
-		weapon_collider = GameObject.Find ("WeaponPlaceHolder").GetComponent<BoxCollider> ();//need to change object name at some point
+		playerAnimator = GetComponent<Animator>();
+        //player_weapon = GameObject.Find("PlayerWeapon").transform;
+		//weapon = GameObject.Find ("WeaponPivot");
+		//weapon_collider = GameObject.Find ("WeaponPlaceHolder").GetComponent<BoxCollider> ();//need to change object name at some point
+
+		swordAnimator = GetComponent<Animator>();
+		myBlade = GetComponentInChildren<Sword_Collision> ();
+		lightAttackCombo = 0;
+
 		my_camera = camera_anchor.GetComponent<NewDynamicCameraBehavior>();
 		my_collider = GameObject.Find ("Player_Capsule");
 		forward = transform.TransformDirection(Vector3.forward);
         something_too_close = false;
-		weapon_collider.enabled = false;
+		//weapon_collider.enabled = false;
 		trigger_press = false;
 		is_dodging = false;
     }
@@ -153,8 +168,10 @@ public class Combat : MonoBehaviour {
             //Instantiate(target_prefab, transform.position + (transform.forward * light_attack_distance), transform.rotation); // create target marker
             //target_prefab.GetComponent<DestroyMove>().set_life = light_attack_time;
 
-			weapon_collider.enabled = true;
+			//weapon_collider.enabled = true;
 			is_light_attacking = true;
+			myBlade.curDamage (light_damage);
+
 			// Start Animation Coroutine
             StartCoroutine(WaitForFastAttackAnimation());
         }
@@ -197,9 +214,10 @@ public class Combat : MonoBehaviour {
             //Instantiate(target_prefab, transform.position + (transform.forward * strong_attack_distance), transform.rotation); // create target marker
             //target_prefab.GetComponent<DestroyMove>().set_life = strong_attack_time;
 
-			weapon_collider.enabled = true;
+			//weapon_collider.enabled = true;
             is_strong_attacking = true;
             // Start Animation Coroutine
+			myBlade.curDamage (heavy_damage);
             StartCoroutine(WaitForStrongAttackAnimation());
         }
 
@@ -266,6 +284,8 @@ public class Combat : MonoBehaviour {
 
 		//button check for trigger
 		if (Input.GetAxis ("Controller_" + dodge_button) == 1 && (Input.GetAxis ("LeftJoystickX") > controller_drift || Input.GetAxis ("LeftJoystickX") < -controller_drift || Input.GetAxis ("LeftJoystickY") > controller_drift || Input.GetAxis ("LeftJoystickY") < -controller_drift) && !is_dodging && !trigger_press) {
+
+			playerAnimator.Play("DodgeStart");
 			//Checks in PlayerGamepad if the player is on the ground
 			if (my_gamepad.CheckGrounded ()) {
 				dodge_dir_x = Input.GetAxis ("LeftJoystickX");
@@ -359,13 +379,15 @@ public class Combat : MonoBehaviour {
     {
 		attack = true;
 		//rotate weapon
-		weapon.transform.eulerAngles = new Vector3 (80, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
-        yield return new WaitForSeconds(.3f);
-		weapon.transform.eulerAngles = new Vector3 (0, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
+		//weapon.transform.eulerAngles = new Vector3 (80, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
+        yield return new WaitForSeconds(.7f);
+		//weapon.transform.eulerAngles = new Vector3 (0, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
 		//GetComponent<PlayerGamepad>().GamepadAllowed = true;
 		is_light_attacking = false;//use to send hit damage to attack prefab
         something_too_close = false;
-		weapon_collider.enabled = false;
+
+		myBlade.swordOff ();
+		//weapon_collider.enabled = false;
         StartCoroutine(ComboTimerLight());
     }
 
@@ -375,15 +397,16 @@ public class Combat : MonoBehaviour {
 		//rotate weapon
 		//weapon.transform.eulerAngles = new Vector3 (80, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
         yield return new WaitForSeconds(strong_attack_time);
-		weapon.transform.eulerAngles = new Vector3 (80, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
-		weapon_collider.enabled = true;
+		//weapon.transform.eulerAngles = new Vector3 (80, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
+		//weapon_collider.enabled = true;
 		is_strong_attacking = false;
 		yield return new WaitForSeconds (.1f);
-		weapon.transform.eulerAngles = new Vector3 (0, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
-		weapon_collider.enabled = false;
+		//weapon.transform.eulerAngles = new Vector3 (0, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
+		//weapon_collider.enabled = false;
 		//GetComponent<PlayerGamepad>().GamepadAllowed = true;
         something_too_close = false;
-		weapon_collider.enabled = false;
+		//weapon_collider.enabled = false;
+		myBlade.swordOff ();
         StartCoroutine(ComboTimerStrong());
     }
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Needs to deferintiate between light and strong so there is a delay if changed mid combo

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 
 // This script works with the animation controller for the player character Brian Gideon, and his sword animations.
 public class Animations_Sword : MonoBehaviour
@@ -14,7 +14,7 @@ public class Animations_Sword : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        swordAnimator = GetComponent<Animator>();
+        swordAnimator = GetComponentInChildren<Animator>();
         lightAttackCombo = 0;
 	}
 

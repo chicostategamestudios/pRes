@@ -18,6 +18,7 @@ public class End_Level : MonoBehaviour {
 	public float end_millisecs = 0;
 
 	bool finished = false;
+	bool paused = false;
 
 	// Use this for initialization
 	void Awake () {
@@ -36,21 +37,25 @@ public class End_Level : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 
-		if (Input.GetKeyUp ("space")) {
-			Scene currentScene = SceneManager.GetActiveScene ();
 
-			SceneManager.LoadScene (currentScene.name);
-		}
-
-		if (finished) {
-			if (Input.GetButtonUp ("Controller_A")) {
-				Scene currentScene = SceneManager.GetActiveScene ();
-
-				SceneManager.LoadScene (currentScene.name);
+		if (Input.GetButtonDown("Controller_Start"))
+		{
+			Time.timeScale = Time.timeScale == 1 ? 0 : 1;
+			if (!paused) {
+				Finish_Menu.SetActive (true);
+				Next_Level.Select ();
+				player.GetComponent<PlayerGamepad> ().enabled = false;
+				paused = true;
+			} else {
+				Debug.Log ("monkey");
+				Finish_Menu.SetActive (false);
+				player.GetComponent<PlayerGamepad> ().enabled = true;
+				paused = false;
 			}
 		}
+		
 	}
 
 	//used to see when the player enters the exit gate
@@ -82,33 +87,44 @@ public class End_Level : MonoBehaviour {
 	//takes the player to the next level on selection
 	void ToNextLevelOnClick()
 	{
-		Scene currentScene = SceneManager.GetActiveScene ();
-
-		SceneManager.LoadScene (currentScene.name);
+		int next_level = SceneManager.GetActiveScene().buildIndex + 1;
+		if (next_level < SceneManager.sceneCountInBuildSettings) {
+			if (paused) {
+				Time.timeScale = 1;
+			}
+			SceneManager.LoadScene (next_level);
+		}
 	}
 
 	//Restarts the level on selection
 	void RestartOnClick()
 	{
 		Scene currentScene = SceneManager.GetActiveScene ();
-
+		if (paused) {
+			Time.timeScale = 1;
+		}
 		SceneManager.LoadScene (currentScene.name);
 	}
 
 	//Takes player to Main Menu on selection
 	void MainMenuOnClick()
 	{
-		Scene currentScene = SceneManager.GetActiveScene ();
-
-		SceneManager.LoadScene (currentScene.name);
+		if (paused) {
+			Time.timeScale = 1;
+		}
+		SceneManager.LoadScene ("main_menu");
 		//SceneManager.LoadScene ("main_menu");
 	}
 
 	//takes player to the Level Select on selection
 	void LevelSelectOnClick()
 	{
-		Scene currentScene = SceneManager.GetActiveScene ();
+		if (paused) {
+			Time.timeScale = 1;
+		}
+		SceneManager.LoadScene ("main_menu");
+		//Scene currentScene = SceneManager.GetActiveScene ();
 
-		SceneManager.LoadScene (currentScene.name);
+		//SceneManager.LoadScene (currentScene.name);
 	}
 }

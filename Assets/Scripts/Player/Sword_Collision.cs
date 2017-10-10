@@ -9,7 +9,7 @@ public class Sword_Collision : MonoBehaviour
 
     public GameObject swordObject;
     public Animator swordAnimator;
-
+	int damage;
     //static int attackState = Animator.StringToHash("Base.Combat");
     //public AnimatorControllerParameter animatorInfo;
     //public bool isAttacking;
@@ -21,21 +21,25 @@ public class Sword_Collision : MonoBehaviour
         swordRenderer = GetComponent<MeshRenderer>();
         swordAnimator = swordObject.GetComponent<Animator>();
         //isAttacking = false;
-        swordRenderer.enabled = false;
+		swordRenderer.enabled = false;
+		swordCollision.enabled = false;
     }
 
     void Update()
     {
         //currentBaseState = swordAnimator.GetCurrentAnimatorStateInfo(0);
         //isAttacking = swordAnimator.GetBool("isAttacking");
-
+		//Debug.Log(swordAnimator.GetBool("isAttacking"));
         if(swordAnimator.GetBool("isAttacking") == true && swordRenderer.enabled == false)
         {
             swordRenderer.enabled = true;
+			swordCollision.enabled = true;
         }
-        else if (swordAnimator.GetBool("isAttacking") == false && swordRenderer.enabled == true)
+		else if (swordAnimator.GetBool("isAttacking") == false)// && swordRenderer.enabled == true)
         {
+			//Debug.Log ("dwjdjwkdj");
             swordRenderer.enabled = false;
+			swordCollision.enabled = false;
         }
     }
 
@@ -43,7 +47,20 @@ public class Sword_Collision : MonoBehaviour
     {
         if(other.tag == "Enemy" && swordRenderer.enabled == true)
         {
-            other.GetComponent<BasicAI>().enemy_health -= 10;   // Placeholder variable!
+			//Debug.Log ("triggered");
+			other.GetComponent<BasicAI> ().StartCoroutine("DamageEnemy", damage); //.enemy_health -= damage;   // Placeholder variable!
         }
     }
+
+	public void curDamage(int newDam)
+	{
+		damage = newDam;
+	}
+
+	public void swordOff(){
+		swordRenderer.enabled = false;
+		swordCollision.enabled = false;
+		swordAnimator.SetBool("isAttacking", false);
+	}
+
 }

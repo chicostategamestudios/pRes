@@ -84,7 +84,7 @@ public class PlayerGamepad : MonoBehaviour
     [Tooltip("How long will thedashinglast. Recommend values under 5 seconds")]
     public float dash_duration, percentage_of_dash_duration_on_accelerate, percentage_of_dash_duration_on_deaccelerate;
     private float dash_timer;
-    private bool dashing;
+    public bool dashing;
     private Vector3 last_captured_player_direction;
     private TrailRenderer dash_trail_renderer;
     private int dash_counter;
@@ -235,10 +235,12 @@ public class PlayerGamepad : MonoBehaviour
         //---------------------------------------------------------------------------
 
         //Toggle time
+		/*
         if (Input.GetButtonDown("Controller_Start"))
         {
             Time.timeScale = Time.timeScale == 1 ? 0 : 1;
         }
+        */
 
         if (!gamepad_allowed)
             return;
@@ -274,7 +276,7 @@ public class PlayerGamepad : MonoBehaviour
 
         //Check to see if the player is grounded
         if(!grinding)
-            grounded = Physics.Raycast(transform.position, -transform.up, out hit_down, 1.5f);
+            grounded = Physics.Raycast(transform.position, -transform.up, out hit_down, 2f);
 
         //Slow down rotation speed of player while on air
         player_rotation_speed = grounded ? 10f : 18f;
@@ -544,11 +546,7 @@ public class PlayerGamepad : MonoBehaviour
             ExitDash();
             RestrictVerticalMovement(false);
         }
-
-        if (Input.GetButtonDown("Controller_LB"))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+			
 
         if (exiting_ring)
         {

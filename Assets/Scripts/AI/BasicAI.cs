@@ -56,7 +56,7 @@ public class BasicAI : MonoBehaviour
     [Tooltip("The amount of time after the ai reaches 0 hp to be destroyed.")]
     public float death_duration = 0.001f;
     private float current_stagger_dur = 0f; //the current time of being staggered.
-    protected bool getting_knockback; //used to stop the knockback once knockback_duration is done.
+    public bool getting_knockback; //used to stop the knockback once knockback_duration is done.
    
 
     private float distance_to_player; //used to keep track between this AI and the player. useful for 
@@ -214,6 +214,7 @@ public class BasicAI : MonoBehaviour
 
 	public IEnumerator DamageEnemy(int incoming_damage) //first will apply damage, and then stagger the enemy for a certain duration
     {
+		Debug.Log ("damage");
         //apply damage and checks if the enemy dies from the damage.
         enemy_health -= incoming_damage;
         //set the bools to allow knockback and prevent actions/movements.

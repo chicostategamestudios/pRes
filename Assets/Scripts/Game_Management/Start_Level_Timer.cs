@@ -121,7 +121,8 @@ public class Start_Level_Timer : MonoBehaviour {
 		if (count_end == true) {
 			DisplayTimer ();
 		}
-		
+
+
 	}
 
 	void DisplayTimer()

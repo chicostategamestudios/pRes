@@ -56,7 +56,7 @@ public class Checkpoint_Script : MonoBehaviour
 				ThePlayer.transform.parent.position = SaveLoc; //Make the player respawn at the active checkpoint
 				if (pos1 >= pos2) { //Checks to see if the player is over a certain height
 					Debug.Log("fuckkceakc");
-					ThePlayer.GetComponent<PlayerHealth> ().health = 100; // Resets player health for when they die
+					ThePlayer.GetComponent<PlayerHealth> ().Heal (); // Resets player health for when they die
 					ThePlayer.GetComponentInParent<PlayerGamepad> ().setPlayerDeath (false);//Sets PlayerDied to false when the player has respawned
 					for (int i = 0; i < allEnemies.Length; i++) {             
 						allEnemies [i].transform.position = EnemySpawnLoc [i]; //sets all enemies positions back to their originol positions for when the player is killed
@@ -70,14 +70,20 @@ public class Checkpoint_Script : MonoBehaviour
 			}
 		}
     }
+
+	bool discoverd = false;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") //Checks to see if the player has collided with the checkpoint
         {
-			Debug.Log ("poo");
             CheckpointPrefab = GameObject.FindGameObjectsWithTag("Checkpoint"); // Finds all checkpoints within the map
             for (int i = 0; i < CheckpointPrefab.Length; i++)
             {
+				if (!discoverd) {
+					ThePlayer.GetComponent<PlayerHealth> ().Heal ();
+					discoverd = true;
+				}
                 CheckpointPrefab[i].GetComponent<Checkpoint_Script>().ActiveCheckPoint = false; // Sets any other active checkpoint to inactive
                 CheckpointPrefab[i].GetComponent<Checkpoint_Script>().SaveLoc = gameObject.transform.position; //Sets the respawn location(SaveLoc) to whichever checkpoint the player collided with last
                 SaveLoc.y += 15; //A buffer to make sure the player doesn't spawn within the floor

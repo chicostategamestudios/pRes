@@ -13,6 +13,8 @@ using UnityEngine;
 
 public class BasicAI_Attack : MonoBehaviour {
 
+	public float attackSpeed;
+
     private Vector3 left_spawn_pos; //the position in which the object is instantiated when attacking from the left.
 
     private Vector3 right_spawn_pos;  //the position in which the object is instantiated when attacking from the right.
@@ -94,7 +96,7 @@ public class BasicAI_Attack : MonoBehaviour {
 
         if(attacking_left) //rotates the instantiated object to the right. this is how the weapon hitbox moves.
         {
-            transform.Rotate(Vector3.up, 200 * Time.deltaTime);
+			transform.Rotate(Vector3.up, attackSpeed * Time.deltaTime);
             current_timer += Time.deltaTime;
 
             if (staggered)
@@ -124,7 +126,7 @@ public class BasicAI_Attack : MonoBehaviour {
 
         if (attacking_right) //rotates the instantiated object to the left. this is how the weapon hitbox moves.
         {
-            transform.Rotate(Vector3.down, 200 * Time.deltaTime);
+            transform.Rotate(Vector3.down, attackSpeed * Time.deltaTime);
             current_timer += Time.deltaTime;
 
             if (staggered)
@@ -152,7 +154,7 @@ public class BasicAI_Attack : MonoBehaviour {
 
         if (attacking_top) //rotates the instantiated object to the left. the game object moves downwards on its own from the script.
         {
-            transform.Rotate(Vector3.down, 200 * Time.deltaTime);
+            transform.Rotate(Vector3.down, attackSpeed * Time.deltaTime);
             current_timer += Time.deltaTime;
 
             if (staggered)
