@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: f7107dff277a36c498b34d0ca1ffacf4
+timeCreated: 1507676503
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:Gideon_CTRL
+    100004: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:head_joint1_bn
+    100006: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:head_joint2_bn
+    100008: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:head_joint3_be
+    100010: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_ankle_joint_bn
+    100012: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_clavicle_joint1_bn
+    100014: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_clavicle_joint2_bn
+    100016: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_elbow_joint_bn
+    100018: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_foot_joint_bn
+    100020: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_hip_joint_bn
+    100022: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_index_joint1_bn
+    100024: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_index_joint2_bn
+    100026: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_index_joint3_bn
+    100028: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_index_joint4_be
+    100030: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_knee_joint_bn
+    100032: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_middle_joint1_bn
+    100034: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_middle_joint2_bn
+    100036: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_middle_joint3_bn
+    100038: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_middle_joint4_be
+    100040: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_pinky_joint1_bn
+    100042: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_pinky_joint2_bn
+    100044: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_pinky_joint3_bn
+    100046: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_pinky_joint4_be
+    100048: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_ring_joint1_bn
+    100050: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_ring_joint2_bn
+    100052: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_ring_joint3_bn
+    100054: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_ring_joint4_be
+    100056: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_shoulder_joint_bn
+    100058: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_thumb_joint1_bn
+    100060: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_thumb_joint2_bn
+    100062: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_thumb_joint3_bn
+    100064: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_thumb_joint4_be
+    100066: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_toe_joint_be
+    100068: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_wrist_joint_bn
+    100070: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:neck_joint_bn
+    100072: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_ankle_joint_bn
+    100074: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_clavicle_joint1_bn
+    100076: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_clavicle_joint2_bn
+    100078: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_elbow_joint_bn
+    100080: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_foot_joint_bn
+    100082: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_hip_joint_bn
+    100084: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_index_joint1_bn
+    100086: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_index_joint2_bn
+    100088: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_index_joint3_bn
+    100090: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_index_joint4_be
+    100092: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_knee_joint_bn
+    100094: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_middle_joint1_bn
+    100096: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_middle_joint2_bn
+    100098: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_middle_joint3_bn
+    100100: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_middle_joint4_be
+    100102: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_pinky_joint1_bn
+    100104: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_pinky_joint2_bn
+    100106: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_pinky_joint3_bn
+    100108: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_pinky_joint4_be
+    100110: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_ring_joint1_bn
+    100112: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_ring_joint2_bn
+    100114: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_ring_joint3_bn
+    100116: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_ring_joint4_be
+    100118: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_shoulder_joint_bn
+    100120: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_thumb_joint1_bn
+    100122: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_thumb_joint2_bn
+    100124: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_thumb_joint3_bn
+    100126: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_thumb_joint4_be
+    100128: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_toe_joint_be
+    100130: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_wrist_joint_bn
+    100132: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:spine_joint1_bn
+    100134: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:spine_joint2_bn
+    100136: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:spine_joint3_bn
+    100138: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:spine_joint4_bn
+    100140: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:spine_root_bn
+    100142: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:world_CTRL
+    400000: //RootNode
+    400002: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:Gideon_CTRL
+    400004: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:head_joint1_bn
+    400006: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:head_joint2_bn
+    400008: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:head_joint3_be
+    400010: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_ankle_joint_bn
+    400012: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_clavicle_joint1_bn
+    400014: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_clavicle_joint2_bn
+    400016: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_elbow_joint_bn
+    400018: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_foot_joint_bn
+    400020: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_hip_joint_bn
+    400022: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_index_joint1_bn
+    400024: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_index_joint2_bn
+    400026: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_index_joint3_bn
+    400028: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_index_joint4_be
+    400030: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_knee_joint_bn
+    400032: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_middle_joint1_bn
+    400034: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_middle_joint2_bn
+    400036: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_middle_joint3_bn
+    400038: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_middle_joint4_be
+    400040: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_pinky_joint1_bn
+    400042: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_pinky_joint2_bn
+    400044: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_pinky_joint3_bn
+    400046: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_pinky_joint4_be
+    400048: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_ring_joint1_bn
+    400050: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_ring_joint2_bn
+    400052: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_ring_joint3_bn
+    400054: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_ring_joint4_be
+    400056: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_shoulder_joint_bn
+    400058: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_thumb_joint1_bn
+    400060: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_thumb_joint2_bn
+    400062: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_thumb_joint3_bn
+    400064: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_thumb_joint4_be
+    400066: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_toe_joint_be
+    400068: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:L_wrist_joint_bn
+    400070: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:neck_joint_bn
+    400072: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_ankle_joint_bn
+    400074: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_clavicle_joint1_bn
+    400076: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_clavicle_joint2_bn
+    400078: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_elbow_joint_bn
+    400080: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_foot_joint_bn
+    400082: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_hip_joint_bn
+    400084: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_index_joint1_bn
+    400086: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_index_joint2_bn
+    400088: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_index_joint3_bn
+    400090: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_index_joint4_be
+    400092: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_knee_joint_bn
+    400094: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_middle_joint1_bn
+    400096: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_middle_joint2_bn
+    400098: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_middle_joint3_bn
+    400100: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_middle_joint4_be
+    400102: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_pinky_joint1_bn
+    400104: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_pinky_joint2_bn
+    400106: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_pinky_joint3_bn
+    400108: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_pinky_joint4_be
+    400110: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_ring_joint1_bn
+    400112: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_ring_joint2_bn
+    400114: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_ring_joint3_bn
+    400116: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_ring_joint4_be
+    400118: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_shoulder_joint_bn
+    400120: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_thumb_joint1_bn
+    400122: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_thumb_joint2_bn
+    400124: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_thumb_joint3_bn
+    400126: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_thumb_joint4_be
+    400128: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_toe_joint_be
+    400130: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:R_wrist_joint_bn
+    400132: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:spine_joint1_bn
+    400134: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:spine_joint2_bn
+    400136: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:spine_joint3_bn
+    400138: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:spine_joint4_bn
+    400140: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:spine_root_bn
+    400142: New_Idle_Pose_Gideon:Gideon_RigV3_Chavez:world_CTRL
+    7400000: CombatIdle
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

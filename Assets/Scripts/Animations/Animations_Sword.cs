@@ -48,6 +48,10 @@ public class Animations_Sword : MonoBehaviour
         // Heavy Attack!
         if (Input.GetButtonDown("Controller_B"))
         {
+            if (swordAnimator.GetBool("isAttacking") == false)
+            {
+                swordAnimator.SetBool("isAttacking", true);
+            }
             swordAnimator.Play("Swing4 V1");
         }
     }
