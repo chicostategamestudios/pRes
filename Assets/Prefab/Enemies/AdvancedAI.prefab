@@ -278,7 +278,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085637392641426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.43961, y: 15.64, z: 313.6226}
+  m_LocalPosition: {x: -8.618256, y: 1.3855882, z: -36.392517}
   m_LocalScale: {x: 2.7711785, y: 2.7711768, z: 2.7711768}
   m_Children:
   - {fileID: 4371340511062522}
@@ -588,11 +588,11 @@ MonoBehaviour:
   check_attack_top: 0
   staggered: 0
   sword: {fileID: 0}
-  weapon_left_prefab: {fileID: 1981994566704134, guid: d7b9221496155a14db4d029f8c54d8f9,
+  weapon_left_prefab: {fileID: 1296000442910242, guid: b9035e25f976ae3479a57b30fa7560c8,
     type: 2}
-  weapon_right_prefab: {fileID: 1287307482832718, guid: 3ca735b84a0f81242ba1631ba971729d,
+  weapon_right_prefab: {fileID: 1751623898208786, guid: 3a335e94a08382f40aaabe95402bbdaa,
     type: 2}
-  weapon_top_prefab: {fileID: 1287307482832718, guid: d2a51a1ec669b684ab29eaf75d3cb8e6,
+  weapon_top_prefab: {fileID: 1166544353139534, guid: a983d418ee169fc49af8027bceb8bb81,
     type: 2}
 --- !u!114 &114444827760344294
 MonoBehaviour:
