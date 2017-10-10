@@ -16,9 +16,9 @@ public class PlayerGamepad : MonoBehaviour
     public float acceleration;
     [Tooltip("How fast the player slows down. Value between 0 and 1.")]
     public float deacceleration;
-    private float current_speed, speed_smooth_velocity, current_speed_multiplier;
+    public float current_speed, speed_smooth_velocity, current_speed_multiplier;    // Neil: Also made this public for animation controller.
     public float max_running_speed, original_max_speed;
-    private bool disable_left_joystick, disable_right_joystick; //left stick is movement, right stick is camera
+    private bool disable_left_joystick, disable_right_joystick; // left stick is movement, right stick is camera
     Vector3 move_direction;
 
     //PLAYER
@@ -30,7 +30,7 @@ public class PlayerGamepad : MonoBehaviour
     public float running_acceleration_multiplier;
 
     //RAIL
-    private bool grinding;
+    public bool grinding;   // Neil: Also made public so my animation script can detect grinding.
     private Vector3 grinding_direction;
 
     //Wall
