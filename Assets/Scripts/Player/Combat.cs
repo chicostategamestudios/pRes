@@ -66,6 +66,7 @@ public class Combat : MonoBehaviour {
 
 	public int light_damage = 10;
 	public int heavy_damage = 15;
+	public Animations_Sword my_anime;
 
     private void Start()
     {
@@ -73,6 +74,7 @@ public class Combat : MonoBehaviour {
 		my_gamepad = GetComponent<PlayerGamepad> ();
         camera_anchor = GameObject.Find("Camera Anchor");
 		playerAnimator = GetComponent<Animator>();
+		//my_anime =
         //player_weapon = GameObject.Find("PlayerWeapon").transform;
 		//weapon = GameObject.Find ("WeaponPivot");
 		//weapon_collider = GameObject.Find ("WeaponPlaceHolder").GetComponent<BoxCollider> ();//need to change object name at some point
@@ -174,6 +176,7 @@ public class Combat : MonoBehaviour {
 			myBlade.curDamage (light_damage);
 
 			// Start Animation Coroutine
+			my_anime.StartCoroutine("LightAttackAnim");
             StartCoroutine(WaitForFastAttackAnimation());
         }
 
@@ -353,6 +356,7 @@ public class Combat : MonoBehaviour {
 			//light_attack_number = 0;
 			//strong_attack_number = 0;
 			attack_number = 0;
+			my_anime.attack_combo = 0;
 		}
     }
 
@@ -381,7 +385,7 @@ public class Combat : MonoBehaviour {
 		attack = true;
 		//rotate weapon
 		//weapon.transform.eulerAngles = new Vector3 (80, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
-        yield return new WaitForSeconds(.7f);
+        yield return new WaitForSeconds(.3f);
 		//weapon.transform.eulerAngles = new Vector3 (0, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z);
 		//GetComponent<PlayerGamepad>().GamepadAllowed = true;
 		is_light_attacking = false;//use to send hit damage to attack prefab
@@ -413,7 +417,7 @@ public class Combat : MonoBehaviour {
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Needs to deferintiate between light and strong so there is a delay if changed mid combo
     IEnumerator ComboTimerLight()
     {
-		if (attack_number <= 4) {
+		if (attack_number <= 2) {
 			is_light_attacking = false;
 			is_comboing = true;
 			GetComponent<PlayerGamepad>().GamepadAllowed = true;
@@ -423,6 +427,7 @@ public class Combat : MonoBehaviour {
 			yield return new WaitForSeconds (.5f);
 			is_comboing = false;
 			attack_number = 0;
+			my_anime.attack_combo = 0;
 			GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 		}
     }

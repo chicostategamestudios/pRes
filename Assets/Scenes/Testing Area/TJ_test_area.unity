@@ -868,9 +868,35 @@ Prefab:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114313874675057746, guid: b62f6fb734ea7e0409e3c66b57548adb,
+        type: 2}
+      propertyPath: swordObject
+      value: 
+      objectReference: {fileID: 57886871}
+    - target: {fileID: 114313874675057746, guid: b62f6fb734ea7e0409e3c66b57548adb,
+        type: 2}
+      propertyPath: my_anime
+      value: 
+      objectReference: {fileID: 57886872}
+    - target: {fileID: 114451861112172204, guid: b62f6fb734ea7e0409e3c66b57548adb,
+        type: 2}
+      propertyPath: my_combat
+      value: 
+      objectReference: {fileID: 412389668}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b62f6fb734ea7e0409e3c66b57548adb, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &57886871 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1249777180528768, guid: b62f6fb734ea7e0409e3c66b57548adb,
+    type: 2}
+  m_PrefabInternal: {fileID: 57886870}
+--- !u!114 &57886872 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114977874520844936, guid: b62f6fb734ea7e0409e3c66b57548adb,
+    type: 2}
+  m_PrefabInternal: {fileID: 57886870}
+  m_Script: {fileID: 11500000, guid: b9a2a793ad4e05141a8e8860e56ef831, type: 3}
 --- !u!1 &58027822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,6 +2448,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!114 &412389668 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114313874675057746, guid: b62f6fb734ea7e0409e3c66b57548adb,
+    type: 2}
+  m_PrefabInternal: {fileID: 57886870}
+  m_Script: {fileID: 11500000, guid: 087ca0000cf81454db228f2f5d5be85a, type: 3}
 --- !u!1 &418741600
 GameObject:
   m_ObjectHideFlags: 0
@@ -2763,6 +2795,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 0}
   light_damage: 10
   heavy_damage: 15
+  my_anime: {fileID: 0}
 --- !u!96 &512072924
 TrailRenderer:
   serializedVersion: 2

@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Created by Neil - Last Modified by Thaddeus Thompson - 10/12/17
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //using UnityEditor.Animations;
@@ -71,7 +73,7 @@ public class Animations_BrianGideon : MonoBehaviour
             playerAnimator.SetBool("isGrinding", false);
         }
 
-        if (Input.GetButtonDown("Controller_Y"))
+       /* if (Input.GetButtonDown("Controller_Y"))
         {
             switch (lightAttackCombo)
             {
@@ -97,6 +99,6 @@ public class Animations_BrianGideon : MonoBehaviour
         if (Input.GetButtonDown("Controller_B"))
         {
             playerAnimator.Play("Swing4 V1");
-        }
+        }*/
     }
 }
