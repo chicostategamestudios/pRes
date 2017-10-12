@@ -17,7 +17,10 @@ public class PlayerGamepad : MonoBehaviour
     [Tooltip("How fast the player slows down. Value between 0 and 1.")]
     public float deacceleration;
     public float current_speed, speed_smooth_velocity, current_speed_multiplier;    // Neil: Also made this public for animation controller.
+<<<<<<< HEAD
     public float max_running_speed, original_max_speed;
+=======
+>>>>>>> 1f7661afd728c8dd44a0ff53f616fd3bdcf61b36
     private bool disable_left_joystick, disable_right_joystick; // left stick is movement, right stick is camera
     Vector3 move_direction;
 
@@ -25,9 +28,13 @@ public class PlayerGamepad : MonoBehaviour
     private float player_direction;
     private float player_rotation_speed;
     private Rigidbody player_rigidbody;
+<<<<<<< HEAD
     public bool grounded;
     private bool PlayerDied = false;
     public float running_acceleration_multiplier;
+=======
+    public bool grounded;  // Neil: I made this public so my animation script can detect if player is grounded. 
+>>>>>>> 1f7661afd728c8dd44a0ff53f616fd3bdcf61b36
 
     //RAIL
     public bool grinding;   // Neil: Also made public so my animation script can detect grinding.
@@ -275,8 +282,12 @@ public class PlayerGamepad : MonoBehaviour
         //---------------------------------------------------------
 
         //Check to see if the player is grounded
+<<<<<<< HEAD
         if(!grinding)
             grounded = Physics.Raycast(transform.position, -transform.up, out hit_down, 2f);
+=======
+        grounded = Physics.Raycast(transform.position, -transform.up, out hit_down, 5f);
+>>>>>>> 1f7661afd728c8dd44a0ff53f616fd3bdcf61b36
 
         //Slow down rotation speed of player while on air
         player_rotation_speed = grounded ? 10f : 18f;

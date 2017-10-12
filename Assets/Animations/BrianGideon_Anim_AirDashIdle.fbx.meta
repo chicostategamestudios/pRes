@@ -284,6 +284,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+<<<<<<< HEAD
     clipAnimations:
     - serializedVersion: 16
       name: AirDashIdle
@@ -563,6 +564,9 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+=======
+    clipAnimations: []
+>>>>>>> 1f7661afd728c8dd44a0ff53f616fd3bdcf61b36
     isReadable: 1
   meshes:
     lODScreenPercentages: []

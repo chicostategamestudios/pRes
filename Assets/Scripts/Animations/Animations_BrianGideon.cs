@@ -1,15 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
 //using UnityEditor.Animations;
+=======
+using UnityEditor.Animations;
+>>>>>>> 1f7661afd728c8dd44a0ff53f616fd3bdcf61b36
 
 // This script works with the animation controller for the player character Brian Gideon, and his sword animations.
 public class Animations_BrianGideon : MonoBehaviour
 {
     public Animator playerAnimator;
+<<<<<<< HEAD
     AnimatorStateInfo currentStateInfo;
     string currentStateName;
 
+=======
+>>>>>>> 1f7661afd728c8dd44a0ff53f616fd3bdcf61b36
     public GameObject playerObject;
     public GameObject swordObject;
     public PlayerGamepad player;
@@ -28,6 +35,7 @@ public class Animations_BrianGideon : MonoBehaviour
         lightAttackCombo = 0;
 	}
 
+<<<<<<< HEAD
     void OnStateEnter()
     {
         currentStateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
@@ -43,6 +51,11 @@ public class Animations_BrianGideon : MonoBehaviour
       //  currentStateInfo = currentClipInfo[0].clip.name;
 
 
+=======
+    // Update is called once per frame
+    void Update()
+    {
+>>>>>>> 1f7661afd728c8dd44a0ff53f616fd3bdcf61b36
         // Most of these animation conditions use the boolean parameters set up in the animation controller.
         if (player.current_speed > 0)
         {
@@ -62,12 +75,16 @@ public class Animations_BrianGideon : MonoBehaviour
         else if (player.grounded == true)
         {
             playerAnimator.SetBool("inTheAir", false);
+<<<<<<< HEAD
             playerAnimator.SetBool("isAirDashing", false);
+=======
+>>>>>>> 1f7661afd728c8dd44a0ff53f616fd3bdcf61b36
         }
 
         // Air Dashing!
         if (player.dashing == true)
         {
+<<<<<<< HEAD
             playerAnimator.SetBool("isAirDashing", true);
         } 
 
@@ -75,6 +92,14 @@ public class Animations_BrianGideon : MonoBehaviour
         if (Input.GetButtonDown("Controller_X") && player.grounded == true)
         {
             //playerAnimator.Play("DodgeStart");
+=======
+            playerAnimator.Play("Start Air Dash");
+        } 
+        // Dodge
+        if (Input.GetButtonDown("Controller_X") && player.grounded == true)
+        {
+            playerAnimator.Play("DodgeStart");
+>>>>>>> 1f7661afd728c8dd44a0ff53f616fd3bdcf61b36
         }
 
         // Rail Grinding
