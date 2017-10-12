@@ -7,6 +7,9 @@ using UnityEngine;
 public class Animations_BrianGideon : MonoBehaviour
 {
     public Animator playerAnimator;
+    AnimatorStateInfo currentStateInfo;
+    string currentStateName;
+
     public GameObject playerObject;
     public GameObject swordObject;
     public PlayerGamepad player;
@@ -25,9 +28,20 @@ public class Animations_BrianGideon : MonoBehaviour
         lightAttackCombo = 0;
 	}
 
+    void OnStateEnter()
+    {
+        currentStateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
+        //currentStateInfo = currentStateInfo[0].clip.name;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        //Fetch the current Animation clip information for the base layer
+       // currentStateInfo = this.playerAnimator.GetCurrentAnimatorClipInfo(0);
+        //Access the Animation clip name
+      //  currentStateInfo = currentClipInfo[0].clip.name;
+
 
         // Most of these animation conditions use the boolean parameters set up in the animation controller.
         if (player.current_speed > 0)
@@ -48,13 +62,15 @@ public class Animations_BrianGideon : MonoBehaviour
         else if (player.grounded == true)
         {
             playerAnimator.SetBool("inTheAir", false);
+            playerAnimator.SetBool("isAirDashing", false);
         }
 
         // Air Dashing!
         if (player.dashing == true)
         {
-            playerAnimator.Play("Start Air Dash");
+            playerAnimator.SetBool("isAirDashing", true);
         } 
+
         // Dodge
         if (Input.GetButtonDown("Controller_X") && player.grounded == true)
         {

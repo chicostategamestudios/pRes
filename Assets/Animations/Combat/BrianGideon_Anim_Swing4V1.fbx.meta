@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 5684ce4eafe9f094d9dfb3e6cd2fa46e
-timeCreated: 1507241725
+guid: 3e077da270574254ba2249551cf2ab9f
+timeCreated: 1507850849
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -276,7 +276,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: Gideon_Rig/Gideon_geo
+    motionNodeName: Gideon_Rig
     animationImportErrors: 
     animationImportWarnings: "\nClip 'V1' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -290,291 +290,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: V1
-      takeName: V1
-      firstFrame: 0
-      lastFrame: 40
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Gideon_Rig
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/L_hip_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/L_hip_CTRL/L_knee_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/L_hip_CTRL/L_knee_CTRL/L_ankle_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/L_hip_CTRL/L_knee_CTRL/L_ankle_CTRL/L_toe_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/R_hip_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/R_hip_CTRL/R_knee_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/R_hip_CTRL/R_knee_CTRL/R_ankle_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/R_hip_CTRL/R_knee_CTRL/R_ankle_CTRL/R_toe_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2/spine_CTRL3
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2/spine_CTRL3/L_clavivle_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2/spine_CTRL3/L_clavivle_CTRL/L_shoulder_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2/spine_CTRL3/L_clavivle_CTRL/L_shoulder_CTRL/L_elbow_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2/spine_CTRL3/L_clavivle_CTRL/L_shoulder_CTRL/L_elbow_CTRL/L_wrist_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2/spine_CTRL3/neck_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2/spine_CTRL3/neck_CTRL/head_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2/spine_CTRL3/R_clavivle_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2/spine_CTRL3/R_clavivle_CTRL/R_shoulder_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2/spine_CTRL3/R_clavivle_CTRL/R_shoulder_CTRL/R_elbow_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/COG_CTRL/spine_CTRL1/spine_CTRL2/spine_CTRL3/R_clavivle_CTRL/R_shoulder_CTRL/R_elbow_CTRL/R_wrist_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_arm_IK_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_arm_IK_CTRL/L_arm_IK
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_elbow_PV_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_hand_finger_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_knee_PV_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_leg_IK_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_leg_IK_CTRL/L_ankle_pivot_GRP
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_leg_IK_CTRL/L_ankle_pivot_GRP/L_toe_tip_pivot_GRP
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_leg_IK_CTRL/L_ankle_pivot_GRP/L_toe_tip_pivot_GRP/L_swivel_pivot_GRP
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_leg_IK_CTRL/L_ankle_pivot_GRP/L_toe_tip_pivot_GRP/L_swivel_pivot_GRP/L_heel_lift_pivot_GRP
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_leg_IK_CTRL/L_ankle_pivot_GRP/L_toe_tip_pivot_GRP/L_swivel_pivot_GRP/L_heel_lift_pivot_GRP/L_ankle_IK
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_leg_IK_CTRL/L_ankle_pivot_GRP/L_toe_tip_pivot_GRP/L_swivel_pivot_GRP/L_toe_tap_pivot_GRP
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_leg_IK_CTRL/L_ankle_pivot_GRP/L_toe_tip_pivot_GRP/L_swivel_pivot_GRP/L_toe_tap_pivot_GRP/L_foot_IK
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/L_leg_IK_CTRL/L_ankle_pivot_GRP/L_toe_tip_pivot_GRP/L_swivel_pivot_GRP/L_toe_tap_pivot_GRP/L_toe_IK
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_arm_IK_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_arm_IK_CTRL/R_arm_IK
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_elbow_PV_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_hand_finger_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_knee_PV_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_leg_IK_CTRL
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_leg_IK_CTRL/R_ankle_pivot_GRP
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_leg_IK_CTRL/R_ankle_pivot_GRP/R_toe_tip_pivot_GRP
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_leg_IK_CTRL/R_ankle_pivot_GRP/R_toe_tip_pivot_GRP/R_swivel_GRP
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_leg_IK_CTRL/R_ankle_pivot_GRP/R_toe_tip_pivot_GRP/R_swivel_GRP/R_heel_lift_pivot_GRP
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_leg_IK_CTRL/R_ankle_pivot_GRP/R_toe_tip_pivot_GRP/R_swivel_GRP/R_heel_lift_pivot_GRP/R_ankle_IK
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_leg_IK_CTRL/R_ankle_pivot_GRP/R_toe_tip_pivot_GRP/R_swivel_GRP/R_toe_tap_pivot_GRP
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_leg_IK_CTRL/R_ankle_pivot_GRP/R_toe_tip_pivot_GRP/R_swivel_GRP/R_toe_tap_pivot_GRP/R_foot_IK
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/R_leg_IK_CTRL/R_ankle_pivot_GRP/R_toe_tip_pivot_GRP/R_swivel_GRP/R_toe_tap_pivot_GRP/R_toe_IK
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/L_hip_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/L_hip_joint_bn/L_knee_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/L_hip_joint_bn/L_knee_joint_bn/L_ankle_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/L_hip_joint_bn/L_knee_joint_bn/L_ankle_joint_bn/L_foot_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/L_hip_joint_bn/L_knee_joint_bn/L_ankle_joint_bn/L_foot_joint_bn/L_toe_joint_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/R_hip_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/R_hip_joint_bn/R_knee_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/R_hip_joint_bn/R_knee_joint_bn/R_ankle_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/R_hip_joint_bn/R_knee_joint_bn/R_ankle_joint_bn/R_foot_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/R_hip_joint_bn/R_knee_joint_bn/R_ankle_joint_bn/R_foot_joint_bn/R_toe_joint_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_index_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_index_joint1_bn/L_index_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_index_joint1_bn/L_index_joint2_bn/L_index_joint3_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_index_joint1_bn/L_index_joint2_bn/L_index_joint3_bn/L_index_joint4_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_middle_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_middle_joint1_bn/L_middle_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_middle_joint1_bn/L_middle_joint2_bn/L_middle_joint3_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_middle_joint1_bn/L_middle_joint2_bn/L_middle_joint3_bn/L_middle_joint4_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_pinky_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_pinky_joint1_bn/L_pinky_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_pinky_joint1_bn/L_pinky_joint2_bn/L_pinky_joint3_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_pinky_joint1_bn/L_pinky_joint2_bn/L_pinky_joint3_bn/L_pinky_joint4_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_ring_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_ring_joint1_bn/L_ring_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_ring_joint1_bn/L_ring_joint2_bn/L_ring_joint3_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_ring_joint1_bn/L_ring_joint2_bn/L_ring_joint3_bn/L_ring_joint4_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_thumb_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_thumb_joint1_bn/L_thumb_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_thumb_joint1_bn/L_thumb_joint2_bn/L_thumb_joint3_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/L_clavicle_joint1_bn/L_clavicle_joint2_bn/L_shoulder_joint_bn/L_elbow_joint_bn/L_wrist_joint_bn/L_thumb_joint1_bn/L_thumb_joint2_bn/L_thumb_joint3_bn/L_thumb_joint4_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/neck_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/neck_joint_bn/head_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/neck_joint_bn/head_joint1_bn/head_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/neck_joint_bn/head_joint1_bn/head_joint2_bn/head_joint3_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_index_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_index_joint1_bn/R_index_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_index_joint1_bn/R_index_joint2_bn/R_index_joint3_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_index_joint1_bn/R_index_joint2_bn/R_index_joint3_bn/R_index_joint4_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_middle_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_middle_joint1_bn/R_middle_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_middle_joint1_bn/R_middle_joint2_bn/R_middle_joint3_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_middle_joint1_bn/R_middle_joint2_bn/R_middle_joint3_bn/R_middle_joint4_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_pinky_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_pinky_joint1_bn/R_pinky_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_pinky_joint1_bn/R_pinky_joint2_bn/R_pinky_joint3_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_pinky_joint1_bn/R_pinky_joint2_bn/R_pinky_joint3_bn/R_pinky_joint4_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_ring_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_ring_joint1_bn/R_ring_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_ring_joint1_bn/R_ring_joint2_bn/R_ring_joint3_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_ring_joint1_bn/R_ring_joint2_bn/R_ring_joint3_bn/R_ring_joint4_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_thumb_joint1_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_thumb_joint1_bn/R_thumb_joint2_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_thumb_joint1_bn/R_thumb_joint2_bn/R_thumb_joint3_bn
-        weight: 1
-      - path: Gideon_Rig/Gideon_CTRL/world_CTRL/spine_root_bn/spine_joint1_bn/spine_joint2_bn/spine_joint3_bn/spine_joint4_bn/R_clavicle_joint1_bn/R_clavicle_joint2_bn/R_shoulder_joint_bn/R_elbow_joint_bn/R_wrist_joint_bn/R_thumb_joint1_bn/R_thumb_joint2_bn/R_thumb_joint3_bn/R_thumb_joint4_be
-        weight: 0
-      - path: Gideon_Rig/Gideon_geo
-        weight: 0
-      - path: Gideon_Rig/Gideon_geo/Gideon_geo 1
-        weight: 0
-      - path: Gideon_Rig/Gideon_geo/Gideon_geo 1/cape_geo
-        weight: 0
-      - path: Sword_global
-        weight: 0
-      - path: Sword_global/SwordController
-        weight: 0
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -1019,13 +735,13 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: BrianGideon_Anim_Swing4_V1(Clone)
+    - name: BrianGideon_Anim_Swing4V1(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Gideon_Rig
-      parentName: BrianGideon_Anim_Swing4_V1(Clone)
+      parentName: BrianGideon_Anim_Swing4V1(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -1156,7 +872,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: L_arm_IK
       parentName: L_arm_IK_CTRL
-      position: {x: 0.16651936, y: 0.1450096, z: -0.3566718}
+      position: {x: 0.16371512, y: 0.13680114, z: -0.43230948}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: L_elbow_PV_CTRL
@@ -1226,7 +942,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: R_arm_IK
       parentName: R_arm_IK_CTRL
-      position: {x: -0.6479519, y: 0.73567855, z: -0.7155563}
+      position: {x: -0.756897, y: 0.8998567, z: -0.73197335}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: R_elbow_PV_CTRL
@@ -1491,12 +1207,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: neck_joint_bn
       parentName: spine_joint4_bn
-      position: {x: -0.12042104, y: 2.1316282e-16, z: -8.8817837e-17}
+      position: {x: -0.12042104, y: 2.1316282e-16, z: -7.105427e-17}
       rotation: {x: -0.000000029802326, y: -0.000000029802326, z: 0.07130314, w: 0.9974547}
       scale: {x: 0.9999978, y: 0.99999815, z: 0.999999}
     - name: head_joint1_bn
       parentName: neck_joint_bn
-      position: {x: -0.06843297, y: 0.000000011873239, z: -1.4505008e-10}
+      position: {x: -0.06843297, y: 0.000000011873239, z: -1.4505012e-10}
       rotation: {x: 0.000000044703484, y: -0, z: -0.17399657, w: 0.9847463}
       scale: {x: 1.0000001, y: 1.0000005, z: 1.0000004}
     - name: head_joint2_bn
@@ -1650,7 +1366,7 @@ ModelImporter:
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Sword_global
-      parentName: BrianGideon_Anim_Swing4_V1(Clone)
+      parentName: BrianGideon_Anim_Swing4V1(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
