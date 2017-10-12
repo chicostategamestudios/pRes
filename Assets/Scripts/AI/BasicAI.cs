@@ -81,6 +81,8 @@ public class BasicAI : MonoBehaviour
     public float knockback_force = 18f;
     [Tooltip("This is used for testing. Check this to damage the enemy.")]
     public bool check_to_damage = false;
+    [Tooltip("This is the percentage chance to dodge instead of attack. The lower the number, the more often it will dodge.")]
+    public int chance_to_dodge = 35;
 
 
     [Header("Don't touch!")]
@@ -89,7 +91,10 @@ public class BasicAI : MonoBehaviour
     public GameObject right_dodge;
     [Tooltip("Used to determine what action the AI will take. 35 and below will make the AI dodge, anything else will make it attack.")]
     public int action_selection = 0;
-    //private BattleArea_End end;
+
+    private BattleArea_End end; /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool berserk_mode = false;
+
 
     private bool first_alert = false; //used to keep track if the AI has been alerted the first time.
     [HideInInspector]
@@ -199,7 +204,7 @@ public class BasicAI : MonoBehaviour
     //set up for the AI attacks and movement.
     private void Awake()
     {
-        //end = GetComponentInParent<BattleArea_End>();
+        end = GetComponentInParent<BattleArea_End>();
         //find the backward direction for knockbacks.
         backward_dir = transform.TransformDirection(Vector3.back);
         //find the child object to access its script for attacks.
@@ -239,6 +244,9 @@ public class BasicAI : MonoBehaviour
     {
         //print("the enemy is dying...");
         yield return new WaitForSeconds(death_duration);
+        end.enemyList.Remove(gameObject);
+        this.transform.parent = null;
+        Debug.Log("end list left: " + end.enemyList.Count);
         //end.enemyList.Remove(gameObject);
         this.gameObject.SetActive(false);
     }
@@ -287,6 +295,11 @@ public class BasicAI : MonoBehaviour
         //it is not staggering so run through the usual routines.
         else
         {
+            if(berserk_mode)
+            {
+                chance_to_dodge = 15;
+            }
+
             distance_to_player = Vector3.Distance(target.position, transform.position); //calculate distance to player
 
             //used for checking and testing purposes.
@@ -302,7 +315,6 @@ public class BasicAI : MonoBehaviour
             {
                 alerted = true;
                 first_alert = true;
-                //remaining_enemies++; this will be added once kyle finishes his script for battle arena.
             }
 
             //if the enemy reached 0 hp, it is dead so it will be put into the dying state then go through the death coroutine.
@@ -343,7 +355,7 @@ public class BasicAI : MonoBehaviour
                 //comment the line below to "control" the AI.
                 action_selection = Random.Range(0, 100);
 
-                if(action_selection <= 35)
+                if(action_selection <= chance_to_dodge)
                 {
                     ai_state current_state = (ai_state)Random.Range(2, 4); //randomly select to either dodge or moveback.
                     switch (current_state) //based on the choice, do the corresponding coroutines
