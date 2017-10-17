@@ -1,20 +1,16 @@
 fileFormatVersion: 2
-guid: 7426f9d718c0519499111e4ac934d1df
-timeCreated: 1508277887
+guid: 4deebf6ad7885a948b5d6d9bb1bc57fe
+timeCreated: 1508281065
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: BrianGideon_Anim_HeavySwing1_V1:Sword
-    100002: BrianGideon_Anim_HeavySwing1_V1:Sword_Controler
-    100004: //RootNode
-    400000: BrianGideon_Anim_HeavySwing1_V1:Sword
-    400002: BrianGideon_Anim_HeavySwing1_V1:Sword_Controler
-    400004: //RootNode
-    2300000: BrianGideon_Anim_HeavySwing1_V1:Sword
-    3300000: BrianGideon_Anim_HeavySwing1_V1:Sword
-    4300000: BrianGideon_Anim_HeavySwing1_V1:Sword
-    7400000: V1_Sword
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: unchanged__Gideon_Anim_Counter_Fail:GideonSword_01_mesh1:polySurface1
+    7400000: _Sword
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -25,12 +21,12 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: BrianGideon_Anim_HeavySwing1_V1:Sword_Controler
+    motionNodeName: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5

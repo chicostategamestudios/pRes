@@ -10,13 +10,16 @@ public class Animations_Sword : MonoBehaviour
     public GameObject swordObject;
 
     public int lightAttackCombo;     // Max move speed is 48.
+    public int heavyAttackCombo;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         swordAnimator = GetComponentInChildren<Animator>();
         lightAttackCombo = 0;
-	}
+        heavyAttackCombo = 0;
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -52,7 +55,25 @@ public class Animations_Sword : MonoBehaviour
             {
                 swordAnimator.SetBool("isAttacking", true);
             }
-            swordAnimator.Play("Swing4 V1");
+            switch (heavyAttackCombo)
+            {
+                case 0:
+
+                    swordAnimator.Play("HeavySwing1 V1_Sword");
+                    // playerAnimator.Play("Sword1 V1");
+                    heavyAttackCombo = 1;
+                    break;
+                case 1:
+                    swordAnimator.Play("HeavySwing2 V1_Sword");
+                    //playerAnimator.Play("Sword2 V1");
+                    heavyAttackCombo = 2;
+                    break;
+                case 2:
+                    swordAnimator.Play("HeavySwing3 V1_Sword");
+                    //playerAnimator.Play("Sword3 V1");
+                    heavyAttackCombo = 0;
+                    break;
+            }
         }
     }
 }

@@ -16,10 +16,10 @@ public class Animations_BrianGideon : MonoBehaviour
     public PlayerHealth currentHP;
 
     int lightAttackCombo;     // Max move speed is 48.
+    int heavyAttackCombo;
 
-
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         player = playerObject.GetComponent<PlayerGamepad>();    // We will also need certain variables from the gamepad script.
         swordObject = GetComponent<GameObject>();
@@ -27,7 +27,9 @@ public class Animations_BrianGideon : MonoBehaviour
         playerAnimator = GetComponent<Animator>();    // Here we can refer to the playerAnimator controller we need to use.
 
         lightAttackCombo = 0;
-	}
+        heavyAttackCombo = 0;
+
+    }
 
     void OnStateEnter()
     {
@@ -112,11 +114,28 @@ public class Animations_BrianGideon : MonoBehaviour
                     lightAttackCombo = 0;
                     break;
             }
-
         }
         if (Input.GetButtonDown("Controller_B"))
         {
-            playerAnimator.Play("Swing4 V1");
+            switch (heavyAttackCombo)
+            {
+                case 0:
+
+                    playerAnimator.Play("HeavySwing1 V1");
+                    // playerAnimator.Play("Sword1 V1");
+                    heavyAttackCombo = 1;
+                    break;
+                case 1:
+                    playerAnimator.Play("HeavySwing2 V1");
+                    //playerAnimator.Play("Sword2 V1");
+                    heavyAttackCombo = 2;
+                    break;
+                case 2:
+                    playerAnimator.Play("HeavySwing3 V1");
+                    //playerAnimator.Play("Sword3 V1");
+                    heavyAttackCombo = 0;
+                    break;
+            }
         }
     }
 }
