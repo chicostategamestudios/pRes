@@ -51,6 +51,8 @@ public class BasicAI_Attack : MonoBehaviour {
 
     public GameObject weapon_top_prefab; //the prefab for the hitbox when attacking diagonally.
 
+    public GameObject brsrk_left_prefab, brsrk_right_prefab, brsrk_top_prefab;
+
     private GameObject left_arm_pos; //this is to keep the position of where to spawn the prefab.
 
     private GameObject right_arm_pos; // same as above
@@ -58,7 +60,8 @@ public class BasicAI_Attack : MonoBehaviour {
     private GameObject top_arm_pos; // same as above
 
     private Quaternion original_rotation; //this is used to preserve the old rotations after the weapon is done swinging/rotating.
-    
+
+    public bool berserk_mode = false;
 
     // Use this for initialization
     void Start()
@@ -86,7 +89,14 @@ public class BasicAI_Attack : MonoBehaviour {
 
         if (check_attack_left && sword == null) //when this is set to true, instantiate the prefab and set it parented to this game object. sets this back to false immediately after to prevent non-stop spawning.
         {//this will be checked to attack from the BasicAI script.
-            sword = Instantiate(weapon_left_prefab, left_spawn_pos, transform.rotation);
+            if(berserk_mode)
+            {
+                sword = Instantiate(brsrk_left_prefab, left_spawn_pos, transform.rotation);
+            }
+            else
+            {
+                sword = Instantiate(weapon_left_prefab, left_spawn_pos, transform.rotation);
+            }
             sword.transform.parent = gameObject.transform;
             check_attack_left = false;
             attacking_left = true;
@@ -117,7 +127,14 @@ public class BasicAI_Attack : MonoBehaviour {
         if (check_attack_right && sword == null) //when this is set to true, instantiate the prefab and set it parented to this game object. afterwards, 
                                 //it will set this back to false immediately after to prevent non-stop spawning.
         {
-            sword = Instantiate(weapon_right_prefab, right_spawn_pos, transform.rotation);
+            if (berserk_mode)
+            {
+                sword = Instantiate(brsrk_right_prefab, right_spawn_pos, transform.rotation);
+            }
+            else
+            {
+                sword = Instantiate(weapon_right_prefab, right_spawn_pos, transform.rotation);
+            }
             sword.transform.parent = gameObject.transform;
             attacking_right = true;
             check_attack_right = false;
@@ -145,7 +162,14 @@ public class BasicAI_Attack : MonoBehaviour {
 
         if (check_attack_top && sword == null) //when this is set to true, instantiate the prefab and set it parented to this game object. sets this back to false immediately after to prevent non-stop spawning.
         {
-            sword = Instantiate(weapon_top_prefab, top_spawn_pos, transform.rotation);
+            if (berserk_mode)
+            {
+                sword = Instantiate(brsrk_top_prefab, top_spawn_pos, transform.rotation);
+            }
+            else
+            {
+                sword = Instantiate(weapon_top_prefab, top_spawn_pos, transform.rotation);
+            }
             sword.transform.parent = gameObject.transform;
             attacking_top = true;
             check_attack_top = false;

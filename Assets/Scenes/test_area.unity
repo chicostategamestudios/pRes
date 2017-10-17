@@ -1521,12 +1521,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &441822938 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114230967712344338, guid: 741e04800d51e854f88c02fe045062ba,
-    type: 2}
-  m_PrefabInternal: {fileID: 2106797879}
-  m_Script: {fileID: 11500000, guid: 1402b622de87a5b47b359e8e6ccbab9f, type: 3}
 --- !u!1 &477464630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1647,16 +1641,23 @@ MonoBehaviour:
   strong_attack_distance: 10
   strong_attack_time: 0.33
   dodge_distance: 10
-  dodge_time: 2
+  is_strong_attacking: 0
   is_comboing: 0
   is_invunerable: 0
   dodge_length: 0
   dodge_button: LT
+  dodge_dir: {x: 0, y: 0, z: 0}
   is_attacking: 0
-  light_attack_number: 0
-  strong_attack_number: 0
   attack_timer: 0
   weapon_collider: {fileID: 0}
+  test_variable: 0
+  swordAnimator: {fileID: 0}
+  swordObject: {fileID: 0}
+  lightAttackCombo: 0
+  myBlade: {fileID: 0}
+  playerAnimator: {fileID: 0}
+  light_damage: 10
+  heavy_damage: 15
 --- !u!96 &512072924
 TrailRenderer:
   serializedVersion: 2
@@ -1770,18 +1771,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 0
   deacceleration: 0
+  current_speed: 0
+  speed_smooth_velocity: 0
+  current_speed_multiplier: 0
+  max_running_speed: 0
+  original_max_speed: 0
   grounded: 0
-  PlayerDied: 0
+  running_acceleration_multiplier: 0
+  grinding: 0
+  on_wall: 0
   jump_counter: 0
   jump_limit: 0
   jump_force: 0
   camera_recenter: 0
   use_camera_type_1: 0
   dash_duration: 0
-  dash_speed: 0
+  percentage_of_dash_duration_on_accelerate: 0
+  percentage_of_dash_duration_on_deaccelerate: 0
   dashing: 0
-  exiting_dash: 0
+  dash_acceleration: 0
+  dash_deacceleration: 0
+  grinding_speed: 0
+  dash_rotation_speed: 0
   booster_force: 0
+  turning_speed: 0
+  booster_rotation_speed: 0
+  booster_speed: 0
+  smoothed_rotation: 0
 --- !u!54 &512072926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7133,7 +7149,7 @@ MonoBehaviour:
   stagger_duration: 0.5
   player_pad: {fileID: 0}
   Health:
-    bar: {fileID: 441822938}
+    bar: {fileID: 0}
     maxVal: 100
     currentVal: 100
 --- !u!23 &2127393995
