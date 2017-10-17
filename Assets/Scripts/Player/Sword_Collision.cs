@@ -70,6 +70,8 @@ public class Sword_Collision : MonoBehaviour
 				//	Debug.Log ("Deal strong damage " + damage);
 			}
 		}//turn off collider after attacks
+
+		swordOff ();
     }
 
 	public void curDamage(int newDam)

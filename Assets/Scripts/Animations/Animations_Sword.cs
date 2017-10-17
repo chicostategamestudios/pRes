@@ -44,6 +44,14 @@ public class Animations_Sword : MonoBehaviour
 		}
 		yield return null;
 	}
+
+	IEnumerator CounterAnim(){
+		Debug.Log ("animate");
+		playerAnimator.Play ("Start Air Dash");
+
+		yield return null;
+	}
+
     // Update is called once per frame
     void Update()
     {

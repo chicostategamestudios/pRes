@@ -68,8 +68,15 @@ public class Combat : MonoBehaviour {
 	public int heavy_damage = 15;
 	public Animations_Sword my_anime;
 
+	public bool is_countering = false;
+	private float counter_timer = 0.2f;
+	private float counter_length = 0.5f;
+	[HideInInspector]public float counter_recovery = 1f;
+	private BasicAI_Attack enemy_attack;
+
     private void Start()
     {
+		//counter_timer = Time.time;
         next_attack = 0;
 		my_gamepad = GetComponent<PlayerGamepad> ();
         camera_anchor = GameObject.Find("Camera Anchor");
@@ -133,96 +140,103 @@ public class Combat : MonoBehaviour {
         // Fast Attack//////////////////////////////////////////////////////////////////////////////////////////////////////
 		if (Input.GetButtonDown("Controller_Y") && !is_light_attacking && GetComponent<PlayerGamepad>().GamepadAllowed == true)
         {
-			//!!!!!!!!!!!!!!!!!!!!!!!!!Call out to Animations_Sword
-			forward = transform.TransformDirection(Vector3.forward);
-            //Debug.Log("Light Attack");
-			is_attacking = true;
-			attack_number++;
-			attack_timer = 1f;
-			targeted_enemy = my_camera.GetLockOn ();
-			// Disable Player movement
-            GetComponent<PlayerGamepad>().GamepadAllowed = false;
-            // Check for Combo
-            if (is_comboing)
-            {
-                combo_counter++;
-            }
-            else
-            {
-                combo_counter = 1;
-            }
+			counter_timer -= Time.deltaTime;
+			//Counter///////////
+			if (is_countering == false && Input.GetButtonDown ("Controller_B") && counter_timer < 0.2f) {
+				StartCoroutine ("Counter");
+			} else {
+				counter_timer = 0.2f;
+			
 
-			// Set Player rotation to Camera Anchor rotation
-			//transform.eulerAngles = new Vector3 (transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
-			//Debug.Log("Rotation = " + transform.rotation);
+				//!!!!!!!!!!!!!!!!!!!!!!!!!Call out to Animations_Sword
+				forward = transform.TransformDirection (Vector3.forward);
+				//Debug.Log("Light Attack");
+				is_attacking = true;
+				attack_number++;
+				attack_timer = 1f;
+				targeted_enemy = my_camera.GetLockOn ();
+				// Disable Player movement
+				GetComponent<PlayerGamepad> ().GamepadAllowed = false;
+				// Check for Combo
+				if (is_comboing) {
+					combo_counter++;
+				} else {
+					combo_counter = 1;
+				}
 
-            // check to see if something is in the way
-            // bool Physics.SphereCast(Ray ray, float radius, out RaycastHit hitInfo, float maxDistance))
-            if (Physics.Raycast (transform.position, forward, out hit, (light_attack_distance)))
-            {
-                if (hit.collider.tag == "Wall" || hit.collider.tag == "Enemy")
-                {
-                    something_too_close = true;
-                }
-            }
+				// Set Player rotation to Camera Anchor rotation
+				//transform.eulerAngles = new Vector3 (transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
+				//Debug.Log("Rotation = " + transform.rotation);
+
+				// check to see if something is in the way
+				// bool Physics.SphereCast(Ray ray, float radius, out RaycastHit hitInfo, float maxDistance))
+				if (Physics.Raycast (transform.position, forward, out hit, (light_attack_distance))) {
+					if (hit.collider.tag == "Wall" || hit.collider.tag == "Enemy") {
+						something_too_close = true;
+					}
+				}
 
 
-            // Instantiate Move Target
-            //Instantiate(target_prefab, transform.position + (transform.forward * light_attack_distance), transform.rotation); // create target marker
-            //target_prefab.GetComponent<DestroyMove>().set_life = light_attack_time;
+				// Instantiate Move Target
+				//Instantiate(target_prefab, transform.position + (transform.forward * light_attack_distance), transform.rotation); // create target marker
+				//target_prefab.GetComponent<DestroyMove>().set_life = light_attack_time;
 
-			//weapon_collider.enabled = true;
-			is_light_attacking = true;
-			myBlade.curDamage (light_damage);
+				//weapon_collider.enabled = true;
+				is_light_attacking = true;
+				myBlade.curDamage (light_damage);
 
-			// Start Animation Coroutine
-			my_anime.StartCoroutine("LightAttackAnim");
-            StartCoroutine(WaitForFastAttackAnimation());
+				// Start Animation Coroutine
+				my_anime.StartCoroutine ("LightAttackAnim");
+				StartCoroutine (WaitForFastAttackAnimation ());
+			}
         }
 
         // Strong Attack////////////////////////////////////////////////////////////////////////////////////////////////////
 		if (Input.GetButtonDown("Controller_B") && !is_strong_attacking && GetComponent<PlayerGamepad>().GamepadAllowed == true)
         {
-			forward = transform.TransformDirection(Vector3.forward);
-            //Debug.Log("Heavy Attack");
-			is_attacking = true;
-			attack_number++;
-			attack_timer = 1f;
-			targeted_enemy = my_camera.GetLockOn ();
-            // Disable Player movement
-            GetComponent<PlayerGamepad>().GamepadAllowed = false;
-            // Check for Combo
-            if (is_comboing)
-            {
-                combo_counter++;
-            }
-            else
-            {
-                combo_counter = 1;
-            }
+			counter_timer -= Time.deltaTime;
+			//Counter///////////
+			if (is_countering == false && Input.GetButtonDown ("Controller_Y") && counter_timer < 0.2f) {
+				StartCoroutine ("Counter");
+			} else {
+				counter_timer = 0.2f;
 
-            // Set Player rotation to Camera Anchor rotation
-            //transform.eulerAngles = new Vector3(transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
-           // Debug.Log("Rotation = " + transform.rotation);
+				forward = transform.TransformDirection (Vector3.forward);
+				//Debug.Log("Heavy Attack");
+				is_attacking = true;
+				attack_number++;
+				attack_timer = 1f;
+				targeted_enemy = my_camera.GetLockOn ();
+				// Disable Player movement
+				GetComponent<PlayerGamepad> ().GamepadAllowed = false;
+				// Check for Combo
+				if (is_comboing) {
+					combo_counter++;
+				} else {
+					combo_counter = 1;
+				}
 
-            // check to see if something is in the way
-			if (Physics.Raycast(transform.position, forward, out hit, (strong_attack_distance)))
-            {
-                if (hit.collider.tag == "Wall" || hit.collider.tag == "Enemy")
-                {
-                    something_too_close = true;
-                }
-            }
+				// Set Player rotation to Camera Anchor rotation
+				//transform.eulerAngles = new Vector3(transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
+				// Debug.Log("Rotation = " + transform.rotation);
 
-            // Instantiate Move Target
-            //Instantiate(target_prefab, transform.position + (transform.forward * strong_attack_distance), transform.rotation); // create target marker
-            //target_prefab.GetComponent<DestroyMove>().set_life = strong_attack_time;
+				// check to see if something is in the way
+				if (Physics.Raycast (transform.position, forward, out hit, (strong_attack_distance))) {
+					if (hit.collider.tag == "Wall" || hit.collider.tag == "Enemy") {
+						something_too_close = true;
+					}
+				}
 
-			//weapon_collider.enabled = true;
-            is_strong_attacking = true;
-            // Start Animation Coroutine
-			myBlade.curDamage (heavy_damage);
-            StartCoroutine(WaitForStrongAttackAnimation());
+				// Instantiate Move Target
+				//Instantiate(target_prefab, transform.position + (transform.forward * strong_attack_distance), transform.rotation); // create target marker
+				//target_prefab.GetComponent<DestroyMove>().set_life = strong_attack_time;
+
+				//weapon_collider.enabled = true;
+				is_strong_attacking = true;
+				// Start Animation Coroutine
+				myBlade.curDamage (heavy_damage);
+				StartCoroutine (WaitForStrongAttackAnimation ());
+			}
         }
 
 		// Attack movement///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -249,8 +263,9 @@ public class Combat : MonoBehaviour {
 		} else {
 			weapon.transform.eulerAngles = new Vector3 (0, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z); 
 		}*/
-
-        // Dodge///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//End Strong Attack////////////////////////////////////////////////////////////////////////////////////////////////
+        
+		// Dodge///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		if (Input.GetButtonDown("Controller_"+dodge_button) && (Input.GetAxis("LeftJoystickX") > controller_drift || Input.GetAxis("LeftJoystickX") < -controller_drift || Input.GetAxis("LeftJoystickY") > controller_drift || Input.GetAxis("LeftJoystickY") < -controller_drift) && !is_invunerable)
         {
 			//Checks in PlayerGamepad if the player is on the ground
@@ -314,6 +329,7 @@ public class Combat : MonoBehaviour {
 			back_dodge = true;
 			StartCoroutine ("DodgeMovement");
 		}
+		//End Dodge/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		// Dodge movement///////////////////////////////////////////////////////////////////////////////////////////////////
 		if (is_invunerable && !something_too_close) {
@@ -346,10 +362,13 @@ public class Combat : MonoBehaviour {
 		}
 
         // Counter//////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if (Input.GetButtonDown("Controller_Y") && Input.GetButtonDown("Controller_B"))
-        {
-
-        }
+		if (is_countering == false && Input.GetButtonDown ("Controller_LB") && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
+			StartCoroutine ("Counter");
+			//	is_countering = true;
+		//	Debug.Log ("counter");
+		//	StartCoroutine ("Counter");
+		//	my_anime.StartCoroutine ("CounterAnim");
+		}
 
 		attack_timer -= Time.deltaTime;
 		if (attack_timer <= 0f) {
@@ -462,6 +481,27 @@ public class Combat : MonoBehaviour {
 		my_gamepad.SetSmoothedRotation(true);
 		back_dodge = false;
     }
+
+	IEnumerator Counter()
+	{
+		Debug.Log ("countering");
+		GetComponent<PlayerGamepad> ().GamepadAllowed = false;
+		is_countering = true;
+		my_anime.StartCoroutine ("CounterAnim");
+		yield return new WaitForSeconds(counter_length);
+		//is_invunerable = false;
+		//something_too_close = false;
+		//yield return new WaitForSeconds (.25f);
+		//is_dodging = false;
+
+		//Physics.IgnoreLayerCollision( 9, 10, ignore: false);
+		is_countering = false;
+		yield return new WaitForSeconds (counter_recovery);
+		GetComponent<PlayerGamepad> ().GamepadAllowed = true;
+		counter_recovery = 1f;
+		//my_gamepad.SetSmoothedRotation(true);
+		//back_dodge = false;
+	}
 
 	public bool GetAttackType(){
 		return attack;
