@@ -94,6 +94,7 @@ public class BasicAI : MonoBehaviour
 
     private BattleArea_End end; /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public bool berserk_mode = false;
+    public GameObject berserk_flame1, berserk_flame2, damaged_effect;
 
 
     private bool first_alert = false; //used to keep track if the AI has been alerted the first time.
@@ -225,6 +226,9 @@ public class BasicAI : MonoBehaviour
         enemy_health -= incoming_damage;
         //set the bools to allow knockback and prevent actions/movements.
         getting_knockback = true;
+        //create damage effect particles
+        GameObject effect = Instantiate(damaged_effect, transform.position, transform.rotation);
+        Destroy(effect, 1f);
         //attack script's staggered is set to true to uninstantiate any attacks that are already created or about to be instantiated.
         attack_script.staggered = true;
         //change the AI state to staggered for animations.
@@ -246,7 +250,6 @@ public class BasicAI : MonoBehaviour
         yield return new WaitForSeconds(death_duration);
         end.enemyList.Remove(gameObject);
         this.transform.parent = null;
-        Debug.Log("end list left: " + end.enemyList.Count);
         //end.enemyList.Remove(gameObject);
         this.gameObject.SetActive(false);
     }
@@ -298,6 +301,11 @@ public class BasicAI : MonoBehaviour
             if(berserk_mode)
             {
                 chance_to_dodge = 15;
+                berserk_flame1.SetActive(true);
+                berserk_flame2.SetActive(true);
+                attack_script.berserk_mode = true;
+                berserk_mode = false;
+                
             }
 
             distance_to_player = Vector3.Distance(target.position, transform.position); //calculate distance to player
