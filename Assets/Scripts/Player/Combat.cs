@@ -17,7 +17,7 @@ public class Combat : MonoBehaviour {
 	public float light_attack_distance = 10f; // distance travelled by light attack
     public float light_attack_time = .33f; // time it takes to move distance of light attack
     public float strong_attack_distance = 10f; // distance travelled by strong attack
-    public float strong_attack_time = .33f; // time it takes to move distance of strong attack
+    public float strong_attack_time = .9f; // time it takes to move distance of strong attack
     public float dodge_distance = 50f; // distance travelled while dodging
     private float distance_length;
     private int combo_counter;
