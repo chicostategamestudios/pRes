@@ -224,6 +224,7 @@ public class BasicAI : MonoBehaviour
     {
         //apply damage and checks if the enemy dies from the damage.
         enemy_health -= incoming_damage;
+        Debug.Log("POOP");
         //set the bools to allow knockback and prevent actions/movements.
         getting_knockback = true;
         //create damage effect particles
