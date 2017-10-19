@@ -8,30 +8,32 @@ using UnityEngine;
 public class BasicAI_Weapon : MonoBehaviour {
 
     public int damage = 5; //damage of the weapon to hurt the player.
+    public float destroy_time = 0.5f;
+    public float fall_speed = 6f;
 
     public bool falling = false; //this is used for the weapon's diagonal attack. If set to true it will move
                                  //downwards as the enemy slashes.
 
     private PlayerHealth player_hp_script; //this is to access the player's health script
 
-	//Added by TJ
-	[HideInInspector]public bool player_hit = false;
 	private Combat player_combat;
 
     private void OnTriggerEnter(Collider other) //if the weapon hits the player, apply the damage to the player's health script
-    {
-        if(other.gameObject.tag == "Player")
-        {
+	{
+		if (other.gameObject.tag == "Player") {
+			//TJ///
 			player_combat = other.GetComponentInParent<Combat> ();
 			if (player_combat.is_countering) {
 				player_combat.counter_recovery = 0f;
+				this.GetComponentInParent<BasicAI> ().player_countering = true;
 				this.GetComponentInParent<BasicAI> ().StartCoroutine ("DamageEnemy", 0f);
 			} else {
+				//TJ_End///
 				player_hp_script = other.GetComponentInParent<PlayerHealth> ();
 				player_hp_script.DamageReceived (damage);
 			}
-        }
-    }
+		}
+	}
 
     private void DestroySelf() //this is to turn off the weapon after it is done with attacking.
     {
@@ -40,7 +42,7 @@ public class BasicAI_Weapon : MonoBehaviour {
 
     private void Start()
     {
-        Invoke("DestroySelf", 0.5f); //destroy the game object after 0.5 seconds
+        Invoke("DestroySelf", destroy_time); //destroy the game object after 0.5 seconds
     }
 
 
@@ -49,7 +51,7 @@ public class BasicAI_Weapon : MonoBehaviour {
         if(falling)
         {
             Vector3 temp = this.transform.position;
-            temp.y -= 6f * Time.deltaTime;
+            temp.y -= fall_speed * Time.deltaTime;
             this.transform.position = temp;
         }
 

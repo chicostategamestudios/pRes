@@ -484,7 +484,7 @@ public class Combat : MonoBehaviour {
 
 	IEnumerator Counter()
 	{
-		Debug.Log ("countering");
+		//Debug.Log ("countering");
 		GetComponent<PlayerGamepad> ().GamepadAllowed = false;
 		is_countering = true;
 		my_anime.StartCoroutine ("CounterAnim");
