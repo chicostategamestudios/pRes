@@ -1,4 +1,4 @@
-﻿//Original Author: Alexander Stamatis || Last Edited: Alexander Stamatis | Modified on Oct 12, 2017
+﻿//Original Author: Alexander Stamatis || Last Edited: Alexander Stamatis | Modified on Oct 19, 2017
 //This script deals with player movement, camera, collisions and trigger interactions
 
 using System.Collections;
@@ -42,30 +42,25 @@ public class PlayerGamepad : MonoBehaviour
     public int jump_counter, jump_limit;
     [Tooltip("Value between 10 and 50 for jump_force.")]
     public float jump_force;
-    private bool can_jump;
 
     //CAMERA
-    private float camera_rotation_speed, turn_smooth_velocity, turn_smooth_time;
+    private float camera_rotation_speed, turn_smooth_time;
     public bool camera_recenter;
     private bool gamepad_allowed;
     private GameObject camera_anchor; //grabbing this from the hierarchy to override camera rotation
     public bool use_camera_type_1;
 
     //GAMEPAD
-    private Vector3 input_joystick_left, input_joystick_right, input_direction, last_direction;
+    private Vector3 input_joystick_left, input_joystick_right, input_direction;
     public bool GamepadAllowed
     {
         get { return gamepad_allowed; }
         set { gamepad_allowed = value; }
     }
-    private bool allow_gamepad_camera_movement, allow_gamepad_player_movement;
-
-    private float delta_before, delta_now;
+    private bool allow_gamepad_player_movement;
     private float difference_in_degrees;
 
     //Ring 
-    private bool ring_transit;
-    private Quaternion ring_rotation;
     private Vector3 ring_direction;
     private bool in_ring;
     //Get script from col.gameObject
@@ -77,15 +72,12 @@ public class PlayerGamepad : MonoBehaviour
     private float delayed_player_direction;
     float timer_direction;
 
-    private Ray ray;
     private RaycastHit hit, hit_down;
 
     //DASH
     [Tooltip("How long will thedashinglast. Recommend values under 5 seconds")]
     public float dash_duration, percentage_of_dash_duration_on_accelerate, percentage_of_dash_duration_on_deaccelerate;
-    private float dash_timer;
     public bool dashing;
-    private Vector3 last_captured_player_direction;
     private TrailRenderer dash_trail_renderer;
     private int dash_counter;
     [Tooltip("The speed of the dash acceleration")]
@@ -100,19 +92,14 @@ public class PlayerGamepad : MonoBehaviour
     //Booster
     private float booster_timer ;
     private bool can_boost, boosting;
-    private float booster_meter_max_x;
     public float booster_rotation_speed, max_booster_speed, booster_speed;
-    private GameObject booster_meter_obj;
 	public bool smoothed_rotation;
     private Vector3 end_of_rail, rail_forward;
-
 
     //KNOCKBACK
     private float knockback_duration, knockback_speed;
     private Vector3 knockback_direction;
     private bool knockback;
-
-    float t_l;
 
     //UI
     private Image booster_meter;
@@ -126,11 +113,8 @@ public class PlayerGamepad : MonoBehaviour
             Physics.gravity = new Vector3(0, -100f, 0);
 
         //Controller initalization
-        allow_gamepad_camera_movement = true;
         allow_gamepad_player_movement = true;
         disable_left_joystick = false;
-
-        can_jump = true;
 
         if (use_camera_type_1 == false)
             use_camera_type_1 = true;
@@ -252,16 +236,6 @@ public class PlayerGamepad : MonoBehaviour
 
         if (!disable_right_joystick)
             input_joystick_right = new Vector3(Input.GetAxisRaw("RightJoystickY"), Input.GetAxisRaw("RightJoystickX"), 0);
-
-        //---------------------------------------------------------------------------
-        //	RING                           
-        //---------------------------------------------------------------------------
-
-        if (ring_transit)
-        {
-            transform.eulerAngles = new Vector3(0, ring_rotation.eulerAngles.y, 0);
-            camera_anchor.transform.rotation = Quaternion.Slerp(camera_anchor.transform.rotation, Quaternion.Euler(camera_anchor.transform.eulerAngles.x, ring_rotation.eulerAngles.y, 0), 5 * Time.deltaTime);
-        }
 
     }
 
@@ -634,7 +608,6 @@ public class PlayerGamepad : MonoBehaviour
         {
             dash_counter = 0;
             dashing = false;
-            dash_timer = 0;
             dash_trail_renderer.enabled = false;
         }
     }
