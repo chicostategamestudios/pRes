@@ -121,6 +121,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 8
-  destroy_time: 0.4
-  fall_speed: 6
   falling: 0

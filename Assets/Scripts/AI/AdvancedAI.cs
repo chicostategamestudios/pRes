@@ -139,9 +139,7 @@ public class AdvancedAI : BasicAI
 
     public IEnumerator DamageEnemy(int incoming_damage) //first will apply damage, and then stagger the enemy for a certain duration
     {
-        //create damage effect particles
-        GameObject effect = Instantiate(damaged_effect, transform.position, transform.rotation);
-        Destroy(effect, 1f);
+
         //apply damage and checks if the enemy dies from the damage.
         enemy_health -= incoming_damage;
         total_damage_received += incoming_damage;
