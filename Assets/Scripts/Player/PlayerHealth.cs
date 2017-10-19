@@ -55,6 +55,7 @@ public class PlayerHealth : MonoBehaviour
         originalHealth = health;
         bScreen = GameObject.Find("BleedScreen").GetComponent<BleedScreenScript>();  
     }
+
     private void OnGUI()
     {
         if (health <= originalHealth*0.8f && health > 0){

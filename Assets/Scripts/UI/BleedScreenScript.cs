@@ -22,18 +22,15 @@ public class BleedScreenScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (screenBleed == true) {
-            if (playerB.health == 20) { 
+            if (playerB.health <= 20) { 
             blood.color = new Color(.8f, 0, 0, .25f);
-            }
-            if (playerB.health == 15)
+            }else if (playerB.health <= 15)
             {
                 blood.color = new Color(.8f, 0, 0, .3f);
-            }
-            if (playerB.health == 10)
+            }else if (playerB.health <= 10)
             {
                 blood.color = new Color(.9f, 0, 0, .4f);
-            }
-            if (playerB.health == 5)
+			}else  if (playerB.health <= 5)
             {
                 blood.color = new Color(1, 0, 0, .5f);
             }
