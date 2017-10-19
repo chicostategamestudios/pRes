@@ -26,6 +26,10 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 
 	public float defaultFOV = 70;
 	public float focusedFOV = 60;
+    public GameObject ReticleObj;
+    public bool checkRet = false;
+
+    public GameObject ret;
 
 	// Whether the joystick has been recentered.
 	private bool next_target_joystick_x_centered = false;
@@ -33,7 +37,8 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 	void Awake () {
 		Camera.main.fieldOfView = defaultFOV;
 		player = GameObject.Find ("Player");
-	}
+        ret = GameObject.FindGameObjectWithTag("Reticle");
+    }
 
 	void FixedUpdate () {
 
@@ -70,7 +75,8 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 			// If targetting already active, end it.
 			if (target_locked == true) {
 				target_locked = false;
-			} 
+                checkRet = false;
+            } 
 
 			// Else, check for target.
 			else {
@@ -81,7 +87,8 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 					// TARGET FOUND.
 					//Debug.Log ("Target set.");
 					target_locked = true;
-				} 
+                    checkRet = true;
+                } 
 				else {
 					//Debug.Log("No targets found.");
 				}
@@ -104,7 +111,8 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 		else {
 			if (target_locked == true) {
 				target_locked = false;
-			}
+                checkRet = false;
+            }
 		}
 
 		// Smoothly looks at target.
@@ -123,6 +131,7 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 					// Else, remove target.
 					target = null;
 					target_locked = false;
+                    checkRet = false;
 				}
 			} else {
 				target_locked = false;
@@ -132,7 +141,16 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 			// Set default field of view.
 			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView,defaultFOV,0.35f);
 		}
-	}
+        if (checkRet == true){
+            ret.SetActive(true);
+            //GameObject.FindGameObjectWithTag("Reticle").SetActive(true);
+        }
+        if (checkRet == false)
+        {
+            ret.SetActive(false);
+            //GameObject.FindGameObjectWithTag("Reticle").SetActive(false);
+        }
+    }
 
 	// While targetting, be able to move to the next target in the direction of the joystick according to screen space.
 	GameObject NextTarget (float r_joy_h_axis){
