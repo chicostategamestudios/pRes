@@ -81,8 +81,6 @@ public class BasicAI : MonoBehaviour
     public float knockback_force = 18f;
     [Tooltip("This is used for testing. Check this to damage the enemy.")]
     public bool check_to_damage = false;
-    [Tooltip("This is the percentage chance to dodge instead of attack. The lower the number, the more often it will dodge.")]
-    public int chance_to_dodge = 35;
 
 
     [Header("Don't touch!")]
@@ -91,11 +89,6 @@ public class BasicAI : MonoBehaviour
     public GameObject right_dodge;
     [Tooltip("Used to determine what action the AI will take. 35 and below will make the AI dodge, anything else will make it attack.")]
     public int action_selection = 0;
-
-    private BattleArea_End end; /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public bool berserk_mode = false;
-    public GameObject berserk_flame1, berserk_flame2, damaged_effect;
-
 
     private bool first_alert = false; //used to keep track if the AI has been alerted the first time.
     [HideInInspector]
@@ -205,7 +198,6 @@ public class BasicAI : MonoBehaviour
     //set up for the AI attacks and movement.
     private void Awake()
     {
-        end = GetComponentInParent<BattleArea_End>();
         //find the backward direction for knockbacks.
         backward_dir = transform.TransformDirection(Vector3.back);
         //find the child object to access its script for attacks.
@@ -222,13 +214,11 @@ public class BasicAI : MonoBehaviour
 
 	public IEnumerator DamageEnemy(int incoming_damage) //first will apply damage, and then stagger the enemy for a certain duration
     {
+		Debug.Log ("damage");
         //apply damage and checks if the enemy dies from the damage.
         enemy_health -= incoming_damage;
         //set the bools to allow knockback and prevent actions/movements.
         getting_knockback = true;
-        //create damage effect particles
-        GameObject effect = Instantiate(damaged_effect, transform.position, transform.rotation);
-        Destroy(effect, 1f);
         //attack script's staggered is set to true to uninstantiate any attacks that are already created or about to be instantiated.
         attack_script.staggered = true;
         //change the AI state to staggered for animations.
@@ -248,9 +238,6 @@ public class BasicAI : MonoBehaviour
     {
         //print("the enemy is dying...");
         yield return new WaitForSeconds(death_duration);
-        end.enemyList.Remove(gameObject);
-        this.transform.parent = null;
-        //end.enemyList.Remove(gameObject);
         this.gameObject.SetActive(false);
     }
 
@@ -298,16 +285,6 @@ public class BasicAI : MonoBehaviour
         //it is not staggering so run through the usual routines.
         else
         {
-            if(berserk_mode)
-            {
-                chance_to_dodge = 15;
-                berserk_flame1.SetActive(true);
-                berserk_flame2.SetActive(true);
-                attack_script.berserk_mode = true;
-                berserk_mode = false;
-                
-            }
-
             distance_to_player = Vector3.Distance(target.position, transform.position); //calculate distance to player
 
             //used for checking and testing purposes.
@@ -323,6 +300,7 @@ public class BasicAI : MonoBehaviour
             {
                 alerted = true;
                 first_alert = true;
+                //remaining_enemies++; this will be added once kyle finishes his script for battle arena.
             }
 
             //if the enemy reached 0 hp, it is dead so it will be put into the dying state then go through the death coroutine.
@@ -358,12 +336,13 @@ public class BasicAI : MonoBehaviour
             //and then perform the selected action.
             if (distance_to_player <= 8f && !performing_action)
             {
+                Debug.Log("Deciding to attack or move.");
                 performing_action = true;  //the AI is now doing an action, used to make sure it is only doing one action.
                 //randomly choose between an movement or attack behavior, there is a 35% chance of being a movement behavior and 65% chance of an attack.
                 //comment the line below to "control" the AI.
                 action_selection = Random.Range(0, 100);
 
-                if(action_selection <= chance_to_dodge)
+                if(action_selection <= 35)
                 {
                     ai_state current_state = (ai_state)Random.Range(2, 4); //randomly select to either dodge or moveback.
                     switch (current_state) //based on the choice, do the corresponding coroutines

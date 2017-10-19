@@ -8,8 +8,6 @@ using UnityEngine;
 public class BasicAI_Weapon : MonoBehaviour {
 
     public int damage = 5; //damage of the weapon to hurt the player.
-    public float destroy_time = 0.5f;
-    public float fall_speed = 6f;
 
     public bool falling = false; //this is used for the weapon's diagonal attack. If set to true it will move
                                  //downwards as the enemy slashes.
@@ -32,7 +30,7 @@ public class BasicAI_Weapon : MonoBehaviour {
 
     private void Start()
     {
-        Invoke("DestroySelf", destroy_time); //destroy the game object after 0.5 seconds
+        Invoke("DestroySelf", 0.5f); //destroy the game object after 0.5 seconds
     }
 
 
@@ -41,7 +39,7 @@ public class BasicAI_Weapon : MonoBehaviour {
         if(falling)
         {
             Vector3 temp = this.transform.position;
-            temp.y -= fall_speed * Time.deltaTime;
+            temp.y -= 6f * Time.deltaTime;
             this.transform.position = temp;
         }
 
