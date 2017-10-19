@@ -19,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
     public BleedScreenScript bScreen;
 
 
+    public GameObject damaged_effect;
+
 	[SerializeField]
 	private HealthStat Health;
 
@@ -26,6 +28,9 @@ public class PlayerHealth : MonoBehaviour
     {
         //turn off the player movement to simulate a stun.
         player_pad.SetPlayerMovement(false);
+        //create damaged effect
+        GameObject effect = Instantiate(damaged_effect, transform.position, transform.rotation);
+        Destroy(effect, 1f);
         yield return new WaitForSeconds(stagger_duration);
         //turn on the player movement to end the stun.
         player_pad.SetPlayerMovement(true);
