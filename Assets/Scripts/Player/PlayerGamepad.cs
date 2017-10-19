@@ -8,8 +8,6 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-//shoot raycast when dashing, not when not dashing
-
 public class PlayerGamepad : MonoBehaviour
 {
 
@@ -105,8 +103,8 @@ public class PlayerGamepad : MonoBehaviour
     private float booster_meter_max_x;
     public float booster_rotation_speed, max_booster_speed, booster_speed;
     private GameObject booster_meter_obj;
-
 	public bool smoothed_rotation;
+    private Vector3 end_of_rail, rail_forward;
 
 
     //KNOCKBACK
@@ -118,7 +116,6 @@ public class PlayerGamepad : MonoBehaviour
 
     //UI
     private Image booster_meter;
-
 
     void Awake()
     {
@@ -246,14 +243,6 @@ public class PlayerGamepad : MonoBehaviour
         //---------------------------------------------------------------------------
         //	PAUSE                         
         //---------------------------------------------------------------------------
-
-        //Toggle time
-		/*
-        if (Input.GetButtonDown("Controller_Start"))
-        {
-            Time.timeScale = Time.timeScale == 1 ? 0 : 1;
-        }
-        */
 
         if (!gamepad_allowed)
             return;
@@ -391,7 +380,6 @@ public class PlayerGamepad : MonoBehaviour
         //SURGE
         //---------------------------------------------------------
 
-        //if (Input.GetButton("Controller_RB") && can_boost && !grinding && !in_ring && current_speed >= original_max_speed && grounded)
 		if (Input.GetAxis ("Controller_RT") == 1 && can_boost && !grinding && !in_ring && current_speed >= 1f && grounded)
         {
 
@@ -407,6 +395,7 @@ public class PlayerGamepad : MonoBehaviour
                 max_running_speed = original_max_speed;
                 can_boost = false;
                 boosting = false;
+                if (GameObject.Find("BoosterMeter")) booster_meter.color = Color.red;
             }
 
         }
@@ -442,6 +431,8 @@ public class PlayerGamepad : MonoBehaviour
             {
                 can_boost = true;
                 booster_timer = 3f;
+                if (GameObject.Find("BoosterMeter")) booster_meter.color = Color.green;
+
             }
         }
        
@@ -516,9 +507,23 @@ public class PlayerGamepad : MonoBehaviour
         //-------------------------------------------------
 
         if (grinding)
+        {
+            //Get my pos from end tail of object
+            Vector3 target_pos = end_of_rail - (rail_forward * Vector3.Distance(transform.position, end_of_rail));
+            transform.position = Vector3.Lerp(transform.position, target_pos, 0.25f);
+            if (Vector3.Distance(transform.position, end_of_rail) <= 0 || Vector3.Distance(transform.position, end_of_rail) <= .5f)
+            {
+                grinding = false;
+            }
             current_speed = grinding_speed;
+            //disable_left_joystick = true;
+            //transform.rotation = Quaternion.Euler(grinding_direction);
+        }
         else
+        {
             SetPlayerKinematic(false);
+            //disable_left_joystick = false;
+        }
 
         //-------------------------------------------------
         //	WALL                   
@@ -877,11 +882,10 @@ public class PlayerGamepad : MonoBehaviour
         if (col.gameObject.tag == "Rail")
         {
 
-
             player_rigidbody.velocity = Vector3.zero;
 
             //Start the grinding statement in the FixedUpdate()
-            //grinding = true;
+            grinding = true;
 
             //Stop the player from falling when on rail
             SetPlayerKinematic(true);
@@ -891,27 +895,24 @@ public class PlayerGamepad : MonoBehaviour
             jump_counter = 0;
 
             grounded = true;
-
             
             //Will determine what direction the player will go towards
             if (Mathf.Abs(col.transform.eulerAngles.y - transform.eulerAngles.y) < 90f || Mathf.Abs(col.transform.eulerAngles.y - transform.eulerAngles.y) > 270f)
             {
                 transform.rotation = Quaternion.Euler(new Vector3(0, col.transform.eulerAngles.y, 0));
                 grinding_direction = col.transform.forward;
-
             }
             else
             {
                 transform.rotation = Quaternion.Euler(new Vector3(0, col.transform.eulerAngles.y + 180f, 0));
                 grinding_direction = -col.transform.forward;
-
             }
 
+            rail_forward = col.gameObject.transform.forward;
             //Center player on rail
-            //Vector3 new_pos = col.gameObject.transform.position - (transform.forward * Vector3.Distance(transform.position, col.gameObject.transform.position));
-            //new_pos.y = transform.position.y;
-            //transform.position = new_pos;
-
+            //Get end tail of object
+            end_of_rail = col.gameObject.transform.position + (col.gameObject.transform.forward * (col.gameObject.transform.localScale.z/2f));
+            end_of_rail.y = transform.position.y;
 
         }
 
