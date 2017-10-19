@@ -3953,7 +3953,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1527686357157976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37, y: 6, z: -165}
+  m_LocalPosition: {x: 57, y: 1.05, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4900718263459872}
@@ -4295,6 +4295,8 @@ MonoBehaviour:
   health: 100
   stagger_duration: 0.5
   player_pad: {fileID: 0}
+  damaged_effect: {fileID: 1155491563207358, guid: d88538ac929677c48afc8c48209bc891,
+    type: 2}
   Health:
     bar: {fileID: 114108618804217962}
     maxVal: 100
