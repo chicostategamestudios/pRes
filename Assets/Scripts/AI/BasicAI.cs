@@ -217,6 +217,7 @@ public class BasicAI : MonoBehaviour
 		Debug.Log ("damage");
         //apply damage and checks if the enemy dies from the damage.
         enemy_health -= incoming_damage;
+        Debug.Log("POOP");
         //set the bools to allow knockback and prevent actions/movements.
         getting_knockback = true;
         //attack script's staggered is set to true to uninstantiate any attacks that are already created or about to be instantiated.
