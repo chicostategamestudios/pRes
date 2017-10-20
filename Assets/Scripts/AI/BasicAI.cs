@@ -251,7 +251,9 @@ public class BasicAI : MonoBehaviour
         yield return new WaitForSeconds(death_duration);
         //end.enemyList.Remove(gameObject);
         //this.transform.parent = null;
-		end.enemiesDead--;
+		if (end) {
+			end.enemiesDead--;
+		}
         //end.enemyList.Remove(gameObject);
         this.gameObject.SetActive(false);
     }
