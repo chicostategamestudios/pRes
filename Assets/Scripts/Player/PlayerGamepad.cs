@@ -1,4 +1,4 @@
-﻿//Original Author: Alexander Stamatis || Last Edited: Alexander Stamatis | Modified on Oct 5, 2017
+﻿//Original Author: Alexander Stamatis || Last Edited: Alexander Stamatis | Modified on Oct 19, 2017
 //This script deals with player movement, camera, collisions and trigger interactions
 
 using System.Collections;
@@ -42,30 +42,25 @@ public class PlayerGamepad : MonoBehaviour
     public int jump_counter, jump_limit;
     [Tooltip("Value between 10 and 50 for jump_force.")]
     public float jump_force;
-    private bool can_jump;
 
     //CAMERA
-    private float camera_rotation_speed, turn_smooth_velocity, turn_smooth_time;
+    private float camera_rotation_speed, turn_smooth_time;
     public bool camera_recenter;
     private bool gamepad_allowed;
     private GameObject camera_anchor; //grabbing this from the hierarchy to override camera rotation
     public bool use_camera_type_1;
 
     //GAMEPAD
-    private Vector3 input_joystick_left, input_joystick_right, input_direction, last_direction;
+    private Vector3 input_joystick_left, input_joystick_right, input_direction;
     public bool GamepadAllowed
     {
         get { return gamepad_allowed; }
         set { gamepad_allowed = value; }
     }
-    private bool allow_gamepad_camera_movement, allow_gamepad_player_movement;
-
-    private float delta_before, delta_now;
+    private bool allow_gamepad_player_movement;
     private float difference_in_degrees;
 
-    //RING 
-    private bool ring_transit;
-    private Quaternion ring_rotation;
+    //Ring 
     private Vector3 ring_direction;
     private bool in_ring;
     //Get script from col.gameObject
@@ -73,19 +68,16 @@ public class PlayerGamepad : MonoBehaviour
     private bool exiting_ring;
     private float exiting_ring_timer;
 
-    //CHECK LAST FRAME DIRECTION
+    //Check last frame direction
     private float delayed_player_direction;
     float timer_direction;
 
-    private Ray ray;
     private RaycastHit hit, hit_down;
 
     //DASH
     [Tooltip("How long will thedashinglast. Recommend values under 5 seconds")]
     public float dash_duration, percentage_of_dash_duration_on_accelerate, percentage_of_dash_duration_on_deaccelerate;
-    private float dash_timer;
     public bool dashing;
-    private Vector3 last_captured_player_direction;
     private TrailRenderer dash_trail_renderer;
     private int dash_counter;
     [Tooltip("The speed of the dash acceleration")]
@@ -100,26 +92,29 @@ public class PlayerGamepad : MonoBehaviour
     //Booster
     private float booster_timer ;
     private bool can_boost, boosting;
-    private float booster_meter_max_x;
-    public float booster_rotation_speed, booster_speed;
-    private GameObject booster_meter_obj;
-
+    public float booster_rotation_speed, max_booster_speed, booster_speed;
 	public bool smoothed_rotation;
+    private Vector3 end_of_rail, rail_forward;
+
+    //KNOCKBACK
+    private float knockback_duration, knockback_speed;
+    private Vector3 knockback_direction;
+    private bool knockback;
+
+    //UI
+    private Image booster_meter;
 
     void Awake()
     {
 
-        if (GameObject.Find("SurgeMeter")) booster_meter_obj = GameObject.Find("SurgeMeter");
+        if (GameObject.Find("BoosterMeter")) booster_meter = GameObject.Find("BoosterMeter").GetComponent<Image>();
 
         if (Physics.gravity.y > -80f)
             Physics.gravity = new Vector3(0, -100f, 0);
 
         //Controller initalization
-        allow_gamepad_camera_movement = true;
         allow_gamepad_player_movement = true;
         disable_left_joystick = false;
-
-        can_jump = true;
 
         if (use_camera_type_1 == false)
             use_camera_type_1 = true;
@@ -168,9 +163,9 @@ public class PlayerGamepad : MonoBehaviour
     void Start()
     {
 
-        if (GameObject.Find("SurgeMeter")) booster_meter_max_x = GameObject.Find("SurgeMeter").transform.localScale.x;
         booster_timer = 3f;
-        booster_speed = 100f;
+        max_booster_speed = 120f;
+        booster_speed = 20f;
         booster_rotation_speed = 1.5f;
 
         //This will enable player control, for example gamepad_allowed is set to false when the player is in the sonic rings
@@ -226,21 +221,12 @@ public class PlayerGamepad : MonoBehaviour
             //Make the rigidbody of the player y set to zero, in order for the velocity.y to not affect player height transformation
             player_rigidbody.velocity = new Vector3(player_rigidbody.velocity.x, 0, player_rigidbody.velocity.z);
 
-
         }
 
 
         //---------------------------------------------------------------------------
         //	PAUSE                         
         //---------------------------------------------------------------------------
-
-        //Toggle time
-		/*
-        if (Input.GetButtonDown("Controller_Start"))
-        {
-            Time.timeScale = Time.timeScale == 1 ? 0 : 1;
-        }
-        */
 
         if (!gamepad_allowed)
             return;
@@ -251,24 +237,14 @@ public class PlayerGamepad : MonoBehaviour
         if (!disable_right_joystick)
             input_joystick_right = new Vector3(Input.GetAxisRaw("RightJoystickY"), Input.GetAxisRaw("RightJoystickX"), 0);
 
-        //---------------------------------------------------------------------------
-        //	RING                           
-        //---------------------------------------------------------------------------
-
-        if (ring_transit)
-        {
-            transform.eulerAngles = new Vector3(0, ring_rotation.eulerAngles.y, 0);
-            camera_anchor.transform.rotation = Quaternion.Slerp(camera_anchor.transform.rotation, Quaternion.Euler(camera_anchor.transform.eulerAngles.x, ring_rotation.eulerAngles.y, 0), 5 * Time.deltaTime);
-        }
-
     }
 
     void FixedUpdate()
     {
+
         //If not true, don't run any of the code below this statement
         if (!gamepad_allowed)
             return;
-
 
         //---------------------------------------------------------
         //  AIR
@@ -343,13 +319,16 @@ public class PlayerGamepad : MonoBehaviour
 				} else {
 					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, player_direction + camera_anchor.transform.eulerAngles.y, 0), player_rotation_speed * Time.deltaTime);
 				}
-
-			} else {
+			}
+            else
+            {
 				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), 1);
 			}
             current_speed += input_joystick_left.sqrMagnitude * running_acceleration_multiplier;
 
-        } else {
+        }
+        else
+        {
             if (!dashing)
             {
                 //This slows down the player, when they let go of the movement joystick
@@ -375,24 +354,27 @@ public class PlayerGamepad : MonoBehaviour
         //SURGE
         //---------------------------------------------------------
 
-        //if (Input.GetButton("Controller_RB") && can_boost && !grinding && !in_ring && current_speed >= original_max_speed && grounded)
-		if (Input.GetAxis ("Controller_RT") == 1 && can_boost && !grinding && !in_ring && current_speed >= original_max_speed && grounded)
+		if (Input.GetAxis ("Controller_RT") == 1 && can_boost && !grinding && !in_ring && current_speed >= 1f && grounded)
         {
+
             if (booster_timer > 0f)
             {
                 boosting = true;
                 booster_timer -= Time.fixedDeltaTime;
-                max_running_speed = booster_speed;
+                current_speed += 3.5f;
+                max_running_speed = max_booster_speed;
             }
             else if(booster_timer <= 0f)
             {
                 max_running_speed = original_max_speed;
                 can_boost = false;
                 boosting = false;
-
+                if (GameObject.Find("BoosterMeter")) booster_meter.color = Color.red;
             }
 
         }
+        
+
 
         if (in_ring || grinding)
         {
@@ -417,21 +399,18 @@ public class PlayerGamepad : MonoBehaviour
 
             if (booster_timer < 3f)
             {
-                booster_timer += Time.deltaTime;
+                booster_timer += 1f * Time.deltaTime;
             }
             else if(booster_timer >= 3f && !can_boost )
             {
                 can_boost = true;
                 booster_timer = 3f;
+                if (GameObject.Find("BoosterMeter")) booster_meter.color = Color.green;
+
             }
         }
        
-	    if (GameObject.Find("SurgeMeter")){
-			Vector3 new_booster_meter_scale = GameObject.Find("SurgeMeter").transform.localScale;
-			new_booster_meter_scale.x = (booster_timer / 3f) * booster_meter_max_x;
-			GameObject.Find("SurgeMeter").transform.localScale = new_booster_meter_scale;
-	    }
-      
+	    if (GameObject.Find("BoosterMeter")) booster_meter.fillAmount = (booster_timer / 3f);
 
         if (current_speed > max_running_speed && !dashing && !grinding)
         {
@@ -466,9 +445,9 @@ public class PlayerGamepad : MonoBehaviour
 
         //Prevents player from drifting backwards
         //Checking for collision, prevents taleporting through objects when dashing 
-        if (DetectCollision(.25f, transform.forward))
-            if (hit.transform != null && (hit.transform.GetComponent<Collider>().isTrigger != true)) //Essentially imitating a layer mask to ignore certain colliders 
-                move_direction = Vector3.zero;
+            if (DetectCollision(.25f, transform.forward) || (DetectCollision(.25f, transform.forward) && dashing))
+                if (hit.transform != null && (hit.transform.GetComponent<Collider>().isTrigger != true)) //Essentially imitating a layer mask to ignore certain colliders 
+                    move_direction = Vector3.zero;
 
         //Clamp speed down to zero
         if (current_speed <= 0)
@@ -502,10 +481,23 @@ public class PlayerGamepad : MonoBehaviour
         //-------------------------------------------------
 
         if (grinding)
+        {
+            //Get my pos from end tail of object
+            Vector3 target_pos = end_of_rail - (rail_forward * Vector3.Distance(transform.position, end_of_rail));
+            transform.position = Vector3.Lerp(transform.position, target_pos, 0.25f);
+            if (Vector3.Distance(transform.position, end_of_rail) <= 0 || Vector3.Distance(transform.position, end_of_rail) <= .5f)
+            {
+                grinding = false;
+            }
             current_speed = grinding_speed;
+            //disable_left_joystick = true;
+            //transform.rotation = Quaternion.Euler(grinding_direction);
+        }
         else
+        {
             SetPlayerKinematic(false);
-
+            //disable_left_joystick = false;
+        }
 
         //-------------------------------------------------
         //	WALL                   
@@ -530,18 +522,19 @@ public class PlayerGamepad : MonoBehaviour
         }
 
         //-------------------------------------------------
-        //	DASH                      
+        //DASH                      
         //keep momentum off dash
         //-------------------------------------------------
-
+        
         //Activate dash
-        if ((Input.GetButtonDown("Controller_X")) && dash_counter < 1 && !grounded && current_speed > 1f && !grinding && !in_ring)
+        if ((Input.GetButton("Controller_X")) && dash_counter < 1 && !grounded && current_speed >= 0f && !grinding && !in_ring)
         {
             current_speed = 40f;
+            move_direction = transform.forward;
             StartCoroutine(Dash(dash_duration, (int)percentage_of_dash_duration_on_accelerate, (int)percentage_of_dash_duration_on_deaccelerate));
         }
 
-        if (DetectCollision(1.5f, transform.forward))
+        if (DetectCollision(1.5f, transform.forward) && dashing)
         {
             ExitDash();
             RestrictVerticalMovement(false);
@@ -563,6 +556,24 @@ public class PlayerGamepad : MonoBehaviour
             }
         }
 
+        //Knockback
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Knockback(.5f,-transform.forward,10f);
+        }
+
+        if (knockback_duration > 0f)
+        {
+            knockback = true;
+            knockback_duration -= Time.deltaTime;
+            transform.position += knockback_direction * knockback_speed * Time.fixedDeltaTime;
+        }
+        else
+        {
+            knockback = false;
+        }
+
 
     } // <- end of FixedUpdate
 
@@ -578,6 +589,17 @@ public class PlayerGamepad : MonoBehaviour
 
     }
 
+
+    public void Knockback(float duration, Vector3 direction, float speed)
+    {
+        if (!knockback) {
+            knockback_duration = duration;
+            knockback_direction = direction;
+            knockback_speed = speed;
+        }
+        
+    }
+
     //DASH
     //As the title of the function intends, to reset dashing values for reuse of dash
     private void ResetDashValues()
@@ -586,7 +608,6 @@ public class PlayerGamepad : MonoBehaviour
         {
             dash_counter = 0;
             dashing = false;
-            dash_timer = 0;
             dash_trail_renderer.enabled = false;
         }
     }
@@ -816,6 +837,7 @@ public class PlayerGamepad : MonoBehaviour
             transform.position = GameObject.Find("Spawn Point").transform.position;
 
         }
+
     }
 
     private void OnCollisionExit(Collision col)
@@ -830,9 +852,9 @@ public class PlayerGamepad : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
 
-        
         if (col.gameObject.tag == "Rail")
         {
+
             player_rigidbody.velocity = Vector3.zero;
 
             //Start the grinding statement in the FixedUpdate()
@@ -846,7 +868,7 @@ public class PlayerGamepad : MonoBehaviour
             jump_counter = 0;
 
             grounded = true;
-
+            
             //Will determine what direction the player will go towards
             if (Mathf.Abs(col.transform.eulerAngles.y - transform.eulerAngles.y) < 90f || Mathf.Abs(col.transform.eulerAngles.y - transform.eulerAngles.y) > 270f)
             {
@@ -858,6 +880,12 @@ public class PlayerGamepad : MonoBehaviour
                 transform.rotation = Quaternion.Euler(new Vector3(0, col.transform.eulerAngles.y + 180f, 0));
                 grinding_direction = -col.transform.forward;
             }
+
+            rail_forward = col.gameObject.transform.forward;
+            //Center player on rail
+            //Get end tail of object
+            end_of_rail = col.gameObject.transform.position + (col.gameObject.transform.forward * (col.gameObject.transform.localScale.z/2f));
+            end_of_rail.y = transform.position.y;
 
         }
 
