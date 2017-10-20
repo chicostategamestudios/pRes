@@ -21,7 +21,8 @@ public class BattleArea_Start: MonoBehaviour {
         
         if (other.gameObject.tag == "Player")
         {
-           
+			end.Trigger ();
+
             Vector3 TargetPosition = new Vector3(0, end.FrontWall.transform.position.y + end.raise_height, 0);
             Vector3 currentPosition = end.FrontWall.transform.position;
             Vector3 directionOfTravel = TargetPosition - currentPosition;

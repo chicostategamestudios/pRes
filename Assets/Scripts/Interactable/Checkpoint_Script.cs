@@ -12,10 +12,12 @@ public class Checkpoint_Script : MonoBehaviour
     public float pos2;
     private Vector3[] EnemySpawnLoc = new Vector3[10];
     public GameObject[] allEnemies;
+	public GameObject[] battleAreas;
     public GameObject ThePlayer;
 
     private void Awake()
     {
+		battleAreas = GameObject.FindGameObjectsWithTag ("battleArea");
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy"); // Finds all objects in the scene with the tag "enemy"
         for (int i = 0; i < allEnemies.Length; i++) //go through all enemies currently on the map at the start of the game
         {
@@ -25,11 +27,7 @@ public class Checkpoint_Script : MonoBehaviour
         }
         ThePlayer = GameObject.FindGameObjectWithTag("Player"); //Set ThePlayer to the Player asset within the scene
     }
-    // Use this for initialization
-    void Start()
-    {
-    }
-    // Update is called once per frame
+		
     void FixedUpdate()
     {    
 		if (ActiveCheckPoint) {
@@ -64,6 +62,9 @@ public class Checkpoint_Script : MonoBehaviour
 						allEnemies [i].GetComponent<BasicAI> ().reset ();
 						print ("Enemies Back home");
 						print (allEnemies [i]);
+					}
+					for (int i = 0; i < battleAreas.Length; i++) {
+						battleAreas [i].GetComponent<BattleArea_End> ().ResetWalls ();
 					}
 				}
 				print ("Death Detected");

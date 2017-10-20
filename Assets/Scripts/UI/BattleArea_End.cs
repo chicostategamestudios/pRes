@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class BattleArea_End : MonoBehaviour {
 
-    public GameObject endCamera;
+	bool triggered = false;
+	Vector3 frontPos;
+
+	public GameObject trigger_wall;
 
     public int raise_height;
 
@@ -16,7 +19,11 @@ public class BattleArea_End : MonoBehaviour {
 
     public GameObject BackWall;
 
+    public GameObject endCamera;
+
     public List<GameObject> enemyList;
+
+	public int enemiesDead = 0;
 
     [HideInInspector]
     public int speed = 10;
@@ -28,23 +35,43 @@ public class BattleArea_End : MonoBehaviour {
     private Vector3 currentpos;
 
     private Vector3 lowerpos;
-
-    //private Quaternion cameraRotation;
-
-    //private Vector3 relativePos;
+	BasicAI BasicAI_scr;
+	AdvancedAI adv_ai_scr;
 
     // Use this for initialization
     void Awake () {
-        //Debug.Log(enemyList.Count);
-        //relativePos = RecenterTarget.transform.position - Camera.main.transform.position;
-        //cameraRotation = Quaternion.LookRotation(relativePos) * Quaternion.Euler(0, 90, 0);
+		enemiesDead = enemyList.Count;
+		frontPos = FrontWall.transform.position;
         lower_speed = 20f;
-        
     }
-	
+
+	public void Trigger(){
+		if (!triggered) {
+			triggered = true;
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
-		if(enemyList.Count <= 0)
+
+		if (enemiesDead == 1) 
+		{
+			foreach (GameObject game_object in enemyList) 
+			{
+				BasicAI_scr = game_object.GetComponent<BasicAI> ();
+			}
+
+			if (BasicAI_scr != null) {
+				BasicAI_scr.berserk_mode = true;
+			} else if (BasicAI_scr == null) {
+				foreach (GameObject game_object in enemyList) {
+					adv_ai_scr = game_object.GetComponent<AdvancedAI> ();
+				}
+				adv_ai_scr.berserk_mode = true;
+			}
+		}
+
+		if(enemiesDead == 0)
         {
             if (onlyOnce)
             {
@@ -60,12 +87,38 @@ public class BattleArea_End : MonoBehaviour {
 
 
         }
+        
 	}
+
+
 
     IEnumerator EndBattle()
     {
         endCamera.SetActive(true);
         yield return new WaitForSeconds(3f);
         endCamera.SetActive(false);
+    }
+
+    public void ResetWalls()
+    {
+		if (triggered) {
+			onlyOnce = true;
+			enemiesDead = enemyList.Count;
+			triggered = false;
+			trigger_wall.SetActive (true);
+
+			Wall2.SetActive (true);
+			Wall3.SetActive (true);
+
+			Vector3 TargetPosition = new Vector3 (0, FrontWall.transform.position.y - raise_height, 0);
+			Vector3 currentPosition = FrontWall.transform.position;
+			Vector3 directionOfTravel = TargetPosition - currentPosition;
+
+			FrontWall.transform.position = frontPos;
+			//FrontWall.transform.Translate (0, (directionOfTravel.y * speed * Time.deltaTime), 0, Space.World);
+			Wall2.transform.Translate (0, (directionOfTravel.y * speed * Time.deltaTime), 0, Space.World);
+			Wall3.transform.Translate (0, (directionOfTravel.y * speed * Time.deltaTime), 0, Space.World);
+			BackWall.transform.Translate (0, (directionOfTravel.y * speed * Time.deltaTime), 0, Space.World);
+		}
     }
 }
