@@ -56,19 +56,24 @@ public class BattleArea_End : MonoBehaviour {
 
 		if (enemiesDead == 1) 
 		{
+			
 			foreach (GameObject game_object in enemyList) 
 			{
 				BasicAI_scr = game_object.GetComponent<BasicAI> ();
 			}
 
 			if (BasicAI_scr != null) {
+				Debug.Log ("not null");
 				BasicAI_scr.berserk_mode = true;
 			} else if (BasicAI_scr == null) {
+				
 				foreach (GameObject game_object in enemyList) {
 					adv_ai_scr = game_object.GetComponent<AdvancedAI> ();
 				}
+
 				adv_ai_scr.berserk_mode = true;
 			}
+
 		}
 
 		if(enemiesDead == 0)
@@ -102,6 +107,11 @@ public class BattleArea_End : MonoBehaviour {
     public void ResetWalls()
     {
 		if (triggered) {
+			if (BasicAI_scr != null) {
+				BasicAI_scr.berserk_mode = false;
+			} else if (adv_ai_scr != null) {
+				adv_ai_scr.berserk_mode = false;
+			}
 			onlyOnce = true;
 			enemiesDead = enemyList.Count;
 			triggered = false;
