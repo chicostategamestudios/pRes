@@ -52,9 +52,10 @@ public class Sword_Collision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+		Debug.Log ("triggered");
         if(other.tag == "Enemy Hitbox" && swordRenderer.enabled == true)
         {
-			//Debug.Log ("triggered");
+			
 			my_ai = other.GetComponentInParent<BasicAI> (); //.enemy_health -= damage;   // Placeholder variable!
         	
 			attack_type = my_combat.GetAttackType();//calls function in Combat to determine light or heavy attack

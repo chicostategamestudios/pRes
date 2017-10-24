@@ -145,6 +145,7 @@ public class AdvancedAI : BasicAI
         //apply damage and checks if the enemy dies from the damage.
         enemy_health -= incoming_damage;
         total_damage_received += incoming_damage;
+		Debug.Log (incoming_damage);
         if(total_damage_received >= stagger_threshold)
         {
             //reset the total damage received so it doesn't get stunned repeatedly afterwards being hit.

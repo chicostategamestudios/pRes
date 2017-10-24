@@ -274,7 +274,7 @@ public class BasicAI : MonoBehaviour
 
 	public void reset()
 	{
-		Debug.Log (transform.name);
+		//Debug.Log (transform.name);
 		enemy_health = 100;
 		first_alert = false;
 	}

@@ -8,6 +8,9 @@ using UnityEngine;
 // This script works with the animation controller for the player character Brian Gideon, and his sword animations.
 public class Animations_BrianGideon : MonoBehaviour
 {
+
+	public bool control = true;
+
     public Animator playerAnimator;
     public GameObject playerObject;
     public GameObject swordObject;
@@ -30,48 +33,40 @@ public class Animations_BrianGideon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (control) {
+			// Most of these animation conditions use the boolean parameters set up in the animation controller.
+			if (player.current_speed > 0) {
+				playerAnimator.SetFloat ("MoveBlend", ((player.current_speed / 48f) * 0.025f));
+			} else if (player.current_speed == 0) {
+				playerAnimator.SetFloat ("MoveBlend", 0);
+			}
 
-        // Most of these animation conditions use the boolean parameters set up in the animation controller.
-        if (player.current_speed > 0)
-        {
-            playerAnimator.SetFloat("MoveBlend", ((player.current_speed / 48f) * 0.025f));
-        }
-        else if (player.current_speed == 0)
-        {
-            playerAnimator.SetFloat("MoveBlend", 0);
-        }
-
-        // inTheAir
-        if (player.grounded == false)
-        {
-            playerAnimator.SetBool("inTheAir", true);
-        }
+			// inTheAir
+			if (player.grounded == false) {
+				playerAnimator.SetBool ("inTheAir", true);
+			}
         // Landed!
-        else if (player.grounded == true)
-        {
-            playerAnimator.SetBool("inTheAir", false);
-        }
+        else if (player.grounded == true) {
+				playerAnimator.SetBool ("inTheAir", false);
+			}
 
-        // Air Dashing!
-        if (player.dashing == true)
-        {
-            playerAnimator.Play("Start Air Dash");
-        } 
-        // Dodge
-        if (Input.GetButtonDown("Controller_X") && player.grounded == true)
-        {
-            //playerAnimator.Play("DodgeStart");
-        }
+			// Air Dashing!
+			if (player.dashing == true) {
+				playerAnimator.Play ("Start Air Dash");
+			} 
+			// Dodge
+			if (Input.GetButtonDown ("Controller_X") && player.grounded == true) {
+				//playerAnimator.Play("DodgeStart");
+			}
 
-        // Rail Grinding
-        if (player.grinding == true)
-        {
-            playerAnimator.SetBool("isGrinding", true);
-        }
-        else if (player.grinding == false)
-        {
-            playerAnimator.SetBool("isGrinding", false);
-        }
+			// Rail Grinding
+			if (player.grinding == true) {
+				playerAnimator.SetBool ("isGrinding", true);
+			} else if (player.grinding == false) {
+				playerAnimator.SetBool ("isGrinding", false);
+			}
+
+		}
 
        /* if (Input.GetButtonDown("Controller_Y"))
         {

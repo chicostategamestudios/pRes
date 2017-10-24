@@ -65,6 +65,8 @@ public class Start_Level_Timer : MonoBehaviour {
 
 		player = GameObject.Find ("Player");
 		player.GetComponent<PlayerGamepad> ().enabled = false;
+		player.GetComponent<Combat> ().control = false;
+		player.GetComponent<Animations_BrianGideon>().control = false;
 		StartCoroutine("Countdown");
 	
 	}
@@ -92,9 +94,8 @@ public class Start_Level_Timer : MonoBehaviour {
 		yield return new WaitForSeconds (1f);
 		Start_Countdown.SetActive (false);	//Makes all of Start_Countdown invisible
 		player.GetComponent<PlayerGamepad> ().enabled = true;
-        //count_end = true;
-
-		player.GetComponent<PlayerGamepad> ().enabled = true;
+		player.GetComponent<Combat> ().control = true;
+		player.GetComponent<Animations_BrianGideon>().control = true;
 		startTime = 4;
         count_end = true;
         yield return Timer();

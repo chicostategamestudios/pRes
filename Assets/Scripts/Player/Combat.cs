@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour {
 
+	public bool control = true;
+
     //public GameObject attack_prefab;
 	public GameObject target_prefab;
     private GameObject camera_anchor;
@@ -129,133 +131,132 @@ public class Combat : MonoBehaviour {
     }*/
 
     void FixedUpdate () {
-		//TJ// direction player is facing
-		//Vector3 forward = transform.TransformDirection(Vector3.forward);
+		if (control) {
+			//TJ// direction player is facing
+			//Vector3 forward = transform.TransformDirection(Vector3.forward);
 
-		//Debug.Log(something_too_close);
-		input_joystick_left = new Vector3(Input.GetAxisRaw("LeftJoystickX"), 0, Input.GetAxisRaw("LeftJoystickY"));
+			//Debug.Log(something_too_close);
+			input_joystick_left = new Vector3 (Input.GetAxisRaw ("LeftJoystickX"), 0, Input.GetAxisRaw ("LeftJoystickY"));
 
-        input_direction = input_joystick_left.normalized;
+			input_direction = input_joystick_left.normalized;
 
-        // Fast Attack//////////////////////////////////////////////////////////////////////////////////////////////////////
-		if (Input.GetButtonDown("Controller_Y") && !is_light_attacking && GetComponent<PlayerGamepad>().GamepadAllowed == true)
-        {
-			counter_timer -= Time.deltaTime;
-			//Counter///////////
-			if (is_countering == false && Input.GetButtonDown ("Controller_B") && counter_timer < 0.2f) {
-				StartCoroutine ("Counter");
-			} else {
-				counter_timer = 0.2f;
+			// Fast Attack//////////////////////////////////////////////////////////////////////////////////////////////////////
+			if (Input.GetButtonDown ("Controller_Y") && !is_light_attacking && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
+				counter_timer -= Time.deltaTime;
+				//Counter///////////
+				if (is_countering == false && Input.GetButtonDown ("Controller_B") && counter_timer < 0.2f) {
+					StartCoroutine ("Counter");
+				} else {
+					counter_timer = 0.2f;
 			
 
-				//!!!!!!!!!!!!!!!!!!!!!!!!!Call out to Animations_Sword
-				forward = transform.TransformDirection (Vector3.forward);
-				//Debug.Log("Light Attack");
-				is_attacking = true;
-				attack_number++;
-				attack_timer = 1f;
-				targeted_enemy = my_camera.GetLockOn ();
-				// Disable Player movement
-				GetComponent<PlayerGamepad> ().GamepadAllowed = false;
-				// Check for Combo
-				if (is_comboing) {
-					combo_counter++;
-				} else {
-					combo_counter = 1;
-				}
-
-				// Set Player rotation to Camera Anchor rotation
-				//transform.eulerAngles = new Vector3 (transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
-				//Debug.Log("Rotation = " + transform.rotation);
-
-				// check to see if something is in the way
-				// bool Physics.SphereCast(Ray ray, float radius, out RaycastHit hitInfo, float maxDistance))
-				if (Physics.Raycast (transform.position, forward, out hit, (light_attack_distance))) {
-					if (hit.collider.tag == "Wall" || hit.collider.tag == "Enemy") {
-						something_too_close = true;
+					//!!!!!!!!!!!!!!!!!!!!!!!!!Call out to Animations_Sword
+					forward = transform.TransformDirection (Vector3.forward);
+					//Debug.Log("Light Attack");
+					is_attacking = true;
+					attack_number++;
+					attack_timer = 1f;
+					targeted_enemy = my_camera.GetLockOn ();
+					// Disable Player movement
+					GetComponent<PlayerGamepad> ().GamepadAllowed = false;
+					// Check for Combo
+					if (is_comboing) {
+						combo_counter++;
+					} else {
+						combo_counter = 1;
 					}
-				}
 
+					// Set Player rotation to Camera Anchor rotation
+					//transform.eulerAngles = new Vector3 (transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
+					//Debug.Log("Rotation = " + transform.rotation);
 
-				// Instantiate Move Target
-				//Instantiate(target_prefab, transform.position + (transform.forward * light_attack_distance), transform.rotation); // create target marker
-				//target_prefab.GetComponent<DestroyMove>().set_life = light_attack_time;
-
-				//weapon_collider.enabled = true;
-				is_light_attacking = true;
-				myBlade.curDamage (light_damage);
-
-				// Start Animation Coroutine
-				my_anime.StartCoroutine ("LightAttackAnim");
-				StartCoroutine (WaitForFastAttackAnimation ());
-			}
-        }
-
-        // Strong Attack////////////////////////////////////////////////////////////////////////////////////////////////////
-		if (Input.GetButtonDown("Controller_B") && !is_strong_attacking && GetComponent<PlayerGamepad>().GamepadAllowed == true)
-        {
-			counter_timer -= Time.deltaTime;
-			//Counter///////////
-			if (is_countering == false && Input.GetButtonDown ("Controller_Y") && counter_timer < 0.2f) {
-				StartCoroutine ("Counter");
-			} else {
-				counter_timer = 0.2f;
-
-				forward = transform.TransformDirection (Vector3.forward);
-				//Debug.Log("Heavy Attack");
-				is_attacking = true;
-				attack_number++;
-				attack_timer = 1f;
-				targeted_enemy = my_camera.GetLockOn ();
-				// Disable Player movement
-				GetComponent<PlayerGamepad> ().GamepadAllowed = false;
-				// Check for Combo
-				if (is_comboing) {
-					combo_counter++;
-				} else {
-					combo_counter = 1;
-				}
-
-				// Set Player rotation to Camera Anchor rotation
-				//transform.eulerAngles = new Vector3(transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
-				// Debug.Log("Rotation = " + transform.rotation);
-
-				// check to see if something is in the way
-				if (Physics.Raycast (transform.position, forward, out hit, (strong_attack_distance))) {
-					if (hit.collider.tag == "Wall" || hit.collider.tag == "Enemy") {
-						something_too_close = true;
+					// check to see if something is in the way
+					// bool Physics.SphereCast(Ray ray, float radius, out RaycastHit hitInfo, float maxDistance))
+					if (Physics.Raycast (transform.position, forward, out hit, (light_attack_distance))) {
+						if (hit.collider.tag == "Wall" || hit.collider.tag == "Enemy") {
+							something_too_close = true;
+						}
 					}
+
+
+					// Instantiate Move Target
+					//Instantiate(target_prefab, transform.position + (transform.forward * light_attack_distance), transform.rotation); // create target marker
+					//target_prefab.GetComponent<DestroyMove>().set_life = light_attack_time;
+
+					//weapon_collider.enabled = true;
+					is_light_attacking = true;
+					myBlade.curDamage (light_damage);
+
+					// Start Animation Coroutine
+					my_anime.StartCoroutine ("LightAttackAnim");
+					StartCoroutine (WaitForFastAttackAnimation ());
+				}
+			}
+
+			// Strong Attack////////////////////////////////////////////////////////////////////////////////////////////////////
+			if (Input.GetButtonDown ("Controller_B") && !is_strong_attacking && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
+				counter_timer -= Time.deltaTime;
+				//Counter///////////
+				if (is_countering == false && Input.GetButtonDown ("Controller_Y") && counter_timer < 0.2f) {
+					StartCoroutine ("Counter");
+				} else {
+					counter_timer = 0.2f;
+
+					forward = transform.TransformDirection (Vector3.forward);
+					//Debug.Log("Heavy Attack");
+					is_attacking = true;
+					attack_number++;
+					attack_timer = 1f;
+					targeted_enemy = my_camera.GetLockOn ();
+					// Disable Player movement
+					GetComponent<PlayerGamepad> ().GamepadAllowed = false;
+					// Check for Combo
+					if (is_comboing) {
+						combo_counter++;
+					} else {
+						combo_counter = 1;
+					}
+
+					// Set Player rotation to Camera Anchor rotation
+					//transform.eulerAngles = new Vector3(transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
+					// Debug.Log("Rotation = " + transform.rotation);
+
+					// check to see if something is in the way
+					if (Physics.Raycast (transform.position, forward, out hit, (strong_attack_distance))) {
+						if (hit.collider.tag == "Wall" || hit.collider.tag == "Enemy") {
+							something_too_close = true;
+						}
+					}
+
+					// Instantiate Move Target
+					//Instantiate(target_prefab, transform.position + (transform.forward * strong_attack_distance), transform.rotation); // create target marker
+					//target_prefab.GetComponent<DestroyMove>().set_life = strong_attack_time;
+
+					//weapon_collider.enabled = true;
+					is_strong_attacking = true;
+					// Start Animation Coroutine
+					myBlade.curDamage (heavy_damage);
+					StartCoroutine (WaitForStrongAttackAnimation ());
+				}
+			}
+
+			// Attack movement///////////////////////////////////////////////////////////////////////////////////////////////////
+			if (is_light_attacking || is_strong_attacking && !something_too_close) {
+				forward = transform.TransformDirection (Vector3.forward);
+
+				//targeted_enemy = my_camera.GetTargetedEnemy ();
+				if (targeted_enemy) {
+					transform.eulerAngles = new Vector3 (transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
 				}
 
-				// Instantiate Move Target
-				//Instantiate(target_prefab, transform.position + (transform.forward * strong_attack_distance), transform.rotation); // create target marker
-				//target_prefab.GetComponent<DestroyMove>().set_life = strong_attack_time;
-
-				//weapon_collider.enabled = true;
-				is_strong_attacking = true;
-				// Start Animation Coroutine
-				myBlade.curDamage (heavy_damage);
-				StartCoroutine (WaitForStrongAttackAnimation ());
+				//GameObject target_move = GameObject.FindGameObjectWithTag("Player Move Target"); // find the location of target_prefab
+				// move player x units in direction joystick is pointing if not in front of something
+				if (!Physics.Raycast (transform.position, forward, out hit, 1.5f)) {
+					transform.Translate (forward * light_attack_distance * Time.smoothDeltaTime, Space.World);
+				}
+				//Debug.Log (transform.forward * light_attack_distance);
 			}
-        }
-
-		// Attack movement///////////////////////////////////////////////////////////////////////////////////////////////////
-		if (is_light_attacking || is_strong_attacking && !something_too_close) {
-			forward = transform.TransformDirection(Vector3.forward);
-
-			//targeted_enemy = my_camera.GetTargetedEnemy ();
-			if (targeted_enemy) {
-				transform.eulerAngles = new Vector3 (transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
-			}
-
-			//GameObject target_move = GameObject.FindGameObjectWithTag("Player Move Target"); // find the location of target_prefab
-			// move player x units in direction joystick is pointing if not in front of something
-			if (!Physics.Raycast (transform.position, forward, out hit, 1.5f)) {
-				transform.Translate(forward * light_attack_distance * Time.smoothDeltaTime, Space.World);
-			}
-			//Debug.Log (transform.forward * light_attack_distance);
-		}
-		/*if (is_strong_attacking) {
+			/*if (is_strong_attacking) {
 			//Transform from;
 			//Transform to;
 			weapon.transform.Rotate (Vector3.right, test_variable * Time.deltaTime); //new Vector3 (test_variable+Time.deltaTime, 0, 0);
@@ -263,119 +264,119 @@ public class Combat : MonoBehaviour {
 		} else {
 			weapon.transform.eulerAngles = new Vector3 (0, weapon.transform.eulerAngles.y, weapon.transform.eulerAngles.z); 
 		}*/
-		//End Strong Attack////////////////////////////////////////////////////////////////////////////////////////////////
+			//End Strong Attack////////////////////////////////////////////////////////////////////////////////////////////////
         
-		// Dodge///////////////////////////////////////////////////////////////////////////////////////////////////////////
-		if (Input.GetButtonDown("Controller_"+dodge_button) && (Input.GetAxis("LeftJoystickX") > controller_drift || Input.GetAxis("LeftJoystickX") < -controller_drift || Input.GetAxis("LeftJoystickY") > controller_drift || Input.GetAxis("LeftJoystickY") < -controller_drift) && !is_invunerable)
-        {
-			//Checks in PlayerGamepad if the player is on the ground
-			if (my_gamepad.CheckGrounded ()) {
-				dodge_dir_x = Input.GetAxis ("LeftJoystickX");
-				dodge_dir_z = Input.GetAxis ("LeftJoystickY");
-				forward = transform.TransformDirection (Vector3.forward);
-				//Debug.Log("Dodging");
-				//Debug.Log(Input.GetAxis("LeftJoystickY"));
-				// if game controller is disabled
-				//GetComponent<PlayerGamepad> ().GamepadAllowed = true;
+			// Dodge///////////////////////////////////////////////////////////////////////////////////////////////////////////
+			if (Input.GetButtonDown ("Controller_" + dodge_button) && (Input.GetAxis ("LeftJoystickX") > controller_drift || Input.GetAxis ("LeftJoystickX") < -controller_drift || Input.GetAxis ("LeftJoystickY") > controller_drift || Input.GetAxis ("LeftJoystickY") < -controller_drift) && !is_invunerable) {
+				//Checks in PlayerGamepad if the player is on the ground
+				if (my_gamepad.CheckGrounded ()) {
+					dodge_dir_x = Input.GetAxis ("LeftJoystickX");
+					dodge_dir_z = Input.GetAxis ("LeftJoystickY");
+					forward = transform.TransformDirection (Vector3.forward);
+					//Debug.Log("Dodging");
+					//Debug.Log(Input.GetAxis("LeftJoystickY"));
+					// if game controller is disabled
+					//GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 
-				// check to see if something is in the way
-				if (Physics.Raycast (transform.position, forward, out hit, (dodge_distance))) {
-					//Debug.Log (hit);
-					if (hit.collider.tag == "Wall" /*|| hit.collider.tag == "Enemy"*/) {
-						//Debug.Log (hit.collider.tag);
-						something_too_close = true;
+					// check to see if something is in the way
+					if (Physics.Raycast (transform.position, forward, out hit, (dodge_distance))) {
+						//Debug.Log (hit);
+						if (hit.collider.tag == "Wall" /*|| hit.collider.tag == "Enemy"*/) {
+							//Debug.Log (hit.collider.tag);
+							something_too_close = true;
+						}
 					}
+
+					//Instantiate (target_prefab, transform.position + (transform.forward * dodge_distance), transform.rotation); // create target marker
+					is_invunerable = true; // make player invunerable
+					//target_prefab.GetComponent<DestroyMove> ().set_life = .5f;
+
+					//GetComponent<Rigidbody>().AddForce(transform.forward * 500000 * dodge_time * Time.deltaTime, ForceMode.Impulse);
+					GetComponent<PlayerGamepad> ().GamepadAllowed = false;
+					StartCoroutine (Invunerable ());
 				}
-
-				//Instantiate (target_prefab, transform.position + (transform.forward * dodge_distance), transform.rotation); // create target marker
-				is_invunerable = true; // make player invunerable
-				//target_prefab.GetComponent<DestroyMove> ().set_life = .5f;
-
-				//GetComponent<Rigidbody>().AddForce(transform.forward * 500000 * dodge_time * Time.deltaTime, ForceMode.Impulse);
-				GetComponent<PlayerGamepad> ().GamepadAllowed = false;
-				StartCoroutine (Invunerable ());
 			}
-        }
 
-		if (Input.GetAxis ("Controller_" + dodge_button) == 0) {
-			trigger_press = false;
-		}
+			if (Input.GetAxis ("Controller_" + dodge_button) == 0) {
+				trigger_press = false;
+			}
 
-		//button check for trigger
-		if (Input.GetAxis ("Controller_" + dodge_button) == 1 && (Input.GetAxis ("LeftJoystickX") > controller_drift || Input.GetAxis ("LeftJoystickX") < -controller_drift || Input.GetAxis ("LeftJoystickY") > controller_drift || Input.GetAxis ("LeftJoystickY") < -controller_drift) && !is_dodging && !trigger_press) {
+			//button check for trigger
+			if (Input.GetAxis ("Controller_" + dodge_button) == 1 && (Input.GetAxis ("LeftJoystickX") > controller_drift || Input.GetAxis ("LeftJoystickX") < -controller_drift || Input.GetAxis ("LeftJoystickY") > controller_drift || Input.GetAxis ("LeftJoystickY") < -controller_drift) && !is_dodging && !trigger_press) {
 
-			playerAnimator.Play("DodgeStart");
-			//Checks in PlayerGamepad if the player is on the ground
-			if (my_gamepad.CheckGrounded ()) {
-				dodge_dir_x = Input.GetAxis ("LeftJoystickX");
-				dodge_dir_z = Input.GetAxis ("LeftJoystickY");
-				forward = transform.TransformDirection (Vector3.forward);
-				//Debug.Log("Dodging");
-				//Debug.Log(Input.GetAxis("LeftJoystickY"));
-				// if game controller is disabled
-				//GetComponent<PlayerGamepad> ().GamepadAllowed = true;
+				playerAnimator.Play ("DodgeStart");
+				//Checks in PlayerGamepad if the player is on the ground
+				if (my_gamepad.CheckGrounded ()) {
+					dodge_dir_x = Input.GetAxis ("LeftJoystickX");
+					dodge_dir_z = Input.GetAxis ("LeftJoystickY");
+					forward = transform.TransformDirection (Vector3.forward);
+					//Debug.Log("Dodging");
+					//Debug.Log(Input.GetAxis("LeftJoystickY"));
+					// if game controller is disabled
+					//GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 
-				// check to see if something is in the way
-				if (Physics.Raycast (transform.position, forward, out hit, (dodge_distance))) {
-					//Debug.Log (hit);
-					if (hit.collider.tag == "Wall" /*|| hit.collider.tag == "Enemy"*/) {
-						//Debug.Log (hit.collider.tag);
-						something_too_close = true;
+					// check to see if something is in the way
+					if (Physics.Raycast (transform.position, forward, out hit, (dodge_distance))) {
+						//Debug.Log (hit);
+						if (hit.collider.tag == "Wall" /*|| hit.collider.tag == "Enemy"*/) {
+							//Debug.Log (hit.collider.tag);
+							something_too_close = true;
+						}
 					}
+					StartCoroutine ("DodgeMovement");
 				}
+			} else if (Input.GetAxis ("Controller_" + dodge_button) == 1 && !is_dodging && !trigger_press) {
+				back_dodge = true;
 				StartCoroutine ("DodgeMovement");
 			}
-		} else if (Input.GetAxis ("Controller_" + dodge_button) == 1 && !is_dodging && !trigger_press) {
-			back_dodge = true;
-			StartCoroutine ("DodgeMovement");
-		}
-		//End Dodge/////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//End Dodge/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// Dodge movement///////////////////////////////////////////////////////////////////////////////////////////////////
-		if (is_invunerable && !something_too_close) {
-			if (dodge_dir_x > 0) {
-				dodge_dir_x = 1;
-			} else if (dodge_dir_x < 0) {
-				dodge_dir_x = -1;
-			}
-			if (dodge_dir_z > 0) {
-				dodge_dir_z = 1;
-			} else if (dodge_dir_z < 0) {
-				dodge_dir_z = -1;
-			}
+			// Dodge movement///////////////////////////////////////////////////////////////////////////////////////////////////
+			if (is_invunerable && !something_too_close) {
+				if (dodge_dir_x > 0) {
+					dodge_dir_x = 1;
+				} else if (dodge_dir_x < 0) {
+					dodge_dir_x = -1;
+				}
+				if (dodge_dir_z > 0) {
+					dodge_dir_z = 1;
+				} else if (dodge_dir_z < 0) {
+					dodge_dir_z = -1;
+				}
 
-			if (back_dodge) {
-				forward = transform.TransformDirection (Vector3.back);
-			} else {
-				forward = transform.TransformDirection (Vector3.forward);
-			}
-			//GameObject target_move = GameObject.FindGameObjectWithTag("Player Move Target"); // find the location of target_prefab
+				if (back_dodge) {
+					forward = transform.TransformDirection (Vector3.back);
+				} else {
+					forward = transform.TransformDirection (Vector3.forward);
+				}
+				//GameObject target_move = GameObject.FindGameObjectWithTag("Player Move Target"); // find the location of target_prefab
 				//dodge_dir = new Vector3(dodge_dir_x,0,dodge_dir_z);
-			//dodge_dir_rotated = Quaternion.AngleAxis (my_camera.transform.rotation.y, Vector3.up) * dodge_dir;
+				//dodge_dir_rotated = Quaternion.AngleAxis (my_camera.transform.rotation.y, Vector3.up) * dodge_dir;
 				//dodge_dir_rotated = new Vector3(0, Camera.main.transform.rotation.y, 0);
 				//dodge_dir = dodge_dir_rotated * dodge_dir;
 				//dodge_dir.y = 0;
-			// move player ~ 10 units in direction joystick is pointing
-			transform.Translate(forward * dodge_distance * Time.smoothDeltaTime, Space.World);
+				// move player ~ 10 units in direction joystick is pointing
+				transform.Translate (forward * dodge_distance * Time.smoothDeltaTime, Space.World);
 				//transform.Translate(dodge_dir * dodge_distance * Time.smoothDeltaTime, Space.World);
-			//Debug.Log (dodge_dir_rotated);
-		}
+				//Debug.Log (dodge_dir_rotated);
+			}
 
-        // Counter//////////////////////////////////////////////////////////////////////////////////////////////////////////
-		if (is_countering == false && Input.GetButtonDown ("Controller_LB") && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
-			//StartCoroutine ("Counter");
-			//	is_countering = true;
-		//	Debug.Log ("counter");
-		//	StartCoroutine ("Counter");
-		//	my_anime.StartCoroutine ("CounterAnim");
-		}
+			// Counter//////////////////////////////////////////////////////////////////////////////////////////////////////////
+			if (is_countering == false && Input.GetButtonDown ("Controller_LB") && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
+				//StartCoroutine ("Counter");
+				//	is_countering = true;
+				//	Debug.Log ("counter");
+				//	StartCoroutine ("Counter");
+				//	my_anime.StartCoroutine ("CounterAnim");
+			}
 
-		attack_timer -= Time.deltaTime;
-		if (attack_timer <= 0f) {
-			//light_attack_number = 0;
-			//strong_attack_number = 0;
-			attack_number = 0;
-			my_anime.attack_combo = 0;
+			attack_timer -= Time.deltaTime;
+			if (attack_timer <= 0f) {
+				//light_attack_number = 0;
+				//strong_attack_number = 0;
+				attack_number = 0;
+				my_anime.attack_combo = 0;
+			}
 		}
     }
 

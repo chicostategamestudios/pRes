@@ -345,8 +345,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085637392641426}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 26.394503, y: -7.5, z: -15.108222}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.3, y: 1.4, z: -71.3}
   m_LocalScale: {x: 2.7711818, y: 2.7711768, z: 2.7711802}
   m_Children:
   - {fileID: 4371340511062522}
@@ -803,7 +803,7 @@ MonoBehaviour:
   moveback_speed: 15
   dodge_speed: 20
   turn_speed: 1
-  enemy_health: 200
+  enemy_health: 100
   base_knockback_force: 50
   knockback_force: 18
   check_to_damage: 0
