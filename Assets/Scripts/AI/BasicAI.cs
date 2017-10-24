@@ -115,6 +115,9 @@ public class BasicAI : MonoBehaviour
     private Vector3 backward_dir; //the backward_dir of the AI. Used whenever the AI needs to get knocked back.
     protected ai_state current_state = ai_state.idle; //instantiates the ai with an idle state.
 
+	//TJ add
+	[HideInInspector] public bool player_countering = false;
+
     protected IEnumerator Idle() //this is the dodge of the AI, it will randomly choose left or right dodges.
     {
         cooldown_action = Random.Range(cooldown_action_min, cooldown_action_max);
@@ -207,7 +210,7 @@ public class BasicAI : MonoBehaviour
     {
         end = GetComponentInParent<BattleArea_End>();
         //find the backward direction for knockbacks.
-        backward_dir = transform.TransformDirection(Vector3.back);
+		backward_dir = transform.TransformDirection(Vector3.forward);
         //find the child object to access its script for attacks.
         basic_ai = this.transform.FindChild("WeaponSpawn").gameObject;
         //access to the attack script.
@@ -224,12 +227,14 @@ public class BasicAI : MonoBehaviour
     {
         //apply damage and checks if the enemy dies from the damage.
         enemy_health -= incoming_damage;
-        Debug.Log("POOP");
+        //Debug.Log("POOP");
         //set the bools to allow knockback and prevent actions/movements.
         getting_knockback = true;
         //create damage effect particles
-        GameObject effect = Instantiate(damaged_effect, transform.position, transform.rotation);
-        Destroy(effect, 1f);
+		if (!player_countering) {
+			GameObject effect = Instantiate (damaged_effect, transform.position, transform.rotation);
+			Destroy (effect, 1f);
+		}
         //attack script's staggered is set to true to uninstantiate any attacks that are already created or about to be instantiated.
         attack_script.staggered = true;
         //change the AI state to staggered for animations.
@@ -242,6 +247,7 @@ public class BasicAI : MonoBehaviour
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().acceleration = 0;
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = 0;
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().velocity = Vector3.zero;
+		player_countering = false;
         yield return new WaitForSeconds(0.01f);
     }
 

@@ -16,14 +16,24 @@ public class BasicAI_Weapon : MonoBehaviour {
 
     private PlayerHealth player_hp_script; //this is to access the player's health script
 
+	private Combat player_combat;
+
     private void OnTriggerEnter(Collider other) //if the weapon hits the player, apply the damage to the player's health script
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            player_hp_script = other.GetComponentInParent<PlayerHealth>();
-            player_hp_script.DamageReceived(damage);
-        }
-    }
+	{
+		if (other.gameObject.tag == "Player") {
+			//TJ///
+			player_combat = other.GetComponentInParent<Combat> ();
+			if (player_combat.is_countering) {
+				player_combat.counter_recovery = 0f;
+				this.GetComponentInParent<BasicAI> ().player_countering = true;
+				this.GetComponentInParent<BasicAI> ().StartCoroutine ("DamageEnemy", 0f);
+			} else {
+				//TJ_End///
+				player_hp_script = other.GetComponentInParent<PlayerHealth> ();
+				player_hp_script.DamageReceived (damage);
+			}
+		}
+	}
 
     private void DestroySelf() //this is to turn off the weapon after it is done with attacking.
     {

@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Created by Neil - Last Modified by Thaddeus Thompson - 10/12/17
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +12,11 @@ public class Sword_Collision : MonoBehaviour
     public GameObject swordObject;
     public Animator swordAnimator;
 	int damage;
+
+	//Added by TJ
+	public Combat my_combat;
+	private BasicAI my_ai;
+	private bool attack_type;
     //static int attackState = Animator.StringToHash("Base.Combat");
     //public AnimatorControllerParameter animatorInfo;
     //public bool isAttacking;
@@ -30,12 +37,12 @@ public class Sword_Collision : MonoBehaviour
         //currentBaseState = swordAnimator.GetCurrentAnimatorStateInfo(0);
         //isAttacking = swordAnimator.GetBool("isAttacking");
 		//Debug.Log(swordAnimator.GetBool("isAttacking"));
-        if(swordAnimator.GetBool("isAttacking") == true && swordRenderer.enabled == false)
+        if(my_combat.is_attacking == true && swordRenderer.enabled == false)
         {
             swordRenderer.enabled = true;
 			swordCollision.enabled = true;
         }
-		else if (swordAnimator.GetBool("isAttacking") == false)// && swordRenderer.enabled == true)
+		else if (my_combat.is_attacking == false)// && swordRenderer.enabled == true)
         {
 			//Debug.Log ("dwjdjwkdj");
             swordRenderer.enabled = false;
@@ -45,11 +52,26 @@ public class Sword_Collision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy" && swordRenderer.enabled == true)
+        if(other.tag == "Enemy Hitbox" && swordRenderer.enabled == true)
         {
 			//Debug.Log ("triggered");
-			other.GetComponent<BasicAI> ().StartCoroutine("DamageEnemy", damage); //.enemy_health -= damage;   // Placeholder variable!
-        }
+			my_ai = other.GetComponentInParent<BasicAI> (); //.enemy_health -= damage;   // Placeholder variable!
+        	
+			attack_type = my_combat.GetAttackType();//calls function in Combat to determine light or heavy attack
+			if (attack_type) {
+				damage = 10;
+				my_ai.StartCoroutine ("DamageEnemy", damage);
+				my_combat.is_attacking = false;
+				//	Debug.Log ("Deal light damage " + damage);
+			} else {
+				damage = 15;
+				my_ai.StartCoroutine ("DamageEnemy", damage);
+				my_combat.is_attacking = false;
+				//	Debug.Log ("Deal strong damage " + damage);
+			}
+		}//turn off collider after attacks
+
+		swordOff ();
     }
 
 	public void curDamage(int newDam)
