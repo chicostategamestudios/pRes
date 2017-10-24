@@ -7,7 +7,6 @@ using UnityEngine;
 public class Animations_BrianGideon : MonoBehaviour
 {
     public Animator playerAnimator;
-    AnimatorStateInfo currentStateInfo;
     string currentStateName;
 
     public GameObject playerObject;
@@ -15,6 +14,7 @@ public class Animations_BrianGideon : MonoBehaviour
     public PlayerGamepad player;
     public PlayerHealth currentHP;
 
+    bool isDead;
     int lightAttackCombo;     // Max move speed is 48.
     int heavyAttackCombo;
 
@@ -26,27 +26,29 @@ public class Animations_BrianGideon : MonoBehaviour
 
         playerAnimator = GetComponent<Animator>();    // Here we can refer to the playerAnimator controller we need to use.
 
+        isDead = false;
         lightAttackCombo = 0;
         heavyAttackCombo = 0;
 
     }
 
-    void OnStateEnter()
-    {
-        currentStateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
-        //currentStateInfo = currentStateInfo[0].clip.name;
-    }
-
     // Update is called once per frame
     void Update()
     {
-        //Fetch the current Animation clip information for the base layer
-       // currentStateInfo = this.playerAnimator.GetCurrentAnimatorClipInfo(0);
-        //Access the Animation clip name
-      //  currentStateInfo = currentClipInfo[0].clip.name;
-        if(currentHP.health <= 0)
+        // Player Death!
+        if (currentHP.health <= 0 && playerAnimator.GetBool("isDead") == false)
         {
+            playerAnimator.SetBool("isDead", true);
             playerAnimator.Play("Death");
+        }
+        else if (currentHP.health > 0 && playerAnimator.GetBool("isDead") == true)
+        {
+            playerAnimator.SetBool("isDead", false);
+        }
+
+        if (playerAnimator.GetBool("isDead") == true)
+        {
+            return; // If the player is dead, don't play any player animations!
         }
 
         // Most of these animation conditions use the boolean parameters set up in the animation controller.
@@ -75,7 +77,12 @@ public class Animations_BrianGideon : MonoBehaviour
         if (player.dashing == true)
         {
             playerAnimator.SetBool("isAirDashing", true);
-        } 
+        }
+        else if (player.dashing == false)
+        {
+            playerAnimator.SetBool("isAirDashing", false);
+        }
+
 
         // Dodge
         if (Input.GetButtonDown("Controller_X") && player.grounded == true)
@@ -100,7 +107,7 @@ public class Animations_BrianGideon : MonoBehaviour
                 case 0:
 
                     playerAnimator.Play("Swing1 V1");
-                   // playerAnimator.Play("Sword1 V1");
+                    // playerAnimator.Play("Sword1 V1");
                     lightAttackCombo = 1;
                     break;
                 case 1:

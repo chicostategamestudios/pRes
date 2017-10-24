@@ -8,6 +8,7 @@ public class Animations_Sword : MonoBehaviour
 {
     public Animator swordAnimator;
     public GameObject swordObject;
+    public Animator playerAnimator;
 
     public int lightAttackCombo;     // Max move speed is 48.
     public int heavyAttackCombo;
@@ -24,6 +25,11 @@ public class Animations_Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(playerAnimator.GetBool("isDead") == true)
+        {
+            return; // If the player is dead, don't play any sword animations!
+        }
+
         // Light Attack!
         if (Input.GetButtonDown("Controller_Y"))
         {

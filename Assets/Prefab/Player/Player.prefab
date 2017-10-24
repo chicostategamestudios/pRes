@@ -4029,7 +4029,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1882838740655520}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: f8cb6f0ea52a15742b6e2dc51f4b0460, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 1
@@ -4440,6 +4440,7 @@ MonoBehaviour:
   swordAnimator: {fileID: 0}
   swordObject: {fileID: 1249777180528768}
   lightAttackCombo: 0
+  heavyAttackCombo: 0
 --- !u!136 &136782460517781804
 CapsuleCollider:
   m_ObjectHideFlags: 1

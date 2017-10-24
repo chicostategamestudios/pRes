@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7426f9d718c0519499111e4ac934d1df
-timeCreated: 1508277887
+guid: f134027fb043021408bf9685be62cea1
+timeCreated: 1508802350
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -25,12 +25,12 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: BrianGideon_Anim_HeavySwing1_V1:Sword_Controler
+    motionNodeName: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
