@@ -39,6 +39,7 @@ public class Play_Game_UI_Functionality : MonoBehaviour {
 
 
     void Start () {
+		
 		Button StoryButton = storyButton.GetComponent<Button>();				//Assigns the UI element to its script counterpart
 		Button SpeedRunModeButton = speedRunModeButton.GetComponent<Button>();	//Assigns the UI element to its script counterpart
 		Button ExtrasButton = extrasButton.GetComponent<Button>();				//Assigns the UI element to its script counterpart

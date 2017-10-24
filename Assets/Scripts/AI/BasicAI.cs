@@ -77,9 +77,13 @@ public class BasicAI : MonoBehaviour
     public float turn_speed = 1f;
     [Tooltip("The health of the AI. It will die when it is 0.")]
     public int enemy_health = 100; //the health of the enemy.
-    [Tooltip("The force that pushes back the AI when it is hit.")]
-    public float knockback_force = 18f;
-    [Tooltip("This is used for testing. Check this to damage the enemy.")]
+    
+	[Tooltip("The force that pushes back the AI when it is hit.")]
+	public float base_knockback_force = 18f;
+	[HideInInspector]
+	public float knockback_force;
+
+	[Tooltip("This is used for testing. Check this to damage the enemy.")]
     public bool check_to_damage = false;
     [Tooltip("This is the percentage chance to dodge instead of attack. The lower the number, the more often it will dodge.")]
     public int chance_to_dodge = 35;
@@ -114,6 +118,9 @@ public class BasicAI : MonoBehaviour
     public GameObject basic_ai; //the weapon spawner that is in charge of the weapon swinging.
     private Vector3 backward_dir; //the backward_dir of the AI. Used whenever the AI needs to get knocked back.
     protected ai_state current_state = ai_state.idle; //instantiates the ai with an idle state.
+
+	//TJ add
+	[HideInInspector] public bool player_countering = false;
 
     protected IEnumerator Idle() //this is the dodge of the AI, it will randomly choose left or right dodges.
     {
@@ -207,7 +214,7 @@ public class BasicAI : MonoBehaviour
     {
         end = GetComponentInParent<BattleArea_End>();
         //find the backward direction for knockbacks.
-        backward_dir = transform.TransformDirection(Vector3.back);
+		backward_dir = transform.TransformDirection(Vector3.forward);
         //find the child object to access its script for attacks.
         basic_ai = this.transform.FindChild("WeaponSpawn").gameObject;
         //access to the attack script.
@@ -218,17 +225,24 @@ public class BasicAI : MonoBehaviour
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().acceleration = acceleration;
         //apply the speed variable to the nav mesh agent.
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = movement_speed;
+		knockback_force = base_knockback_force;
     }
+		
 
 	public IEnumerator DamageEnemy(int incoming_damage) //first will apply damage, and then stagger the enemy for a certain duration
     {
         //apply damage and checks if the enemy dies from the damage.
         enemy_health -= incoming_damage;
+        //Debug.Log("POOP");
         //set the bools to allow knockback and prevent actions/movements.
         getting_knockback = true;
+		knockback_force += incoming_damage;
+		Debug.Log (knockback_force);
         //create damage effect particles
-        GameObject effect = Instantiate(damaged_effect, transform.position, transform.rotation);
-        Destroy(effect, 1f);
+		if (!player_countering) {
+			GameObject effect = Instantiate (damaged_effect, transform.position, transform.rotation);
+			Destroy (effect, 1f);
+		}
         //attack script's staggered is set to true to uninstantiate any attacks that are already created or about to be instantiated.
         attack_script.staggered = true;
         //change the AI state to staggered for animations.
@@ -241,6 +255,7 @@ public class BasicAI : MonoBehaviour
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().acceleration = 0;
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = 0;
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().velocity = Vector3.zero;
+		player_countering = false;
         yield return new WaitForSeconds(0.01f);
     }
 
@@ -248,15 +263,18 @@ public class BasicAI : MonoBehaviour
     {
         //print("the enemy is dying...");
         yield return new WaitForSeconds(death_duration);
-        end.enemyList.Remove(gameObject);
-        this.transform.parent = null;
+        //end.enemyList.Remove(gameObject);
+        //this.transform.parent = null;
+		if (end) {
+			end.enemiesDead--;
+		}
         //end.enemyList.Remove(gameObject);
         this.gameObject.SetActive(false);
     }
 
 	public void reset()
 	{
-		Debug.Log (transform.name);
+		//Debug.Log (transform.name);
 		enemy_health = 100;
 		first_alert = false;
 	}
@@ -281,6 +299,7 @@ public class BasicAI : MonoBehaviour
             if (current_stagger_dur >= knockback_duration && getting_knockback)
             {
                 getting_knockback = false;
+				knockback_force = base_knockback_force;
             }
 
             //once the stagger duration is up, restore all of the old values of the AI to move and attack.

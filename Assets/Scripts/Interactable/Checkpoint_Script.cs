@@ -12,10 +12,12 @@ public class Checkpoint_Script : MonoBehaviour
     public float pos2;
     private Vector3[] EnemySpawnLoc = new Vector3[10];
     public GameObject[] allEnemies;
+	public GameObject[] battleAreas;
     public GameObject ThePlayer;
 
     private void Awake()
     {
+		battleAreas = GameObject.FindGameObjectsWithTag ("battleArea");
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy"); // Finds all objects in the scene with the tag "enemy"
         for (int i = 0; i < allEnemies.Length; i++) //go through all enemies currently on the map at the start of the game
         {
@@ -25,11 +27,7 @@ public class Checkpoint_Script : MonoBehaviour
         }
         ThePlayer = GameObject.FindGameObjectWithTag("Player"); //Set ThePlayer to the Player asset within the scene
     }
-    // Use this for initialization
-    void Start()
-    {
-    }
-    // Update is called once per frame
+		
     void FixedUpdate()
     {    
 		if (ActiveCheckPoint) {
@@ -55,7 +53,7 @@ public class Checkpoint_Script : MonoBehaviour
 			if (ThePlayer.GetComponentInChildren<PlayerHealth> ().health <= 0 || ThePlayer.GetComponentInParent<PlayerGamepad> ().isPlayerDead () == true) {
 				ThePlayer.transform.parent.position = SaveLoc; //Make the player respawn at the active checkpoint
 				if (pos1 >= pos2) { //Checks to see if the player is over a certain height
-					Debug.Log("fuckkceakc");
+					//Debug.Log("fuckkceakc");
 					ThePlayer.GetComponent<PlayerHealth> ().Heal (); // Resets player health for when they die
 					ThePlayer.GetComponentInParent<PlayerGamepad> ().setPlayerDeath (false);//Sets PlayerDied to false when the player has respawned
 					for (int i = 0; i < allEnemies.Length; i++) {             
@@ -64,6 +62,9 @@ public class Checkpoint_Script : MonoBehaviour
 						allEnemies [i].GetComponent<BasicAI> ().reset ();
 						print ("Enemies Back home");
 						print (allEnemies [i]);
+					}
+					for (int i = 0; i < battleAreas.Length; i++) {
+						battleAreas [i].GetComponent<BattleArea_End> ().ResetWalls ();
 					}
 				}
 				print ("Death Detected");
@@ -89,7 +90,7 @@ public class Checkpoint_Script : MonoBehaviour
                 SaveLoc.y += 15; //A buffer to make sure the player doesn't spawn within the floor
                 pos2 = ThePlayer.transform.position.y; //gets the y position for when they enter the checkpoint
                 ActiveCheckPoint = true; //Sets the checkpoint that the player just collided with to the Active checkpoint and the platyer will only respawn there
-                print("Checkpoint");
+                //print("Checkpoint");
             }
         }
     }

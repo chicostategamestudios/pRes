@@ -97,7 +97,7 @@ public class Level_Select_Menu_Functionality : MonoBehaviour {
 	/* This function will allow the player to click on the "Level 3" button and move to the "Level_3" scene */
 	void Level3OnClick()
 	{
-		SceneManager.LoadScene("Level3_NewEden");		//Change this to whatever scene is the "Level3" scene
+		SceneManager.LoadScene("Level3_NewEden_1023_ver2");		//Change this to whatever scene is the "Level3" scene
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	Level 3 - Loads Level 3 (END)
@@ -135,9 +135,9 @@ public class Level_Select_Menu_Functionality : MonoBehaviour {
 	/* This function will allow the player to click on the BACK button and move to the "play_menu" scene */
 	void BackOnClick()
 	{
-		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.level_select_menu_obj.SetActive(false);	//Sets Level_Select_Menu to become invisible
+		//Main_Menu_Functionality.Singleton_Main_Menu_Functionality.level_select_menu_obj.SetActive(false);	//Sets Level_Select_Menu to become invisible
 		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.play_menu_obj.SetActive(true);			//Sets play_menu to become visible
-		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.StoryButton.Select();						//Sets the Story button as the active cursor
+		//Main_Menu_Functionality.Singleton_Main_Menu_Functionality.StoryButton.Select();						//Sets the Story button as the active cursor
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	Back - Back Button Functionality (END)

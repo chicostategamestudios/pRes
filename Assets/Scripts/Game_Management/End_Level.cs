@@ -73,12 +73,14 @@ public class End_Level : MonoBehaviour {
 			finishTime[2] = end_millisecs;
 			//ScoreSystem.Singleton_ScoreSystem.getCompletionTime (finishTime);
 			finished = true;
+			//ToNextLevelOnClick ();
 		}
 	}
 
 	//used to activate end level menu
 	void Finish_Level()
 	{
+		
 		Finish_Menu.SetActive (true);
 		Next_Level.Select ();
 		player.GetComponent<PlayerGamepad> ().enabled = false;
@@ -87,6 +89,7 @@ public class End_Level : MonoBehaviour {
 	//takes the player to the next level on selection
 	void ToNextLevelOnClick()
 	{
+		Debug.Log ("poo");
 		int next_level = SceneManager.GetActiveScene().buildIndex + 1;
 		if (next_level < SceneManager.sceneCountInBuildSettings) {
 			if (paused) {

@@ -18,6 +18,9 @@ TagManager:
   - Checkpoint
   - healthBar
   - wallJump
+  - Reticle
+  - BleedScreen
+  - battleArea
   layers:
   - Default
   - TransparentFX

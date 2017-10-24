@@ -145,12 +145,15 @@ public class AdvancedAI : BasicAI
         //apply damage and checks if the enemy dies from the damage.
         enemy_health -= incoming_damage;
         total_damage_received += incoming_damage;
+		Debug.Log (incoming_damage);
         if(total_damage_received >= stagger_threshold)
         {
             //reset the total damage received so it doesn't get stunned repeatedly afterwards being hit.
             total_damage_received = 0;
             //set the bools to allow knockback and prevent actions/movements.
             getting_knockback = true;
+			knockback_force += incoming_damage;
+			Debug.Log (knockback_force);
             //attack script's staggered is set to true to uninstantiate any attacks that are already created or about to be instantiated.
             attack_script.staggered = true;
             //change the AI state to staggered for animations.

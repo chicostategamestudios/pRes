@@ -6,6 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class PlayerHealth : MonoBehaviour
 {
     public int health = 100; //the health of the player.
@@ -19,13 +21,17 @@ public class PlayerHealth : MonoBehaviour
 	[SerializeField]
 	private HealthStat Health;
 
+	private Combat my_combat;
+
     public IEnumerator StaggerPlayer()
     {
         //turn off the player movement to simulate a stun.
         player_pad.SetPlayerMovement(false);
         //create damaged effect
-        GameObject effect = Instantiate(damaged_effect, transform.position, transform.rotation);
-        Destroy(effect, 1f);
+		if (!my_combat.is_countering) {
+			GameObject effect = Instantiate (damaged_effect, transform.position, transform.rotation);
+			Destroy (effect, 1f);
+		}
         yield return new WaitForSeconds(stagger_duration);
         //turn on the player movement to end the stun.
         player_pad.SetPlayerMovement(true);
@@ -50,6 +56,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Awake()
     {
+		my_combat = this.GetComponentInParent<Combat> ();
         player_pad = GameObject.Find("Player").GetComponent<PlayerGamepad>();
 
     }
