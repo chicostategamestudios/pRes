@@ -77,9 +77,13 @@ public class BasicAI : MonoBehaviour
     public float turn_speed = 1f;
     [Tooltip("The health of the AI. It will die when it is 0.")]
     public int enemy_health = 100; //the health of the enemy.
-    [Tooltip("The force that pushes back the AI when it is hit.")]
-    public float knockback_force = 18f;
-    [Tooltip("This is used for testing. Check this to damage the enemy.")]
+    
+	[Tooltip("The force that pushes back the AI when it is hit.")]
+	public float base_knockback_force = 18f;
+	[HideInInspector]
+	public float knockback_force;
+
+	[Tooltip("This is used for testing. Check this to damage the enemy.")]
     public bool check_to_damage = false;
     [Tooltip("This is the percentage chance to dodge instead of attack. The lower the number, the more often it will dodge.")]
     public int chance_to_dodge = 35;
@@ -221,7 +225,9 @@ public class BasicAI : MonoBehaviour
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().acceleration = acceleration;
         //apply the speed variable to the nav mesh agent.
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = movement_speed;
+		knockback_force = base_knockback_force;
     }
+		
 
 	public IEnumerator DamageEnemy(int incoming_damage) //first will apply damage, and then stagger the enemy for a certain duration
     {
@@ -230,6 +236,8 @@ public class BasicAI : MonoBehaviour
         //Debug.Log("POOP");
         //set the bools to allow knockback and prevent actions/movements.
         getting_knockback = true;
+		knockback_force += incoming_damage;
+		Debug.Log (knockback_force);
         //create damage effect particles
 		if (!player_countering) {
 			GameObject effect = Instantiate (damaged_effect, transform.position, transform.rotation);
@@ -291,6 +299,7 @@ public class BasicAI : MonoBehaviour
             if (current_stagger_dur >= knockback_duration && getting_knockback)
             {
                 getting_knockback = false;
+				knockback_force = base_knockback_force;
             }
 
             //once the stagger duration is up, restore all of the old values of the AI to move and attack.

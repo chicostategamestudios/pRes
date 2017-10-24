@@ -363,7 +363,7 @@ public class Combat : MonoBehaviour {
 
         // Counter//////////////////////////////////////////////////////////////////////////////////////////////////////////
 		if (is_countering == false && Input.GetButtonDown ("Controller_LB") && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
-			StartCoroutine ("Counter");
+			//StartCoroutine ("Counter");
 			//	is_countering = true;
 		//	Debug.Log ("counter");
 		//	StartCoroutine ("Counter");

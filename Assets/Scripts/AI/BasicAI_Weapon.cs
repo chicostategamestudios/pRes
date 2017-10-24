@@ -26,7 +26,7 @@ public class BasicAI_Weapon : MonoBehaviour {
 			if (player_combat.is_countering) {
 				player_combat.counter_recovery = 0f;
 				this.GetComponentInParent<BasicAI> ().player_countering = true;
-				this.GetComponentInParent<BasicAI> ().StartCoroutine ("DamageEnemy", 0f);
+				this.GetComponentInParent<BasicAI> ().StartCoroutine ("DamageEnemy", 30f);
 			} else {
 				//TJ_End///
 				player_hp_script = other.GetComponentInParent<PlayerHealth> ();
