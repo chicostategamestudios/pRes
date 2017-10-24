@@ -2651,7 +2651,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 672865373}
-  m_LocalRotation: {x: 0.57044744, y: -0.20886327, z: 0.1528509, w: 0.7794885}
+  m_LocalRotation: {x: 0.5704475, y: -0.2088633, z: 0.15285091, w: 0.7794886}
   m_LocalPosition: {x: -1.3664284, y: 21.07298, z: 55.073376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3037,11 +3037,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!95 &796936691 stripped
-Animator:
-  m_PrefabParentObject: {fileID: 95742430357763676, guid: b62f6fb734ea7e0409e3c66b57548adb,
-    type: 2}
-  m_PrefabInternal: {fileID: 1152041423}
 --- !u!1 &807884912
 GameObject:
   m_ObjectHideFlags: 0
@@ -3667,11 +3662,6 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.33212313
       objectReference: {fileID: 0}
-    - target: {fileID: 114977874520844936, guid: b62f6fb734ea7e0409e3c66b57548adb,
-        type: 2}
-      propertyPath: playerAnimator
-      value: 
-      objectReference: {fileID: 796936691}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b62f6fb734ea7e0409e3c66b57548adb, type: 2}
   m_IsPrefabParent: 0

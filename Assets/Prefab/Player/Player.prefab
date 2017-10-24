@@ -4439,6 +4439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordAnimator: {fileID: 0}
   swordObject: {fileID: 1249777180528768}
+  playerAnimator: {fileID: 95742430357763676}
   lightAttackCombo: 0
   heavyAttackCombo: 0
 --- !u!136 &136782460517781804
