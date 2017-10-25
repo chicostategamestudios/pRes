@@ -1,4 +1,4 @@
-﻿/*This script was written by James | Last edited by James | Modified on October 4, 2017
+﻿/*This script was written by James | Last edited by James | Modified on October 24, 2017
  *The purpose of this script is to have an enemy chase the player. This is implemented by using a Nav Mesh Agent.
  *It will then decide what to do with its list of actions.
  *
