@@ -15,6 +15,7 @@ public class BasicAI_Weapon : MonoBehaviour {
                                  //downwards as the enemy slashes.
 
     private PlayerHealth player_hp_script; //this is to access the player's health script
+    private PlayerGamepad player_gamepad;
 
 	private Combat player_combat;
 
@@ -23,6 +24,7 @@ public class BasicAI_Weapon : MonoBehaviour {
 		if (other.gameObject.tag == "Player") {
 			//TJ///
 			player_combat = other.GetComponentInParent<Combat> ();
+            player_gamepad = other.GetComponentInParent<PlayerGamepad>();
 			if (player_combat.is_countering) {
 				player_combat.counter_recovery = 0f;
 				this.GetComponentInParent<BasicAI> ().player_countering = true;
@@ -30,7 +32,8 @@ public class BasicAI_Weapon : MonoBehaviour {
 			} else {
 				//TJ_End///
 				player_hp_script = other.GetComponentInParent<PlayerHealth> ();
-				player_hp_script.DamageReceived (damage);
+                player_gamepad.Knockback(.5f, -transform.forward, 10f);
+                player_hp_script.DamageReceived (damage);
 			}
 		}
 	}

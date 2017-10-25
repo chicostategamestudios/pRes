@@ -53,19 +53,24 @@ public class Checkpoint_Script : MonoBehaviour
 			if (ThePlayer.GetComponentInChildren<PlayerHealth> ().health <= 0 || ThePlayer.GetComponentInParent<PlayerGamepad> ().isPlayerDead () == true) {
 				ThePlayer.transform.parent.position = SaveLoc; //Make the player respawn at the active checkpoint
 				if (pos1 >= pos2) { //Checks to see if the player is over a certain height
-					//Debug.Log("fuckkceakc");
-					ThePlayer.GetComponent<PlayerHealth> ().Heal (); // Resets player health for when they die
+                                    //Debug.Log("fuckkceakc");
+
+                    for (int i = 0; i < allEnemies.Length; i++)
+                    {
+                        allEnemies[i].transform.position = EnemySpawnLoc[i]; //sets all enemies positions back to their originol positions for when the player is killed
+                        allEnemies[i].SetActive(true);
+                        allEnemies[i].GetComponent<BasicAI>().StartCoroutine("reset");
+                        print("Enemies Back home.");
+                        print(allEnemies[i]);
+                    }
+                    for (int i = 0; i < battleAreas.Length; i++)
+                    {
+                        battleAreas[i].GetComponent<BattleArea_End>().ResetWalls();
+                    }
+
+                    ThePlayer.GetComponent<PlayerHealth> ().Heal (); // Resets player health for when they die
 					ThePlayer.GetComponentInParent<PlayerGamepad> ().setPlayerDeath (false);//Sets PlayerDied to false when the player has respawned
-					for (int i = 0; i < allEnemies.Length; i++) {             
-						allEnemies [i].transform.position = EnemySpawnLoc [i]; //sets all enemies positions back to their originol positions for when the player is killed
-						allEnemies [i].SetActive (true);
-						allEnemies [i].GetComponent<BasicAI> ().reset ();
-						print ("Enemies Back home");
-						print (allEnemies [i]);
-					}
-					for (int i = 0; i < battleAreas.Length; i++) {
-						battleAreas [i].GetComponent<BattleArea_End> ().ResetWalls ();
-					}
+					
 				}
 				print ("Death Detected");
 			}
