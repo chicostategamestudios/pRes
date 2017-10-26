@@ -53,7 +53,7 @@ public class Checkpoint_Script : MonoBehaviour
 			if (ThePlayer.GetComponentInChildren<PlayerHealth> ().health <= 0 || ThePlayer.GetComponentInParent<PlayerGamepad> ().isPlayerDead () == true) {
 				ThePlayer.transform.parent.position = SaveLoc; //Make the player respawn at the active checkpoint
 				if (pos1 >= pos2) { //Checks to see if the player is over a certain height
-					//Debug.Log("fuckkceakc");
+					Debug.Log("fuckkceakc");
 					ThePlayer.GetComponent<PlayerHealth> ().Heal (); // Resets player health for when they die
 					ThePlayer.GetComponentInParent<PlayerGamepad> ().setPlayerDeath (false);//Sets PlayerDied to false when the player has respawned
 					for (int i = 0; i < allEnemies.Length; i++) {             
@@ -90,7 +90,7 @@ public class Checkpoint_Script : MonoBehaviour
                 SaveLoc.y += 15; //A buffer to make sure the player doesn't spawn within the floor
                 pos2 = ThePlayer.transform.position.y; //gets the y position for when they enter the checkpoint
                 ActiveCheckPoint = true; //Sets the checkpoint that the player just collided with to the Active checkpoint and the platyer will only respawn there
-                //print("Checkpoint");
+                print("Checkpoint");
             }
         }
     }

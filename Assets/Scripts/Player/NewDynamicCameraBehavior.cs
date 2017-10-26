@@ -71,7 +71,7 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 		transform.rotation = Quaternion.Euler(temp_axis, transform.rotation.eulerAngles.y, 0);
 
 		// On right bumper pressed, find a target.
-		if (Input.GetButtonDown ("Controller_LB")) {
+		if (Input.GetButtonDown ("Controller_RB")) {
 			// If targetting already active, end it.
 			if (target_locked == true) {
 				target_locked = false;

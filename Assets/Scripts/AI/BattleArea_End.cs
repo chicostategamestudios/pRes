@@ -63,7 +63,7 @@ public class BattleArea_End : MonoBehaviour {
 			}
 
 			if (BasicAI_scr != null) {
-				//Debug.Log ("not null");
+				Debug.Log ("not null");
 				BasicAI_scr.berserk_mode = true;
 			} else if (BasicAI_scr == null) {
 				
