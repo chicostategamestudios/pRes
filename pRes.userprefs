@@ -1,0 +1,18 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AI\BasicAI.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Player\PlayerGamepad.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game_Management\Start_Level_Timer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game_Management\End_Level.cs" Line="67" Column="1" />
+      <File FileName="Assets\Scripts\UI\Play_Game_UI_Functionality.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\Save_Select_UI_Functionality.cs" Line="76" Column="3" />
+      <File FileName="Assets\Scripts\UI\Level_Select_Menu_Functionality.cs" Line="100" Column="51" />
+      <File FileName="Assets\Scripts\AI\BasicAI.cs" Line="371" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
