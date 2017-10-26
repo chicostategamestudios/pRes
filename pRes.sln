@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pRes.Plugins", "pRes.Plugins.csproj", "{587E0CDD-621F-C4C4-CAE4-C275DE788D21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pRes", "pRes.csproj", "{0E0FCE6E-AD28-B33B-29C3-398D841B77E5}"

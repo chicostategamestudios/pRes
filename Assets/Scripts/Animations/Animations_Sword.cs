@@ -45,7 +45,7 @@ public class Animations_Sword : MonoBehaviour
 		yield return null;
 	}
 
-	IEnumerator CounterAnim(){
+    IEnumerator CounterAnim(){
 		Debug.Log ("animate");
 		playerAnimator.Play ("Start Air Dash");
 
@@ -55,40 +55,55 @@ public class Animations_Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		//Going to make these into coroutines that will be called from Combat
+        //Going to make these into coroutines that will be called from Combat
         // Light Attack!
-       /* if (Input.GetButtonDown("Controller_Y"))
+        /* if (Input.GetButtonDown("Controller_Y"))
+         {
+             if(swordAnimator.GetBool("isAttacking") == false)
+             {
+                 swordAnimator.SetBool("isAttacking", true);
+             }
+
+             switch (attack_combo)
+             {
+                 case 0:
+                     swordAnimator.Play("Swing1 V1");
+                     attack_combo = 1;
+                     break;
+                 case 1:
+                     swordAnimator.Play("Swing2 V1");
+                     attack_combo = 2;
+                     break;
+                 case 2:
+                     swordAnimator.Play("Swing3 V1");
+                     attack_combo = 0;
+                     break;
+             }
+         }*/
+
+
+        // Heavy Attack!
+        if (Input.GetButtonDown("Controller_B"))
         {
-            if(swordAnimator.GetBool("isAttacking") == false)
-            {
-                swordAnimator.SetBool("isAttacking", true);
-            }
-            
             switch (attack_combo)
             {
                 case 0:
-                    swordAnimator.Play("Swing1 V1");
+                    playerAnimator.Play("HeavySwing1 V1");
+                    playerAnimator["HeavySwing1 V1"].speed++;
+                    swordAnimator.Play("HeavySwing1 V1_Sword");
                     attack_combo = 1;
                     break;
                 case 1:
-                    swordAnimator.Play("Swing2 V1");
+                    playerAnimator.Play("HeavySwing2 V1");
+                    swordAnimator.Play("HeavySwing2 V1_Sword");
                     attack_combo = 2;
                     break;
                 case 2:
-                    swordAnimator.Play("Swing3 V1");
+                    playerAnimator.Play("HeavySwing3 V1");
+                    swordAnimator.Play("HeavySwing3 V1_Sword");
                     attack_combo = 0;
                     break;
             }
         }
-        // Heavy Attack!
-        if (Input.GetButtonDown("Controller_B"))
-        {
-			if(swordAnimator.GetBool("isAttacking") == false)
-			{
-				swordAnimator.SetBool("isAttacking", true);
-			}
-			//needs player animator too
-            swordAnimator.Play("Swing4 V1");
-        }*/
     }
 }

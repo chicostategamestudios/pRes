@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: aca24d956ba39ea41b0bbad6e1db2d5f
-timeCreated: 1508996705
+guid: adc63e9e3f0323d4fb1565ec58213390
+timeCreated: 1509054237
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -10,7 +10,7 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: polySurface1
-    7400000: CombatIdle_Sword
+    7400000: Sword
     9500000: //RootNode
   materials:
     importMaterials: 1
