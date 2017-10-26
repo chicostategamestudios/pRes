@@ -237,7 +237,7 @@ public class BasicAI : MonoBehaviour
         //set the bools to allow knockback and prevent actions/movements.
         getting_knockback = true;
 		knockback_force += incoming_damage;
-		Debug.Log (knockback_force);
+		//Debug.Log (knockback_force);
         //create damage effect particles
 		if (!player_countering) {
 			GameObject effect = Instantiate (damaged_effect, transform.position, transform.rotation);

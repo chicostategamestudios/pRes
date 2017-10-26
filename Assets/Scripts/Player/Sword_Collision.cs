@@ -28,7 +28,7 @@ public class Sword_Collision : MonoBehaviour
         swordRenderer = GetComponent<MeshRenderer>();
         swordAnimator = swordObject.GetComponent<Animator>();
         //isAttacking = false;
-		swordRenderer.enabled = false;
+		swordRenderer.enabled = true;
 		swordCollision.enabled = false;
     }
 
@@ -37,15 +37,15 @@ public class Sword_Collision : MonoBehaviour
         //currentBaseState = swordAnimator.GetCurrentAnimatorStateInfo(0);
         //isAttacking = swordAnimator.GetBool("isAttacking");
 		//Debug.Log(swordAnimator.GetBool("isAttacking"));
-        if(my_combat.is_attacking == true && swordRenderer.enabled == false)
+        if(my_combat.is_attacking == true /*&& swordRenderer.enabled == false*/)
         {
-            swordRenderer.enabled = true;
+            //swordRenderer.enabled = true;
 			swordCollision.enabled = true;
         }
 		else if (my_combat.is_attacking == false)// && swordRenderer.enabled == true)
         {
 			//Debug.Log ("dwjdjwkdj");
-            swordRenderer.enabled = false;
+            //swordRenderer.enabled = false;
 			swordCollision.enabled = false;
         }
     }
@@ -80,7 +80,7 @@ public class Sword_Collision : MonoBehaviour
 	}
 
 	public void swordOff(){
-		swordRenderer.enabled = false;
+		//swordRenderer.enabled = false;
 		swordCollision.enabled = false;
 		swordAnimator.SetBool("isAttacking", false);
 	}
