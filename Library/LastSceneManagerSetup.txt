@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/exampleLevel.unity
+- path: Assets/Scenes/Level3/Level3_NewEden.unity
   isLoaded: 1
   isActive: 1
