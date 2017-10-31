@@ -97,7 +97,7 @@ public class Level_Select_Menu_Functionality : MonoBehaviour {
 	/* This function will allow the player to click on the "Level 3" button and move to the "Level_3" scene */
 	void Level3OnClick()
 	{
-		SceneManager.LoadScene("Level3_NewEden_1023_ver2");		//Change this to whatever scene is the "Level3" scene
+		SceneManager.LoadScene("Level3_NewEden");		//Change this to whatever scene is the "Level3" scene
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	Level 3 - Loads Level 3 (END)

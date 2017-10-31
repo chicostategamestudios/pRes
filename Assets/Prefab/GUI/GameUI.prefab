@@ -209,13 +209,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'LB - lock onto enemy
+  m_Text: 'RB - lock onto enemy
 
     LT + analog - dodge
 
     Y - light attack
 
-    Y + B - counter
+    B - heavy attack
 
 '
 --- !u!222 &222712636274400064

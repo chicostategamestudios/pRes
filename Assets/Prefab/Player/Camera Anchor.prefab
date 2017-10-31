@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1582543965436634}
   m_LocalRotation: {x: -0.09093521, y: -0, z: -0, w: 0.9958568}
-  m_LocalPosition: {x: 99.4138, y: -15.885468, z: -630.27905}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4212179384127174}
@@ -93,7 +93,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 850
-  field of view: 50
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -137,11 +137,8 @@ MonoBehaviour:
   player: {fileID: 0}
   maxFindTargetDistance: 50
   maxTargetDistance: 65
-  defaultFOV: 50
-  focusedFOV: 40
-  ReticleObj: {fileID: 0}
-  checkRet: 0
-  ret: {fileID: 0}
+  defaultFOV: 70
+  focusedFOV: 60
 --- !u!114 &114248679088642692
 MonoBehaviour:
   m_ObjectHideFlags: 1
