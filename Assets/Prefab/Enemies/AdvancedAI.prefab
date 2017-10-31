@@ -645,6 +645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 550
   duration: 0.4
+  wait_timer: 0.5
   check_attack_left: 0
   check_attack_right: 0
   check_attack_top: 0
@@ -689,8 +690,8 @@ MonoBehaviour:
   moveback_speed: 15
   dodge_speed: 20
   turn_speed: 1
-  enemy_health: 100
-  enemy_start_health: 100
+  enemy_health: 50
+  enemy_start_health: 50
   base_knockback_force: 50
   knockback_force: 18
   check_to_damage: 0
@@ -704,6 +705,7 @@ MonoBehaviour:
   damaged_effect: {fileID: 1155491563207358, guid: d88538ac929677c48afc8c48209bc891,
     type: 2}
   alerted: 1
+  first_berserk: 0
   incoming_damage: 0
   basic_ai: {fileID: 1759779128145598}
   player_countering: 0

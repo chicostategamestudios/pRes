@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23811576210789276}
   - component: {fileID: 114128978935950100}
   - component: {fileID: 54109474923189704}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Brsrk_Adv_Weapon_Top
   m_TagString: AI Attack
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ BoxCollider:
   m_GameObject: {fileID: 1688443585043562}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -123,4 +123,6 @@ MonoBehaviour:
   damage: 18
   destroy_time: 0.2
   fall_speed: 12
-  falling: 1
+  wait_timer: 0.5
+  falling: 0
+  move_down: 1

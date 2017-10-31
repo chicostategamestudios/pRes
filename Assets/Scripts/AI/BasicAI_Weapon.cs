@@ -10,9 +10,15 @@ public class BasicAI_Weapon : MonoBehaviour {
     public int damage = 5; //damage of the weapon to hurt the player.
     public float destroy_time = 0.5f;
     public float fall_speed = 6f;
+    public float wait_timer = 0.5f;
+    private bool first_enable = false;
+    Collider my_collider;
+    
 
     public bool falling = false; //this is used for the weapon's diagonal attack. If set to true it will move
                                  //downwards as the enemy slashes.
+
+    public bool move_down;
 
     private PlayerHealth player_hp_script; //this is to access the player's health script
     private PlayerGamepad player_gamepad;
@@ -29,7 +35,7 @@ public class BasicAI_Weapon : MonoBehaviour {
 				player_combat.counter_recovery = 0f;
 				this.GetComponentInParent<BasicAI> ().player_countering = true;
 				this.GetComponentInParent<BasicAI> ().StartCoroutine ("DamageEnemy", 30f);
-			} else {
+			} else if(!player_combat.is_invunerable){
 				//TJ_End///
 				player_hp_script = other.GetComponentInParent<PlayerHealth> ();
                 player_gamepad.Knockback(.5f, -transform.forward, 10f);
@@ -43,9 +49,20 @@ public class BasicAI_Weapon : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
+    private void ColliderOn()
+    {
+        my_collider.enabled = true;
+        if(move_down)
+        {
+            falling = true;
+        }
+    }
+
     private void Start()
     {
         Invoke("DestroySelf", destroy_time); //destroy the game object after 0.5 seconds
+        my_collider = GetComponent<Collider>();
+        Invoke("ColliderOn", wait_timer);
     }
 
 
@@ -57,6 +74,5 @@ public class BasicAI_Weapon : MonoBehaviour {
             temp.y -= fall_speed * Time.deltaTime;
             this.transform.position = temp;
         }
-
     }
 }

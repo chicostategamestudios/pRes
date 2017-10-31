@@ -105,6 +105,7 @@ public class BasicAI : MonoBehaviour
     private bool first_alert = false; //used to keep track if the AI has been alerted the first time.
     [HideInInspector]
     public bool alerted = false; //once the AI has been alerted, it will start chasing the player.
+    public bool first_berserk = false; //used to keep track if the AI has been berserked for the first time.
     protected bool performing_action = false; //this is to keep track if the AI is performing an action.
     protected bool staggering = false; //used to set the AI into the staggered state
     [HideInInspector]
@@ -327,13 +328,14 @@ public class BasicAI : MonoBehaviour
         //it is not staggering so run through the usual routines.
         else
         {
-            if(berserk_mode)
+            if(berserk_mode && !first_berserk)
             {
                 chance_to_dodge = 15;
                 berserk_flame1.SetActive(true);
                 berserk_flame2.SetActive(true);
                 attack_script.berserk_mode = true;
                 berserk_mode = false;
+                first_berserk = true;
                 
             }
 

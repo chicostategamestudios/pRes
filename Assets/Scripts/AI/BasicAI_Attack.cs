@@ -13,7 +13,7 @@ using UnityEngine;
 
 public class BasicAI_Attack : MonoBehaviour {
 
-	public float attackSpeed;
+	public float attackSpeed; //Tru added this to control how fast the attack moves/rotates.
 
     private Vector3 left_spawn_pos; //the position in which the object is instantiated when attacking from the left.
 
@@ -24,25 +24,29 @@ public class BasicAI_Attack : MonoBehaviour {
 
     public float duration = 0.5f; //how long the attack animation takes. used to keep track for how long to rotate.
 
+    public float wait_timer = 0.5f; //how long the attack waits for before starting to swing.
+
+    private float current_wait_timer = 0f; //the current duration of the wait buffer.
+
     private float current_timer = 0f; //used to keep track of how long has passed since the start of the attack.
-
+    [HideInInspector]
     public bool check_attack_left = false; //when set to true, it will start attacking from the ai's left arm.
-
+    
     private bool attacking_left = false; //the bool to keep track if the ai is still in the attacking state.
-
+    [HideInInspector]
     public bool check_attack_right = false; //when set to true, it will start attacking from the ai's right arm.
 
     private bool attacking_right = false;//the bool to keep track if the ai is still in the attacking state.
-
+    [HideInInspector]
     public bool check_attack_top = false; //when set to true, it will start attacking from above.
 
     private bool attacking_top = false; //the bool to keep track if the ai is still in the attacking state.
 
     private bool done_attacking = false; //this is used to reset the rotation of the game object after the ai is done attacking.
-
+    [HideInInspector]
     public bool staggered = false; //if the player hits the AI in the middle of the AI's attack, this will be set to true.
 
-
+    [HideInInspector]
     public GameObject sword; //the weapon that is instantiated, used when the ai gets hit to destroy the weapon.
 
     public GameObject weapon_left_prefab; // the prefab for the hit box on left arm.
@@ -60,7 +64,7 @@ public class BasicAI_Attack : MonoBehaviour {
     private GameObject top_arm_pos; // same as above
 
     private Quaternion original_rotation; //this is used to preserve the old rotations after the weapon is done swinging/rotating.
-
+    [HideInInspector]
     public bool berserk_mode = false;
 
     // Use this for initialization
@@ -100,14 +104,20 @@ public class BasicAI_Attack : MonoBehaviour {
             sword.transform.parent = gameObject.transform;
             check_attack_left = false;
             attacking_left = true;
+            current_wait_timer = wait_timer;
             original_rotation = transform.rotation;
 
         }
 
         if(attacking_left) //rotates the instantiated object to the right. this is how the weapon hitbox moves.
         {
-			transform.Rotate(Vector3.up, attackSpeed * Time.deltaTime);
-            current_timer += Time.deltaTime;
+            current_wait_timer -= Time.deltaTime;
+            if(current_wait_timer <= 0)
+            {
+                transform.Rotate(Vector3.up, attackSpeed * Time.deltaTime);
+                current_timer += Time.deltaTime;
+            }
+			
 
             if (staggered)
             {
@@ -138,13 +148,18 @@ public class BasicAI_Attack : MonoBehaviour {
             sword.transform.parent = gameObject.transform;
             attacking_right = true;
             check_attack_right = false;
+            current_wait_timer = wait_timer;
             original_rotation = transform.rotation;
         }
 
         if (attacking_right) //rotates the instantiated object to the left. this is how the weapon hitbox moves.
         {
-            transform.Rotate(Vector3.down, attackSpeed * Time.deltaTime);
-            current_timer += Time.deltaTime;
+            current_wait_timer -= Time.deltaTime;
+            if (current_wait_timer <= 0)
+            {
+                transform.Rotate(Vector3.down, attackSpeed * Time.deltaTime);
+                current_timer += Time.deltaTime;
+            }
 
             if (staggered)
             {
@@ -173,13 +188,18 @@ public class BasicAI_Attack : MonoBehaviour {
             sword.transform.parent = gameObject.transform;
             attacking_top = true;
             check_attack_top = false;
+            current_wait_timer = wait_timer;
             original_rotation = transform.rotation;
         }
 
         if (attacking_top) //rotates the instantiated object to the left. the game object moves downwards on its own from the script.
         {
-            transform.Rotate(Vector3.down, attackSpeed * Time.deltaTime);
-            current_timer += Time.deltaTime;
+            current_wait_timer -= Time.deltaTime;
+            if (current_wait_timer <= 0)
+            {
+                transform.Rotate(Vector3.down, attackSpeed * Time.deltaTime);
+                current_timer += Time.deltaTime;
+            }
 
             if (staggered)
             {
