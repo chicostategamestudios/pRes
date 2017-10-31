@@ -52,6 +52,7 @@ public class Combat : MonoBehaviour {
 	private float counter_timer = 0.2f;//delay for player to hit second attack button to activate counter
 	private float counter_length = 0.5f;//counter duration
 	[HideInInspector]public float counter_recovery = 1f;//recovery before player can act
+	public float button_delay;
 
 	//Air Strike Variables//
 	public float speed = 75f;//control variable
@@ -124,13 +125,14 @@ public class Combat : MonoBehaviour {
 			if (Input.GetButtonDown ("Controller_Y") && my_gamepad.CheckGrounded() && !is_light_attacking && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
 				counter_timer -= Time.deltaTime;
 				//Counter///////////
-				if (is_countering == false && Input.GetButtonDown ("Controller_B") && counter_timer < 0.3f) {
+				if (is_countering == false && Input.GetButtonDown ("Controller_B") && counter_timer < button_delay) {
 					StartCoroutine ("Counter");
 				} else {
 					counter_timer = 0.2f;
 				//Counter End////////////////
 
 					//!!!!!!!!!!!!!!!!!!!!!!!!!Call out to Animations_Sword
+					my_gamepad.current_speed = 0;
 					forward = transform.TransformDirection (Vector3.forward);
 					//Debug.Log("Light Attack");
 					is_attacking = true;
@@ -179,12 +181,13 @@ public class Combat : MonoBehaviour {
 			if (Input.GetButtonDown ("Controller_B") && my_gamepad.CheckGrounded() && !is_strong_attacking && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
 				counter_timer -= Time.deltaTime;
 				//Counter///////////
-				if (is_countering == false && Input.GetButtonDown ("Controller_Y") && counter_timer < 0.3f) {
+				if (is_countering == false && Input.GetButtonDown ("Controller_Y") && counter_timer < button_delay) {
 					StartCoroutine ("Counter");
 				} else {
 					counter_timer = 0.2f;
 				//Counter End////////////////////
 
+					my_gamepad.current_speed = 0;
 					forward = transform.TransformDirection (Vector3.forward);
 					//Debug.Log("Heavy Attack");
 					is_attacking = true;
@@ -251,8 +254,12 @@ public class Combat : MonoBehaviour {
 				StartCoroutine ("AirStrike");
 			}
 			if (striking && locked_on) {
+				my_gamepad.current_speed = 0;
 				//target = targeted_enemy.transform.position;
 				//strike_speed = speed * Time.deltaTime;
+				if (locked_on) {//rotate to face targeted enemy
+					transform.eulerAngles = new Vector3 (transform.eulerAngles.x, camera_anchor.transform.eulerAngles.y, transform.eulerAngles.z);
+				}
 				transform.position = Vector3.MoveTowards (transform.position, targeted_enemy.transform.position, strike_speed);
 				//Debug.Log ("strike");
 			}
@@ -279,7 +286,7 @@ public class Combat : MonoBehaviour {
 							something_too_close = true;
 						}
 					}
-
+					my_gamepad.current_speed = 0;
 					//Instantiate (target_prefab, transform.position + (transform.forward * dodge_distance), transform.rotation); // create target marker
 					is_invunerable = true; // make player invunerable
 					//target_prefab.GetComponent<DestroyMove> ().set_life = .5f;
@@ -317,10 +324,12 @@ public class Combat : MonoBehaviour {
 							something_too_close = true;
 						}
 					}
+					my_gamepad.current_speed = 0;
 					StartCoroutine ("DodgeMovement");
 				}
 			} else if (Input.GetAxis ("Controller_" + dodge_button) == 1 && !is_dodging && !trigger_press) {
 				//if no analog input, dodge backwards
+				my_gamepad.current_speed = 0;
 				back_dodge = true;
 				StartCoroutine ("DodgeMovement");
 			}
@@ -454,7 +463,7 @@ public class Combat : MonoBehaviour {
 
 	IEnumerator ComboTimerStrong()
 	{
-		if (attack_number <= 4) {
+		if (attack_number <= 2) {
 			is_strong_attacking = false;
 			is_comboing = true;
 			GetComponent<PlayerGamepad>().GamepadAllowed = true;
@@ -510,7 +519,7 @@ public class Combat : MonoBehaviour {
 		striking = true;
 		//transform.position = Vector3.MoveTowards (transform.position, target, strike_speed);
 		//Debug.Log ("strike");
-		my_anime.StartCoroutine ("CounterAnim");// placeholder make seperate anime later
+		my_anime.StartCoroutine ("AirStrikeAnim");// placeholder make seperate anime later
 		yield return new WaitForSeconds (strike_time);
 		targeted_enemy.GetComponent<BasicAI> ().StartCoroutine ("DamageEnemy", 15);
 		striking = false;
