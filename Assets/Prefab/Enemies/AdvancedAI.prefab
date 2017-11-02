@@ -644,8 +644,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSpeed: 550
-  duration: 0.4
+  duration: 0.7
   wait_timer: 0.5
+  current_wait_timer: 0
+  current_timer: 0
   check_attack_left: 0
   check_attack_right: 0
   check_attack_top: 0
@@ -709,9 +711,9 @@ MonoBehaviour:
   incoming_damage: 0
   basic_ai: {fileID: 1759779128145598}
   player_countering: 0
-  current_attack_chain: 2
+  current_attack_chain: 0
   attack_chain_cooldown_time: 1
-  original_attack_chain_cd_time: 0
+  original_attack_chain_cd_time: 0.5
   stagger_threshold: 20
   total_damage_received: 0
 --- !u!195 &195703401222848248

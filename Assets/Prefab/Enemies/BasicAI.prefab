@@ -286,7 +286,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355846319094206}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 34.619022, y: -33.5, z: -8.673304}
+  m_LocalPosition: {x: 29.748417, y: -8.799999, z: 1.8897324}
   m_LocalScale: {x: 2.77118, y: 2.771179, z: 2.7711782}
   m_Children:
   - {fileID: 4311719255884542}
@@ -691,6 +691,8 @@ MonoBehaviour:
   attackSpeed: 300
   duration: 0.9
   wait_timer: 0.5
+  current_wait_timer: 0
+  current_timer: 0
   check_attack_left: 0
   check_attack_right: 0
   check_attack_top: 0

@@ -12,9 +12,7 @@ public class BasicAI_Weapon : MonoBehaviour {
     public float fall_speed = 6f;
     public float wait_timer = 0.5f;
     private bool first_enable = false;
-    Collider my_collider;
-    
-
+    Collider my_collider; //turns off the hitbox.
     public bool falling = false; //this is used for the weapon's diagonal attack. If set to true it will move
                                  //downwards as the enemy slashes.
 
@@ -60,7 +58,7 @@ public class BasicAI_Weapon : MonoBehaviour {
 
     private void Start()
     {
-        Invoke("DestroySelf", destroy_time); //destroy the game object after 0.5 seconds
+        Invoke("DestroySelf", destroy_time); //destroy the game object after 0.9 seconds
         my_collider = GetComponent<Collider>();
         Invoke("ColliderOn", wait_timer);
     }

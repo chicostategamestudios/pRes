@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 16
-  destroy_time: 0.2
+  destroy_time: 0.7
   fall_speed: 6
   wait_timer: 0.5
   falling: 0

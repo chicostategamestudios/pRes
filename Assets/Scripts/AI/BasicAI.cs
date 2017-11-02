@@ -239,7 +239,7 @@ public class BasicAI : MonoBehaviour
         //set the bools to allow knockback and prevent actions/movements.
         getting_knockback = true;
 		knockback_force += incoming_damage;
-		Debug.Log (knockback_force);
+		//Debug.Log (knockback_force);
         //create damage effect particles
 		if (!player_countering) {
 			GameObject effect = Instantiate (damaged_effect, transform.position, transform.rotation);
@@ -278,7 +278,7 @@ public class BasicAI : MonoBehaviour
 	{
         //Debug.Log (transform.name);
         gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        Debug.Log("start the reset");
+        //Debug.Log("start the reset");
         enemy_health = enemy_start_health;
 		first_alert = false;
         alerted = false;
@@ -287,7 +287,7 @@ public class BasicAI : MonoBehaviour
         berserk_flame2.SetActive(false);
         yield return new WaitForSeconds(0.2f);
         gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
-        Debug.Log("Reset has finished.");
+        //Debug.Log("Reset has finished.");
 	}
 
     void FixedUpdate () 
