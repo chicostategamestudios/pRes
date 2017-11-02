@@ -1175,19 +1175,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1100243092620570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7249418ccc5b5d240b47eed66d2d15ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 46c5968d6ea96654d9271a7c833da5fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pause_Screen: {fileID: 1282403816802568}
-  PMenu: {fileID: 1412129721176856}
-  Exit_Prompt_Menu: {fileID: 1325012753766086}
-  Resume_Game: {fileID: 114049837255198090}
-  Checkpoint_Retry: {fileID: 114042194047314692}
-  Restart_Level: {fileID: 114297691176659686}
-  To_MainMenu: {fileID: 114208443199743716}
-  To_Desktop: {fileID: 114277900038079926}
-  quit_yes_Button: {fileID: 114138732679947984}
-  quit_no_Button: {fileID: 114121433104495330}
+  Pause_Screen: {fileID: 0}
+  PMenu: {fileID: 0}
+  Exit_Prompt_Menu: {fileID: 0}
+  Resume_Game: {fileID: 0}
+  Checkpoint_Retry: {fileID: 0}
+  Restart_Level: {fileID: 0}
+  To_MainMenu: {fileID: 0}
+  To_Desktop: {fileID: 0}
+  quit_yes_Button: {fileID: 0}
+  quit_no_Button: {fileID: 0}
 --- !u!114 &114971231998065056
 MonoBehaviour:
   m_ObjectHideFlags: 1
