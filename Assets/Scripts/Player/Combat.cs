@@ -21,7 +21,6 @@ public class Combat : MonoBehaviour {
 	public float light_attack_time = .33f; // time it takes to move distance of light attack
 	public float strong_attack_distance = 10f; // distance travelled by strong attack
 	public float strong_attack_time = .33f; // time it takes to move distance of strong attack
-	public float dodge_distance = 50f; // distance travelled while dodging
 	//private float distance_length;
 	//private int combo_counter;
 	private bool is_light_attacking = false; // check to see if player is light attacking
@@ -37,6 +36,7 @@ public class Combat : MonoBehaviour {
 
 	//Dodge Variables//
 	[HideInInspector]public bool is_invunerable = false; // check to see if player is invunerable from dodging
+	public float dodge_distance = 80f; // distance travelled while dodging
 	public float dodge_length = 0.1f;//duration of dodge
 	private string dodge_button = "LT";//default controller button
 	private float dodge_dir_x;//left and right
@@ -52,7 +52,7 @@ public class Combat : MonoBehaviour {
 	private float counter_timer = 0.2f;//delay for player to hit second attack button to activate counter
 	private float counter_length = 0.5f;//counter duration
 	[HideInInspector]public float counter_recovery = 1f;//recovery before player can act
-	public float button_delay;
+	public float button_delay = 0.3f;
 
 	//Air Strike Variables//
 	public float speed = 75f;//control variable
@@ -97,7 +97,6 @@ public class Combat : MonoBehaviour {
         //player_weapon = GameObject.Find("PlayerWeapon").transform;
 		//weapon = GameObject.Find ("WeaponPivot");
 		//weapon_collider = GameObject.Find ("WeaponPlaceHolder").GetComponent<BoxCollider> ();//need to change object name at some point
-
 		swordAnimator = GetComponent<Animator>();
 		myBlade = GetComponentInChildren<Sword_Collision> ();
 		//lightAttackCombo = 0;
@@ -507,6 +506,7 @@ public class Combat : MonoBehaviour {
 		//Physics.IgnoreLayerCollision( 9, 10, ignore: false);
 		is_countering = false;
 		yield return new WaitForSeconds (counter_recovery);
+		//playerAnimator.SetBool("isGrinding", false);
 		GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 		counter_recovery = 1f;//reset recovery time
 		//my_gamepad.SetSmoothedRotation(true);

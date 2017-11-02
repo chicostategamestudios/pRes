@@ -46,8 +46,14 @@ public class Animations_Sword : MonoBehaviour
 	}
 
 	IEnumerator CounterAnim(){
-		//Debug.Log ("animate");
 		playerAnimator.Play ("Start Air Dash");
+
+		yield return null;
+	}
+
+	IEnumerator CounterHitAnim(){
+		playerAnimator.Play ("Swing3 V1");
+		swordAnimator.Play("Swing3 V1");
 
 		yield return null;
 	}
