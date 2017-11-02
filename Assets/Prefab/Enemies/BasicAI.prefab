@@ -285,9 +285,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355846319094206}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 28.746403, y: -10.699999, z: -2.487114}
-  m_LocalScale: {x: 2.771179, y: 2.771179, z: 2.7711773}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 64.57606, y: 131.67625, z: -447.8254}
+  m_LocalScale: {x: 5.829047, y: 5.829044, z: 5.829044}
   m_Children:
   - {fileID: 4311719255884542}
   - {fileID: 4690928594786590}
@@ -668,8 +668,6 @@ MonoBehaviour:
   berserk_mode: 0
   berserk_flame1: {fileID: 1520277175403814}
   berserk_flame2: {fileID: 1654152650675344}
-  damaged_effect: {fileID: 1155491563207358, guid: d88538ac929677c48afc8c48209bc891,
-    type: 2}
   alerted: 0
   incoming_damage: 0
   basic_ai: {fileID: 0}
@@ -697,13 +695,6 @@ MonoBehaviour:
     type: 2}
   weapon_top_prefab: {fileID: 1287307482832718, guid: d2a51a1ec669b684ab29eaf75d3cb8e6,
     type: 2}
-  brsrk_left_prefab: {fileID: 1605528803679494, guid: bc41bd01460d1d34cbad2761704088b4,
-    type: 2}
-  brsrk_right_prefab: {fileID: 1293843034874714, guid: 8c39b1d75efe03243a37de187ff86861,
-    type: 2}
-  brsrk_top_prefab: {fileID: 1731599033969876, guid: d7b46c9bb3aefd242b7e098944634742,
-    type: 2}
-  berserk_mode: 0
 --- !u!195 &195164776829402788
 NavMeshAgent:
   m_ObjectHideFlags: 1

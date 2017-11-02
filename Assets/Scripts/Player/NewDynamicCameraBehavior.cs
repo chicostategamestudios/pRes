@@ -34,10 +34,16 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 	// Whether the joystick has been recentered.
 	private bool next_target_joystick_x_centered = false;
 
+
+	//TJ add on
+	private Combat player_combat;
+
 	void Awake () {
 		Camera.main.fieldOfView = defaultFOV;
 		player = GameObject.Find ("Player");
         ret = GameObject.FindGameObjectWithTag("Reticle");
+
+		player_combat = player.GetComponent<Combat> ();
     }
 
 	void FixedUpdate () {
@@ -76,6 +82,9 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 			if (target_locked == true) {
 				target_locked = false;
                 checkRet = false;
+
+				//added by TJ
+				player_combat.locked_on = false;
             } 
 
 			// Else, check for target.
@@ -88,6 +97,9 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 					//Debug.Log ("Target set.");
 					target_locked = true;
                     checkRet = true;
+
+					//added by TJ
+					player_combat.locked_on = true;
                 } 
 				else {
 					//Debug.Log("No targets found.");
@@ -316,5 +328,9 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 	//ADDED BY TJ
 	public bool GetLockOn(){
 		return target_locked;
+	}
+
+	public GameObject GetTargetedEnemy(){
+		return target;
 	}
 }
