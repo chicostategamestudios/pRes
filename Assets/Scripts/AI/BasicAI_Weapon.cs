@@ -22,14 +22,17 @@ public class BasicAI_Weapon : MonoBehaviour {
     private PlayerGamepad player_gamepad;
 
 	private Combat player_combat;
+    private Animations_Sword player_sword; 
 
     private void OnTriggerEnter(Collider other) //if the weapon hits the player, apply the damage to the player's health script
 	{
 		if (other.gameObject.tag == "Player") {
 			//TJ///
 			player_combat = other.GetComponentInParent<Combat> ();
+            player_sword = player_combat.GetComponentInChildren<Animations_Sword>();
             player_gamepad = other.GetComponentInParent<PlayerGamepad>();
 			if (player_combat.is_countering) {
+                player_sword.StartCoroutine("CounterHitAnim");
 				player_combat.counter_recovery = 0f;
 				this.GetComponentInParent<BasicAI> ().player_countering = true;
 				this.GetComponentInParent<BasicAI> ().StartCoroutine ("DamageEnemy", 30f);

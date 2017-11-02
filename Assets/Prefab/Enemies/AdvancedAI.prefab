@@ -665,6 +665,8 @@ MonoBehaviour:
     type: 2}
   brsrk_top_prefab: {fileID: 1688443585043562, guid: 4d182138fb5249343a82454d7b9be6c0,
     type: 2}
+  weapon_particles: {fileID: 1817284213976952, guid: 163f1fa31b803974090ea7a57c280f49,
+    type: 2}
   berserk_mode: 0
 --- !u!114 &114444827760344294
 MonoBehaviour:
