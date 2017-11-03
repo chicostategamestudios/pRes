@@ -1,4 +1,4 @@
-﻿/*This script was written by James | Last edited by James | Modified on October 4, 2017
+﻿/*This script was written by James | Last edited by James | Modified on October 24, 2017
  *The purpose of this script is to have an enemy chase the player. This is implemented by using a Nav Mesh Agent.
  *It will then decide what to do with its list of actions.
  *
@@ -77,6 +77,8 @@ public class BasicAI : MonoBehaviour
     public float turn_speed = 1f;
     [Tooltip("The health of the AI. It will die when it is 0.")]
     public int enemy_health = 100; //the health of the enemy.
+    [Tooltip("The start health of the AI.")]
+    public int enemy_start_health = 100;
     
 	[Tooltip("The force that pushes back the AI when it is hit.")]
 	public float base_knockback_force = 18f;
@@ -100,10 +102,10 @@ public class BasicAI : MonoBehaviour
     public bool berserk_mode = false;
     public GameObject berserk_flame1, berserk_flame2, damaged_effect;
 
-
     private bool first_alert = false; //used to keep track if the AI has been alerted the first time.
     [HideInInspector]
     public bool alerted = false; //once the AI has been alerted, it will start chasing the player.
+    public bool first_berserk = false; //used to keep track if the AI has been berserked for the first time.
     protected bool performing_action = false; //this is to keep track if the AI is performing an action.
     protected bool staggering = false; //used to set the AI into the staggered state
     [HideInInspector]
@@ -272,11 +274,20 @@ public class BasicAI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-	public void reset()
+	public IEnumerator reset()
 	{
-		Debug.Log (transform.name);
-		enemy_health = 100;
+        //Debug.Log (transform.name);
+        gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+        //Debug.Log("start the reset");
+        enemy_health = enemy_start_health;
 		first_alert = false;
+        alerted = false;
+        berserk_mode = false;
+        berserk_flame1.SetActive(false);
+        berserk_flame2.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
+        gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+        //Debug.Log("Reset has finished.");
 	}
 
     void FixedUpdate () 
@@ -317,13 +328,14 @@ public class BasicAI : MonoBehaviour
         //it is not staggering so run through the usual routines.
         else
         {
-            if(berserk_mode)
+            if(berserk_mode && !first_berserk)
             {
                 chance_to_dodge = 15;
                 berserk_flame1.SetActive(true);
                 berserk_flame2.SetActive(true);
                 attack_script.berserk_mode = true;
                 berserk_mode = false;
+                first_berserk = true;
                 
             }
 

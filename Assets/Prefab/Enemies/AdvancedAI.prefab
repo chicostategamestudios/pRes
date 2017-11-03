@@ -81,7 +81,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1325469293016842
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1555454788669382
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +272,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1759779128145598}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.97972614, z: -0, w: 0.20034184}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.36085728, y: 0.36085752, z: 0.36085752}
   m_Children: []
@@ -311,9 +311,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085637392641426}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 71.895485, y: 1.3855884, z: -21.664299}
-  m_LocalScale: {x: 2.7711785, y: 2.7711768, z: 2.7711768}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 26.394503, y: -7.5, z: -15.108222}
+  m_LocalScale: {x: 2.7711818, y: 2.7711768, z: 2.7711802}
   m_Children:
   - {fileID: 4371340511062522}
   - {fileID: 4750479584306320}
@@ -644,7 +644,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSpeed: 550
-  duration: 0.4
+  duration: 0.7
+  wait_timer: 0.5
+  current_wait_timer: 0
+  current_timer: 0
   check_attack_left: 0
   check_attack_right: 0
   check_attack_top: 0
@@ -656,6 +659,15 @@ MonoBehaviour:
     type: 2}
   weapon_top_prefab: {fileID: 1166544353139534, guid: a983d418ee169fc49af8027bceb8bb81,
     type: 2}
+  brsrk_left_prefab: {fileID: 1443391007772734, guid: c3d333895b0486f41a9314c3126968c0,
+    type: 2}
+  brsrk_right_prefab: {fileID: 1782040074291284, guid: bce5c43effd182644a59723a83c3ddb3,
+    type: 2}
+  brsrk_top_prefab: {fileID: 1688443585043562, guid: 4d182138fb5249343a82454d7b9be6c0,
+    type: 2}
+  weapon_particles: {fileID: 1817284213976952, guid: 163f1fa31b803974090ea7a57c280f49,
+    type: 2}
+  berserk_mode: 0
 --- !u!114 &114444827760344294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -669,7 +681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   performing_time: 0.5
   dodge_time: 0.05
-  cooldown_action: 0.05
+  cooldown_action: 0
   cooldown_action_max: 0.2
   cooldown_action_min: 0.05
   knockback_duration: 0.1
@@ -682,22 +694,28 @@ MonoBehaviour:
   moveback_speed: 15
   dodge_speed: 20
   turn_speed: 1
-  enemy_health: 200
+  enemy_health: 50
+  enemy_start_health: 50
+  base_knockback_force: 50
   knockback_force: 18
   check_to_damage: 0
   chance_to_dodge: 35
   left_dodge: {fileID: 1555454788669382}
   right_dodge: {fileID: 1652726693708940}
-  action_selection: 44
+  action_selection: 48
   berserk_mode: 0
   berserk_flame1: {fileID: 1536670406053516}
   berserk_flame2: {fileID: 1311838416173660}
-  alerted: 0
+  damaged_effect: {fileID: 1155491563207358, guid: d88538ac929677c48afc8c48209bc891,
+    type: 2}
+  alerted: 1
+  first_berserk: 0
   incoming_damage: 0
-  basic_ai: {fileID: 0}
+  basic_ai: {fileID: 1759779128145598}
+  player_countering: 0
   current_attack_chain: 0
   attack_chain_cooldown_time: 1
-  original_attack_chain_cd_time: 0
+  original_attack_chain_cd_time: 0.5
   stagger_threshold: 20
   total_damage_received: 0
 --- !u!195 &195703401222848248
@@ -708,11 +726,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 1085637392641426}
   m_Enabled: 1
   m_Radius: 0.8
-  m_Speed: 15
-  m_Acceleration: 100
+  m_Speed: 12
+  m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 3600
-  m_StoppingDistance: 5
+  m_StoppingDistance: 8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -775,7 +793,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -705738316
+  randomSeed: -374622768
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3412,7 +3430,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1127994899
+  randomSeed: -545210498
   InitialModule:
     serializedVersion: 3
     enabled: 1

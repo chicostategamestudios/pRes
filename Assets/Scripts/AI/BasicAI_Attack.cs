@@ -13,7 +13,7 @@ using UnityEngine;
 
 public class BasicAI_Attack : MonoBehaviour {
 
-	public float attackSpeed;
+	public float attackSpeed; //Tru added this to control how fast the attack moves/rotates.
 
     private Vector3 left_spawn_pos; //the position in which the object is instantiated when attacking from the left.
 
@@ -22,27 +22,31 @@ public class BasicAI_Attack : MonoBehaviour {
     private Vector3 top_spawn_pos;  //the position in which the object is instantiated when attacking from above.
 
 
-    public float duration = 0.5f; //how long the attack animation takes. used to keep track for how long to rotate.
+    public float duration = 0.9f; //how long the attack animation takes. used to keep track for how long to rotate.
 
-    private float current_timer = 0f; //used to keep track of how long has passed since the start of the attack.
+    public float wait_timer = 0.5f; //how long the attack waits for before starting to swing.
 
+    public float current_wait_timer = 0f; //the current duration of the wait buffer.
+
+    public float current_timer = 0f; //used to keep track of how long has passed since the start of the attack.
+    [HideInInspector]
     public bool check_attack_left = false; //when set to true, it will start attacking from the ai's left arm.
-
+    
     private bool attacking_left = false; //the bool to keep track if the ai is still in the attacking state.
-
+    [HideInInspector]
     public bool check_attack_right = false; //when set to true, it will start attacking from the ai's right arm.
 
     private bool attacking_right = false;//the bool to keep track if the ai is still in the attacking state.
-
+    [HideInInspector]
     public bool check_attack_top = false; //when set to true, it will start attacking from above.
 
     private bool attacking_top = false; //the bool to keep track if the ai is still in the attacking state.
 
     private bool done_attacking = false; //this is used to reset the rotation of the game object after the ai is done attacking.
-
+    [HideInInspector]
     public bool staggered = false; //if the player hits the AI in the middle of the AI's attack, this will be set to true.
 
-
+    [HideInInspector]
     public GameObject sword; //the weapon that is instantiated, used when the ai gets hit to destroy the weapon.
 
     public GameObject weapon_left_prefab; // the prefab for the hit box on left arm.
@@ -51,7 +55,7 @@ public class BasicAI_Attack : MonoBehaviour {
 
     public GameObject weapon_top_prefab; //the prefab for the hitbox when attacking diagonally.
 
-    public GameObject brsrk_left_prefab, brsrk_right_prefab, brsrk_top_prefab;
+    public GameObject brsrk_left_prefab, brsrk_right_prefab, brsrk_top_prefab, weapon_particles;
 
     private GameObject left_arm_pos; //this is to keep the position of where to spawn the prefab.
 
@@ -59,8 +63,10 @@ public class BasicAI_Attack : MonoBehaviour {
 
     private GameObject top_arm_pos; // same as above
 
-    private Quaternion original_rotation; //this is used to preserve the old rotations after the weapon is done swinging/rotating.
+    private GameObject particle;
 
+    private Quaternion original_rotation; //this is used to preserve the old rotations after the weapon is done swinging/rotating.
+    [HideInInspector]
     public bool berserk_mode = false;
 
     // Use this for initialization
@@ -78,6 +84,8 @@ public class BasicAI_Attack : MonoBehaviour {
         transform.rotation = original_rotation;
         done_attacking = false;
     }
+
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -92,23 +100,33 @@ public class BasicAI_Attack : MonoBehaviour {
             if(berserk_mode)
             {
                 sword = Instantiate(brsrk_left_prefab, left_spawn_pos, transform.rotation);
+                particle = Instantiate(weapon_particles, left_spawn_pos, transform.rotation);
+                Destroy(particle, 1f);
             }
             else
             {
                 sword = Instantiate(weapon_left_prefab, left_spawn_pos, transform.rotation);
+                particle = Instantiate(weapon_particles, left_spawn_pos, transform.rotation);
+                Destroy(particle, 1f);
             }
             sword.transform.parent = gameObject.transform;
-            check_attack_left = false;
             attacking_left = true;
+            current_wait_timer = wait_timer;
             original_rotation = transform.rotation;
+            check_attack_left = false;
 
         }
 
         if(attacking_left) //rotates the instantiated object to the right. this is how the weapon hitbox moves.
         {
-			transform.Rotate(Vector3.up, attackSpeed * Time.deltaTime);
+            current_wait_timer -= Time.deltaTime;
             current_timer += Time.deltaTime;
+            if (current_wait_timer <= 0)
+            {
+                transform.Rotate(Vector3.up, attackSpeed * Time.deltaTime);
+            }
 
+            
             if (staggered)
             {
                 Destroy(sword);
@@ -118,10 +136,11 @@ public class BasicAI_Attack : MonoBehaviour {
             if (current_timer > duration)
             {
                 current_timer = 0;
-                attacking_left = false;
                 done_attacking = true;
+                sword = null;
+                attacking_left = false;
             }
-            sword = null;
+            
         }
 
         if (check_attack_right && sword == null) //when this is set to true, instantiate the prefab and set it parented to this game object. afterwards, 
@@ -130,34 +149,46 @@ public class BasicAI_Attack : MonoBehaviour {
             if (berserk_mode)
             {
                 sword = Instantiate(brsrk_right_prefab, right_spawn_pos, transform.rotation);
+                particle = Instantiate(weapon_particles, right_spawn_pos, transform.rotation);
+                Destroy(particle, 1f);
             }
             else
             {
                 sword = Instantiate(weapon_right_prefab, right_spawn_pos, transform.rotation);
+                particle = Instantiate(weapon_particles, right_spawn_pos, transform.rotation);
+                Destroy(particle, 1f);
             }
             sword.transform.parent = gameObject.transform;
             attacking_right = true;
-            check_attack_right = false;
+            current_wait_timer = wait_timer;
             original_rotation = transform.rotation;
+            check_attack_right = false;
         }
 
         if (attacking_right) //rotates the instantiated object to the left. this is how the weapon hitbox moves.
         {
-            transform.Rotate(Vector3.down, attackSpeed * Time.deltaTime);
+            current_wait_timer -= Time.deltaTime;
             current_timer += Time.deltaTime;
+
+            if (current_wait_timer <= 0)
+            {
+                transform.Rotate(Vector3.down, attackSpeed * Time.deltaTime);
+            }
 
             if (staggered)
             {
                 Destroy(sword);
                 sword = null;
             }
+
             if (current_timer > duration)
             {
                 current_timer = 0;
                 attacking_right = false;
                 done_attacking = true;
+                sword = null;
             }
-            sword = null;
+            
         }
 
         if (check_attack_top && sword == null) //when this is set to true, instantiate the prefab and set it parented to this game object. sets this back to false immediately after to prevent non-stop spawning.
@@ -165,35 +196,46 @@ public class BasicAI_Attack : MonoBehaviour {
             if (berserk_mode)
             {
                 sword = Instantiate(brsrk_top_prefab, top_spawn_pos, transform.rotation);
+                particle = Instantiate(weapon_particles, top_spawn_pos, transform.rotation);
+                Destroy(particle, 1f);
             }
             else
             {
                 sword = Instantiate(weapon_top_prefab, top_spawn_pos, transform.rotation);
+                particle = Instantiate(weapon_particles, top_spawn_pos, transform.rotation);
+                Destroy(particle, 1f);
             }
             sword.transform.parent = gameObject.transform;
             attacking_top = true;
-            check_attack_top = false;
+            current_wait_timer = wait_timer;
             original_rotation = transform.rotation;
+            check_attack_top = false;
         }
 
         if (attacking_top) //rotates the instantiated object to the left. the game object moves downwards on its own from the script.
         {
-            transform.Rotate(Vector3.down, attackSpeed * Time.deltaTime);
+            current_wait_timer -= Time.deltaTime;
             current_timer += Time.deltaTime;
+
+            if (current_wait_timer <= 0)
+            {
+                transform.Rotate(Vector3.down, attackSpeed * Time.deltaTime);
+            }
 
             if (staggered)
             {
                 Destroy(sword);
                 sword = null;
             }
+
             if (current_timer >= duration)
             {
                 current_timer = 0;
                 attacking_top = false;
                 done_attacking = true;
-                
+                sword = null;
             }
-            sword = null;
+            
         }
 
 

@@ -1,4 +1,4 @@
-﻿/*This script was written by James | Last edited by James | Modified on October 4, 2017
+﻿/*This script was written by James | Last edited by James | Modified on October 24, 2017
  *The purpose of this script is to have an enemy chase the player. This is implemented by using a Nav Mesh Agent.
  *It will then decide what to do with its list of actions.
  *
@@ -77,9 +77,15 @@ public class BasicAI : MonoBehaviour
     public float turn_speed = 1f;
     [Tooltip("The health of the AI. It will die when it is 0.")]
     public int enemy_health = 100; //the health of the enemy.
-    [Tooltip("The force that pushes back the AI when it is hit.")]
-    public float knockback_force = 18f;
-    [Tooltip("This is used for testing. Check this to damage the enemy.")]
+    [Tooltip("The start health of the AI.")]
+    public int enemy_start_health = 100;
+    
+	[Tooltip("The force that pushes back the AI when it is hit.")]
+	public float base_knockback_force = 18f;
+	[HideInInspector]
+	public float knockback_force;
+
+	[Tooltip("This is used for testing. Check this to damage the enemy.")]
     public bool check_to_damage = false;
     [Tooltip("This is the percentage chance to dodge instead of attack. The lower the number, the more often it will dodge.")]
     public int chance_to_dodge = 35;
@@ -96,10 +102,10 @@ public class BasicAI : MonoBehaviour
     public bool berserk_mode = false;
     public GameObject berserk_flame1, berserk_flame2, damaged_effect;
 
-
     private bool first_alert = false; //used to keep track if the AI has been alerted the first time.
     [HideInInspector]
     public bool alerted = false; //once the AI has been alerted, it will start chasing the player.
+    public bool first_berserk = false; //used to keep track if the AI has been berserked for the first time.
     protected bool performing_action = false; //this is to keep track if the AI is performing an action.
     protected bool staggering = false; //used to set the AI into the staggered state
     [HideInInspector]
@@ -221,29 +227,24 @@ public class BasicAI : MonoBehaviour
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().acceleration = acceleration;
         //apply the speed variable to the nav mesh agent.
         transform.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = movement_speed;
+		knockback_force = base_knockback_force;
     }
+		
 
 	public IEnumerator DamageEnemy(int incoming_damage) //first will apply damage, and then stagger the enemy for a certain duration
     {
         //apply damage and checks if the enemy dies from the damage.
         enemy_health -= incoming_damage;
-<<<<<<< HEAD
-        Debug.Log("POOP");
-        //set the bools to allow knockback and prevent actions/movements.
-        getting_knockback = true;
-        //create damage effect particles
-        GameObject effect = Instantiate(damaged_effect, transform.position, transform.rotation);
-        Destroy(effect, 1f);
-=======
         //Debug.Log("POOP");
         //set the bools to allow knockback and prevent actions/movements.
         getting_knockback = true;
+		knockback_force += incoming_damage;
+		//Debug.Log (knockback_force);
         //create damage effect particles
 		if (!player_countering) {
 			GameObject effect = Instantiate (damaged_effect, transform.position, transform.rotation);
 			Destroy (effect, 1f);
 		}
->>>>>>> 7f4d7ea44cef91d2b865ede6dcf274e8001ed07f
         //attack script's staggered is set to true to uninstantiate any attacks that are already created or about to be instantiated.
         attack_script.staggered = true;
         //change the AI state to staggered for animations.
@@ -264,25 +265,34 @@ public class BasicAI : MonoBehaviour
     {
         //print("the enemy is dying...");
         yield return new WaitForSeconds(death_duration);
-<<<<<<< HEAD
         //end.enemyList.Remove(gameObject);
         //this.transform.parent = null;
 		if (end) {
 			end.enemiesDead--;
 		}
-=======
-        end.enemyList.Remove(gameObject);
-        this.transform.parent = null;
->>>>>>> 7f4d7ea44cef91d2b865ede6dcf274e8001ed07f
         //end.enemyList.Remove(gameObject);
         this.gameObject.SetActive(false);
     }
 
-	public void reset()
+	public IEnumerator reset()
 	{
+<<<<<<< HEAD
 		Debug.Log (transform.name);
 		enemy_health = 100;
+=======
+        //Debug.Log (transform.name);
+        gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+        //Debug.Log("start the reset");
+        enemy_health = enemy_start_health;
+>>>>>>> c35124e75bc984b245a0ef62eb2b9b52b1b3b44a
 		first_alert = false;
+        alerted = false;
+        berserk_mode = false;
+        berserk_flame1.SetActive(false);
+        berserk_flame2.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
+        gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+        //Debug.Log("Reset has finished.");
 	}
 
     void FixedUpdate () 
@@ -305,6 +315,7 @@ public class BasicAI : MonoBehaviour
             if (current_stagger_dur >= knockback_duration && getting_knockback)
             {
                 getting_knockback = false;
+				knockback_force = base_knockback_force;
             }
 
             //once the stagger duration is up, restore all of the old values of the AI to move and attack.
@@ -322,13 +333,14 @@ public class BasicAI : MonoBehaviour
         //it is not staggering so run through the usual routines.
         else
         {
-            if(berserk_mode)
+            if(berserk_mode && !first_berserk)
             {
                 chance_to_dodge = 15;
                 berserk_flame1.SetActive(true);
                 berserk_flame2.SetActive(true);
                 attack_script.berserk_mode = true;
                 berserk_mode = false;
+                first_berserk = true;
                 
             }
 

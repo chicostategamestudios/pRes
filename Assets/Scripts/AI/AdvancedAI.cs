@@ -14,7 +14,7 @@ public class AdvancedAI : BasicAI
     [Tooltip("The cooldown timer after the AI has finished his 3 chain combo.")]
     public float attack_chain_cooldown_time = 1f;
     [Tooltip("This is the cooldown inbetween the chain attacks.")]
-    public float original_attack_chain_cd_time = 0.2f;
+    public float original_attack_chain_cd_time = 0.7f;
     [Tooltip("The least amount of damage before the AI gets staggered.")]
     public int stagger_threshold = 20;
     [Tooltip("The sum of received damage. When this number surpasses the stagger threshold, it will stagger the AI.")]

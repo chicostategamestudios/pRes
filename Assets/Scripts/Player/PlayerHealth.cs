@@ -11,7 +11,6 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int health = 100; //the health of the player.
-    private bool is_alive = true; //this is to keep track if the player is alive.
     public float stagger_duration = 0.5f; //the duration of the stagger when the player is hit by an attack.
     //[HideInInspector]
     public PlayerGamepad player_pad; //needed to access the player's movement script.
@@ -42,16 +41,6 @@ public class PlayerHealth : MonoBehaviour
         health -= damage;
 		Health.CurrentVal -= damage;
         StartCoroutine("StaggerPlayer");
-        if(health > 0) //this is to display the health of the player in console.
-        { 
-            //print("Player health is now: " + health);
-        }
-
-        if (health <= 0 && is_alive)
-        {
-            is_alive = false;
-            //this.gameObject.SetActive(false);
-        }
     }
 
     private void Awake()
