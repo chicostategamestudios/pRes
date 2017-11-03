@@ -36,11 +36,13 @@ public class BasicAI_Weapon : MonoBehaviour {
 				player_combat.counter_recovery = 0f;
 				this.GetComponentInParent<BasicAI> ().player_countering = true;
 				this.GetComponentInParent<BasicAI> ().StartCoroutine ("DamageEnemy", 30f);
+				ScoreSystem.Singleton_ScoreSystem.combo_addCounter ();
 			} else if(!player_combat.is_invunerable){
 				//TJ_End///
 				player_hp_script = other.GetComponentInParent<PlayerHealth> ();
                 player_gamepad.Knockback(.5f, -transform.forward, 10f);
                 player_hp_script.DamageReceived (damage);
+				ScoreSystem.Singleton_ScoreSystem.score_hitTaken ();
 			}
 		}
 	}

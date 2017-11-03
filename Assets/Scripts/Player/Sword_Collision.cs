@@ -54,6 +54,7 @@ public class Sword_Collision : MonoBehaviour
     {
         if(other.tag == "Enemy Hitbox" && swordRenderer.enabled == true)
         {
+			ScoreSystem.Singleton_ScoreSystem.combo_addHit ();
 			//Debug.Log ("triggered");
 			my_ai = other.GetComponentInParent<BasicAI> (); //.enemy_health -= damage;   // Placeholder variable!
         	
@@ -62,11 +63,13 @@ public class Sword_Collision : MonoBehaviour
 				damage = 10;
 				my_ai.StartCoroutine ("DamageEnemy", damage);
 				my_combat.is_attacking = false;
+				ScoreSystem.Singleton_ScoreSystem.combo_addFastAttack ();
 				//	Debug.Log ("Deal light damage " + damage);
 			} else {
 				damage = 15;
 				my_ai.StartCoroutine ("DamageEnemy", damage);
 				my_combat.is_attacking = false;
+				ScoreSystem.Singleton_ScoreSystem.combo_addStrongAttack ();
 				//	Debug.Log ("Deal strong damage " + damage);
 			}
 		}//turn off collider after attacks

@@ -270,6 +270,7 @@ public class BasicAI : MonoBehaviour
 		if (end) {
 			end.enemiesDead--;
 		}
+		ScoreSystem.Singleton_ScoreSystem.combo_addKill ();
         //end.enemyList.Remove(gameObject);
         this.gameObject.SetActive(false);
     }

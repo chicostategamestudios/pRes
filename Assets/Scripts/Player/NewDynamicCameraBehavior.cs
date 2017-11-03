@@ -26,10 +26,11 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 
 	public float defaultFOV = 70;
 	public float focusedFOV = 60;
-    public GameObject ReticleObj;
     public bool checkRet = false;
-
-    public GameObject ret;
+	public GameObject retPrefab;
+	GameObject ret;
+	public GameObject retTarget;
+	public Vector3 retPos;
 
 	// Whether the joystick has been recentered.
 	private bool next_target_joystick_x_centered = false;
@@ -41,12 +42,13 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 	void Awake () {
 		Camera.main.fieldOfView = defaultFOV;
 		player = GameObject.Find ("Player");
-        ret = GameObject.FindGameObjectWithTag("Reticle");
+		ret = GameObject.FindGameObjectWithTag("Reticle");
 
 		player_combat = player.GetComponent<Combat> ();
     }
 
 	void FixedUpdate () {
+		retTarget = target;
 
 		if (target_locked) {
 			if (!target.activeInHierarchy) {
@@ -54,6 +56,8 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 				target_locked = false;
 				//added by TJ
 				player_combat.locked_on = false;
+				checkRet = false;
+				//ret.SetActive (false);
 			}
 		}
 
@@ -79,7 +83,7 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 		transform.rotation = Quaternion.Euler(temp_axis, transform.rotation.eulerAngles.y, 0);
 
 		// On right bumper pressed, find a target.
-		if (Input.GetButtonDown ("Controller_RB")) {
+		if (Input.GetButtonDown ("Controller_LB")) {
 			// If targetting already active, end it.
 			if (target_locked == true) {
 				target_locked = false;
@@ -157,6 +161,7 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 		}
         if (checkRet == true){
             ret.SetActive(true);
+			ret.transform.position = Camera.main.WorldToScreenPoint(retTarget.transform.position);
             //GameObject.FindGameObjectWithTag("Reticle").SetActive(true);
         }
         if (checkRet == false)

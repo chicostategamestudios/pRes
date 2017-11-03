@@ -41,6 +41,8 @@ GameObject:
   - component: {fileID: 81598526136061460}
   - component: {fileID: 114248679088642692}
   - component: {fileID: 114743101365639318}
+  - component: {fileID: 65847000762459362}
+  - component: {fileID: 114689783093324858}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -109,6 +111,18 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!65 &65847000762459362
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621935848950210}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!81 &81598526136061460
 AudioListener:
   m_ObjectHideFlags: 1
@@ -139,13 +153,17 @@ MonoBehaviour:
   maxTargetDistance: 65
   defaultFOV: 70
   focusedFOV: 60
+  checkRet: 0
+  retPrefab: {fileID: 1021414870631910, guid: 63f3de8d87dbae848a86b0c9cd9c6baa, type: 2}
+  retTarget: {fileID: 0}
+  retPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114248679088642692
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621935848950210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
   m_Name: 
@@ -177,6 +195,24 @@ MonoBehaviour:
   blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
   brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
     type: 3}
+--- !u!114 &114689783093324858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621935848950210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75abe73ca396e1144a034211e71d1d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartPoint: {fileID: 0}
+  EndPoint: {fileID: 0}
+  playerPos: {fileID: 0}
+  cameraObj: {fileID: 0}
+  originalPos: {x: 0, y: 0, z: 0}
+  lerpC: 0
+  go: 0
 --- !u!114 &114743101365639318
 MonoBehaviour:
   m_ObjectHideFlags: 1

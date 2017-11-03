@@ -26,6 +26,8 @@ public class End_Level : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
+		timer = GameObject.Find ("Start_Level").GetComponent<Start_Level_Timer>();
+
 		Button NextLevelButton = Next_Level.GetComponent<Button>();         		//Assigns the UI element to its script counterpart
 		Button RetryButton = Retry_Level.GetComponent<Button>();					//Assigns the UI element to its script counterpart
 		Button MainExitButton = To_MainMenu.GetComponent<Button>();					//Assigns the UI element to its script counterpart
@@ -74,7 +76,7 @@ public class End_Level : MonoBehaviour {
 			finishTime[0] = end_minutes;
 			finishTime[1] = end_seconds;
 			finishTime[2] = end_millisecs;
-			//ScoreSystem.Singleton_ScoreSystem.getCompletionTime (finishTime);
+			ScoreSystem.Singleton_ScoreSystem.getCompletionTime (finishTime);
 			finished = true;
 		}
 	}

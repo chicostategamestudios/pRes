@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //////////////////
 // SCORE SYSTEM //
@@ -18,18 +19,22 @@ public class ScoreSystem : MonoBehaviour
 
 
     int comboScore_hits;         // Counts the hits landed during a combo.  This also displays on the game UI.\
-    int comboScore_hitsTracker;  // This helps count if we reached increments of 10 hits to increase the combo multiplier.
+    public int comboScore_hitsTracker;  // This helps count if we reached increments of 10 hits to increase the combo multiplier.
     public int comboScore_multiplier;   // Keeps track of the combo multiplier.  This displays on the game UI too.
     int comboScore_subtotal;     // This variable is where everything in the combo is added together before multiplied by the multiplier.                         
     public int comboScore_total;        // This is the total points earned by a combo that will then be added to both score_totalScore and totalComboScore.
                                         // It allows us to display the score of the current combo.
-
-
+	int combo_timer = 0;
+	int combo_window = 100;
+	bool comboing = false;
     static public ScoreSystem Singleton_ScoreSystem;
+
+	GUIActions aList;
 
     void Awake()
     {
         Singleton_ScoreSystem = this;
+		aList = gameObject.GetComponent<GUIActions> ();
     }
 
     // Use this for initialization
@@ -48,10 +53,14 @@ public class ScoreSystem : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update ()
+    void FixedUpdate ()
     {
-		if (Input.GetKeyDown ("p")) {
-			saveScores ();
+		if (comboing) {
+			if (combo_timer < combo_window) {
+				combo_timer++;
+			} else {
+				combo_resetCombo ();
+			}
 		}
 	}
 
@@ -128,38 +137,49 @@ public class ScoreSystem : MonoBehaviour
     // combo_addHit()
     // combo_calculateCombo()
 
+	int fastScore = 10;
     public void combo_addFastAttack()
     {
-        comboScore_subtotal += 10;
+		aList.actionGUI ("Fast Attack ", fastScore);
+        comboScore_subtotal += fastScore;
         combo_addHit();
     }
 
+	int strongScore = 20;
     public void combo_addStrongAttack()
     {
-        comboScore_subtotal += 20;
+		aList.actionGUI ("Strong Attack", strongScore);
+        comboScore_subtotal += strongScore;
         combo_addHit();
     }
 
+	int counterScore = 150;
     public void combo_addCounter()
     {
-        comboScore_subtotal += 150;
+		aList.actionGUI ("Counter ", counterScore);
+		comboScore_subtotal += counterScore;
         combo_addHit();     // Counters has the player character perform a quick swipe at his attacker.
     }
 
+	int killScore = 200;
     public void combo_addKill()
     {
-        comboScore_subtotal += 200;
+		aList.actionGUI ("Kill ", killScore);
+        comboScore_subtotal += killScore;
         combo_calculateCombo();     // Most likely one of the other attacks already landed, so we can directly call to calculate the combo score
     }                               // and not worry about calling 'combo_addHit()'.
 
     public void combo_addHit()      // This counts hits that the player landed, and increases the multiplier by 1 (max 5) for every 10 hits.
     {                               // combo_calculateCombo() is also conveniently left at the end.
+
+		combo_timer = 0;
         comboScore_hits += 1;
         if(comboScore_multiplier < 5)  // This next batch of code keeps track of when to increment the multiplier.  The multiplier is also capped at a max of 5.
         {
             comboScore_hitsTracker += 1;
-            if (comboScore_hitsTracker == 10)   // Once hitsTracker reaches 10, it is reset and we increase the combo multiplier by 1.
+            if (comboScore_hitsTracker == 2)   // Once hitsTracker reaches 10, it is reset and we increase the combo multiplier by 1.
             {
+				comboing = true;
                 comboScore_multiplier += 1;
                 comboScore_hitsTracker = 0;
             }
@@ -174,7 +194,8 @@ public class ScoreSystem : MonoBehaviour
 
     public void combo_resetCombo()      // Once a combo is finished or interrupted, the total score earned from the combo 
     {                                   // is added to both Total Combo Score and the main Total Score.  Hits and multipliers are also reset.
-        score_totalComboScore += comboScore_total;
+		comboing = false;
+		score_totalComboScore += comboScore_total;
         score_totalScore += comboScore_total;
 
         comboScore_hits = 0;
@@ -203,8 +224,9 @@ public class ScoreSystem : MonoBehaviour
     //  score_hitTaken //
     /////////////////////
     // This function subtracts 150 points from the total score whenever the player takes a hit.
-    void score_hitTaken()
+    public void score_hitTaken()
     {
+		hitNumber++;
         combo_resetCombo();         // This resets the combo since the player already got hit anyways.
         if (score_totalScore < 150)
             score_totalScore = 0;   // Here we make sure the player doens't go into a negative score.
@@ -216,8 +238,9 @@ public class ScoreSystem : MonoBehaviour
     //  score_playerDeath //
     ////////////////////////
     // This function subtracts 1000 points from the total score upon player death.
-    void score_playerDeath()
+    public void score_playerDeath()
     {
+		deathNumber++;
         combo_resetCombo();             // Well the player did die... and it's here just in case score_hitTaken() wasn't called.
         if (score_totalScore < 1000)
             score_totalScore = 0;       // Here we make sure the player doens't go into a negative score.
@@ -238,4 +261,17 @@ public class ScoreSystem : MonoBehaviour
 	void saveScores(){
 		SaveLoad.S.SaveDataOfObject (this);
 	}
+
+	/*
+	void OnEnable(){
+		SceneManager.activeSceneChanged += onChange;
+	}
+
+	void onChange(Scene previousScene, Scene newScene){
+		GameObject tmp = GameObject.Find ("playerUI");
+		if (tmp) {
+			aList = tmp.GetComponent<GUIActions> ();
+		}
+	}
+	*/
 }
