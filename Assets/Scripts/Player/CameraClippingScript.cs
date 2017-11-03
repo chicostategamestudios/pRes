@@ -27,12 +27,12 @@ public class CameraClippingScript : MonoBehaviour
 		RaycastHit hit;
 
 		if(Physics.SphereCast(cameraObj.transform.position, 1, -transform.forward, out hit, 1)) {
-			print("hit");
+			//print("hit");
 			go = true;
 			cameraObj.transform.localPosition = Vector3.Lerp(StartPoint.localPosition, EndPoint.position, lerpC);
 			lerpC++;
 		}else if(!Physics.SphereCast(cameraObj.transform.position, 1, transform.forward, out hit, 1)) {
-			Debug.Log ("hit end");
+			//Debug.Log ("hit end");
 			go = false;
 			if(cameraObj.transform.position != originalPos && go == false) {
 				cameraObj.transform.localPosition = originalPos;
