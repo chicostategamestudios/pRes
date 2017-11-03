@@ -17,6 +17,9 @@ public class End_Level : MonoBehaviour {
 	public float end_seconds = 0;
 	public float end_millisecs = 0;
 
+    [SerializeField]
+    Start_Level_Timer timer;
+
 	bool finished = false;
 	bool paused = false;
 
@@ -40,7 +43,7 @@ public class End_Level : MonoBehaviour {
 	void Update () {
 
 
-		if (Input.GetButtonDown("Controller_Start"))
+        /*if (Input.GetButtonDown("Controller_Start"))
 		{
 			Time.timeScale = Time.timeScale == 1 ? 0 : 1;
 			if (!paused) {
@@ -54,12 +57,12 @@ public class End_Level : MonoBehaviour {
 				player.GetComponent<PlayerGamepad> ().enabled = true;
 				paused = false;
 			}
-		}
-		
-	}
+		}*/
 
-	//used to see when the player enters the exit gate
-	void OnTriggerEnter(Collider col)
+    }
+
+    //used to see when the player enters the exit gate
+    void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.tag == "Player") 
 		{
@@ -79,9 +82,11 @@ public class End_Level : MonoBehaviour {
 	//used to activate end level menu
 	void Finish_Level()
 	{
+        timer.StopAllCoroutines();
 		Finish_Menu.SetActive (true);
-		Next_Level.Select ();
+		Next_Level.Select();
 		player.GetComponent<PlayerGamepad> ().enabled = false;
+        
 	}
 
 	//takes the player to the next level on selection
