@@ -52,6 +52,8 @@ public class NewDynamicCameraBehavior : MonoBehaviour {
 			if (!target.activeInHierarchy) {
 				Debug.Log ("hes dead bitch");
 				target_locked = false;
+				//added by TJ
+				player_combat.locked_on = false;
 			}
 		}
 
