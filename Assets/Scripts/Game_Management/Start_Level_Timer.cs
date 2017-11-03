@@ -120,6 +120,8 @@ public class Start_Level_Timer : MonoBehaviour {
         }
     }
 
+	bool pause = false;
+
 	void Update()
 	{
 		if (count_end == true) {
@@ -128,21 +130,13 @@ public class Start_Level_Timer : MonoBehaviour {
 
         if (Input.GetButtonDown("Controller_Start"))
         {
-            if (paused.PMenu.gameObject.activeInHierarchy == true)
-            {
-                if (onlyOnce == false)
-                {
-                    onlyOnce = true;
-                    currentTime = Time.timeSinceLevelLoad;
-                    StopAllCoroutines();
-                }
-            }
-            else
-            {
-                onlyOnce = false;
-                startTime = (Time.timeSinceLevelLoad - currentTime) + 4;
-                StartCoroutine("Timer");
-            }
+			if (!pause) {
+				Time.timeScale = 0;
+				pause = true;
+			} else {
+				Time.timeScale = 1;
+				pause = false;
+			}
         }
         
         
