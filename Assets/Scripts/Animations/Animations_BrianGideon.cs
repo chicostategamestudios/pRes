@@ -41,13 +41,14 @@ public class Animations_BrianGideon : MonoBehaviour
             playerAnimator.SetFloat("MoveBlend", 0);
         }
 
+        
         // inTheAir
-        if (player.grounded == false)
+        if (PlayerGamepad.grounded == false)
         {
             playerAnimator.SetBool("inTheAir", true);
         }
         // Landed!
-        else if (player.grounded == true)
+        else if (PlayerGamepad.grounded == true)
         {
             playerAnimator.SetBool("inTheAir", false);
         }
@@ -58,7 +59,7 @@ public class Animations_BrianGideon : MonoBehaviour
             playerAnimator.Play("Start Air Dash");
         } 
         // Dodge
-        if (Input.GetButtonDown("Controller_X") && player.grounded == true)
+        if (Input.GetButtonDown("Controller_X") && PlayerGamepad.grounded == true)
         {
             //playerAnimator.Play("DodgeStart");
         }
