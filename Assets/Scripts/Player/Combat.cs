@@ -121,7 +121,7 @@ public class Combat : MonoBehaviour {
 			input_direction = input_joystick_left.normalized;
 
 			// Fast Attack//////////////////////////////////////////////////////////////////////////////////////////////////////
-			if (PlayerGamepad.grounded && !is_light_attacking && PlayerGamepad.enable == true) {
+			if (Input.GetButtonDown ("Controller_Y") && my_gamepad.CheckGrounded() && !is_light_attacking && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
 				counter_timer -= Time.deltaTime;
 				//Counter///////////
 				if (is_countering == false && Input.GetButtonDown ("Controller_B") && counter_timer < button_delay) {
@@ -139,7 +139,7 @@ public class Combat : MonoBehaviour {
 					attack_timer = 1f;
 					locked_on = my_camera.GetLockOn ();
 					// Disable Player movement
-					PlayerGamepad.enable = false;
+					GetComponent<PlayerGamepad> ().GamepadAllowed = false;
 					// Check for Combo
 					//if (is_comboing) {
 					//	combo_counter++;
@@ -177,7 +177,7 @@ public class Combat : MonoBehaviour {
 			//Fast Attack End//////////////////////////////////////////////////////////////////////////////////////////////
 
 			// Strong Attack////////////////////////////////////////////////////////////////////////////////////////////////////
-			if (Input.GetButtonDown ("Controller_B") && PlayerGamepad.grounded && !is_strong_attacking && PlayerGamepad.enable == true) {
+			if (Input.GetButtonDown ("Controller_B") && my_gamepad.CheckGrounded() && !is_strong_attacking && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
 				counter_timer -= Time.deltaTime;
 				//Counter///////////
 				if (is_countering == false && Input.GetButtonDown ("Controller_Y") && counter_timer < button_delay) {
@@ -194,7 +194,7 @@ public class Combat : MonoBehaviour {
 					attack_timer = 1f;
 					locked_on = my_camera.GetLockOn ();
 					// Disable Player movement
-					PlayerGamepad.enable = false;
+					GetComponent<PlayerGamepad> ().GamepadAllowed = false;
 					// Check for Combo
 					//if (is_comboing) {
 					//	combo_counter++;
@@ -246,7 +246,7 @@ public class Combat : MonoBehaviour {
 			//Attack Movement End//////////////////////////////////////////////////////////////////////////////////////////////
 
 			//Air Strike////////////////////////////////////////////////////////////////////////////////////////////////
-			if (Input.GetButtonDown ("Controller_B") && !PlayerGamepad.grounded && locked_on && PlayerGamepad.enable == true) {
+			if (Input.GetButtonDown ("Controller_B") && !my_gamepad.CheckGrounded() && locked_on && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
 				targeted_enemy = my_camera.GetTargetedEnemy ();//gets currently locked on enemy from DynamicCamera
 				//Debug.Log ("targeted");
 				//striking = true;
@@ -268,14 +268,14 @@ public class Combat : MonoBehaviour {
 			//used for buttons
 			if (Input.GetButtonDown ("Controller_" + dodge_button) && (Input.GetAxis ("LeftJoystickX") > controller_drift || Input.GetAxis ("LeftJoystickX") < -controller_drift || Input.GetAxis ("LeftJoystickY") > controller_drift || Input.GetAxis ("LeftJoystickY") < -controller_drift) && !is_invunerable) {
 				//Checks in PlayerGamepad if the player is on the ground
-				if (PlayerGamepad.grounded) {//can only dodge while on the ground
+				if (my_gamepad.CheckGrounded ()) {//can only dodge while on the ground
 					dodge_dir_x = Input.GetAxis ("LeftJoystickX");
 					dodge_dir_z = Input.GetAxis ("LeftJoystickY");
 					forward = transform.TransformDirection (Vector3.forward);
 					//Debug.Log("Dodging");
 					//Debug.Log(Input.GetAxis("LeftJoystickY"));
 					// if game controller is disabled
-					//PlayerGamepad.enable = true;
+					//GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 
 					// check to see if something is in the way
 					if (Physics.Raycast (transform.position, forward, out hit, (dodge_distance))) {
@@ -291,7 +291,7 @@ public class Combat : MonoBehaviour {
 					//target_prefab.GetComponent<DestroyMove> ().set_life = .5f;
 
 					//GetComponent<Rigidbody>().AddForce(transform.forward * 500000 * dodge_time * Time.deltaTime, ForceMode.Impulse);
-					PlayerGamepad.enable = false;
+					GetComponent<PlayerGamepad> ().GamepadAllowed = false;
 					StartCoroutine (Invunerable ());
 				}
 			}
@@ -306,14 +306,14 @@ public class Combat : MonoBehaviour {
 
 				playerAnimator.Play ("DodgeStart");
 				//Checks in PlayerGamepad if the player is on the ground
-				if (PlayerGamepad.grounded) {
+				if (my_gamepad.CheckGrounded ()) {
 					dodge_dir_x = Input.GetAxis ("LeftJoystickX");
 					dodge_dir_z = Input.GetAxis ("LeftJoystickY");
 					forward = transform.TransformDirection (Vector3.forward);
 					//Debug.Log("Dodging");
 					//Debug.Log(Input.GetAxis("LeftJoystickY"));
 					// if game controller is disabled
-					//PlayerGamepad.enable = true;
+					//GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 
 					// check to see if something is in the way
 					if (Physics.Raycast (transform.position, forward, out hit, (dodge_distance))) {
@@ -367,7 +367,7 @@ public class Combat : MonoBehaviour {
 			//Dodge Movement End//////////////////////////////////////////////////////////////////////////////////////////////
 
 			// Counter (One button)//////////////////////////////////////////////////////////////////////////////////////////////////////////
-			if (is_countering == false && Input.GetButtonDown ("Controller_LB") && PlayerGamepad.enable == true) {
+			if (is_countering == false && Input.GetButtonDown ("Controller_LB") && GetComponent<PlayerGamepad> ().GamepadAllowed == true) {
 				//StartCoroutine ("Counter");
 				//	is_countering = true;
 				//	Debug.Log ("counter");
@@ -395,7 +395,7 @@ public class Combat : MonoBehaviour {
 		my_gamepad.SetSmoothedRotation(false);//Makes rotation instant to smooth out dodge
 		yield return new WaitForSeconds (.1f);
 
-		PlayerGamepad.enable = false;
+		GetComponent<PlayerGamepad> ().GamepadAllowed = false;
 		trigger_press = true;
 		is_dodging = true;
 		//Instantiate (target_prefab, transform.position + (transform.forward * dodge_distance), transform.rotation); // create target marker
@@ -403,7 +403,7 @@ public class Combat : MonoBehaviour {
 		//target_prefab.GetComponent<DestroyMove> ().set_life = .5f;
 
 		//GetComponent<Rigidbody>().AddForce(transform.forward * 500000 * dodge_time * Time.deltaTime, ForceMode.Impulse);
-		//PlayerGamepad.enable = false;
+		//GetComponent<PlayerGamepad> ().GamepadAllowed = false;
 		StartCoroutine (Invunerable ());
 	}
 
@@ -448,15 +448,15 @@ public class Combat : MonoBehaviour {
 		if (attack_number <= 2) {
 			is_light_attacking = false;
 			is_comboing = true;
-			PlayerGamepad.enable = true;
+			GetComponent<PlayerGamepad>().GamepadAllowed = true;
 		} else {
 			is_light_attacking = false;
-			PlayerGamepad.enable = false;
+			GetComponent<PlayerGamepad> ().GamepadAllowed = false;
 			yield return new WaitForSeconds (.5f);
 			is_comboing = false;
 			attack_number = 0;
 			my_anime.attack_combo = 0;
-			PlayerGamepad.enable = true;
+			GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 		}
     }
 
@@ -465,14 +465,14 @@ public class Combat : MonoBehaviour {
 		if (attack_number <= 2) {
 			is_strong_attacking = false;
 			is_comboing = true;
-            PlayerGamepad.enable = true;
+			GetComponent<PlayerGamepad>().GamepadAllowed = true;
 		} else {
 			is_strong_attacking = false;
-			PlayerGamepad.enable = false;
+			GetComponent<PlayerGamepad> ().GamepadAllowed = false;
 			yield return new WaitForSeconds (.5f);
 			is_comboing = false;
 			attack_number = 0;
-			PlayerGamepad.enable = true;
+			GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 		}
 	}
 
@@ -486,7 +486,7 @@ public class Combat : MonoBehaviour {
 
 		Physics.IgnoreLayerCollision( 9, 10, ignore: false);//turn enemy/player physics back on
 
-		PlayerGamepad.enable = true;
+		GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 		my_gamepad.SetSmoothedRotation(true);
 		back_dodge = false;
     }
@@ -494,7 +494,7 @@ public class Combat : MonoBehaviour {
 	IEnumerator Counter()
 	{
 		//Debug.Log ("countering");
-		PlayerGamepad.enable = false;
+		GetComponent<PlayerGamepad> ().GamepadAllowed = false;
 		is_countering = true;
 		my_anime.StartCoroutine ("CounterAnim");//call animation
 		yield return new WaitForSeconds(counter_length);
@@ -507,7 +507,7 @@ public class Combat : MonoBehaviour {
 		is_countering = false;
 		yield return new WaitForSeconds (counter_recovery);
 		//playerAnimator.SetBool("isGrinding", false);
-		PlayerGamepad.enable = true;
+		GetComponent<PlayerGamepad> ().GamepadAllowed = true;
 		counter_recovery = 1f;//reset recovery time
 		//my_gamepad.SetSmoothedRotation(true);
 		//back_dodge = false;
