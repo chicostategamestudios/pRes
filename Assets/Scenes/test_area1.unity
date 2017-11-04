@@ -7557,8 +7557,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordAnimator: {fileID: 0}
+  playerAnimator: {fileID: 0}
   swordObject: {fileID: 1136848380}
-  lightAttackCombo: 0
+  attack_combo: 0
 --- !u!95 &1136848382
 Animator:
   serializedVersion: 3
@@ -8591,30 +8592,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087ca0000cf81454db228f2f5d5be85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target_prefab: {fileID: 1325763714736156, guid: e290bc5b8a671ce49839af7efe01fd76,
-    type: 2}
+  light_damage: 10
+  heavy_damage: 15
   light_attack_distance: 10
   light_attack_time: 0.33
   strong_attack_distance: 10
   strong_attack_time: 0.33
-  dodge_distance: 80
-  is_strong_attacking: 0
-  is_comboing: 0
-  is_invunerable: 0
-  dodge_length: 0.1
-  dodge_button: LT
-  dodge_dir: {x: 0, y: 0, z: 0}
   is_attacking: 0
-  attack_timer: 0
-  weapon_collider: {fileID: 0}
-  test_variable: 0
+  is_invunerable: 0
+  dodge_distance: 80
+  dodge_length: 0.1
+  is_countering: 0
+  counter_recovery: 1
+  button_delay: 0.3
+  speed: 75
+  strike_time: 0.25
   swordAnimator: {fileID: 0}
   swordObject: {fileID: 2010817733}
-  lightAttackCombo: 0
-  myBlade: {fileID: 0}
   playerAnimator: {fileID: 0}
-  light_damage: 10
-  heavy_damage: 15
+  my_anime: {fileID: 0}
+  locked_on: 0
+  targeted_enemy: {fileID: 0}
 --- !u!96 &1364018471
 TrailRenderer:
   serializedVersion: 2
@@ -8731,9 +8729,8 @@ MonoBehaviour:
   current_speed: 0
   speed_smooth_velocity: 0
   current_speed_multiplier: 0
-  max_running_speed: 0
+  max_speed: 0
   original_max_speed: 0
-  grounded: 0
   running_acceleration_multiplier: 0
   grinding: 0
   on_wall: 0
@@ -11037,6 +11034,15 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 3.22
       objectReference: {fileID: 0}
+    - target: {fileID: 114170317526308414, guid: 4a0c149bae11bd7489282e5f85f6f1c8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582543965436634, guid: 4a0c149bae11bd7489282e5f85f6f1c8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a0c149bae11bd7489282e5f85f6f1c8, type: 2}
   m_IsPrefabParent: 0
@@ -11939,6 +11945,7 @@ MonoBehaviour:
   swordRenderer: {fileID: 0}
   swordObject: {fileID: 1136848380}
   swordAnimator: {fileID: 0}
+  my_combat: {fileID: 0}
 --- !u!65 &2010817735
 BoxCollider:
   m_ObjectHideFlags: 0
