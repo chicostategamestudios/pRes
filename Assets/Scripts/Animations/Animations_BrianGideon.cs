@@ -8,12 +8,15 @@ using UnityEngine;
 // This script works with the animation controller for the player character Brian Gideon, and his sword animations.
 public class Animations_BrianGideon : MonoBehaviour
 {
+
+	public bool control = true;
+
     public Animator playerAnimator;
     public GameObject playerObject;
     public GameObject swordObject;
     public PlayerGamepad player;
 
-    int lightAttackCombo;     // Max move speed is 48.
+    //int lightAttackCombo;     // Max move speed is 48.
 
 
 	// Use this for initialization
@@ -24,55 +27,60 @@ public class Animations_BrianGideon : MonoBehaviour
 
         playerAnimator = GetComponent<Animator>();    // Here we can refer to the playerAnimator controller we need to use.
 
-        lightAttackCombo = 0;
+        //lightAttackCombo = 0;
 	}
 
     // Update is called once per frame
     void Update()
     {
+		if (control) {
+			// Most of these animation conditions use the boolean parameters set up in the animation controller.
+			if (player.current_speed > 0) {
+				playerAnimator.SetFloat ("MoveBlend", ((player.current_speed / 48f) * 0.025f));
+			} else if (player.current_speed == 0) {
+				playerAnimator.SetFloat ("MoveBlend", 0);
+			}
 
-        // Most of these animation conditions use the boolean parameters set up in the animation controller.
-        if (player.current_speed > 0)
-        {
-            playerAnimator.SetFloat("MoveBlend", ((player.current_speed / 48f) * 0.025f));
-        }
-        else if (player.current_speed == 0)
-        {
-            playerAnimator.SetFloat("MoveBlend", 0);
-        }
-
-        // inTheAir
-        if (player.grounded == false)
-        {
-            playerAnimator.SetBool("inTheAir", true);
-        }
+			// inTheAir
+			if (player.grounded == false) {
+				playerAnimator.SetBool ("inTheAir", true);
+			}
         // Landed!
-        else if (player.grounded == true)
-        {
-            playerAnimator.SetBool("inTheAir", false);
-        }
+        else if (player.grounded == true) {
+				playerAnimator.SetBool ("inTheAir", false);
+			}
 
-        // Air Dashing!
-        if (player.dashing == true)
-        {
-            playerAnimator.Play("Start Air Dash");
-        } 
-        // Dodge
-        if (Input.GetButtonDown("Controller_X") && player.grounded == true)
-        {
-            //playerAnimator.Play("DodgeStart");
-        }
+            // Air Dashing!
+            if (player.dashing == true && playerAnimator.GetBool("isAirDashing") == false)
+            {
+				playerAnimator.Play ("Start Air Dash");
+                playerAnimator.SetBool("isAirDashing", true);
 
-        // Rail Grinding
-        if (player.grinding == true)
-        {
-            playerAnimator.SetBool("isGrinding", true);
-        }
-        else if (player.grinding == false)
-        {
-            playerAnimator.SetBool("isGrinding", false);
-        }
+            }
+            else if (player.dashing == false && playerAnimator.GetBool("isAirDashing") == true)
+            {
+                playerAnimator.SetBool("isAirDashing", false);
+            }
 
+            // Dodge
+           // if (Input.GetButtonDown ("Controller_X") && player.grounded == true) {
+				//playerAnimator.Play("DodgeStart");
+			//}
+
+			// Rail Grinding
+			if (player.grinding == true && playerAnimator.GetBool("isGrinding") == false)
+            {
+                playerAnimator.Play("Grinding");
+                playerAnimator.SetBool ("isGrinding", true);
+			}
+            else if (player.grinding == false && playerAnimator.GetBool("isGrinding") == true)
+            {
+				playerAnimator.SetBool ("isGrinding", false);
+			}
+
+		}
+
+        // Outdated animatinos for attacks
        /* if (Input.GetButtonDown("Controller_Y"))
         {
             switch (lightAttackCombo)
