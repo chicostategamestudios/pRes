@@ -89,7 +89,7 @@ public class Animations_Sword : MonoBehaviour
             {
                 case 0:
                     playerAnimator.Play("HeavySwing1 V1");
-                    playerAnimator["HeavySwing1 V1"].speed++;
+                    //playerAnimator["HeavySwing1 V1"].speed++;
                     swordAnimator.Play("HeavySwing1 V1_Sword");
                     attack_combo = 1;
                     break;
