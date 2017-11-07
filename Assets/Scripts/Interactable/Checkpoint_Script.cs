@@ -52,7 +52,7 @@ public class Checkpoint_Script : MonoBehaviour
             print("Death Detected");
         }
 		*/
-			if (ThePlayer.GetComponentInChildren<PlayerHealth> ().health <= 0) {
+			if (ThePlayer.GetComponentInChildren<PlayerHealth> ().health <= 0 || ThePlayer.GetComponentInParent<PlayerGamepad> ().isPlayerDead () == true) {
 
 				ScoreSystem.Singleton_ScoreSystem.score_playerDeath ();
 
@@ -74,7 +74,7 @@ public class Checkpoint_Script : MonoBehaviour
                     }
 
                     ThePlayer.GetComponent<PlayerHealth> ().Heal (); // Resets player health for when they die
-					//ThePlayer.GetComponentInParent<PlayerGamepad> ().setPlayerDeath (false);//Sets PlayerDied to false when the player has respawned
+					ThePlayer.GetComponentInParent<PlayerGamepad> ().setPlayerDeath (false);//Sets PlayerDied to false when the player has respawned
 					
 				}
 				print ("Death Detected");

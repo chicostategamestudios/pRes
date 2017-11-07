@@ -23,6 +23,9 @@ public class End_Level : MonoBehaviour {
 	bool finished = false;
 	bool paused = false;
 
+	public Text scoreText;
+	public Text timeText;
+
 	// Use this for initialization
 	void Awake () {
 
@@ -70,8 +73,11 @@ public class End_Level : MonoBehaviour {
 		{
 			Finish_Level ();
 			end_minutes = Start_Level_Timer.Instance.minutes_timer;
+
 			end_seconds = Start_Level_Timer.Instance.seconds_timer;
 			end_millisecs = Start_Level_Timer.Instance.millisec_timer;
+			timeText.text = "Time: " + end_minutes + ":" + end_seconds + ":" + end_millisecs;
+			scoreText.text = "Score: " + ScoreSystem.Singleton_ScoreSystem.score_getFinalScore ();
 			float[] finishTime = new float[3];
 			finishTime[0] = end_minutes;
 			finishTime[1] = end_seconds;

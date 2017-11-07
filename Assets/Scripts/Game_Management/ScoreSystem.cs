@@ -253,7 +253,7 @@ public class ScoreSystem : MonoBehaviour
     //  score_getFinalScore //
     //////////////////////////
     // Simply returns the final score. Most likely called upon ending a level to compare the score of the current run to the stored highest score.
-    int score_getFinalScore()
+    public int score_getFinalScore()
     {
         return score_totalScore;
     }
