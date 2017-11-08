@@ -316,7 +316,8 @@ public class PlayerGamepad : MonoBehaviour
 					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, player_direction + camera_anchor.transform.eulerAngles.y, 0), dash_rotation_speed * Time.deltaTime);
 				} else if (boosting) {
 					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, player_direction + camera_anchor.transform.eulerAngles.y, 0), booster_rotation_speed * Time.deltaTime);
-				} else {
+                }
+                else {
 					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, player_direction + camera_anchor.transform.eulerAngles.y, 0), player_rotation_speed * Time.deltaTime);
 				}
 			}
@@ -886,7 +887,12 @@ public class PlayerGamepad : MonoBehaviour
             //Get end tail of object
             end_of_rail = col.gameObject.transform.position + (col.gameObject.transform.forward * (col.gameObject.transform.localScale.z/2f));
             end_of_rail.y = transform.position.y;
-
+            //Put the player on top of the collider
+            Vector3 new_y_pos = transform.position;
+            //Offset by colliders difference in position and size
+            new_y_pos.y = col.transform.position.y + (col.GetComponentInChildren<BoxCollider>().size.y / 2f);
+            new_y_pos.y += GetComponentInChildren<CapsuleCollider>().height / 2f;
+            transform.position = new_y_pos;
         }
 
         if (col.gameObject.tag == "Launch Ring")
