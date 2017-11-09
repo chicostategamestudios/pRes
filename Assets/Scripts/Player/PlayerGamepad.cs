@@ -27,7 +27,8 @@ public class PlayerGamepad : MonoBehaviour
     private Rigidbody player_rigidbody;
     public bool grounded;
     private bool PlayerDied = false;
-    public float running_acceleration_multiplier;
+    public float running_acceleration;
+    //private 
 
     //RAIL
     public bool grinding;   // Neil: Also made public so my animation script can detect grinding.
@@ -203,8 +204,8 @@ public class PlayerGamepad : MonoBehaviour
         }
 
 		smoothed_rotation = true;
-        if (running_acceleration_multiplier == 0)
-            running_acceleration_multiplier = .6f;
+        if (running_acceleration == 0)
+            running_acceleration = .6f;
 
         if (grinding_speed == 0)
             grinding_speed = 125f;
@@ -325,7 +326,8 @@ public class PlayerGamepad : MonoBehaviour
             {
 				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), 1);
 			}
-            current_speed += input_joystick_left.sqrMagnitude * running_acceleration_multiplier;
+
+            current_speed += input_joystick_left.sqrMagnitude * running_acceleration;
 
         }
         else
@@ -354,6 +356,8 @@ public class PlayerGamepad : MonoBehaviour
         //---------------------------------------------------------
         //SURGE
         //---------------------------------------------------------
+
+
 
 		if (Input.GetAxis ("Controller_RT") == 1 && can_boost && !grinding && !in_ring && current_speed >= 1f && grounded)
         {
@@ -444,11 +448,11 @@ public class PlayerGamepad : MonoBehaviour
         if (!allow_gamepad_player_movement && !dashing)
             move_direction = Vector3.zero;
 
-        //Prevents player from drifting backwards
         //Checking for collision, prevents taleporting through objects when dashing 
-            if (DetectCollision(.25f, transform.forward) || (DetectCollision(.25f, transform.forward) && dashing))
-                if (hit.transform != null && (hit.transform.GetComponent<Collider>().isTrigger != true)) //Essentially imitating a layer mask to ignore certain colliders 
-                    move_direction = Vector3.zero;
+        if (DetectCollision(current_speed * .04f , transform.forward))
+        {
+            current_speed = 5f;
+        }
 
         //Clamp speed down to zero
         if (current_speed <= 0)
@@ -457,7 +461,8 @@ public class PlayerGamepad : MonoBehaviour
             current_speed = 0;
         }
 
-        //Transform the player (the line that moves the player) 
+
+        //Moves the player
         transform.Translate(move_direction, Space.World);
 
         //---------------------------------------------------------------------------
@@ -585,9 +590,13 @@ public class PlayerGamepad : MonoBehaviour
     }
 
     private bool DetectCollision(float _max_distance, Vector3 _direction)
-    {
-        return Physics.Raycast(transform.position, _direction, out hit, _max_distance);
+    { 
+        if(Physics.Raycast(transform.position, _direction, out hit, _max_distance) && hit.transform != null && (hit.transform.GetComponent<Collider>().isTrigger != true))
+        {
+            return true;
+        }
 
+        return false;
     }
 
 
