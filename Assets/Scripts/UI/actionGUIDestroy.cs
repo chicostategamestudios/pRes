@@ -18,10 +18,10 @@ public class actionGUIDestroy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timer += Time.deltaTime;
-		if(timer > 1) {
-			fadeObj.color = new Color(50,50,50,fadeColor);
-			fadeColor -= 0.1f;
-			//Destroy(gameObject);	
+		if(timer > 5) {
+			//fadeObj.color = new Color(50,50,50,fadeColor);
+			//fadeColor -= 0.1f;
+			Destroy(gameObject);	
 		}
 	}
 }

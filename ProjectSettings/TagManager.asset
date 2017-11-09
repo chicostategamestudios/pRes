@@ -21,6 +21,8 @@ TagManager:
   - Reticle
   - BleedScreen
   - battleArea
+  - ActionText
+  - ActionFrame
   layers:
   - Default
   - TransparentFX

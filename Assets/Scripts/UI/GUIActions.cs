@@ -9,42 +9,73 @@ public class GUIActions : MonoBehaviour {
 	public GameObject GUIparent;
 	public Text actionText;
 	public Vector3 actionPos;
+
+	[SerializeField]
+	private GameObject[] activeFrame;
+
 	[SerializeField]
 	private GameObject[] activeText;
+
 	[SerializeField]
-	private Vector3 moveText;
+	private Vector3 moveFrame;
+
+	public bool itsFastAtt = false;
+	public bool itsStrongAtt = false;
+	public bool itsCounter = false;
+	public bool itsKill = false;
+
+	public GameObject FastAttFramer;
+	public GameObject StrongAttFramer;
+	public GameObject CounterFramer;
+	public GameObject KillFramer;
 
 	// Use this for initialization
 	void Start () {
-		actionText = GUIparent.transform.GetChild(0).gameObject.GetComponent<Text>();
-		actionText.text = null;
-		actionText.transform.position = new Vector3(340,160,0);
+		//actionText = GUIparent.transform.GetChild(0).gameObject.GetComponent<Text>();
+		//actionText.text = null;
+		//actionText.transform.position = new Vector3(340,160,0);
 		actionPos = new Vector3(340, 160, 0);
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		activeText = GameObject.FindGameObjectsWithTag("ActionText");
+		//activeText = GameObject.FindGameObjectsWithTag("ActionText");
+		activeFrame = GameObject.FindGameObjectsWithTag("ActionFrame");
 
-		/*
 		if(Input.GetKeyDown("up")) {
-			actionGUI("Hit ", 10);
+			itsFastAtt = true;
 		} else if(Input.GetKeyDown("down")) {
-			actionGUI("dodge ", 15);
+			itsStrongAtt = true;
 		}
-		*/
+		if(itsFastAtt == true) {
+			actionGUI("Hit", 10, FastAttFramer);
+			itsFastAtt = false;
+		}
+		if(itsStrongAtt == true) {
+			actionGUI("Hit", 10, StrongAttFramer);
+			itsStrongAtt = false;
+		}
+		if(itsCounter == true) {
+			actionGUI("Hit", 10, CounterFramer);
+			itsCounter = false;
+		}
+		if(itsKill == true) {
+			actionGUI("Hit", 10, KillFramer);
+			itsKill = false;
+		}
+
 	}
 
-	public void actionGUI(string actionName, float points )
+	public void actionGUI(string actionName, float points, GameObject obj )
 	{
-		actionText.text = actionName + points;
-		Instantiate(GUIparent, actionPos, Quaternion.identity);
-		if(activeText != null) {
-			foreach(GameObject t in activeText) {
-				moveText = t.transform.position;
-				moveText.y -= 20;
-				t.transform.position = moveText;
+		//actionText.text = actionName + points;
+		Instantiate(obj, actionPos, Quaternion.identity);
+		if(activeFrame != null) {
+			foreach(GameObject t in activeFrame) {
+				moveFrame = t.transform.position;
+				moveFrame.y -= 50;
+				t.transform.position = moveFrame;
 			}
 		}
 	}

@@ -140,7 +140,7 @@ public class ScoreSystem : MonoBehaviour
 	int fastScore = 10;
     public void combo_addFastAttack()
     {
-		aList.actionGUI ("Fast Attack ", fastScore);
+		//aList.actionGUI ("Fast Attack ", fastScore);
         comboScore_subtotal += fastScore;
         combo_addHit();
     }
@@ -148,7 +148,7 @@ public class ScoreSystem : MonoBehaviour
 	int strongScore = 20;
     public void combo_addStrongAttack()
     {
-		aList.actionGUI ("Strong Attack", strongScore);
+		//aList.actionGUI ("Strong Attack", strongScore);
         comboScore_subtotal += strongScore;
         combo_addHit();
     }
@@ -156,7 +156,7 @@ public class ScoreSystem : MonoBehaviour
 	int counterScore = 150;
     public void combo_addCounter()
     {
-		aList.actionGUI ("Counter ", counterScore);
+		//aList.actionGUI ("Counter ", counterScore);
 		comboScore_subtotal += counterScore;
         combo_addHit();     // Counters has the player character perform a quick swipe at his attacker.
     }
@@ -164,7 +164,7 @@ public class ScoreSystem : MonoBehaviour
 	int killScore = 200;
     public void combo_addKill()
     {
-		aList.actionGUI ("Kill ", killScore);
+		//aList.actionGUI ("Kill ", killScore);
         comboScore_subtotal += killScore;
         combo_calculateCombo();     // Most likely one of the other attacks already landed, so we can directly call to calculate the combo score
     }                               // and not worry about calling 'combo_addHit()'.
