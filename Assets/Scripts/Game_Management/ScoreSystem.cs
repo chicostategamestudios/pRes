@@ -10,17 +10,23 @@ using UnityEngine.SceneManagement;
 
 public class ScoreSystem : MonoBehaviour
 {
+	public Vector3[] timeCompletionRanks;
+	public int[] comboScoreRanks;
+	public int[] totalScoreRanks;
+
+
+
     // Declare variables here!
-    public int score_totalScore;        // This is the total score that the player has throughout a level.
-	public float[] completionTime;
-	public int score_totalComboScore;   // This shows the score earn from all the combos in the current game.
-	public int hitNumber;
-	public int deathNumber;
+    int score_totalScore;        // This is the total score that the player has throughout a level.
+	Vector3 completionTime;
+	int score_totalComboScore;   // This shows the score earn from all the combos in the current game.
+	int hitNumber;
+	int deathNumber;
 
 
     int comboScore_hits;         // Counts the hits landed during a combo.  This also displays on the game UI.\
-    public int comboScore_hitsTracker;  // This helps count if we reached increments of 10 hits to increase the combo multiplier.
-    public int comboScore_multiplier;   // Keeps track of the combo multiplier.  This displays on the game UI too.
+    int comboScore_hitsTracker;  // This helps count if we reached increments of 10 hits to increase the combo multiplier.
+    int comboScore_multiplier;   // Keeps track of the combo multiplier.  This displays on the game UI too.
     int comboScore_subtotal;     // This variable is where everything in the combo is added together before multiplied by the multiplier.                         
     public int comboScore_total;        // This is the total points earned by a combo that will then be added to both score_totalScore and totalComboScore.
                                         // It allows us to display the score of the current combo.
@@ -40,7 +46,7 @@ public class ScoreSystem : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        //DontDestroyOnLoad(transform.gameObject);
         score_totalScore = 0;              
         score_totalComboScore = 0;
 
@@ -64,7 +70,7 @@ public class ScoreSystem : MonoBehaviour
 		}
 	}
 
-	public void getCompletionTime(float[] time)
+	public void getCompletionTime(Vector3 time)
 	{
 		completionTime = time;
 	}
@@ -140,6 +146,7 @@ public class ScoreSystem : MonoBehaviour
 	int fastScore = 10;
     public void combo_addFastAttack()
     {
+		//Debug.Log ("poo");
 		aList.actionGUI ("Fast Attack ", fastScore);
         comboScore_subtotal += fastScore;
         combo_addHit();

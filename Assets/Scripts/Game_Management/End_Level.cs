@@ -78,10 +78,7 @@ public class End_Level : MonoBehaviour {
 			end_millisecs = Start_Level_Timer.Instance.millisec_timer;
 			timeText.text = "Time: " + end_minutes + ":" + end_seconds + ":" + end_millisecs;
 			scoreText.text = "Score: " + ScoreSystem.Singleton_ScoreSystem.score_getFinalScore ();
-			float[] finishTime = new float[3];
-			finishTime[0] = end_minutes;
-			finishTime[1] = end_seconds;
-			finishTime[2] = end_millisecs;
+			Vector3 finishTime = new Vector3 (end_minutes, end_seconds, end_millisecs);
 			ScoreSystem.Singleton_ScoreSystem.getCompletionTime (finishTime);
 			finished = true;
 		}
