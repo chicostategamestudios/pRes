@@ -44,37 +44,35 @@ public class GUIActions : MonoBehaviour {
 		activeFrame = GameObject.FindGameObjectsWithTag("ActionFrame");
 
 		if(Input.GetKeyDown("up")) {
-			itsFastAtt = true;
+			actionGUI(0);
 		} else if(Input.GetKeyDown("down")) {
-			itsStrongAtt = true;
-		}
-		if(itsFastAtt == true) {
-			actionGUI("Hit", 10, FastAttFramer);
-			itsFastAtt = false;
-		}
-		if(itsStrongAtt == true) {
-			actionGUI("Hit", 10, StrongAttFramer);
-			itsStrongAtt = false;
-		}
-		if(itsCounter == true) {
-			actionGUI("Hit", 10, CounterFramer);
-			itsCounter = false;
-		}
-		if(itsKill == true) {
-			actionGUI("Hit", 10, KillFramer);
-			itsKill = false;
+			actionGUI(1);
 		}
 
 	}
 
-	public void actionGUI(string actionName, float points, GameObject obj )
+	public void actionGUI( int index )
 	{
 		//actionText.text = actionName + points;
+		GameObject obj = null;
+		if(index == 0) {
+			obj = FastAttFramer;
+		}
+		if(index == 1) {
+			obj = StrongAttFramer;
+		}
+		if(index == 2) {
+			obj = CounterFramer;
+		}
+		if(index == 3) {
+			obj = KillFramer;
+		}
 		Instantiate(obj, actionPos, Quaternion.identity);
 		if(activeFrame != null) {
 			foreach(GameObject t in activeFrame) {
 				moveFrame = t.transform.position;
-				moveFrame.y -= 50;
+				moveFrame.x += .195f;
+				moveFrame.y -= 1;
 				t.transform.position = moveFrame;
 			}
 		}
