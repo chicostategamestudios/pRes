@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //////////////////
 // SCORE SYSTEM //
@@ -14,8 +15,23 @@ public class ScoreSystem : MonoBehaviour
 	public int[] comboScoreRanks;
 	public int[] totalScoreRanks;
 
+	int[] rankScores;
 
+	public GameObject finishScreen;
+	public Text timScore;
+	public Text cScore;
+	public Text hScore;
+	public Text dScore;
+	public Text totScore;
 
+	public Text timRank;
+	public Text comRank;
+	public Text rank;
+
+	string timeRank;
+	string comboRank;
+	string totalRank;
+	string[] rankNames;
     // Declare variables here!
     int score_totalScore;        // This is the total score that the player has throughout a level.
 	Vector3 completionTime;
@@ -41,11 +57,25 @@ public class ScoreSystem : MonoBehaviour
     {
         Singleton_ScoreSystem = this;
 		aList = gameObject.GetComponent<GUIActions> ();
+		finishScreen.SetActive(false);
     }
 
     // Use this for initialization
     void Start ()
     {
+		rankNames = new string[5];
+		rankScores = new int[5];
+		rankNames [0] = "Absolute Perfection";
+		rankScores[0] = 100000;
+		rankNames [1] = "Divine";
+		rankScores [1] = 75000;
+		rankNames [2] = "Godlike";
+		rankScores [2] = 50000;
+		rankNames [3] = "Devoted";
+		rankScores [3] = 25000;
+		rankNames [4] = "Apprentice";
+		rankScores [4] = 10000;
+
         //DontDestroyOnLoad(transform.gameObject);
         score_totalScore = 0;              
         score_totalComboScore = 0;
@@ -75,6 +105,38 @@ public class ScoreSystem : MonoBehaviour
 		completionTime = time;
 	}
 
+	public void levelFinished(Vector3 time)
+	{
+		completionTime = time;
+		StartCoroutine (levelFinish ());
+
+	}
+
+	float pause = 1;
+
+	IEnumerator levelFinish(){
+		finishScreen.SetActive (true);
+
+		timScore.text = completionTime.x + ":" + completionTime.y + ":" + completionTime.z;
+		yield return new WaitForSeconds (pause);
+		cScore.text = score_totalComboScore.ToString();
+		yield return new WaitForSeconds (pause);
+		hScore.text = hitNumber.ToString();
+		yield return new WaitForSeconds (pause);
+		dScore.text = deathNumber.ToString();
+		yield return new WaitForSeconds (pause);
+		totScore.text = score_totalScore.ToString ();
+		yield return new WaitForSeconds (pause);
+		score_addTimeCompletion ();
+		timRank.text = timeRank;
+		yield return new WaitForSeconds (pause);
+		score_addComboCompletion ();
+		comRank.text = comboRank;
+		yield return new WaitForSeconds (pause);
+		score_addTotalCompletion ();
+		rank.text = totalRank;
+	}
+
     /////////////////////
     // TIME COMPLETION //   NOTE: ALl commented out and waiting for function that passes on time completion variable
     /////////////////////
@@ -87,35 +149,49 @@ public class ScoreSystem : MonoBehaviour
     //            - 55 seconds and 2 milliseconds would be entered as "55.002" 
     //            - 4 minutes, 35 seconds, and 50 milliseconds would be entered as "275.05"
     
-    void score_addTimeCompletion(float timing_absolutePerfection, float timing_divine, float timing_godlike, float timing_devoted, float timing_apprentice)
+    void score_addTimeCompletion()
     {
-        float completionTime = levelClear();  // THIS IS A FUNCTION PLACEHOLDER!!  Just sayin'.
+		for (int i = timeCompletionRanks.Length; i > 0; i--) {
+			
+			if (completionTime.x <= timeCompletionRanks [i].x) {
+				if (completionTime.y <= timeCompletionRanks [i].y) {
+					if (completionTime.z <= timeCompletionRanks [i].z) {
+						score_totalScore += rankScores [i];
+						timeRank = rankNames [i];
+						i = 10;
+					}
+				}
+			} else {
+				timeRank = "Imperfect";
+			}
 
-        if (completionTime <= timing_absolutePerfection)
-        {
-            score_totalScore += 100000;   // Absolute Perfection!!
-        }
-        else if (completionTime > timing_absolutePerfection && completionTime <= timing_divine)
-        {
-            score_totalScore += 75000;    // Divine!!
-        }
-        else if (completionTime > timing_divine && completionTime <= timing_godlike)
-        {
-            score_totalScore += 50000;     // Godlike!
-        }
-        else if (completionTime > timing_godlike && completionTime <= timing_devoted)
-        {
-            score_totalScore += 25000;     // Devoted!
-        }
-        else if (completionTime > timing_devoted && completionTime <= timing_apprentice)
-        {
-            score_totalScore += 10000;     // Apprentice.
-        }
-        else
-        {
-            // Imperfect.  So 0 points awarded.
-        }
+		}
     }
+
+	void score_addComboCompletion()
+	{
+		for (int i = 0; i < comboScoreRanks.Length; i++) {
+			if (score_totalComboScore >= comboScoreRanks [i]) {
+				score_totalScore += rankScores [i];
+				comboRank = rankNames [i];
+				i = 10;
+			} else {
+				comboRank = "Imperfect";
+			}
+		}
+	}
+
+	void score_addTotalCompletion(){
+		for (int i = 0; i < totalScoreRanks.Length; i++) {
+			if (score_totalScore >= totalScoreRanks [i]) {
+				score_totalScore += rankScores [i];
+				totalRank = rankNames [i];
+				i = 10;
+			} else {
+				totalRank = "Imperfect";
+			}
+		}
+	}
     
     float levelClear()
     {
