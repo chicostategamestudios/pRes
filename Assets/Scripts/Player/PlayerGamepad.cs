@@ -28,7 +28,6 @@ public class PlayerGamepad : MonoBehaviour
     public bool grounded;
     private bool PlayerDied = false;
     public float running_acceleration;
-    //private 
 
     //RAIL
     public bool grinding;   // Neil: Also made public so my animation script can detect grinding.
@@ -72,7 +71,6 @@ public class PlayerGamepad : MonoBehaviour
     //Check last frame direction
     private float delayed_player_direction;
     float timer_direction;
-
     private RaycastHit hit, hit_down;
 
     //DASH
@@ -426,6 +424,7 @@ public class PlayerGamepad : MonoBehaviour
 
         if (grinding)
         {
+            
             move_direction = grinding_direction;
             grounded = true;
         }
@@ -504,6 +503,7 @@ public class PlayerGamepad : MonoBehaviour
             SetPlayerKinematic(false);
             //disable_left_joystick = false;
         }
+
 
         //-------------------------------------------------
         //	WALL                   
@@ -859,11 +859,18 @@ public class PlayerGamepad : MonoBehaviour
 
     }
 
+    float rail_height; 
+
     void OnTriggerEnter(Collider col)
     {
 
         if (col.gameObject.tag == "Rail")
         {
+            rail_height = col.transform.position.y + (col.transform.lossyScale.y/2f ) + GetComponentInChildren<BoxCollider>().center.y + GetComponentInChildren<BoxCollider>().size.y;
+            rail_height += GetComponentInChildren<CapsuleCollider>().height / 2f;
+            transform.position = new Vector3(transform.position.x, rail_height, transform.position.z);
+
+            GameObject.Find("SphereTest").transform.position = new Vector3(transform.position.x, rail_height, transform.position.z);
 
             player_rigidbody.velocity = Vector3.zero;
 
@@ -875,10 +882,8 @@ public class PlayerGamepad : MonoBehaviour
 
             ResetDashValues();
 
-            jump_counter = 0;
-
             grounded = true;
-            
+
             //Will determine what direction the player will go towards
             if (Mathf.Abs(col.transform.eulerAngles.y - transform.eulerAngles.y) < 90f || Mathf.Abs(col.transform.eulerAngles.y - transform.eulerAngles.y) > 270f)
             {
@@ -894,7 +899,7 @@ public class PlayerGamepad : MonoBehaviour
             rail_forward = col.gameObject.transform.forward;
             //Center player on rail
             //Get end tail of object
-            end_of_rail = col.gameObject.transform.position + (col.gameObject.transform.forward * (col.gameObject.transform.localScale.z/2f));
+            end_of_rail = col.gameObject.transform.position + (col.gameObject.transform.forward * (col.gameObject.transform.localScale.z / 2f));
             end_of_rail.y = transform.position.y;
             //Put the player on top of the collider
             Vector3 new_y_pos = transform.position;
@@ -902,6 +907,8 @@ public class PlayerGamepad : MonoBehaviour
             new_y_pos.y = col.transform.position.y + (col.GetComponentInChildren<BoxCollider>().size.y / 2f);
             new_y_pos.y += GetComponentInChildren<CapsuleCollider>().height / 2f;
             transform.position = new_y_pos;
+
+            
         }
 
         if (col.gameObject.tag == "Launch Ring")
