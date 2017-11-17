@@ -50,7 +50,7 @@ public class ScoreSystem : MonoBehaviour
 	int combo_window = 100;
 	bool comboing = false;
     static public ScoreSystem Singleton_ScoreSystem;
-
+	public End_Level goal;
 	GUIActions aList;
 
     void Awake()
@@ -105,18 +105,20 @@ public class ScoreSystem : MonoBehaviour
 		completionTime = time;
 	}
 
-	public void levelFinished(Vector3 time)
+	public void levelFinished(Vector3 time, End_Level g)
 	{
 		completionTime = time;
+		goal = g;
 		StartCoroutine (levelFinish ());
 
 	}
 
-	float pause = 1;
+	float pause = 0.7f;
 
 	IEnumerator levelFinish(){
 		finishScreen.SetActive (true);
-
+		score_addTotalCompletion ();
+		yield return new WaitForSeconds (pause);
 		timScore.text = completionTime.x + ":" + completionTime.y + ":" + completionTime.z;
 		yield return new WaitForSeconds (pause);
 		cScore.text = score_totalComboScore.ToString();
@@ -129,12 +131,25 @@ public class ScoreSystem : MonoBehaviour
 		yield return new WaitForSeconds (pause);
 		score_addTimeCompletion ();
 		timRank.text = timeRank;
+		totScore.text = score_totalScore.ToString ();
 		yield return new WaitForSeconds (pause);
 		score_addComboCompletion ();
 		comRank.text = comboRank;
+		totScore.text = score_totalScore.ToString ();
 		yield return new WaitForSeconds (pause);
-		score_addTotalCompletion ();
+		totScore.text = score_totalScore.ToString ();
+		yield return new WaitForSeconds (pause);
 		rank.text = totalRank;
+		bool ready = false;
+		while (!ready) {
+			Debug.Log("poo");
+			if(Input.GetButtonDown("Controller_A")){
+				finishScreen.SetActive (false);
+				goal.scoreOver ();
+				ready = true;
+			}
+			yield return new WaitForFixedUpdate ();
+		}
 	}
 
     /////////////////////
@@ -151,45 +166,59 @@ public class ScoreSystem : MonoBehaviour
     
     void score_addTimeCompletion()
     {
-		for (int i = timeCompletionRanks.Length; i > 0; i--) {
-			
-			if (completionTime.x <= timeCompletionRanks [i].x) {
-				if (completionTime.y <= timeCompletionRanks [i].y) {
-					if (completionTime.z <= timeCompletionRanks [i].z) {
+		timeRank = "Imperfect";
+		for (int i = 0; i < timeCompletionRanks.Length; i++) {
+			Debug.Log (i);
+			Debug.Log ("poo");
+			if (completionTime.x < timeCompletionRanks [i].x) {
+				score_totalScore += rankScores [i];
+				timeRank = rankNames [i];
+				Debug.Log (timeRank);
+				Debug.Log (i);
+				break;
+				//i = 10;
+			} else if (completionTime.x == timeCompletionRanks [i].x) {
+				if (completionTime.y < timeCompletionRanks [i].y) {
+					score_totalScore += rankScores [i];
+					timeRank = rankNames [i];
+					Debug.Log (timeRank);
+					Debug.Log (i);
+					break;
+					//i = 10;
+				} else if (completionTime.y == timeCompletionRanks [i].y) {
+					if (completionTime.z < timeCompletionRanks [i].z) {
 						score_totalScore += rankScores [i];
 						timeRank = rankNames [i];
-						i = 10;
+						break;
+						Debug.Log (timeRank);
+						Debug.Log (i);
+						//i = 10;
 					}
 				}
-			} else {
-				timeRank = "Imperfect";
 			}
-
 		}
     }
 
 	void score_addComboCompletion()
 	{
+		comboRank = "Imperfect";
 		for (int i = 0; i < comboScoreRanks.Length; i++) {
 			if (score_totalComboScore >= comboScoreRanks [i]) {
 				score_totalScore += rankScores [i];
 				comboRank = rankNames [i];
 				i = 10;
-			} else {
-				comboRank = "Imperfect";
-			}
+			} 
 		}
 	}
 
 	void score_addTotalCompletion(){
+		totalRank = "Imperfect";
 		for (int i = 0; i < totalScoreRanks.Length; i++) {
 			if (score_totalScore >= totalScoreRanks [i]) {
 				score_totalScore += rankScores [i];
 				totalRank = rankNames [i];
 				i = 10;
-			} else {
-				totalRank = "Imperfect";
-			}
+			} 
 		}
 	}
     

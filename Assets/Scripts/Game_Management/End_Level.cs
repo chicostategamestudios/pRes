@@ -79,7 +79,7 @@ public class End_Level : MonoBehaviour {
 			timeText.text = "Time: " + end_minutes + ":" + end_seconds + ":" + end_millisecs;
 			scoreText.text = "Score: " + ScoreSystem.Singleton_ScoreSystem.score_getFinalScore ();
 			Vector3 finishTime = new Vector3 (end_minutes, end_seconds, end_millisecs);
-			ScoreSystem.Singleton_ScoreSystem.levelFinished (finishTime);
+			ScoreSystem.Singleton_ScoreSystem.levelFinished (finishTime, this);
 			finished = true;
 		}
 	}
@@ -89,10 +89,14 @@ public class End_Level : MonoBehaviour {
 	{
         timer.StopAllCoroutines();
 		/* add to after score screen -Tru*/
-		//Finish_Menu.SetActive (true);
-		//Next_Level.Select();
+
 		player.GetComponent<PlayerGamepad> ().enabled = false;
         
+	}
+
+	public void scoreOver(){
+		Finish_Menu.SetActive (true);
+		Next_Level.Select();
 	}
 
 	//takes the player to the next level on selection
