@@ -65,8 +65,6 @@ public class Checkpoint_Script : MonoBehaviour
                         allEnemies[i].transform.position = EnemySpawnLoc[i]; //sets all enemies positions back to their originol positions for when the player is killed
                         allEnemies[i].SetActive(true);
                         allEnemies[i].GetComponent<BasicAI>().StartCoroutine("reset");
-                        print("Enemies Back home.");
-                        print(allEnemies[i]);
                     }
                     for (int i = 0; i < battleAreas.Length; i++)
                     {
@@ -77,7 +75,6 @@ public class Checkpoint_Script : MonoBehaviour
 					ThePlayer.GetComponentInParent<PlayerGamepad> ().setPlayerDeath (false);//Sets PlayerDied to false when the player has respawned
 					
 				}
-				print ("Death Detected");
 			}
 		}
     }
