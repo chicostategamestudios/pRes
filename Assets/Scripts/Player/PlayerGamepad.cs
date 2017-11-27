@@ -875,8 +875,6 @@ public class PlayerGamepad : MonoBehaviour
             rail_height += GetComponentInChildren<CapsuleCollider>().height / 2f;
             transform.position = new Vector3(transform.position.x, rail_height, transform.position.z);
 
-            GameObject.Find("SphereTest").transform.position = new Vector3(transform.position.x, rail_height, transform.position.z);
-
             player_rigidbody.velocity = Vector3.zero;
 
             //Start the grinding statement in the FixedUpdate()

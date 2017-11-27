@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //////////////////
 // SCORE SYSTEM //
@@ -10,17 +11,38 @@ using UnityEngine.SceneManagement;
 
 public class ScoreSystem : MonoBehaviour
 {
+	public Vector3[] timeCompletionRanks;
+	public int[] comboScoreRanks;
+	public int[] totalScoreRanks;
+
+	int[] rankScores;
+
+	public GameObject finishScreen;
+	public Text timScore;
+	public Text cScore;
+	public Text hScore;
+	public Text dScore;
+	public Text totScore;
+
+	public Text timRank;
+	public Text comRank;
+	public Text rank;
+
+	string timeRank;
+	string comboRank;
+	string totalRank;
+	string[] rankNames;
     // Declare variables here!
-    public int score_totalScore;        // This is the total score that the player has throughout a level.
-	public float[] completionTime;
-	public int score_totalComboScore;   // This shows the score earn from all the combos in the current game.
-	public int hitNumber;
-	public int deathNumber;
+    int score_totalScore;        // This is the total score that the player has throughout a level.
+	Vector3 completionTime;
+	int score_totalComboScore;   // This shows the score earn from all the combos in the current game.
+	int hitNumber;
+	int deathNumber;
 
 
     int comboScore_hits;         // Counts the hits landed during a combo.  This also displays on the game UI.\
-    public int comboScore_hitsTracker;  // This helps count if we reached increments of 10 hits to increase the combo multiplier.
-    public int comboScore_multiplier;   // Keeps track of the combo multiplier.  This displays on the game UI too.
+    int comboScore_hitsTracker;  // This helps count if we reached increments of 10 hits to increase the combo multiplier.
+    int comboScore_multiplier;   // Keeps track of the combo multiplier.  This displays on the game UI too.
     int comboScore_subtotal;     // This variable is where everything in the combo is added together before multiplied by the multiplier.                         
     public int comboScore_total;        // This is the total points earned by a combo that will then be added to both score_totalScore and totalComboScore.
                                         // It allows us to display the score of the current combo.
@@ -28,19 +50,33 @@ public class ScoreSystem : MonoBehaviour
 	int combo_window = 100;
 	bool comboing = false;
     static public ScoreSystem Singleton_ScoreSystem;
-
+	public End_Level goal;
 	GUIActions aList;
 
     void Awake()
     {
         Singleton_ScoreSystem = this;
 		aList = gameObject.GetComponent<GUIActions> ();
+		finishScreen.SetActive(false);
     }
 
     // Use this for initialization
     void Start ()
     {
-        DontDestroyOnLoad(transform.gameObject);
+		rankNames = new string[5];
+		rankScores = new int[5];
+		rankNames [0] = "Absolute Perfection";
+		rankScores[0] = 100000;
+		rankNames [1] = "Divine";
+		rankScores [1] = 75000;
+		rankNames [2] = "Godlike";
+		rankScores [2] = 50000;
+		rankNames [3] = "Devoted";
+		rankScores [3] = 25000;
+		rankNames [4] = "Apprentice";
+		rankScores [4] = 10000;
+
+        //DontDestroyOnLoad(transform.gameObject);
         score_totalScore = 0;              
         score_totalComboScore = 0;
 
@@ -64,9 +100,56 @@ public class ScoreSystem : MonoBehaviour
 		}
 	}
 
-	public void getCompletionTime(float[] time)
+	public void getCompletionTime(Vector3 time)
 	{
 		completionTime = time;
+	}
+
+	public void levelFinished(Vector3 time, End_Level g)
+	{
+		completionTime = time;
+		goal = g;
+		StartCoroutine (levelFinish ());
+
+	}
+
+	float pause = 0.7f;
+
+	IEnumerator levelFinish(){
+		finishScreen.SetActive (true);
+		score_addTotalCompletion ();
+		yield return new WaitForSeconds (pause);
+		timScore.text = completionTime.x + ":" + completionTime.y + ":" + completionTime.z;
+		yield return new WaitForSeconds (pause);
+		cScore.text = score_totalComboScore.ToString();
+		yield return new WaitForSeconds (pause);
+		hScore.text = hitNumber.ToString();
+		yield return new WaitForSeconds (pause);
+		dScore.text = deathNumber.ToString();
+		yield return new WaitForSeconds (pause);
+		totScore.text = score_totalScore.ToString ();
+		yield return new WaitForSeconds (pause);
+		score_addTimeCompletion ();
+		timRank.text = timeRank;
+		totScore.text = score_totalScore.ToString ();
+		yield return new WaitForSeconds (pause);
+		score_addComboCompletion ();
+		comRank.text = comboRank;
+		totScore.text = score_totalScore.ToString ();
+		yield return new WaitForSeconds (pause);
+		totScore.text = score_totalScore.ToString ();
+		yield return new WaitForSeconds (pause);
+		rank.text = totalRank;
+		bool ready = false;
+		while (!ready) {
+			Debug.Log("poo");
+			if(Input.GetButtonDown("Controller_A")){
+				finishScreen.SetActive (false);
+				goal.scoreOver ();
+				ready = true;
+			}
+			yield return new WaitForFixedUpdate ();
+		}
 	}
 
     /////////////////////
@@ -81,35 +164,63 @@ public class ScoreSystem : MonoBehaviour
     //            - 55 seconds and 2 milliseconds would be entered as "55.002" 
     //            - 4 minutes, 35 seconds, and 50 milliseconds would be entered as "275.05"
     
-    void score_addTimeCompletion(float timing_absolutePerfection, float timing_divine, float timing_godlike, float timing_devoted, float timing_apprentice)
+    void score_addTimeCompletion()
     {
-        float completionTime = levelClear();  // THIS IS A FUNCTION PLACEHOLDER!!  Just sayin'.
-
-        if (completionTime <= timing_absolutePerfection)
-        {
-            score_totalScore += 100000;   // Absolute Perfection!!
-        }
-        else if (completionTime > timing_absolutePerfection && completionTime <= timing_divine)
-        {
-            score_totalScore += 75000;    // Divine!!
-        }
-        else if (completionTime > timing_divine && completionTime <= timing_godlike)
-        {
-            score_totalScore += 50000;     // Godlike!
-        }
-        else if (completionTime > timing_godlike && completionTime <= timing_devoted)
-        {
-            score_totalScore += 25000;     // Devoted!
-        }
-        else if (completionTime > timing_devoted && completionTime <= timing_apprentice)
-        {
-            score_totalScore += 10000;     // Apprentice.
-        }
-        else
-        {
-            // Imperfect.  So 0 points awarded.
-        }
+		timeRank = "Imperfect";
+		for (int i = 0; i < timeCompletionRanks.Length; i++) {
+			Debug.Log (i);
+			Debug.Log ("poo");
+			if (completionTime.x < timeCompletionRanks [i].x) {
+				score_totalScore += rankScores [i];
+				timeRank = rankNames [i];
+				Debug.Log (timeRank);
+				Debug.Log (i);
+				break;
+				//i = 10;
+			} else if (completionTime.x == timeCompletionRanks [i].x) {
+				if (completionTime.y < timeCompletionRanks [i].y) {
+					score_totalScore += rankScores [i];
+					timeRank = rankNames [i];
+					Debug.Log (timeRank);
+					Debug.Log (i);
+					break;
+					//i = 10;
+				} else if (completionTime.y == timeCompletionRanks [i].y) {
+					if (completionTime.z < timeCompletionRanks [i].z) {
+						score_totalScore += rankScores [i];
+						timeRank = rankNames [i];
+						break;
+						Debug.Log (timeRank);
+						Debug.Log (i);
+						//i = 10;
+					}
+				}
+			}
+		}
     }
+
+	void score_addComboCompletion()
+	{
+		comboRank = "Imperfect";
+		for (int i = 0; i < comboScoreRanks.Length; i++) {
+			if (score_totalComboScore >= comboScoreRanks [i]) {
+				score_totalScore += rankScores [i];
+				comboRank = rankNames [i];
+				i = 10;
+			} 
+		}
+	}
+
+	void score_addTotalCompletion(){
+		totalRank = "Imperfect";
+		for (int i = 0; i < totalScoreRanks.Length; i++) {
+			if (score_totalScore >= totalScoreRanks [i]) {
+				score_totalScore += rankScores [i];
+				totalRank = rankNames [i];
+				i = 10;
+			} 
+		}
+	}
     
     float levelClear()
     {
@@ -140,23 +251,25 @@ public class ScoreSystem : MonoBehaviour
 	int fastScore = 10;
     public void combo_addFastAttack()
     {
-		aList.actionGUI ("Fast Attack ", fastScore);
-        comboScore_subtotal += fastScore;
+		//Debug.Log ("poo");
+		aList.actionGUI (0);
+		//aList.actionGUI ("Fast Attack ", fastScore);
+		comboScore_subtotal += fastScore;
         combo_addHit();
     }
 
 	int strongScore = 20;
     public void combo_addStrongAttack()
     {
-		aList.actionGUI ("Strong Attack", strongScore);
-        comboScore_subtotal += strongScore;
+		aList.actionGUI (1);
+        //comboScore_subtotal += strongScore;
         combo_addHit();
     }
 
 	int counterScore = 150;
     public void combo_addCounter()
     {
-		aList.actionGUI ("Counter ", counterScore);
+		aList.actionGUI (2);
 		comboScore_subtotal += counterScore;
         combo_addHit();     // Counters has the player character perform a quick swipe at his attacker.
     }
@@ -164,7 +277,7 @@ public class ScoreSystem : MonoBehaviour
 	int killScore = 200;
     public void combo_addKill()
     {
-		aList.actionGUI ("Kill ", killScore);
+		aList.actionGUI (3);
         comboScore_subtotal += killScore;
         combo_calculateCombo();     // Most likely one of the other attacks already landed, so we can directly call to calculate the combo score
     }                               // and not worry about calling 'combo_addHit()'.

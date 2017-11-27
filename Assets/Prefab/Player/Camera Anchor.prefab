@@ -40,9 +40,9 @@ GameObject:
   - component: {fileID: 124260278052755652}
   - component: {fileID: 81598526136061460}
   - component: {fileID: 114248679088642692}
-  - component: {fileID: 114743101365639318}
-  - component: {fileID: 65847000762459362}
   - component: {fileID: 114689783093324858}
+  - component: {fileID: 54259632198874502}
+  - component: {fileID: 135835105890039000}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -111,18 +111,21 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!65 &65847000762459362
-BoxCollider:
+--- !u!54 &54259632198874502
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621935848950210}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!81 &81598526136061460
 AudioListener:
   m_ObjectHideFlags: 1
@@ -213,17 +216,6 @@ MonoBehaviour:
   originalPos: {x: 0, y: 0, z: 0}
   lerpC: 0
   go: 0
---- !u!114 &114743101365639318
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1621935848950210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!124 &124260278052755652
 Behaviour:
   m_ObjectHideFlags: 1
@@ -231,3 +223,15 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621935848950210}
   m_Enabled: 1
+--- !u!135 &135835105890039000
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621935848950210}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

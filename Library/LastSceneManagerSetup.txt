@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/test_area1.unity
+- path: Assets/Scenes/Level1/Level1_Englavictra.unity
   isLoaded: 1
   isActive: 1

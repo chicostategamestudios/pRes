@@ -78,11 +78,8 @@ public class End_Level : MonoBehaviour {
 			end_millisecs = Start_Level_Timer.Instance.millisec_timer;
 			timeText.text = "Time: " + end_minutes + ":" + end_seconds + ":" + end_millisecs;
 			scoreText.text = "Score: " + ScoreSystem.Singleton_ScoreSystem.score_getFinalScore ();
-			float[] finishTime = new float[3];
-			finishTime[0] = end_minutes;
-			finishTime[1] = end_seconds;
-			finishTime[2] = end_millisecs;
-			ScoreSystem.Singleton_ScoreSystem.getCompletionTime (finishTime);
+			Vector3 finishTime = new Vector3 (end_minutes, end_seconds, end_millisecs);
+			ScoreSystem.Singleton_ScoreSystem.levelFinished (finishTime, this);
 			finished = true;
 		}
 	}
@@ -91,10 +88,15 @@ public class End_Level : MonoBehaviour {
 	void Finish_Level()
 	{
         timer.StopAllCoroutines();
-		Finish_Menu.SetActive (true);
-		Next_Level.Select();
+		/* add to after score screen -Tru*/
+
 		player.GetComponent<PlayerGamepad> ().enabled = false;
         
+	}
+
+	public void scoreOver(){
+		Finish_Menu.SetActive (true);
+		Next_Level.Select();
 	}
 
 	//takes the player to the next level on selection
