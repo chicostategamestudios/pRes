@@ -322,8 +322,13 @@ public class PlayerGamepad : MonoBehaviour
 			}
             else
             {
-				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), 1);
+                if (!grinding)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, player_direction + camera_anchor.transform.eulerAngles.y, 0), 1);
+                }
 			}
+
+
 
             current_speed += input_joystick_left.sqrMagnitude * running_acceleration;
 
