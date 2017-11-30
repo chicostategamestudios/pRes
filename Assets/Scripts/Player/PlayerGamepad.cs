@@ -664,6 +664,7 @@ public class PlayerGamepad : MonoBehaviour
 
     IEnumerator Dash(float duration, int percent_duration_accelerate, int percent_duraction_deaccelerate)
     {
+
 		SetTrailRender(true);
 
         //move_direction = transform.forward;
@@ -680,6 +681,11 @@ public class PlayerGamepad : MonoBehaviour
         dash_unary = 1;
         dash_unary_max_speed = (int)dash_acceleration;
 
+        if (in_ring)
+        {
+            ExitDash();
+        }
+
         yield return new WaitForSeconds(dash_duration * ((float)percent_duration_accelerate/100f));
 
         //Unrestrict y-axis transformation
@@ -688,11 +694,13 @@ public class PlayerGamepad : MonoBehaviour
         dash_unary = -1;
         dash_unary_max_speed = (int)max_running_speed;
 
+        if (in_ring)
+        {
+
+            ExitDash();
+        }
+
         yield return new WaitForSeconds(dash_duration * ((float)percent_duration_accelerate / 100f));
-
-        //move_direction = transform.forward;
-
-        //disable_left_joystick = false;
 
         SetTrailRender(false);
 
@@ -702,6 +710,10 @@ public class PlayerGamepad : MonoBehaviour
 
     void ExitDash()
     {
+
+        RestrictVerticalMovement(false);
+        dash_unary = -1;
+        dash_unary_max_speed = (int)max_running_speed;
 
         move_direction = transform.forward;
 
@@ -911,7 +923,13 @@ public class PlayerGamepad : MonoBehaviour
             new_y_pos.y += GetComponentInChildren<CapsuleCollider>().height / 2f;
             transform.position = new_y_pos;
 
-            
+            if (GameObject.Find("BrianGideon"))
+            {
+                Vector3 e = GameObject.Find("BrianGideon").transform.eulerAngles;
+                e.y -= 90f;
+                GameObject.Find("BrianGideon").transform.rotation = Quaternion.Euler(e);
+            }
+
         }
 
         if (col.gameObject.tag == "Launch Ring")
@@ -979,7 +997,18 @@ public class PlayerGamepad : MonoBehaviour
         }
 
         if (col.gameObject.tag == "Rail")
+        {
+            
             grinding = false;
+
+            if (GameObject.Find("BrianGideon"))
+            {
+                Vector3 e = GameObject.Find("BrianGideon").transform.eulerAngles;
+                e.y += 90f;
+                GameObject.Find("BrianGideon").transform.rotation = Quaternion.Euler(e);
+            }
+
+        }
     }
 
 	public bool isPlayerDead(){
